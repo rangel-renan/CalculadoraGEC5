@@ -1,4 +1,4 @@
-package com.calculadora.operacoes;
+package com.calculadora.calculadora;
 
 public class OperacoesBasicasTeste {
 
@@ -8,5 +8,7 @@ public class OperacoesBasicasTeste {
 		System.out.println(OperacoesBasicas.operacaodeSubtracao(5, 7));
 		System.out.println(OperacoesBasicas.operacaodeMultiplicacao(5, 7));
 		System.out.println(OperacoesBasicas.operacaodeDivisao(4, 2));
+		System.out.println(OperacoesBasicas.raizQuadrada(5.4));
+		System.out.println(OperacoesBasicas.raizQuadrada(4));
 	}
 }
