@@ -52,40 +52,30 @@ public class Bhaskara {
 		this.resultNegativo = resultNegativo;
 	}
 	
-	public void fazDelta(){
+	public void fazdelta(){
 		
 		double quadradoB = getB() * getB();
-		double delta = getA() * getC();
-		delta *= 4;
-		setDelta(quadradoB - delta);
+		this.setDelta(quadradoB - (4 * getA() * getB()));
 	}
 	
 	public void levalores(){
 		Scanner input = new Scanner(System.in);
-		String leitura;
 		
 		System.out.println("Entre com o valor de a");
-		leitura = input.nextLine();
-		this.setA(Double.parseDouble(leitura));
+		this.setA(input.nextDouble());
 		System.out.println("Entre com o valor de b");
-		this.setB(input.nextDouble());
+		this.setA(input.nextDouble());
 		System.out.println("Entre com o valor de c");
-		this.setC(input.nextDouble());
+		this.setA(input.nextDouble());
 		input.close();
 	}
 	
 	public void acharResultPositivo(){
-		double raizQuadrada = Math.sqrt(getDelta());
-		double result = raizQuadrada - getB();
-		result /= 2 * getA();
-		setResultPositivo(result);
+		setResultPositivo( ( -( getB() ) + ( Math.sqrt(delta) ) ) / 2 * getA());
 	}
 	
 	public void acharResultNegativo(){
-		double raizQuadrada = Math.sqrt(getDelta());
-		double result = -raizQuadrada - getB();
-		result /= 2 * getA();
-		setResultNegativo(result);
+		setResultNegativo( ( -( getB() ) - ( Math.sqrt(delta) ) ) / 2 * getA());
 	}
 	
 	public void MostraResultados(){
@@ -95,7 +85,7 @@ public class Bhaskara {
 	
 	public void formulaBhaskara(){
 		this.levalores();
-		this.fazDelta();
+		this.fazdelta();
 		if(getDelta() < 0){
 			System.out.println("Delta com valor " + getDelta() + "Impossivel continuar a expressao");
 		} else {
