@@ -63,11 +63,11 @@ public class Bhaskara {
 	public void levalores(){
 		Scanner input = new Scanner(System.in);
 		
-		System.out.println("Entre com o valor de a");
+		System.out.print("Entre com o valor de a: ");
 		this.setA(input.nextDouble());
-		System.out.println("Entre com o valor de b");
+		System.out.print("Entre com o valor de b: ");
 		this.setB(input.nextDouble());
-		System.out.println("Entre com o valor de c");
+		System.out.print("Entre com o valor de c: ");
 		this.setC(input.nextDouble());
 		input.close();
 	}
