@@ -10,28 +10,29 @@ public class Menu {
 
 	public static void main(String Args[]){
 
-		boolean sair = false;
+		//boolean sair = false;
 
 		Scanner input = new Scanner(System.in);
 
-		while(!sair){
+		//while(!sair){
 			int opcaoMenu;
-			System.out.println("Entre com a opção desejada: ");
+			System.out.println("********MENU********");
 			System.out.println("1-Calculadora");
 			System.out.println("2-Bhaskara");
 			System.out.println("0-Sair");
-			opcaoMenu = Integer.parseInt(input.next());
+			System.out.print("Entre com a opção desejada: ");
+			opcaoMenu = Integer.parseInt(input.nextLine());
 			switch(opcaoMenu){
 			case BHASKARA:
 				Bhaskara bhaskara = new Bhaskara();
 				bhaskara.formulaBhaskara();
 				break;
 			case 0:
-				sair = true;
+				//sair = true;
 				break;
 			}
 		input.close();
-		}
+		//}
 		System.out.println("Calculadora finalizada!!!");
 	}
 }
