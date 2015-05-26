@@ -62,11 +62,9 @@ public class Bhaskara {
 	
 	public void levalores(){
 		Scanner input = new Scanner(System.in);
-		String leitura;
 		
 		System.out.println("Entre com o valor de a");
-		leitura = input.nextLine();
-		this.setA(Double.parseDouble(leitura));
+		this.setA(input.nextDouble());
 		System.out.println("Entre com o valor de b");
 		this.setB(input.nextDouble());
 		System.out.println("Entre com o valor de c");
