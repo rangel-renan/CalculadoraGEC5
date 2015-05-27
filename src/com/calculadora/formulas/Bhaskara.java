@@ -69,7 +69,6 @@ public class Bhaskara {
 		this.setB(input.nextDouble());
 		System.out.print("Entre com o valor de c: ");
 		this.setC(input.nextDouble());
-		//input.close();
 	}
 	
 	public void acharResultPositivo(){
@@ -87,11 +86,16 @@ public class Bhaskara {
 	}
 	
 	public void MostraResultados(){
+		Scanner input = new Scanner(System.in);
 		System.out.println("x1 = " + getResultPositivo());
 		System.out.println("x2 = " + getResultNegativo());
+		System.out.print("Tecle enter para continuar...");
+		input.nextLine();
 	}
 	
 	public void formulaBhaskara(){
+		System.out.println("****Equação de BHASKARA****");
+		System.out.println("Equação do segundo grau: ax^2 + bx + c = 0");
 		this.levalores();
 		this.fazDelta();
 		if(getDelta() < 0){
