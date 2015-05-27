@@ -44,7 +44,7 @@ public class Menu {
 				break;
 			case MODULO_VETOR:
 				ModuloVetor modulo = new ModuloVetor();
-				modulo.calculaModulo();
+				modulo.modulo();
 			case 0:
 				sair = true;
 				break;
