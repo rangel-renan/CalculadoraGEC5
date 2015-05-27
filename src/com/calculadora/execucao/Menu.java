@@ -2,6 +2,7 @@ package com.calculadora.execucao;
 
 import java.util.Scanner;
 
+import com.calculadora.calculadora.OperacoesBasicasMenu;
 import com.calculadora.formulas.Bhaskara;
 import com.calculadora.vetores.ModuloVetor;
 import com.calculadora.vetores.ProdutoEscalar;
@@ -20,15 +21,19 @@ public class Menu {
 
 		while(!sair){
 			int opcaoMenu;
-			System.out.println("********MENU********");
+			System.out.println("********MENU********\n");
 			System.out.println("1-Calculadora");
 			System.out.println("2-Bhaskara");
 			System.out.println("3-Produto Escalar de 2 vetores");
 			System.out.println("4-Modulo de um vetor");
 			System.out.println("0-Sair");
-			System.out.print("Entre com a opção desejada: ");
+			System.out.print("\nEntre com a opção desejada: ");
 			opcaoMenu = Integer.parseInt(input.nextLine());
 			switch(opcaoMenu){
+			case CALCULADORA:
+				OperacoesBasicasMenu operacoesSubMenu = new OperacoesBasicasMenu();
+				operacoesSubMenu.menu();
+				break;
 			case BHASKARA:
 				Bhaskara bhaskara = new Bhaskara();
 				bhaskara.formulaBhaskara();
