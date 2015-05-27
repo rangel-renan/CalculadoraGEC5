@@ -11,16 +11,15 @@ public class ModuloVetorTeste {
 		
 		ModuloVetor moduloVetor = new ModuloVetor();
 		
-		double[] vetor = new double[MAX_INDEX];
+		double[] vetor = {3, 4, 0};
 		
-		Scanner input = new Scanner(System.in); 
+		moduloVetor.setVetor(vetor);
 		
-		for(int index = 0; index < MAX_INDEX; index++) {
-			System.out.print("Insira o elemento: ");
-			vetor[index] = input.nextInt();
-		} moduloVetor.setVetor(vetor);
-		
-		System.out.println("O módulo do vetor eh:" + moduloVetor.calculaModulo());
+		if(moduloVetor.calculaModulo() == 5)
+			System.out.println("Teste realizado com sucesso!");
+	
+		else 
+			System.out.println("Sinto muito, nao deu certo :'(");	
 
 	}
 	
