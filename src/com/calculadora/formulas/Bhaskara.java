@@ -69,7 +69,7 @@ public class Bhaskara {
 		this.setB(input.nextDouble());
 		System.out.print("Entre com o valor de c: ");
 		this.setC(input.nextDouble());
-		input.close();
+		//input.close();
 	}
 	
 	public void acharResultPositivo(){
