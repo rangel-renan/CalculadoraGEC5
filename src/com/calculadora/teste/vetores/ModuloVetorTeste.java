@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class ModuloVetorTeste {
 
 	public static void main(String[] args) {
-		final int MAX_INDEX = 3;
 		
 		ModuloVetor moduloVetor = new ModuloVetor();
 		

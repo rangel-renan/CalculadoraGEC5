@@ -30,9 +30,7 @@ public class ModuloVetor {
 	 
 	 public double calculaModulo() {
 		 
-		 ModuloVetor moduloVetor = new ModuloVetor();
-		 
-		 moduloVetor.getVetor();
+		 this.getVetor();
 		 
 		 modulo = Math.sqrt((vetor[0]*vetor[0]) + (vetor[1]*vetor[1]) + (vetor[2]*vetor[2]));
 		 
@@ -44,9 +42,9 @@ public class ModuloVetor {
 	 }
 	 
 	 public void modulo() {
-		 setVetor(this.leValores());
-		 calculaModulo();
-		 mostraModulo();
+		 this.setVetor(this.leValores());
+		 this.calculaModulo();
+		 this.mostraModulo();
 	 }
 	 
 }
