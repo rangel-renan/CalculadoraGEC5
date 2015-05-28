@@ -27,7 +27,7 @@ public class RaizQuadrada {
 	public double raizQuadrada(){			
 		
 		System.out.print("Entre com o numero: ");
-		number = input.nextInt();
+		setNumber(input.nextInt());
 		
 		resultadoRaiz = (int) Math.sqrt(getNumber());
 		
