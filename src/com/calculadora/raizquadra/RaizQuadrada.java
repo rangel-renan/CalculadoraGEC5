@@ -8,6 +8,14 @@ public class RaizQuadrada {
 	private int resultadoRaiz;
 	private Scanner input = new Scanner(System.in);
 
+	public int getResultadoRaiz() {
+		return resultadoRaiz;
+	}
+
+	public void setResultadoRaiz(int resultadoRaiz) {
+		this.resultadoRaiz = resultadoRaiz;
+	}
+
 	public int getNumber() {
 		return number;
 	}
@@ -21,9 +29,9 @@ public class RaizQuadrada {
 		System.out.print("Entre com o numero: ");
 		number = input.nextInt();
 		
-		resultadoRaiz = (int) Math.sqrt(number);
+		resultadoRaiz = (int) Math.sqrt(getNumber());
 		
-		System.out.println("Resultado da Raiz: " + resultadoRaiz);
+		System.out.println("Resultado da Raiz: " + getResultadoRaiz());
 		
 		return resultadoRaiz;
 	}
