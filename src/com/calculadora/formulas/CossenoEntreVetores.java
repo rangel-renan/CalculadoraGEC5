@@ -2,13 +2,14 @@
 // Faz a fórmula do cálculo do cosseno do ângulo de dois vetores
 package com.calculadora.formulas;
 
+// importa a classe Scanner para ler numeros 
+import java.util.Scanner;
+
 // importando a classe ModuloVetor para poder utilizar o método calculaModuloVetor
 import com.calculadora.vetores.ModuloVetor;
+
 // importanto a classe ProdutoEscalar para poder utilizar o método fazProduto
 import com.calculadora.vetores.ProdutoEscalar;
-
-//importando a classe Scanner para a leitura de dados
-import java.util.Scanner;
 
 // representa o cálculo do cosseno entre dois vetores
 public class CossenoEntreVetores {
@@ -30,10 +31,10 @@ public class CossenoEntreVetores {
 	}
 	
 	// O construtor inicializa os valores dos vetores vetor1 e vetor2 com os parâmetros vetor1 e vetor2
-	  public CossenoEntreVetores(double[] vetor1, double[] vetor2) {
-	     this.vetor1 = vetor1;
-	     this.vetor2 = vetor2;
-	  }
+	public CossenoEntreVetores(double[] vetor1, double[] vetor2) {
+	   this.vetor1 = vetor1;
+	   this.vetor2 = vetor2;
+	}
 	
 	// Obtêm o valor de vetor1
 	public void setVetor1(double[] vetor1) {
@@ -55,6 +56,16 @@ public class CossenoEntreVetores {
 		return vetor2;
 	}
 	
+	// Obtem o valor de resultado
+	public void setResultado(double resultado) {
+		this.resultado = resultado;
+	}
+	
+	// retorna o valor de resultado
+	public double getResultado() {
+		return resultado;
+	}
+	
 	// lê e retorna as tres coordenadas de um vetor 
 	public double[] leVetor() {
 		double[] vetor = new double[MAX_INDEX];
@@ -66,11 +77,15 @@ public class CossenoEntreVetores {
 			if(contador == 2) { System.out.printf("Entre com o valor de z: "); }
 			
 			vetor[contador] = input.nextDouble();
-		} return vetor;
+		} 
+		return vetor;
 	}
 	
 	// calcula e retorna a fórmula do cosseno = (U.V)/(|U|.|V|)
 	public double calculaCosseno() {
+		
+		// cria uma variavel auxiliar
+		double numeroResult;
 		
 		// cria dois objetos de ModuloVetor, um para cada vetor
 		ModuloVetor moduloVetor1 = new ModuloVetor();
@@ -79,27 +94,24 @@ public class CossenoEntreVetores {
 		// cria um objeto de ProdutoEscalar 
 		ProdutoEscalar produtoEscalar = new ProdutoEscalar();
 		
-		this.getVetor1();
-		this.getVetor2();
-		
 		// (U.V)
-		produtoEscalar.setVetor1(vetor1);
-		produtoEscalar.setVetor2(vetor2);
+		produtoEscalar.setVetor1(this.getVetor1());
+		produtoEscalar.setVetor2(this.getVetor2());
 		produtoEscalar.fazProduto();
 		
-		moduloVetor1.setVetor(vetor1);
-		
-		moduloVetor2.setVetor(vetor2);
+		moduloVetor1.setVetor(this.getVetor1());
+		moduloVetor2.setVetor(this.getVetor2());
 		
 		// Atribui a resultado a fórmula do cosseno = (U.V)/(|U|.|V|)
-		resultado = (produtoEscalar.getResult())/((moduloVetor2.calculaModulo()*(moduloVetor1.calculaModulo())));
+		numeroResult = produtoEscalar.getResult()/(moduloVetor2.calculaModulo()*(moduloVetor1.calculaModulo()));
+		this.setResultado(numeroResult);
 		
-		return resultado;
+		return this.getResultado();
 	}
 	
 	// printa o resultado do cálculo na tela
 	public void mostraCosseno() {
-		System.out.println("O cosseno entre os vetores eh: " + resultado);
+		System.out.printf("O cosseno entre os vetores eh: %.2f", resultado);
 	}
 	
 	// insere dois vetores, calcula e mostra o cosseno do angulo entre eles
