@@ -9,26 +9,19 @@ public class CossenoEntreVetoresTeste {
 
 	public static void main(String[] args) {
 		
-		// Cria um objeto do tipo CossenoEntreVetores
-		CossenoEntreVetores cossenoEntreVetores = new CossenoEntreVetores();
-		
 		double[] vetor1 = {3, 4, 0};
 		double[] vetor2 = {4, 3, 0};
 		
+		// Cria um objeto do tipo CossenoEntreVetores
+		// Adiciona os valores de vetor1 e vetor2 como parâmetro do objeto
+		CossenoEntreVetores cossenoEntreVetores = new CossenoEntreVetores(vetor1, vetor2);
+
 		// o termo final é utilizado pois é uma constante
 		// representa o resultado do cosseno entre o vetor 1 e 2
 		final double RESULTADO_ESPERADO = 0.96;
 		
-		// obtêm o valor de vetor1 e vetor2 no objeto do tipo CossenoEntreVetores criado
-		cossenoEntreVetores.setVetor1(vetor1);
-		cossenoEntreVetores.setVetor2(vetor2);
-		
-		// testa se o cálculo resultou no número esperado
-		if (cossenoEntreVetores.calculaCosseno() == RESULTADO_ESPERADO)
-			System.out.println("Teste realizado com sucesso!");
-		else
-			System.out.println("Sinto muito, nao deu certo :'(");
-		
+		// testa e printa se o teste ocorreu com sucesso ou não
+			System.out.println(cossenoEntreVetores.calculaCosseno() == RESULTADO_ESPERADO ? "Teste realizado com sucesso!" : "Sinto muito, nao deu certo.");
 	}
 
 } // Término da classe

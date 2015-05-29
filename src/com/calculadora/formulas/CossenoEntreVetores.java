@@ -16,14 +16,24 @@ public class CossenoEntreVetores {
 	// o termo final é utilizado porque se trata de uma constante
 	final int MAX_INDEX = 3;
 	
-	double resultado;
+	private double resultado;
 	
-	double[] vetor1 = new double[MAX_INDEX];
-	double[] vetor2 = new double[MAX_INDEX];
+	private double[] vetor1 = new double[MAX_INDEX];
+	private double[] vetor2 = new double[MAX_INDEX];
 	
 	Scanner input = new Scanner(System.in);
 	
 	
+	// Criação de um construtor simples
+	public CossenoEntreVetores() {
+		
+	}
+	
+	// O construtor inicializa os valores dos vetores vetor1 e vetor2 com os parâmetros vetor1 e vetor2
+	  public CossenoEntreVetores(double[] vetor1, double[] vetor2) {
+	     this.vetor1 = vetor1;
+	     this.vetor2 = vetor2;
+	  }
 	
 	// Obtêm o valor de vetor1
 	public void setVetor1(double[] vetor1) {
@@ -95,9 +105,9 @@ public class CossenoEntreVetores {
 	// insere dois vetores, calcula e mostra o cosseno do angulo entre eles
 	public void cosseno() {
 		
-		System.out.println("Primeiro Vetor: ");
+		System.out.println("---Primeiro Vetor--- ");
 		this.setVetor1(this.leVetor());
-		System.out.println("Segundo Vetor: ");
+		System.out.println("---Segundo Vetor:--- ");
 		this.setVetor2(this.leVetor());
 		
 		this.calculaCosseno();
