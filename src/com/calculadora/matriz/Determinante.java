@@ -96,14 +96,77 @@ public class Determinante {
 			return vetorRetorno;
 		}
 	}
+	
+	public double[] determinanteMatriz3(int numeroLinhas, int numeroColunas, double[][] matrizLocal){
+		double produto1 = 1;
+		double produto2 = 1;
+		double produto3 = 1;
+		double produto4 = 1;
+		double produto5 = 1;
+		double produto6 = 1;
+		double[] vetorRetorno = new double[2];
+		double verificacao = 0;
+		
+		if(numeroLinhas != numeroColunas){
+			System.out.println("Não é possivel tirar determinante.");
+			vetorRetorno[0] = verificacao;
+			vetorRetorno[1] = determinante;
+			return vetorRetorno;
+		} else {
+			verificacao = 1;
+			for(int contadorLinhas = 0; contadorLinhas < numeroLinhas; contadorLinhas++){
+				for (int contadorColunas = 0; contadorColunas < numeroColunas; contadorColunas++) {
+					if(contadorLinhas == contadorColunas) { 
+						produto1 *= matrizLocal[contadorLinhas][contadorColunas];
+						if(contadorLinhas == 1 && 1 == contadorColunas){
+							produto4 *= matrizLocal[contadorLinhas][contadorColunas];
+						}
+						if(contadorLinhas == 0 && 0 == contadorColunas){
+							produto5 *= matrizLocal[contadorLinhas][contadorColunas];
+						}
+						if(contadorLinhas == 2 && 2 == contadorColunas){
+							produto6 *= matrizLocal[contadorLinhas][contadorColunas];
+						}
+					}
+					if((contadorLinhas == (contadorColunas + 1)) || (contadorLinhas == (contadorColunas - 2))) {
+						produto2 *= matrizLocal[contadorLinhas][contadorColunas];
+						if(contadorLinhas == 0 && contadorColunas == 2){
+							produto4 *= matrizLocal[contadorLinhas][contadorColunas];
+						}
+						if(contadorLinhas == 2 && contadorColunas == 1){
+							produto5 *= matrizLocal[contadorLinhas][contadorColunas];
+						}
+						if(contadorLinhas == 1 && contadorColunas == 0){
+							produto6 *= matrizLocal[contadorLinhas][contadorColunas];
+						}
+					}
+					if((contadorLinhas == (contadorColunas - 1)) || (contadorLinhas == (contadorColunas + 2))) {
+						produto3 *= matrizLocal[contadorLinhas][contadorColunas];
+						if(contadorLinhas == 2 && contadorColunas == 0){
+							produto4 *= matrizLocal[contadorLinhas][contadorColunas];
+						}
+						if(contadorLinhas == 1 && contadorColunas == 2){
+							produto5 *= matrizLocal[contadorLinhas][contadorColunas];
+						}
+						if(contadorLinhas == 0 && contadorColunas == 1){
+							produto6 *= matrizLocal[contadorLinhas][contadorColunas];
+						}
+					}
+				}
+			}
+			vetorRetorno[0] = verificacao;
+			vetorRetorno[1]= produto1 + produto2 + produto3 - (produto4 + produto5 + produto6);
+			return vetorRetorno;
+		}
+	}
 
-	public double determinante(){
+	public void determinante(){
 		
 		
 		double determinante;		
 		int numeroLinhas;
 		int numeroColunas;
-		double[] vetorDet;
+		double[] vetorDet = {0, 0};
 		
 		if(leMatriz()){
 			numeroLinhas = getNumeroLinhas();
@@ -111,21 +174,19 @@ public class Determinante {
 			double[][] matrizLocal = getMatriz();
 			if(numeroLinhas == 1){
 				determinante = matrizLocal[0][0];
-				return determinante;
-			}else{
-				while(numeroLinhas > 2){
-					//reduzMatriz(matrizLocal);
-					numeroLinhas--;
-					numeroColunas--;
+			} else {
+				if(numeroLinhas == 2){
+					vetorDet = determinanteMatriz2(numeroLinhas, numeroColunas, matrizLocal);
+				} else {
+					if(numeroLinhas == 3){
+						vetorDet = determinanteMatriz3(numeroLinhas, numeroColunas, matrizLocal);
+					}
 				}
-				vetorDet = determinanteMatriz2(numeroLinhas, numeroColunas, matrizLocal);
-				if(vetorDet[0] == 1){
-					determinante = vetorDet[1];
-					System.out.println(determinante);
-					return determinante;
-				}		
 			}
+			if(vetorDet[0] == 1){
+				determinante = vetorDet[1];
+				System.out.println(determinante);
+			}			
 		}
-		return -0.71;
 	}	
 }
