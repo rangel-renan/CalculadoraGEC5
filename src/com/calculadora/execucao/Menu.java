@@ -11,9 +11,11 @@ import com.calculadora.raizquadra.RaizQuadrada;
 import com.calculadora.vetores.ModuloVetor;
 import com.calculadora.vetores.ProdutoEscalar;
 import com.calculadora.vetores.ProdutoNumeroVetor;
+import com.calculadora.vetores.ProdutoVetorial;
 
 public class Menu {
 	
+	public static final int SAIR = 0;
 	public static final int CALCULADORA = 1;
 	public static final int BHASKARA = 2;
 	public static final int PRODUTO_ESCALAR = 3;
@@ -23,6 +25,7 @@ public class Menu {
 	public static final int POTENCIACAO = 7;
 	public static final int DETERMINANTE = 8;
 	public static final int PRODUTO_NUM_VETOR = 9;
+	public static final int PRODUTO_VETORIAL = 10;
 
 	public static void main(String Args[]){
 
@@ -81,7 +84,12 @@ public class Menu {
 			case PRODUTO_NUM_VETOR:
 				ProdutoNumeroVetor produtoNumeroVetor = new ProdutoNumeroVetor();
 				produtoNumeroVetor.produtoNumeroVetor();
-			case 0:
+				break;
+			case PRODUTO_VETORIAL:
+				ProdutoVetorial produtoVet = new ProdutoVetorial();
+				produtoVet.produto();
+				break;
+			case SAIR:
 				sair = true;
 				break;
 			}
