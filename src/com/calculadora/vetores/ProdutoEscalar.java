@@ -9,6 +9,14 @@ public class ProdutoEscalar {
 	double[] vetor2;
 	double result;
 	
+	public ProdutoEscalar() {
+		
+	}
+	public ProdutoEscalar(double[] vetor1, double[] vetor2) {
+		this.vetor1 = vetor1;
+		this.vetor2 = vetor2;
+	}
+	
 	public double getResult() {
 		return result;
 	}
