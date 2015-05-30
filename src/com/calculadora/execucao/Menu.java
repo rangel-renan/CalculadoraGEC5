@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.calculadora.calculadora.OperacoesBasicasMenu;
 import com.calculadora.formulas.Bhaskara;
 import com.calculadora.formulas.CossenoEntreVetores;
+import com.calculadora.formulas.ProjecaoDeUmVetor;
 import com.calculadora.matriz.Determinante;
 import com.calculadora.potenciacao.Potenciacao;
 import com.calculadora.raizquadra.RaizQuadrada;
@@ -26,6 +27,7 @@ public class Menu {
 	public static final int DETERMINANTE = 8;
 	public static final int PRODUTO_NUM_VETOR = 9;
 	public static final int PRODUTO_VETORIAL = 10;
+	public static final int PROJECAO_VETOR = 11;
 
 	public static void main(String Args[]){
 
@@ -45,6 +47,8 @@ public class Menu {
 			System.out.println("7- Potencialização");
 			System.out.println("8- Determinante");
 			System.out.println("9- Produto Entre Um Numero e Um Vetor");
+			System.out.println("10- Produto Vetorial");
+			System.out.println("11- projecao de um vetor sobre o outro");
 			System.out.println("0-Sair");
 			System.out.print("\nEntre com a opção desejada: ");
 			opcaoMenu = Integer.parseInt(input.nextLine());
@@ -89,6 +93,9 @@ public class Menu {
 				ProdutoVetorial produtoVet = new ProdutoVetorial();
 				produtoVet.produto();
 				break;
+			case PROJECAO_VETOR:
+				ProjecaoDeUmVetor projecao = new ProjecaoDeUmVetor();
+				projecao.projecao();
 			case SAIR:
 				sair = true;
 				break;
