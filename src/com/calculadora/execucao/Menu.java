@@ -2,11 +2,11 @@ package com.calculadora.execucao;
 
 import java.util.Scanner;
 
-import com.calculadora.calculadora.OperacoesBasicasMenu;
 import com.calculadora.formulas.Bhaskara;
 import com.calculadora.formulas.CossenoEntreVetores;
 import com.calculadora.formulas.ProjecaoDeUmVetor;
 import com.calculadora.matriz.Determinante;
+import com.calculadora.operacoesbasicas.OperacoesBasicasMenu;
 import com.calculadora.potenciacao.Potenciacao;
 import com.calculadora.raizquadra.RaizQuadrada;
 import com.calculadora.vetores.ModuloVetor;
