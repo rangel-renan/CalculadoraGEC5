@@ -1,5 +1,10 @@
 package com.calculadora.execucao;
 
+/**
+ * @author Tiago
+ *
+ */
+
 public enum MenuOpcoes {
 	CALCULADORA("Calculadora", 1),
 	BHASKARA("Bhaskara", 2),
