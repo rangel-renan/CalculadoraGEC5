@@ -89,8 +89,6 @@ public class Bhaskara {
 		Scanner input = new Scanner(System.in);
 		System.out.println("x1 = " + getResultPositivo());
 		System.out.println("x2 = " + getResultNegativo());
-		System.out.print("Tecle enter para continuar...");
-		input.nextLine();
 	}
 	
 	public void formulaBhaskara(){
