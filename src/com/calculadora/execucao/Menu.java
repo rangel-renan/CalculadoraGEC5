@@ -108,6 +108,10 @@ public class Menu {
 				sair = true;
 				break;
 			}
+			if(!sair){
+				System.out.print("Tecle enter para continuar...");
+				input.nextLine();
+			}
 		}
 		input.close();
 		System.out.println("Calculadora finalizada!!!");
