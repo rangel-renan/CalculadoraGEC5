@@ -37,6 +37,16 @@ public class Determinante {
 		}		
 	}
 	
+	public void imprimeDeterminante(){
+		double determinante;
+		
+		determinante = determinanteMatrizNxN();
+		if(determinante != -5){
+			System.out.println("Determinante é: "+determinante);
+		}		
+	}
+	
+	//Se for preciso tirar o determinante, mas sem ser que seja impresso, chame esta função
 	public double determinanteMatrizNxN(){
 		double[][] matriz;
 		boolean flag = false;		

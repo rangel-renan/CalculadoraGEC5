@@ -86,7 +86,7 @@ public class Menu {
 				break;
 			case DETERMINANTE:
 				Determinante determinante = new Determinante();
-				determinante.determinanteMatrizNxN();
+				determinante.imprimeDeterminante();
 				break;
 			case PRODUTO_NUM_VETOR:
 				ProdutoNumeroVetor produtoNumeroVetor = new ProdutoNumeroVetor();
