@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.calculadora.formulas.Bhaskara;
 import com.calculadora.formulas.CossenoEntreVetores;
+import com.calculadora.formulas.Pitagoras;
 import com.calculadora.formulas.ProjecaoDeUmVetor;
 import com.calculadora.matriz.Determinante;
 import com.calculadora.operacoesbasicas.OperacoesBasicasMenu;
@@ -28,6 +29,7 @@ public class Menu {
 	public static final int PRODUTO_NUM_VETOR = 9;
 	public static final int PRODUTO_VETORIAL = 10;
 	public static final int PROJECAO_VETOR = 11;
+	public static final int PITAGORAS = 12;
 
 	public static void main(String Args[]){
 
@@ -48,7 +50,8 @@ public class Menu {
 			System.out.println("8- Determinante");
 			System.out.println("9- Produto Entre Um Numero e Um Vetor");
 			System.out.println("10- Produto Vetorial");
-			System.out.println("11- projecao de um vetor sobre o outro");
+			System.out.println("11- Projecao de um vetor sobre o outro");
+			System.out.println("12- Pitagoras");
 			System.out.println("0-Sair");
 			System.out.print("\nEntre com a opção desejada: ");
 			opcaoMenu = Integer.parseInt(input.nextLine());
@@ -96,6 +99,11 @@ public class Menu {
 			case PROJECAO_VETOR:
 				ProjecaoDeUmVetor projecao = new ProjecaoDeUmVetor();
 				projecao.projecao();
+				break;
+			case PITAGORAS:
+				Pitagoras pitagoras = new Pitagoras();
+				pitagoras.fazCalculo();
+				break;
 			case SAIR:
 				sair = true;
 				break;
