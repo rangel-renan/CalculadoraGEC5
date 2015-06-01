@@ -8,6 +8,8 @@ public class DeterminanteTeste {
 		
 	Determinante determinante = new Determinante();
 	
+	double det = determinante.determinanteMatrizNxN();
+	System.out.println("determinante é: "+det);
 	}
 
 }
