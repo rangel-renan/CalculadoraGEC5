@@ -28,6 +28,8 @@ public class LeMatriz {
 			for(int contadorColunas = 0; contadorColunas < numColunas; contadorColunas++){
 				System.out.print("Entre com um elemento da linha: "+ contadorLinhas+ ", coluna: "+contadorColunas+ ": ");
 				matriz[contadorLinhas][contadorColunas] = input.nextDouble();
+				//matriz[contadorLinhas][contadorColunas] =(int) (Math.random() * 11);
+				//gera matriz randomica
 			}
 		}
 		return matriz;

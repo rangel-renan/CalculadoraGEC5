@@ -55,51 +55,53 @@ public class Determinante {
 		
 		matriz = getMatriz();
 		
-		if(getNumeroLinhas() != getNumeroColunas()){
-			System.out.println("Não é possível tirar o determinante de uma matriz que não é quadrada.");
-		}else{
-			if(getNumeroLinhas() == 2){
-				double determinante = determinanteMatriz2(getNumeroLinhas(), getNumeroColunas(), matriz);
-				return determinante;
-			}else{
-				double[] escalares = new double[matriz.length];				
-				int contLinha = 0;
-				int contColuna = 0;
-				int contColunaAux = 0;
-				double determinante = 0;
+		for(int contL = 0; contL < matriz.length; contL++){
+			for(int contC = 0; contC < matriz[contL].length; contC++){
+				System.out.print(matriz[contL][contC]+" ");
+			}
+			System.out.println("");
+		}
+		
+		double[] escalares = new double[matriz.length];
 				
-				while(flag != true){
-					double primeiraPos = matriz[0][contColuna];
-					escalares[contColuna] = reduzMatriz(matriz, matriz.length, matriz[0].length, contLinha, contColuna, primeiraPos);
-					if(matriz.length > 3){
-						escalares[contColuna] *= primeiraPos;
-					}
-					
-					contColuna++;
-					if(contColuna == matriz.length){
-						flag = true;
-					}
-				}
-				
-				for(int contador = 0; contador < escalares.length; contador++){
-					
-					double escalar = escalares[contador];
-					if(contador % 2 == 0){
-						determinante+= escalar;
-					}
-					else{
-						determinante-= escalar;
-					}
-				}
-				return determinante;
+		int contLinha = 0;
+		int contColuna = 0;
+		int contColunaAux = 0;
+		double determinante = 0;
+		
+		while(flag != true){
+			double primeiraPos = matriz[0][contColuna];
+
+			escalares[contColuna] = reduzMatriz(matriz, matriz.length, matriz[0].length, contLinha, contColuna, primeiraPos);			
+			
+			for(double escalar : escalares){
+				//System.out.println("valor retornado: "+escalar);
+			}
+			
+			/*if(matriz.length > 3){
+				escalares[contColuna] *= primeiraPos;
+			}*/
+			
+			contColuna++;
+			if(contColuna == matriz.length){
+				flag = true;
 			}
 		}
-		return -5;
-		/*se não tiver como tirar a determinante por enquanto vai retornar -5, até eu descobrir como retornar 
-		outra coisa*/
+		
+		for(int contador = 0; contador < escalares.length; contador++){
+			
+			double escalar = escalares[contador];
+			if(contador % 2 == 0){
+				determinante+= escalar;
+			}
+			else{
+				determinante-= escalar;
+			}
+		}
+		return determinante;
 	}
 	
-	private double determinanteMatriz2(int numeroLinhas, int numeroColunas, double[][] matrizLocal){
+	public double determinanteMatriz2(int numeroLinhas, int numeroColunas, double[][] matrizLocal){
 		double determinante = 0;
 		double multiplicacao = 1;
 		double somaDiagonalPrincipal = 0;
@@ -124,7 +126,7 @@ public class Determinante {
 		return determinante;
 	}
 	
-	private double reduzMatriz(double[][] matriz, int numeroLinhas, int numeroColunas, int contLinha, int contColuna, double primeiraPosAnterior){
+	public double reduzMatriz(double[][] matriz, int numeroLinhas, int numeroColunas, int contLinha, int contColuna, double primeiraPosAnterior){
 		double[][] matrizLocal = new double[(numeroLinhas-1)][(numeroColunas-1)];
 		double[] escalares = new double[numeroColunas];
 		int auxLinha = 0;
@@ -155,6 +157,13 @@ public class Determinante {
 			}
 		}
 		
+		/*for(int contL = 0; contL < matrizLocal.length; contL++){
+			for(int contC = 0; contC < matrizLocal[contL].length; contC++){
+				System.out.print(matrizLocal[contL][contC]+"\t");
+			}
+			System.out.println("");
+		}*/
+		
 		escalares[contColuna] = primeiraPosAnterior;
 		
 		contColuna = 0;
@@ -166,11 +175,15 @@ public class Determinante {
 				break;
 			}else{
 				primeiraPos = matrizLocal[0][contColuna];
-				
+				//System.out.println("Recursividade: "+primeiraPos);
 				escalares[contColuna] = reduzMatriz(matrizLocal, matrizLocal.length, matrizLocal[0].length, contLinha, contColuna, primeiraPos);
 				contColuna++;
 			}
 		}
+		
+		/*for(double escalarTeste : escalares){
+			System.out.println("valor retornado: "+escalarTeste);
+		}*/
 		
 		int contador = 0;
 		for(double escalarSoma : escalares){
@@ -189,9 +202,13 @@ public class Determinante {
 		
 		double determinante = determinanteMatriz2(matrizLocal.length, matrizLocal.length, matrizLocal);
 		escalar = determinante * primeiraPosAnterior;
+		//System.out.println("pos anterior: "+primeiraPosAnterior);
+		somaEscalar *= primeiraPosAnterior;
 		if(matrizLocal.length == 2){
+			//System.out.println("estou retornando: "+escalar);
 			return escalar;
 		}
+		//System.out.println("Estou retoranando a soma que é: "+somaEscalar);
 		return somaEscalar;
 	}
 }
