@@ -2,37 +2,14 @@ package com.calculadora.execucao;
 
 import java.util.Scanner;
 
-import com.calculadora.formulas.Bhaskara;
-import com.calculadora.formulas.CossenoEntreVetores;
-import com.calculadora.formulas.Pitagoras;
-import com.calculadora.formulas.ProjecaoDeUmVetor;
-import com.calculadora.formulas.RazoesTrigonometricas;
+import com.calculadora.formulas.*;
 import com.calculadora.matriz.Determinante;
 import com.calculadora.operacoesbasicas.OperacoesBasicasMenu;
 import com.calculadora.potenciacao.Potenciacao;
 import com.calculadora.raizquadra.RaizQuadrada;
-import com.calculadora.vetores.ModuloVetor;
-import com.calculadora.vetores.ProdutoEscalar;
-import com.calculadora.vetores.ProdutoNumeroVetor;
-import com.calculadora.vetores.ProdutoVetorial;
+import com.calculadora.vetores.*;
 
 public class Menu {
-	
-	public static final int SAIR = 0;
-	public static final int CALCULADORA = 1;
-	public static final int BHASKARA = 2;
-	public static final int PRODUTO_ESCALAR = 3;
-	public static final int MODULO_VETOR = 4;
-	public static final int COSSENO_ENTRE_VETORES = 5;
-	public static final int RAIZ_QUADRADA = 6;
-	public static final int POTENCIACAO = 7;
-	public static final int DETERMINANTE = 8;
-	public static final int PRODUTO_NUM_VETOR = 9;
-	public static final int PRODUTO_VETORIAL = 10;
-	public static final int PROJECAO_VETOR = 11;
-	public static final int PITAGORAS = 12;
-	public static final int RAZOES_TRIGONOMETRICAS = 13;
-
 	public static void main(String Args[]){
 
 		boolean sair = false;
@@ -42,79 +19,55 @@ public class Menu {
 		while(!sair){
 			int opcaoMenu;
 			System.out.println("********MENU********\n");
-			System.out.println("1- Calculadora");
-			System.out.println("2- Bhaskara");
-			System.out.println("3- Produto Escalar de 2 vetores");
-			System.out.println("4- Modulo de um vetor");
-			System.out.println("5- Cosseno entre vetores");
-			System.out.println("6- Raiz Quadrada de um numero");
-			System.out.println("7- Potencialização");
-			System.out.println("8- Determinante");
-			System.out.println("9- Produto Entre Um Numero e Um Vetor");
-			System.out.println("10- Produto Vetorial");
-			System.out.println("11- Projecao de um vetor sobre o outro");
-			System.out.println("12- Pitagoras");
-			System.out.println("13- RazoesTrigonometricas");
-			System.out.println("0-Sair");
+			
+			for (MenuOpcoes opcoes : MenuOpcoes.values()) {
+				System.out.println(opcoes.getNumOpcao() + " - " + opcoes.getNomeOpcao());
+			}
+			
 			System.out.print("\nEntre com a opção desejada: ");
 			opcaoMenu = Integer.parseInt(input.nextLine());
-			switch(opcaoMenu){
-			case CALCULADORA:
+			
+			if (opcaoMenu == MenuOpcoes.CALCULADORA.getNumOpcao()) {
 				OperacoesBasicasMenu operacoesSubMenu = new OperacoesBasicasMenu();
 				operacoesSubMenu.menu();
-				break;
-			case BHASKARA:
+			} else if (opcaoMenu == MenuOpcoes.BHASKARA.getNumOpcao()) {
 				Bhaskara bhaskara = new Bhaskara();
 				bhaskara.formulaBhaskara();
-				break;
-			case PRODUTO_ESCALAR:
+			} else if (opcaoMenu == MenuOpcoes.PRODUTO_ESCALAR.getNumOpcao()) {
 				ProdutoEscalar produto = new ProdutoEscalar();
 				produto.produto();
-				break;
-			case MODULO_VETOR:
+			} else if (opcaoMenu == MenuOpcoes.MODULO_VETOR.getNumOpcao()) {
 				ModuloVetor modulo = new ModuloVetor();
 				modulo.modulo();
-				break;
-			case COSSENO_ENTRE_VETORES:
+			} else if (opcaoMenu == MenuOpcoes.COSSENO_ENTRE_VETORES.getNumOpcao()) {
 				CossenoEntreVetores cosseno = new CossenoEntreVetores();
 				cosseno.cosseno();
-				break;
-			case RAIZ_QUADRADA:
+			} else if (opcaoMenu == MenuOpcoes.RAIZ_QUADRADA.getNumOpcao()) {
 				RaizQuadrada raizquadrada = new RaizQuadrada();
 				raizquadrada.raizQuadrada();
-				break;
-			case POTENCIACAO:
+			} else if (opcaoMenu == MenuOpcoes.POTENCIACAO.getNumOpcao()) {
 				Potenciacao potenciacao = new Potenciacao();
 				potenciacao.resultadoPotencial();
-				break;
-			case DETERMINANTE:
+			} else if (opcaoMenu == MenuOpcoes.DETERMINANTE.getNumOpcao()) {
 				Determinante determinante = new Determinante();
 				determinante.imprimeDeterminante();
-				break;
-			case PRODUTO_NUM_VETOR:
+			} else if (opcaoMenu == MenuOpcoes.PRODUTO_NUM_VETOR.getNumOpcao()) {
 				ProdutoNumeroVetor produtoNumeroVetor = new ProdutoNumeroVetor();
 				produtoNumeroVetor.produtoNumeroVetor();
-				break;
-			case PRODUTO_VETORIAL:
+			} else if (opcaoMenu == MenuOpcoes.PRODUTO_VETORIAL.getNumOpcao()) {
 				ProdutoVetorial produtoVet = new ProdutoVetorial();
 				produtoVet.produto();
-				break;
-			case PROJECAO_VETOR:
+			} else if (opcaoMenu == MenuOpcoes.PROJECAO_VETOR.getNumOpcao()) {
 				ProjecaoDeUmVetor projecao = new ProjecaoDeUmVetor();
 				projecao.projecao();
-				break;
-			case PITAGORAS:
+			} else if (opcaoMenu == MenuOpcoes.PITAGORAS.getNumOpcao()) {
 				Pitagoras pitagoras = new Pitagoras();
 				pitagoras.fazCalculo();
-				break;
-			case RAZOES_TRIGONOMETRICAS:
+			} else if (opcaoMenu == MenuOpcoes.RAZOES_TRIGONOMETRICAS.getNumOpcao()) {
 				RazoesTrigonometricas razoes = new RazoesTrigonometricas();
 				razoes.menu();
-				break;
-			case SAIR:
-				sair = true;
-				break;
-			}
+			} 
+			
 			if(!sair){
 				System.out.print("Tecle enter para continuar...");
 				input.nextLine();
