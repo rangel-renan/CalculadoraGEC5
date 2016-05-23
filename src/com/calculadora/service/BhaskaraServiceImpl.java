@@ -6,12 +6,12 @@ import com.calculadora.util.DeltaNegativoException;
 public class BhaskaraServiceImpl implements BhaskaraService {
 	private Bhaskara bhaskara;
 	
-	public BhaskaraServiceImpl() {
-		bhaskara = new Bhaskara();
+	public BhaskaraServiceImpl(Bhaskara _bhaskara) {
+		bhaskara = _bhaskara;
 	}
 	
 	@Override
-	public <T extends Number> Double calcularValorPositivo(T valA, T valB, T valC) {
+	public Double calcularValorPositivo() {
 		
 		try {
 			bhaskara.setDelta(calcularDelta());
@@ -23,7 +23,7 @@ public class BhaskaraServiceImpl implements BhaskaraService {
 	}
 
 	@Override
-	public <T extends Number> Double calcularValorNegativo(T valA, T valB, T valC) {
+	public  Double calcularValorNegativo() {
 		
 		try {
 			bhaskara.setDelta(calcularDelta());

@@ -2,16 +2,12 @@ package com.calculadora.execucao;
 
 import java.util.Scanner;
 
-import com.calculadora.formulas.*;
 import com.calculadora.matriz.Determinante;
-import com.calculadora.model.CossenoEntreVetores;
-import com.calculadora.model.Pitagoras;
-import com.calculadora.model.ProjecaoDeUmVetor;
-import com.calculadora.model.RazoesTrigonometricas;
 import com.calculadora.operacoesbasicas.OperacoesBasicasMenu;
 import com.calculadora.potenciacao.Potenciacao;
 import com.calculadora.raizquadra.RaizQuadrada;
-import com.calculadora.vetores.*;
+import com.calculadora.vetores.ProdutoNumeroVetor;
+import com.calculadora.vetores.ProdutoVetorial;
 
 public class Menu {
 	public static void main(String Args[]){
@@ -68,8 +64,8 @@ public class Menu {
 //				Pitagoras pitagoras = new Pitagoras();
 //				pitagoras.fazCalculo();
 			} else if (opcaoMenu == MenuOpcoes.RAZOES_TRIGONOMETRICAS.getNumOpcao()) {
-				RazoesTrigonometricas razoes = new RazoesTrigonometricas();
-				razoes.menu();
+//				RazoesTrigonometricas razoes = new RazoesTrigonometricas();
+//				razoes.menu();
 			} 
 			
 			if(!sair){

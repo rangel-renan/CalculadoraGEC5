@@ -15,7 +15,7 @@ public class ProjecaoDeUmVetorServiceImpl implements ProjecaoDeUmVetorService {
 		projecaoDeUmVetor = _projecaoDeUmVetor;
 	}
 
-	public <T extends Number> List<Double> calcularProjecao(List<T> vetor1, List<T> vetor2, List<T> vetorAux) {
+	public List<Double> calcularProjecao() {
 		return calcProjecao();
 	}
 

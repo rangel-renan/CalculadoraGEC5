@@ -6,15 +6,15 @@ import com.calculadora.model.CossenoEntreVetores;
 import com.calculadora.vetores.ModuloVetor;
 import com.calculadora.vetores.ProdutoEscalar;
 
-public class CossenoEntreVetoresServiceImpl implements ICossenoEntreVotores {
+public class CossenoEntreVetoresServiceImpl implements CossenoEntreVotores {
 	private CossenoEntreVetores cossenoEntreVetores;
 	
-	public CossenoEntreVetoresServiceImpl() {
-		cossenoEntreVetores = new CossenoEntreVetores();
+	public CossenoEntreVetoresServiceImpl(CossenoEntreVetores _cossenoEntreVetores) {
+		cossenoEntreVetores = _cossenoEntreVetores;
 	}
 
 	@Override
-	public <T extends Number> Double calcularCosseno(List<T> primeiroVetor, List<T> segundoVetor) {
+	public Double calcularCosseno() {
 		return calculaCosseno();
 	}
 	

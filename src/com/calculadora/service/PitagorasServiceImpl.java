@@ -2,14 +2,15 @@ package com.calculadora.service;
 
 import com.calculadora.model.Pitagoras;
 
-public class PitagorasServiceImpl {
+public class PitagorasServiceImpl implements PitagorasService {
 	private Pitagoras pitagoras;
 	
-	public PitagorasServiceImpl() {
-		pitagoras = new Pitagoras();
+	public PitagorasServiceImpl(Pitagoras _pitagoras) {
+		pitagoras = _pitagoras;
 	}
 	
-	public <T extends Number> Double calcularHipotenusa(T cosseno1, T cosseno2) {
+	@Override
+	public Double calcularHipotenusa() {
 		return calcular();
 	}
 	
