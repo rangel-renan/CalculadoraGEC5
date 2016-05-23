@@ -4,6 +4,10 @@ import java.util.Scanner;
 
 import com.calculadora.formulas.*;
 import com.calculadora.matriz.Determinante;
+import com.calculadora.model.CossenoEntreVetores;
+import com.calculadora.model.Pitagoras;
+import com.calculadora.model.ProjecaoDeUmVetor;
+import com.calculadora.model.RazoesTrigonometricas;
 import com.calculadora.operacoesbasicas.OperacoesBasicasMenu;
 import com.calculadora.potenciacao.Potenciacao;
 import com.calculadora.raizquadra.RaizQuadrada;
@@ -31,17 +35,17 @@ public class Menu {
 				OperacoesBasicasMenu operacoesSubMenu = new OperacoesBasicasMenu();
 				operacoesSubMenu.menu();
 			} else if (opcaoMenu == MenuOpcoes.BHASKARA.getNumOpcao()) {
-				Bhaskara bhaskara = new Bhaskara();
-				bhaskara.formulaBhaskara();
+//				Bhaskara bhaskara = new Bhaskara();
+//				bhaskara.formulaBhaskara();
 			} else if (opcaoMenu == MenuOpcoes.PRODUTO_ESCALAR.getNumOpcao()) {
-				ProdutoEscalar produto = new ProdutoEscalar();
-				produto.produto();
+//				ProdutoEscalar produto = new ProdutoEscalar();
+//				produto.produto();
 			} else if (opcaoMenu == MenuOpcoes.MODULO_VETOR.getNumOpcao()) {
-				ModuloVetor modulo = new ModuloVetor();
-				modulo.modulo();
+//				ModuloVetor modulo = new ModuloVetor();
+//				modulo.modulo();
 			} else if (opcaoMenu == MenuOpcoes.COSSENO_ENTRE_VETORES.getNumOpcao()) {
-				CossenoEntreVetores cosseno = new CossenoEntreVetores();
-				cosseno.cosseno();
+//				CossenoEntreVetores cosseno = new CossenoEntreVetores();
+//				cosseno.cosseno();
 			} else if (opcaoMenu == MenuOpcoes.RAIZ_QUADRADA.getNumOpcao()) {
 				RaizQuadrada raizquadrada = new RaizQuadrada();
 				raizquadrada.raizQuadrada();
@@ -58,11 +62,11 @@ public class Menu {
 				ProdutoVetorial produtoVet = new ProdutoVetorial();
 				produtoVet.produto();
 			} else if (opcaoMenu == MenuOpcoes.PROJECAO_VETOR.getNumOpcao()) {
-				ProjecaoDeUmVetor projecao = new ProjecaoDeUmVetor();
-				projecao.projecao();
+//				ProjecaoDeUmVetor projecao = new ProjecaoDeUmVetor();
+//				projecao.projecao();
 			} else if (opcaoMenu == MenuOpcoes.PITAGORAS.getNumOpcao()) {
-				Pitagoras pitagoras = new Pitagoras();
-				pitagoras.fazCalculo();
+//				Pitagoras pitagoras = new Pitagoras();
+//				pitagoras.fazCalculo();
 			} else if (opcaoMenu == MenuOpcoes.RAZOES_TRIGONOMETRICAS.getNumOpcao()) {
 				RazoesTrigonometricas razoes = new RazoesTrigonometricas();
 				razoes.menu();

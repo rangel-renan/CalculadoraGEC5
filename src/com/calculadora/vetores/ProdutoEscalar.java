@@ -1,49 +1,47 @@
 package com.calculadora.vetores;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ProdutoEscalar {
-	
 	public static final int TAM_VETOR = 3;
-	double[] vetor1;
-	double[] vetor2;
-	double result;
+	
+	private List<Double> vetor1;
+	private List<Double> vetor2;
+	private Double result;
 	
 	public ProdutoEscalar() {
 		
 	}
-	public ProdutoEscalar(double[] vetor1, double[] vetor2) {
+	
+	public ProdutoEscalar(List<Double> vetor1, List<Double> vetor2) {
+		super();
 		this.vetor1 = vetor1;
 		this.vetor2 = vetor2;
 	}
-	
-	public double getResult() {
-		return result;
-	}
-	public void setResult(double result) {
-		this.result = result;
-	}
-	public double[] getVetor1() {
+
+	public List<Double> getVetor1() {
 		return vetor1;
 	}
-	public void setVetor1(double[] vetor1) {
+
+	public void setVetor1(List<Double> vetor1) {
 		this.vetor1 = vetor1;
 	}
-	public double[] getVetor2() {
+
+	public List<Double> getVetor2() {
 		return vetor2;
 	}
-	public void setVetor2(double[] vetor2) {
+
+	public void setVetor2(List<Double> vetor2) {
 		this.vetor2 = vetor2;
 	}
-	
-	public double pegaElemento1(int indice){
-		double[] vetor = getVetor1();
-		return vetor[indice];
+
+	public Double getResult() {
+		return result;
 	}
-	
-	public double pegaElemento2(int indice){
-		double[] vetor = getVetor2();
-		return vetor[indice];
+
+	public void setResult(Double result) {
+		this.result = result;
 	}
 	
 	public double[] levetor() {
@@ -60,12 +58,12 @@ public class ProdutoEscalar {
 	}
 	
 	public void fazProduto(){
-		
-		int soma = 0;
+		Double soma = 0.0;
 		
 		for (int contador = 0; contador < TAM_VETOR; contador++) {
-			soma += (this.pegaElemento1(contador) * this.pegaElemento2(contador));
+			soma += vetor1.get(contador) * vetor2.get(contador);
 		}
+		
 		this.setResult(soma);
 	}
 	
@@ -73,13 +71,13 @@ public class ProdutoEscalar {
 		System.out.println("Resultado da multiplicação escalar vetorial = " + this.getResult());
 	}
 	
-	public void produto() {
-		
-		System.out.println("*****Vetor1*****");
-		this.setVetor1(this.levetor());
-		System.out.println("*****Vetor2*****");
-		this.setVetor2(this.levetor());
-		this.fazProduto();
-		this.mostraResult();
-	}
+//	public void produto() {
+//		
+//		System.out.println("*****Vetor1*****");
+//		this.setVetor1(this.levetor());
+//		System.out.println("*****Vetor2*****");
+//		this.setVetor2(this.levetor());
+//		this.fazProduto();
+//		this.mostraResult();
+//	}
 }

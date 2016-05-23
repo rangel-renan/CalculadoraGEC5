@@ -1,87 +1,80 @@
 // ProdutoNumeroVetor.java
 package com.calculadora.vetores;
 
+import java.util.ArrayList;
+import java.util.List;
 // importa a classe Scanner para ler numeros
 import java.util.Scanner;
 
 // Calcula o produto entre um numero e um vetor
 // Exemplo: 2(3, 4, 5) = (6, 8, 10)
 public class ProdutoNumeroVetor {
+	public static final int INDICE_MAX = 3;
 	
-	private final int INDICE_MAX = 3;
-	
-	private double numeroProduto;
-	private double[] vetorResultante = new double[INDICE_MAX];
-	private double[] vetorProduto = new double[INDICE_MAX];
-	
-	Scanner input = new Scanner(System.in);
-	
+	private Double numeroProduto;
+	private List<Double> vetorResultante;
+	private List<Double> vetorProduto;
 	
 	// criação de um construtor simples
 	public ProdutoNumeroVetor() {
-		
+		vetorResultante = new ArrayList<Double>(INDICE_MAX);
+		vetorProduto = new ArrayList<Double>(INDICE_MAX);
 	}
 	
-	// este construtor já inicializa os valores de numeroProduto e VetorProduto 
-	public ProdutoNumeroVetor(double numeroProduto, double[] vetorProduto) {
-		this.numeroProduto = numeroProduto;
+	public ProdutoNumeroVetor(List<Double> vetorResultante, List<Double> vetorProduto) {
+		this.vetorResultante = vetorResultante;
 		this.vetorProduto = vetorProduto;
 	}
 	
-	
-	
-	// retorna o valor do numero do produto
-	public double getNumeroProduto() {
+	public ProdutoNumeroVetor(Double numeroProduto, List<Double> vetorProduto) {
+		this.numeroProduto = numeroProduto;
+		this.vetorProduto = vetorProduto;
+	}
+
+	public Double getNumeroProduto() {
 		return numeroProduto;
 	}
-	
-	// obtem o valor do numero do produto
-	public void setNumeroProduto(double numeroProduto) {
+
+	public void setNumeroProduto(Double numeroProduto) {
 		this.numeroProduto = numeroProduto;
 	}
-	
-	// retorna o valor do vetor do produto
-	public double[] getVetorProduto() {
-		return vetorProduto;
-	}
-	
-	// obtem o valor do vetor do produto
-	public void setVetorProduto(double[] vetorProduto) {
-		this.vetorProduto = vetorProduto;
-	}
-	
-	// retorna o valor do vetor resultante
-	public double[] getVetorResultante() {
+
+	public List<Double> getVetorResultante() {
 		return vetorResultante;
 	}
-	
-	// obtem o valor do vetor resultante
-	public void setVetorResultante(double[] vetorResultante) {
+
+	public void setVetorResultante(List<Double> vetorResultante) {
 		this.vetorResultante = vetorResultante;
 	}
-	
-	
-	
-	// le e retorna o valor de um numero
-	public void leNumeroProduto() {
-		System.out.println("Entre com o numero do produto : ");
-		this.setNumeroProduto(input.nextDouble());
+
+	public List<Double> getVetorProduto() {
+		return vetorProduto;
 	}
-	
-	// le e retorna os valores de um vetor
-	public void leVetorProduto() {
-		// cria um vetor auxiliar
-		double[] vetor = new double[INDICE_MAX];
-		
-		// pede que o usuario insira o numero para cada indice do vetor
-		for(int indice = 0; indice < INDICE_MAX; indice++) {
-			System.out.println("Insira o elemento do vetor: ");
-			vetor[indice] = input.nextDouble();
-		}
-		// vetorProduto se torna igual a vetor
-		this.setVetorProduto(vetor);
+
+	public void setVetorProduto(List<Double> vetorProduto) {
+		this.vetorProduto = vetorProduto;
 	}
-	
+
+//	// le e retorna o valor de um numero
+//	public void leNumeroProduto() {
+//		System.out.println("Entre com o numero do produto : ");
+//		this.setNumeroProduto(input.nextDouble());
+//	}
+//	
+//	// le e retorna os valores de um vetor
+//	public void leVetorProduto() {
+//		// cria um vetor auxiliar
+//		double[] vetor = new double[INDICE_MAX];
+//		
+//		// pede que o usuario insira o numero para cada indice do vetor
+//		for(int indice = 0; indice < INDICE_MAX; indice++) {
+//			System.out.println("Insira o elemento do vetor: ");
+//			vetor[indice] = input.nextDouble();
+//		}
+//		// vetorProduto se torna igual a vetor
+//		this.setVetorProduto(vetor);
+//	}
+//	
 	
 	// faz o calculo da operação ProdutoNumeroVetor
 	public double[] calcProduto() {
