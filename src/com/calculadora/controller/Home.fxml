@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="547.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.HomeController">
+<AnchorPane prefHeight="547.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/8.0.45" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.HomeController">
    <children>
       <HBox layoutX="14.0" layoutY="275.0" prefHeight="40.0" prefWidth="350.0" spacing="3.0">
          <children>
@@ -21,9 +22,9 @@
          <children>
             <Button mnemonicParsing="false" onAction="#apagarTudo" prefHeight="40.0" prefWidth="70.0" text="C" />
             <Button mnemonicParsing="false" onAction="#apagarUltimaLetra" prefHeight="40.0" prefWidth="70.0" text="CE" />
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="+/-" />
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="RAIZ" />
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="PI" />
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="±" />
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="√" />
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="π" />
          </children>
       </HBox>
       <HBox layoutX="14.0" layoutY="365.0" prefHeight="40.0" prefWidth="350.0" spacing="3.0">
@@ -74,7 +75,7 @@
             <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="Deg" />
             <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="n!" />
             <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="ln" />
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="e^x" />
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" />
          </children>
       </HBox>
       <HBox layoutX="372.0" layoutY="411.0" prefHeight="40.0" prefWidth="296.0" spacing="3.0">
@@ -89,8 +90,8 @@
          <children>
             <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="Tan^-1" />
             <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="Cos^-1" />
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="Sin^1" />
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="y-RAIZ-x" />
+            <Button fx:id="asin" mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="sin-1" />
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="y √x^3" />
          </children>
       </HBox>
       <HBox layoutX="372.0" layoutY="321.0" prefHeight="40.0" prefWidth="296.0" spacing="3.0">
@@ -98,7 +99,7 @@
             <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="Tan" />
             <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="Cos" />
             <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="Sin" />
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="x^y" />
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="xy" />
          </children>
       </HBox>
       <HBox layoutX="372.0" layoutY="501.0" prefHeight="40.0" prefWidth="296.0" spacing="3.0">

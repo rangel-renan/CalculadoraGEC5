@@ -1,5 +1,7 @@
 package com.calculadora.controller;
 
+import org.jsoup.Jsoup;
+
 import com.calculadora.model.Idioma;
 
 import javafx.event.ActionEvent;
@@ -9,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.web.HTMLEditor;
 import javafx.stage.Stage;
 
 public class HomeController {
@@ -43,7 +46,10 @@ public class HomeController {
 	private Button teclaMultiplicar;
 	@FXML
 	private Button teclaDividir;
-
+	
+	@FXML
+	private Button asin;
+	
 	private String operador = "";
 	private Long numeroAux = 0L;
 
@@ -125,6 +131,12 @@ public class HomeController {
 	            }
 			}
 		});
+		
+		asin.setText(html2text("sin<sup>-1</sup>"));
+	}
+	
+	public String html2text(String html) {
+	    return Jsoup.parse(html).text();
 	}
 	
 	@FXML
