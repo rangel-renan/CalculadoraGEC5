@@ -3,9 +3,9 @@ package com.calculadora.execucao;
 import java.util.Scanner;
 
 import com.calculadora.matriz.Determinante;
+import com.calculadora.model.RaizQuadrada;
 import com.calculadora.operacoesbasicas.OperacoesBasicasMenu;
 import com.calculadora.potenciacao.Potenciacao;
-import com.calculadora.raizquadra.RaizQuadrada;
 import com.calculadora.vetores.ProdutoNumeroVetor;
 import com.calculadora.vetores.ProdutoVetorial;
 

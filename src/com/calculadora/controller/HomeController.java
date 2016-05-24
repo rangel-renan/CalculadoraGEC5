@@ -3,15 +3,18 @@ package com.calculadora.controller;
 import org.jsoup.Jsoup;
 
 import com.calculadora.model.Idioma;
+import com.calculadora.service.OperacoesBasicasService;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.web.HTMLEditor;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 public class HomeController {
@@ -52,7 +55,9 @@ public class HomeController {
 	
 	private String operador = "";
 	private Long numeroAux = 0L;
-
+	
+	private OperacoesBasicasService operacoesBasicasService;
+	
 	private Stage homeStage;
 	private Idioma idioma;
 	private boolean start;
@@ -131,8 +136,15 @@ public class HomeController {
 	            }
 			}
 		});
-		
-		asin.setText(html2text("sin<sup>-1</sup>"));
+		asin.setOnAction(e -> {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setHeaderText("This is an alert!");
+            WebView webView = new WebView();
+            webView.getEngine().loadContent("<html>Pay attention, there are sin<sup>-1</sup> tags, here.</html>");
+            webView.setPrefSize(150, 60);
+            alert.getDialogPane().setContent(webView);;
+            alert.showAndWait();
+        });
 	}
 	
 	public String html2text(String html) {
