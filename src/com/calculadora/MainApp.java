@@ -1,22 +1,30 @@
 package com.calculadora;
 
+import java.io.IOException;
 import java.util.Optional;
 
 import com.calculadora.config.ConfigProperties;
-import com.calculadora.config.RootLayoutController;
+import com.calculadora.controller.HomeController;
+import com.calculadora.controller.RootLayoutController;
 import com.calculadora.model.Idioma;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceDialog;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
 	private FXMLLoader loader;
+	private BorderPane rootLayout;
 	
 	private Stage homeStage;
 	
 	private RootLayoutController rootLayoutController;
+	private HomeController homeController;
 	
 	private ConfigProperties label;
 	private Idioma idioma;
@@ -30,6 +38,7 @@ public class MainApp extends Application {
 		FXMLLoader carregarFXML = new FXMLLoader();
 		carregarFXML.setResources(label.getBundle());
 		
+		initRootLayout();
 		initHome();
 	}
 	
@@ -50,14 +59,50 @@ public class MainApp extends Application {
 		return null;
 	}
 	
-	private void initHome() {
-		
-		rootLayoutController = loader.getController();
-		rootLayoutController.setMainApp(this);
-		rootLayoutController.setRootLayout(homeStage);
-		rootLayoutController.initRootLayout();
+	private FXMLLoader getNovoLoader() {
+
+		FXMLLoader carregarFXML = new FXMLLoader();
+		carregarFXML.setResources(label.getBundle());
+
+		return carregarFXML;
 	}
 	
+	private Parent getNewNodo(FXMLLoader loader, String caminhoFXML) {
+		try {
+			return loader.load(this.getClass().getResource(caminhoFXML).openStream());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public void initRootLayout() {
+
+		loader = getNovoLoader();
+		rootLayout = (BorderPane) getNewNodo(loader, "controller/RootLayout.fxml");
+
+		rootLayoutController = loader.getController();
+		rootLayoutController.setMainApp(this);
+		rootLayoutController.setHomeDialog(homeStage);
+		//rootLayoutController.init();
+	}
+	
+	private void initHome() {
+		
+		loader = getNovoLoader();
+		rootLayout.setCenter(getNewNodo(loader, "controller/Home.fxml"));
+
+		homeStage.setTitle("Calculadora GEC5");
+		homeStage.setResizable(false);
+		homeStage.setScene(new Scene(rootLayout));
+		homeStage.show();
+		
+		homeController = loader.getController();
+		homeController.setHomeStage(homeStage);
+		homeController.setIdioma(idioma);
+		homeController.init();
+	}
+		
 	public static void main(String[] args) {
 		launch(args);
 	}
