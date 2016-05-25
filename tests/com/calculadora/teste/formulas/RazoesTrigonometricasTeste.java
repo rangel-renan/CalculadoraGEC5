@@ -1,6 +1,6 @@
 package com.calculadora.teste.formulas;
 
-import com.calculadora.model.RazoesTrigonometricas;
+import com.calculadora.model.RazaoTrigonometrica;
 
 public class RazoesTrigonometricasTeste {
 
