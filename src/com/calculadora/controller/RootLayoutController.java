@@ -10,7 +10,7 @@ public class RootLayoutController {
 	
 	private MainApp mainApp;
 	private Stage rootLayout;
-	private Stage homeDialog;
+	private Stage calculadoraStage;
 	
 	private ConfigProperties label;
 	private Idioma idioma;
@@ -27,8 +27,8 @@ public class RootLayoutController {
 		this.rootLayout = rootLayout;
 	}
 	
-	public void setHomeDialog(Stage homeDialog) {
-		this.homeDialog = homeDialog;
+	public void setCalculadoraStage(Stage calculadoraStage) {
+		this.calculadoraStage = calculadoraStage;
 	}
 	
 	public void setMainApp(MainApp mainApp) {

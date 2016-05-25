@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 import com.calculadora.config.ConfigProperties;
-import com.calculadora.controller.HomeController;
+import com.calculadora.controller.CalculadoraController;
 import com.calculadora.controller.RootLayoutController;
 import com.calculadora.model.Idioma;
 
@@ -20,19 +20,19 @@ public class MainApp extends Application {
 	private FXMLLoader loader;
 	private BorderPane rootLayout;
 	
-	private Stage homeStage;
+	private Stage calculadoraStage;
 	
 	private RootLayoutController rootLayoutController;
-	private HomeController homeController;
+	private CalculadoraController calculadoraController;
 	
 	private ConfigProperties label;
 	private Idioma idioma;
 	
 	@Override
-	public void start(Stage _homeStage) throws Exception {
+	public void start(Stage _calculadoraStage) throws Exception {
 		idioma = showEscolherIdioma();
 		label = ConfigProperties.getInstance(idioma);
-		homeStage = _homeStage;
+		calculadoraStage = _calculadoraStage;
 		
 		FXMLLoader carregarFXML = new FXMLLoader();
 		carregarFXML.setResources(label.getBundle());
@@ -82,24 +82,25 @@ public class MainApp extends Application {
 
 		rootLayoutController = loader.getController();
 		rootLayoutController.setMainApp(this);
-		rootLayoutController.setHomeDialog(homeStage);
+		rootLayoutController.setCalculadoraStage(calculadoraStage);
 		//rootLayoutController.init();
 	}
 	
 	private void initHome() {
 		
 		loader = getNovoLoader();
-		rootLayout.setCenter(getNewNodo(loader, "controller/Home.fxml"));
-
-		homeStage.setTitle("Calculadora GEC5");
-		homeStage.setResizable(false);
-		homeStage.setScene(new Scene(rootLayout));
-		homeStage.show();
+		rootLayout.setBottom(getNewNodo(loader, "controller/Calculadora-Style2.fxml"));
+		rootLayout.getStylesheets().add("file:resources/css/style.css");
 		
-		homeController = loader.getController();
-		homeController.setHomeStage(homeStage);
-		homeController.setIdioma(idioma);
-		homeController.init();
+		calculadoraStage.setTitle("Calculadora GEC5");
+		calculadoraStage.setResizable(false);
+		calculadoraStage.setScene(new Scene(rootLayout));
+		calculadoraStage.show();
+		
+		calculadoraController = loader.getController();
+		calculadoraController.setHomeStage(calculadoraStage);
+		calculadoraController.setIdioma(idioma);
+		calculadoraController.init();
 	}
 		
 	public static void main(String[] args) {

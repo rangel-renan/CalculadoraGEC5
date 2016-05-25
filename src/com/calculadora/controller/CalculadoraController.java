@@ -8,16 +8,13 @@ import com.calculadora.service.OperacoesBasicasService;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
-public class HomeController {
+public class CalculadoraController {
 
 	@FXML
 	private Button tecla1;
@@ -61,9 +58,10 @@ public class HomeController {
 	private Stage homeStage;
 	private Idioma idioma;
 	private boolean start;
-
+	private Integer currentNumber;
+	
 	@FXML
-	private TextField inputText;
+	private TextField displayField;
 	
 	@FXML
 	private Label inputTextAnterior;
@@ -126,7 +124,7 @@ public class HomeController {
 	                	processarOperador("=");
 	                	break;
 	                case DELETE: 
-	                	inputText.setText("");
+	                	displayField.setText("");
 	                	break;
 	                case BACK_SPACE:
 	                	apagarUltimaLetra();
@@ -136,15 +134,7 @@ public class HomeController {
 	            }
 			}
 		});
-		asin.setOnAction(e -> {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setHeaderText("This is an alert!");
-            WebView webView = new WebView();
-            webView.getEngine().loadContent("<html>Pay attention, there are sin<sup>-1</sup> tags, here.</html>");
-            webView.setPrefSize(150, 60);
-            alert.getDialogPane().setContent(webView);;
-            alert.showAndWait();
-        });
+		
 	}
 	
 	public String html2text(String html) {
@@ -153,14 +143,14 @@ public class HomeController {
 	
 	@FXML
 	public void apagarTudo() {
-		inputText.setText("");
+		displayField.setText("");
 		inputTextAnterior.setText("");
 	}
 
 	@FXML
 	public void apagarUltimaLetra() {
-		inputText.setText(inputText.getText().substring(0, inputText.getText().length() - 1));
-		inputTextAnterior.setText(inputText.getText().substring(0, inputText.getText().length() - 1));
+		displayField.setText(displayField.getText().substring(0, displayField.getText().length() - 1));
+		inputTextAnterior.setText(displayField.getText().substring(0, displayField.getText().length() - 1));
 	}
 	
 	public void getNumPad(ActionEvent actionEvent) {
@@ -169,11 +159,11 @@ public class HomeController {
 	
 	private void exibirTextoInputText(String value) {
 		if (start) {
-			inputText.setText("");
+			displayField.setText("");
 			start = false;
 		}
 		
-		inputText.setText(inputText.getText() + value);
+		displayField.setText(displayField.getText() + value);
 		inputTextAnterior.setText(inputTextAnterior.getText() + value);
 	}
 	
@@ -181,11 +171,40 @@ public class HomeController {
 		processarOperador(((Button) actionEvent.getSource()).getText());
 	}
 	
+	private void handleZero(ActionEvent actionEvent) {
+		displayField.setText("0");
+	}
+	
+	@FXML
+	private void handleIgual(ActionEvent actionEvent) {
+		
+	}
+	
+	@FXML
+	private void handleOperador(ActionEvent actionEvent) {
+		handleOperador(((Button) actionEvent.getSource()).getText());
+	}
+	
+	private void handleOperador(String valorAtual) {
+		
+	}
+	
+	@FXML
+	private void handleNumPad(ActionEvent actionEvent) {
+		handleNumPad(((Button) actionEvent.getSource()).getText());
+	}
+	
+	private void handleNumPad(String valorAtual) {
+		String oldValor = displayField.getText();
+		String novoValor = oldValor + valorAtual;
+		displayField.setText(novoValor);
+	}
+	
 	private void processarOperador(String value) {
 		
 		if (value.equals("=")) {
 			if (!operador.isEmpty()) {
-				inputText.setText(String.valueOf(calcular(numeroAux, Long.parseLong(inputText.getText()), operador)));
+				displayField.setText(String.valueOf(calcular(numeroAux, Long.parseLong(displayField.getText()), operador)));
 				inputTextAnterior.setText(inputTextAnterior.getText() + " ");
 				operador = "";
 				start = true;
@@ -193,14 +212,16 @@ public class HomeController {
 				return;
 			}
 		} else {
-			operador = "";
+			
 			if (operador.isEmpty()) {
 				operador = value;
-				numeroAux = Long.parseLong(inputText.getText());
+				numeroAux = Long.parseLong(displayField.getText());
 				inputTextAnterior.setText(inputTextAnterior.getText() + " " + value + " ");
-				inputText.setText("");
+				displayField.setText("");
 			} else {
-				return;
+				displayField.setText(String.valueOf(calcular(numeroAux, Long.parseLong(displayField.getText()), operador)));
+				inputTextAnterior.setText(inputTextAnterior.getText() + " ");
+				operador = "";
 			}
 		}
 	}

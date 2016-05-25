@@ -45,20 +45,3 @@
 .operadoresAdicionais:hover {
 	-fx-background-color: #2D0ECC;
 }
-
-
-/* ROOT */
-
-.tab-header-background, .tab {
-	-fx-background-color: white;
-}
-
-.tab {
-	-fx-background-radius: 2;
-	-fx-border-color: #B4BECC;
-}
-
-.tab-pane, .tab:hover, .tab:selected {
-	-fx-background-color: #C8CDD1;
-}
-
