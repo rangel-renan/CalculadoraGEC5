@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="407.0" prefWidth="920.0" stylesheets="@../../../../resources/css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.CalculadoraController">
+   <children>
+      <TextField fx:id="displayField" alignment="BOTTOM_RIGHT" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="56.0" prefWidth="920.0" styleClass="outputPrincipal">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <HBox layoutY="56.0" prefHeight="70.0" prefWidth="487.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#apagarTudo" prefHeight="70.0" prefWidth="162.0" styleClass="numpadApagar" text="C">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#apagarUltimaLetra" prefHeight="70.0" prefWidth="162.0" styleClass="numpadApagar" text="CE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="162.0" styleClass="operadores" text="(">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text=")">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text=",">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutY="126.0" prefHeight="70.0" prefWidth="487.0">
+         <children>
+            <Button fx:id="tecla7" mnemonicParsing="false" onAction="#getNumPad" prefHeight="89.0" prefWidth="162.0" text="7">
+               <styleClass>
+                  <String fx:value="numpad" />
+                  <String fx:value="button" />
+               </styleClass>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="tecla8" mnemonicParsing="false" onAction="#getNumPad" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text="8">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="tecla9" mnemonicParsing="false" onAction="#getNumPad" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text="9">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#getOperador" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="/">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="\%">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutY="196.0" prefHeight="70.0" prefWidth="487.0">
+         <children>
+            <Button fx:id="tecla4" mnemonicParsing="false" onAction="#getNumPad" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text="4">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="tecla5" mnemonicParsing="false" onAction="#getNumPad" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text="5">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="tecla6" mnemonicParsing="false" onAction="#getNumPad" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text="6">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#getOperador" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="*">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="e">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutY="266.0" prefHeight="70.0" prefWidth="487.0">
+         <children>
+            <Button fx:id="tecla1" mnemonicParsing="false" onAction="#getNumPad" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text="1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="tecla2" mnemonicParsing="false" onAction="#getNumPad" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text="2">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="tecla3" mnemonicParsing="false" onAction="#getNumPad" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text="3">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#getOperador" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="-">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="±">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutY="336.0" prefHeight="70.0" prefWidth="487.0">
+         <children>
+            <Button fx:id="tecla0" mnemonicParsing="false" onAction="#getNumPad" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text="0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text=".">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#getOperador" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text="=">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#getOperador" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="+">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="π">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutX="487.0" layoutY="336.0" prefHeight="70.0" prefWidth="433.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="x²">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="x³">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="y √x^3">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="ln">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutX="487.0" layoutY="266.0" prefHeight="70.0" prefWidth="433.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Deg">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="n!">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Int">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Log">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutX="487.0" layoutY="196.0" prefHeight="70.0" prefWidth="433.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Mod">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Exp">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="dms">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="1/x">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutX="487.0" layoutY="126.0" prefHeight="70.0" prefWidth="433.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Tan^-1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Cos^-1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Sin^-1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="10^x">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutX="487.0" layoutY="56.0" prefHeight="70.0" prefWidth="433.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Tan">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Cos">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Sin">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="x^y">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <Label fx:id="inputTextAnterior" alignment="CENTER_RIGHT" layoutX="163.0" layoutY="4.0" prefHeight="22.0" prefWidth="756.0" styleClass="outputSecundario" textAlignment="RIGHT" />
+   </children>
+</AnchorPane>

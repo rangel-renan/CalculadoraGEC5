@@ -35,10 +35,10 @@ public class ConfigProperties {
 	}
 	
 	private void setConfigJanelas(Idioma idiomaEscolhido) throws MalformedURLException {
-		File file = new File("config/janelas");
+		File file = new File("config");
 		URL[] urls = {file.toURI().toURL()};
 		ClassLoader loader = new URLClassLoader(urls);
-		bundle = ResourceBundle.getBundle("janelas", idiomaEscolhido.getLocale(), loader);
+		bundle = ResourceBundle.getBundle("config", idiomaEscolhido.getLocale(), loader);
 	}
 	
 	public String getString(String key) {

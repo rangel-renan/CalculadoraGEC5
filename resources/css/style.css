@@ -1,0 +1,64 @@
+
+
+.button {
+	-fx-background-radius: 0;
+	-fx-text-fill: white;
+}
+
+.outputPrincipal {
+	-fx-background-radius: 0;
+}
+
+.outputSecundario {
+	-fx-background-color: white;
+}
+
+.numpadApagar {
+	-fx-background-color: #99342C;
+}
+
+.numpadApagar:hover {
+	-fx-background-color: #CC453B;
+}
+
+.numpad {
+	-fx-background-color: #848A99;
+	-fx-background-radius: 0;
+}
+
+.numpad:hover {
+	-fx-background-color: #B0B8CC;
+}
+
+.operadores {
+	-fx-background-color: #2E5B99;
+}
+
+.operadores:hover {
+	-fx-background-color: #3D79CC;
+}
+
+.operadoresAdicionais {
+	-fx-background-color: #220B99;
+}
+
+.operadoresAdicionais:hover {
+	-fx-background-color: #2D0ECC;
+}
+
+
+/* ROOT */
+
+.tab-header-background, .tab {
+	-fx-background-color: white;
+}
+
+.tab {
+	-fx-background-radius: 2;
+	-fx-border-color: #B4BECC;
+}
+
+.tab-pane, .tab:hover, .tab:selected {
+	-fx-background-color: #C8CDD1;
+}
+
