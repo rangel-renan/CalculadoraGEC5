@@ -1,7 +1,5 @@
 package com.calculadora.teste.formulas;
 
-import com.calculadora.model.RazaoTrigonometrica;
-
 public class RazoesTrigonometricasTeste {
 
 //	public static void main(String[] args) {
