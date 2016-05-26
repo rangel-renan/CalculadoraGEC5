@@ -83,7 +83,6 @@ public class MainApp extends Application {
 		rootLayoutController = loader.getController();
 		rootLayoutController.setMainApp(this);
 		rootLayoutController.setCalculadoraStage(calculadoraStage);
-		//rootLayoutController.init();
 	}
 	
 	private void initHome() {

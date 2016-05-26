@@ -46,6 +46,14 @@
 	-fx-background-color: #2D0ECC;
 }
 
+.operadoresMC {
+	-fx-background-color: #6C717D;
+}
+
+.operadoresMC:hover {
+	-fx-background-color: #9AA1B2;
+}
+
 
 /* ROOT */
 
@@ -59,6 +67,7 @@
 }
 
 .tab-pane, .tab:hover, .tab:selected {
-	-fx-background-color: #C8CDD1;
+	-fx-background-color: #F5F6F7;
+	-fx-border-color: #F5F6F7 #B4BECC #F5F6F7 #F5F6F7;
 }
 
