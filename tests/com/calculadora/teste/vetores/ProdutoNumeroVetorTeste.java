@@ -1,7 +1,7 @@
 // ProdutoNumeroTeste.java
 package com.calculadora.teste.vetores;
 
-import com.calculadora.vetores.ProdutoNumeroVetor;
+import com.calculadora.model.ProdutoNumeroVetor;
 
 // testa a classe ProdutoNumeroVetor
 public class ProdutoNumeroVetorTeste {

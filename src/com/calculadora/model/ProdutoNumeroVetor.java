@@ -1,11 +1,10 @@
 // ProdutoNumeroVetor.java
-package com.calculadora.vetores;
+package com.calculadora.model;
 
 import java.util.ArrayList;
 import java.util.List;
-// importa a classe Scanner para ler numeros
-import java.util.Scanner;
 
+	
 // Calcula o produto entre um numero e um vetor
 // Exemplo: 2(3, 4, 5) = (6, 8, 10)
 public class ProdutoNumeroVetor {
@@ -77,55 +76,34 @@ public class ProdutoNumeroVetor {
 //	
 	
 	// faz o calculo da operação ProdutoNumeroVetor
-	public double[] calcProduto() {
-		
-		// cria vetor, que é igual ao valor de vetorProduto
-		double[] vetor = getVetorProduto();
-		
-		// cria numero, que é igual ao valor de numeroProduto
-		double numero = getNumeroProduto();
-		
-		double[] vetorResult = new double[INDICE_MAX];
-		
-		// para cada valor de cada indice do vetorProduto, o vetorResultante o multiplica pelo NumeroProduto
-		for(int indice = 0; indice < INDICE_MAX; indice++) {
-			vetorResult[indice] = vetor[indice] * numero;
-		}
-		
-		// vetorResultante se torna igual a vetorResult
-		this.setVetorResultante(vetorResult);
-		
-		// retorna o valor de vetorResultante
-		return getVetorResultante();
-	}
 	
-	
-	// printa na tela o vetorResultante
-	public void mostraResultado() {
-		
-		// cria vetorResult, que é igual ao valor de vetorResultante
-		double[] vetorResult = getVetorResultante();
-		
-		System.out.println("Resultado da operacao:"); 
-		
-		// o sistema printa cada valor de cada indice de vetorResult
-		for(int indice = 0; indice < INDICE_MAX; indice++){
-			System.out.printf("%f ", vetorResult[indice]);
-		}		
-		System.out.println("\n");
-	}
-	
-	
-	// insere um numero e um vetor, calcula e mostra o resultado do produto
-	public void produtoNumeroVetor() {
-		
-		this.leNumeroProduto();
-		this.leVetorProduto();
-		
-		this.calcProduto();
-		
-		this.mostraResultado();
-	}
-	
+//	
+//	// printa na tela o vetorResultante
+//	public void mostraResultado() {
+//		
+//		// cria vetorResult, que é igual ao valor de vetorResultante
+//		double[] vetorResult = getVetorResultante();
+//		
+//		System.out.println("Resultado da operacao:"); 
+//		
+//		// o sistema printa cada valor de cada indice de vetorResult
+//		for(int indice = 0; indice < INDICE_MAX; indice++){
+//			System.out.printf("%f ", vetorResult[indice]);
+//		}		
+//		System.out.println("\n");
+//	}
+//	
+//	
+//	// insere um numero e um vetor, calcula e mostra o resultado do produto
+//	public void produtoNumeroVetor() {
+//		
+//		this.leNumeroProduto();
+//		this.leVetorProduto();
+//		
+//		this.calcProduto();
+//		
+//		this.mostraResultado();
+//	}
+//	
 
 } // término da classe ProdutoNumeroVetor

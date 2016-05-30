@@ -5,19 +5,15 @@ public class Bhaskara {
 	private Double b;
 	private Double c;
 	private Double delta;
-	private Double resultPositivo;
-	private Double resultNegativo;
 	
 	public Bhaskara() {
 	}
 	
-	public Bhaskara(Double a, Double b, Double c, Double delta, Double resultPositivo, Double resultNegativo) {
+	public Bhaskara(Double a, Double b, Double c, Double delta) {
 		this.a = a;
 		this.b = b;
 		this.c = c;
 		this.delta = delta;
-		this.resultPositivo = resultPositivo;
-		this.resultNegativo = resultNegativo;
 	}
 	
 	public Double getA() {
@@ -43,18 +39,6 @@ public class Bhaskara {
 	}
 	public void setDelta(Double delta) {
 		this.delta = delta;
-	}
-	public Double getResultPositivo() {
-		return resultPositivo;
-	}
-	public void setResultPositivo(Double resultPositivo) {
-		this.resultPositivo = resultPositivo;
-	}
-	public Double getResultNegativo() {
-		return resultNegativo;
-	}
-	public void setResultNegativo(Double resultNegativo) {
-		this.resultNegativo = resultNegativo;
 	}
 	
 }

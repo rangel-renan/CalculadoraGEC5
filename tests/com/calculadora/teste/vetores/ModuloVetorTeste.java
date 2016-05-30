@@ -1,8 +1,7 @@
 // ModuloVetorTeste.java
 package com.calculadora.teste.vetores;
 
-// para o teste ser realizado precisarei importar a classe ModuloVetor
-import com.calculadora.vetores.ModuloVetor;
+import com.calculadora.model.ModuloVetor;
 
 // Testa a classe ModuloTeste
 public class ModuloVetorTeste {

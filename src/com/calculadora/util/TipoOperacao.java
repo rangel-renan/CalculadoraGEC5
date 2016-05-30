@@ -4,8 +4,7 @@ public enum TipoOperacao {
 	SOMA("+"),
 	SUBTRACAO("-"),
 	MULTIPLICACAO("*"),
-	DIVISAO("/"),
-	RAIZ_QUADRADA("RAIZ");
+	DIVISAO("/");
 	
 	private String sinalOperacao;
 	

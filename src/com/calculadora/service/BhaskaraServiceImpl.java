@@ -1,43 +1,39 @@
 package com.calculadora.service;
 
-import com.calculadora.model.Bhaskara;
 import com.calculadora.util.DeltaNegativoException;
 
 public class BhaskaraServiceImpl implements BhaskaraService {
-	private Bhaskara bhaskara;
-	
-	public BhaskaraServiceImpl(Bhaskara _bhaskara) {
-		bhaskara = _bhaskara;
-	}
 	
 	@Override
-	public Double calcularValorPositivo() {
+	public Double calcularValorPositivo(Double a, Double b, Double c) {
+		Double delta = 0.0;
 		
 		try {
-			bhaskara.setDelta(calcularDelta());
+			delta = calcularDelta(a, b, c);
 		} catch (DeltaNegativoException e) {
 			e.printStackTrace();
 		}
 		
-		return acharResultPositivo();
+		return acharResultPositivo(a, b, c, delta);
 	}
 
 	@Override
-	public  Double calcularValorNegativo() {
+	public  Double calcularValorNegativo(Double a, Double b, Double c) {
+		Double delta = 0.0;
 		
 		try {
-			bhaskara.setDelta(calcularDelta());
+			delta = calcularDelta(a, b, c);
 		} catch (DeltaNegativoException e) {
 			e.printStackTrace();
 		}
 		
-		return acharResultNegativo();
+		return acharResultNegativo(a, b, c, delta);
 	}
-
-	public <T> Double calcularDelta() throws DeltaNegativoException {
+	
+	public <T> Double calcularDelta(Double a, Double b, Double c) throws DeltaNegativoException {
 		
-		Double quadradoB = bhaskara.getB() * bhaskara.getB();
-		Double delta = bhaskara.getA() * bhaskara.getC();
+		Double quadradoB = a * b;
+		Double delta = a * c;
 		delta *= 4;
 		delta = quadradoB - delta;
 		
@@ -47,53 +43,22 @@ public class BhaskaraServiceImpl implements BhaskaraService {
 		return delta;
 	}
 	
-	public Double acharResultPositivo(){
+	public Double acharResultPositivo(Double a, Double b, Double c, Double delta){
 		
-		double raizQuadrada = Math.sqrt(bhaskara.getDelta());
-		double result = raizQuadrada - bhaskara.getB();
-		result /= 2 * bhaskara.getA();
+		double raizQuadrada = Math.sqrt(delta);
+		double result = raizQuadrada - b;
+		result /= 2 * a;
 
 		return result;
 	}
 	
-	public Double acharResultNegativo(){
+	public Double acharResultNegativo(Double a, Double b, Double c, Double delta) {
 		
-		double raizQuadrada = Math.sqrt(bhaskara.getDelta());
-		double result = -raizQuadrada - bhaskara.getB();
-		result /= 2 * bhaskara.getA();
+		double raizQuadrada = Math.sqrt(delta);
+		double result = -raizQuadrada - b;
+		result /= 2 * a;
 		
 		return result;
 	}
 	
-//	public void MostraResultados(){
-//		Scanner input = new Scanner(System.in);
-//		System.out.println("x1 = " + getResultPositivo());
-//		System.out.println("x2 = " + getResultNegativo());
-//	}
-//	
-//	public void formulaBhaskara(){
-//		System.out.println("****Equação de BHASKARA****");
-//		System.out.println("Equação do segundo grau: ax^2 + bx + c = 0");
-//		this.levalores();
-//		this.calcularDelta();
-//		if(calcularDelta() < 0){
-//			System.out.println("Delta com valor " + calcularDelta() + "Impossivel continuar a expressao");
-//		} else {
-//			this.acharResultPositivo();
-//			this.acharResultNegativo();
-//			this.MostraResultados();
-//		}
-//	}
-//	
-//	public void levalores(){
-//		Scanner input = new Scanner(System.in);
-//		
-//		System.out.print("Entre com o valor de a: ");
-//		this.setA(input.nextDouble());
-//		System.out.print("Entre com o valor de b: ");
-//		this.setB(input.nextDouble());
-//		System.out.print("Entre com o valor de c: ");
-//		this.setC(input.nextDouble());
-//	}
-
 }

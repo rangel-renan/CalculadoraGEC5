@@ -2,61 +2,50 @@ package com.calculadora.service;
 
 import java.math.BigDecimal;
 
-import com.calculadora.model.OperacoesBasicas;
-import com.calculadora.model.RaizQuadrada;
 import com.calculadora.util.TipoOperacao;
 
 public class OperacoesBasicasServiceImpl implements OperacoesBasicasService {
 	
-	private OperacoesBasicas operacoesBasicas;
-	private RaizQuadrada raizQuadrada;
-	
-	public OperacoesBasicasServiceImpl(OperacoesBasicas operacoesBasicas) {
-		this.operacoesBasicas = operacoesBasicas;
-	}
-	
-	public OperacoesBasicasServiceImpl(RaizQuadrada raizQuadrada) {
-		this.raizQuadrada = raizQuadrada;
-	}
-
 	@Override
-	public BigDecimal calcular(TipoOperacao tipoOperacao) {
+	public BigDecimal calcular(BigDecimal valor1, BigDecimal valor2, TipoOperacao tipoOperacao) {
 		
 		switch (tipoOperacao) {
 			case SOMA:
-				return operacaodeSoma();
+				return operacaodeSoma(valor1, valor2);
 			case SUBTRACAO:
-				return operacaodeSubtracao();
+				return operacaodeSubtracao(valor1, valor2);
 			case MULTIPLICACAO:
-				return operacaodeMultiplicacao();
+				return operacaodeMultiplicacao(valor1, valor2);
 			case DIVISAO:
-				return operacaodeDivisao();
-			case RAIZ_QUADRADA:
-				return operacaoRaizQuadrada();
+				return operacaodeDivisao(valor1, valor2);
 			default:
 				return null;
 		}
 		
 	}
 	
-	public BigDecimal operacaodeSoma() {
-		return operacoesBasicas.getValorA().add(operacoesBasicas.getValorB());
+	public BigDecimal calcularRaizQuadrada(BigDecimal valor) {
+		return operacaoRaizQuadrada(valor);
 	}
 	
-	public BigDecimal operacaodeSubtracao() {
-		return operacoesBasicas.getValorA().subtract(operacoesBasicas.getValorB());
+	public BigDecimal operacaodeSoma(BigDecimal valor1, BigDecimal valor2) {
+		return valor1.add(valor2);
 	}
 	
-	public BigDecimal operacaodeMultiplicacao() {
-		return operacoesBasicas.getValorA().multiply(operacoesBasicas.getValorB());
+	public BigDecimal operacaodeSubtracao(BigDecimal valor1, BigDecimal valor2) {
+		return valor1.subtract(valor2);
 	}
 	
-	public BigDecimal operacaodeDivisao() {
-		return operacoesBasicas.getValorA().divide(operacoesBasicas.getValorB());
+	public BigDecimal operacaodeMultiplicacao(BigDecimal valor1, BigDecimal valor2) {
+		return valor1.multiply(valor2);
 	}
 	
-	public BigDecimal operacaoRaizQuadrada() {
-		return new BigDecimal(Math.sqrt(raizQuadrada.getNumber().doubleValue()));
+	public BigDecimal operacaodeDivisao(BigDecimal valor1, BigDecimal valor2) {
+		return valor1.divide(valor2);
+	}
+	
+	public BigDecimal operacaoRaizQuadrada(BigDecimal valor1) {
+		return new BigDecimal(Math.sqrt(valor1.doubleValue()));
 	}
 
 	

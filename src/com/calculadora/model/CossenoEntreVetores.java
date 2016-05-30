@@ -11,7 +11,6 @@ public class CossenoEntreVetores {
 	
 	private List<Double> vetor1;
 	private List<Double> vetor2;
-	private Double resultado;
 	
 	public CossenoEntreVetores() {
 		vetor1 = new ArrayList<Double>(MAX_INDEX);
@@ -23,14 +22,6 @@ public class CossenoEntreVetores {
 		this.vetor2 = vetor2;
 	}
 
-	public void setResultado(Double resultado) {
-		this.resultado = resultado;
-	}
-	
-	public Double getResultado() {
-		return resultado;
-	}
-	
 	public List<Double> getVetor1() {
 		return vetor1;
 	}

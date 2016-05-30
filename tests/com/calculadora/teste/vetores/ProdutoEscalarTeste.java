@@ -1,6 +1,6 @@
 package com.calculadora.teste.vetores;
 
-import com.calculadora.vetores.ProdutoEscalar;
+import com.calculadora.model.ProdutoEscalar;
 
 public class ProdutoEscalarTeste {
 
