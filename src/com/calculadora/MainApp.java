@@ -1,107 +1,105 @@
 package com.calculadora;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.controller.CalculadoraController;
-import com.calculadora.controller.RootLayoutController;
-import com.calculadora.model.Idioma;
+import com.calculadora.controller.EscolherIdiomaController;
+import com.calculadora.util.Idioma;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceDialog;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
-	private FXMLLoader loader;
-	private BorderPane rootLayout;
-	
-	private Stage calculadoraStage;
-	
-	private RootLayoutController rootLayoutController;
-	private CalculadoraController calculadoraController;
-	
+	public static final String CAMINHO_ICONE_APLICACAO = "file:resources/images/img-calc.png";
+
 	private ConfigProperties label;
 	private Idioma idioma;
 	
+	private Stage primaryStage;
+	private Stage rootStage;
+
+	private AnchorPane escolherIdiomaLayout;
+	private BorderPane rootLayout;
+	
+	private CalculadoraController calculadoraController;
+
 	@Override
-	public void start(Stage _calculadoraStage) throws Exception {
-		idioma = showEscolherIdioma();
-		label = ConfigProperties.getInstance(idioma);
-		calculadoraStage = _calculadoraStage;
-		
-		FXMLLoader carregarFXML = new FXMLLoader();
-		carregarFXML.setResources(label.getBundle());
-		
-		initRootLayout();
-		initHome();
+	public void start(Stage primaryStage) throws Exception {
+		this.primaryStage = primaryStage;
+		this.primaryStage.setTitle("Escolher Idioma");
+
+		initEscolherIdioma();
 	}
-	
-	private Idioma showEscolherIdioma() {
-		ChoiceDialog<Idioma> dialog = new ChoiceDialog<Idioma>(Idioma.Ingles, Idioma.values());
-		dialog.setTitle("Escolher Idioma");
-		dialog.setHeaderText("Escolher o Idioma Padrão da Aplicação.");
-		dialog.setContentText("Escolha o Idioma Desejado: ");
 
-		// Verifica no ComboBox qual Opção o Usuário Escolheu.
-		Optional<Idioma> idiomaEscolhido = dialog.showAndWait();
-		if (idiomaEscolhido.isPresent()) {
-			return idiomaEscolhido.get();
-		} else {
-			System.exit(0);
-		}
+	public Object getLayout(FXMLLoader loader, String pathFXML) {
 
-		return null;
-	}
-	
-	private FXMLLoader getNovoLoader() {
-
-		FXMLLoader carregarFXML = new FXMLLoader();
-		carregarFXML.setResources(label.getBundle());
-
-		return carregarFXML;
-	}
-	
-	private Parent getNewNodo(FXMLLoader loader, String caminhoFXML) {
 		try {
-			return loader.load(this.getClass().getResource(caminhoFXML).openStream());
+			loader.setLocation(MainApp.class.getResource(pathFXML));
+			return loader.load();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 		return null;
 	}
 	
-	public void initRootLayout() {
+	public Stage getStage(Parent pageLayout, String nomeAplicacao, String icone) {
+		
+		Stage tempStage = new Stage();
+		tempStage.initModality(Modality.WINDOW_MODAL);
+		tempStage.setResizable(false);
+		tempStage.setTitle(nomeAplicacao);
+		tempStage.getIcons().add(new Image(icone));
+		tempStage.setScene(new Scene(pageLayout));
+		
+		return tempStage;
+	}
 
-		loader = getNovoLoader();
-		rootLayout = (BorderPane) getNewNodo(loader, "controller/RootLayout.fxml");
+	public void initEscolherIdioma() {
 
-		rootLayoutController = loader.getController();
-		rootLayoutController.setMainApp(this);
-		rootLayoutController.setCalculadoraStage(calculadoraStage);
+		FXMLLoader loader = new FXMLLoader();
+		escolherIdiomaLayout = (AnchorPane) getLayout(loader, "controller/EscolherIdioma.fxml");
+
+		Scene scene = new Scene(escolherIdiomaLayout);
+		primaryStage.setScene(scene);
+		primaryStage.getIcons().add(new Image(CAMINHO_ICONE_APLICACAO));
+		primaryStage.show();
+
+		EscolherIdiomaController escolherIdiomaController = loader.getController();
+		escolherIdiomaController.setEscolherIdiomaStage(primaryStage);
+		escolherIdiomaController.setMainApp(this);
+		escolherIdiomaController.show();
 	}
 	
-	private void initHome() {
+	public void initRoot(Idioma _idioma) {
+		this.idioma = _idioma;
+		label = ConfigProperties.getInstance(idioma);
 		
-		loader = getNovoLoader();
-		rootLayout.setBottom(getNewNodo(loader, "controller/Calculadora-Style2.fxml"));
-		rootLayout.getStylesheets().add("file:resources/css/style.css");
+		FXMLLoader loader = new FXMLLoader();
+		rootLayout = (BorderPane) getLayout(loader, "controller/RootLayout.fxml");
 		
-		calculadoraStage.setTitle("Calculadora GEC5");
-		calculadoraStage.setResizable(false);
-		calculadoraStage.setScene(new Scene(rootLayout));
-		calculadoraStage.show();
+		rootStage = getStage(rootLayout, label.getString("root.titulo"), CAMINHO_ICONE_APLICACAO);
+		rootStage.show();
 		
-		calculadoraController = loader.getController();
-		calculadoraController.setHomeStage(calculadoraStage);
+		FXMLLoader loaderCalculadora = new FXMLLoader();
+		AnchorPane calculadoraLayout = (AnchorPane) getLayout(loaderCalculadora, "controller/Calculadora.fxml");
+		
+		rootLayout.setBottom(calculadoraLayout);
+		
+		calculadoraController = loaderCalculadora.getController();
 		calculadoraController.setIdioma(idioma);
-		calculadoraController.init();
+		calculadoraController.setRootLayout(calculadoraLayout);
+		calculadoraController.show();
 	}
-		
+
 	public static void main(String[] args) {
 		launch(args);
 	}

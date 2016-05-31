@@ -2,7 +2,7 @@ package com.calculadora.controller;
 
 import com.calculadora.MainApp;
 import com.calculadora.config.ConfigProperties;
-import com.calculadora.model.Idioma;
+import com.calculadora.util.Idioma;
 
 import javafx.stage.Stage;
 

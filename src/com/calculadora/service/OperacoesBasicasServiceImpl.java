@@ -7,7 +7,8 @@ import com.calculadora.util.TipoOperacao;
 public class OperacoesBasicasServiceImpl implements OperacoesBasicasService {
 	
 	@Override
-	public BigDecimal calcular(BigDecimal valor1, BigDecimal valor2, TipoOperacao tipoOperacao) {
+	public BigDecimal calcular(BigDecimal valor1, BigDecimal valor2, String operacao) {
+		TipoOperacao tipoOperacao = TipoOperacao.getOperacao(operacao);
 		
 		switch (tipoOperacao) {
 			case SOMA:

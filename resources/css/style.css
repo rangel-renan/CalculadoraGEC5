@@ -1,12 +1,32 @@
 
+.background {
+	-fx-background-color: #F5F6F7;
+}
 
 .button {
-	-fx-background-radius: 0;
+	-fx-background-radius: 0.0;
 	-fx-text-fill: white;
 }
 
+.combo-box {
+	-fx-background-radius: 0.0;
+}
+
+.btnEscolherIdioma {
+	-fx-background-color: #848A99;
+}
+
+.btnEscolherIdioma:hover {
+	-fx-background-color: #B0B8CC;
+}
+
+
 .outputPrincipal {
-	-fx-background-radius: 0;
+	-fx-background-radius: 0.0;
+	-fx-text-fill: #555;
+  	-fx-padding: 6.0px 12.0px;
+  	-fx-border-width: 1;
+  	-fx-border-radius: 4;
 }
 
 .outputSecundario {
@@ -23,7 +43,6 @@
 
 .numpad {
 	-fx-background-color: #848A99;
-	-fx-background-radius: 0;
 }
 
 .numpad:hover {
@@ -62,7 +81,7 @@
 }
 
 .tab {
-	-fx-background-radius: 2;
+	-fx-background-radius: 2.0;
 	-fx-border-color: #B4BECC;
 }
 

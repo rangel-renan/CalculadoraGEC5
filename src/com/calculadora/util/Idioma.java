@@ -4,7 +4,7 @@
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  * 
  */
-package com.calculadora.model;
+package com.calculadora.util;
 
 import java.util.Locale;
 

@@ -6,6 +6,6 @@ import com.calculadora.util.TipoOperacao;
 
 public interface OperacoesBasicasService {
 	
-	public BigDecimal calcular(BigDecimal valor1, BigDecimal valor2, TipoOperacao tipoOperacao);
+	public BigDecimal calcular(BigDecimal valor1, BigDecimal valor2, String operacao);
 	public BigDecimal calcularRaizQuadrada(BigDecimal valor);
 }
