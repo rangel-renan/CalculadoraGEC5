@@ -18,7 +18,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
-	public static final String CAMINHO_ICONE_APLICACAO = "file:resources/images/img-calc.png";
+	public static final String CAMINHO_ICONE_APLICACAO = "/images/img-calc.png";
 
 	private ConfigProperties label;
 	private Idioma idioma;
@@ -66,7 +66,7 @@ public class MainApp extends Application {
 	public void initEscolherIdioma() {
 
 		FXMLLoader loader = new FXMLLoader();
-		escolherIdiomaLayout = (AnchorPane) getLayout(loader, "controller/EscolherIdioma.fxml");
+		escolherIdiomaLayout = (AnchorPane) getLayout(loader, "/views/EscolherIdioma.fxml");
 
 		Scene scene = new Scene(escolherIdiomaLayout);
 		primaryStage.setScene(scene);
@@ -79,18 +79,16 @@ public class MainApp extends Application {
 		escolherIdiomaController.show();
 	}
 	
-	public void initRoot(Idioma _idioma) {
-		this.idioma = _idioma;
-		label = ConfigProperties.getInstance(idioma);
+	public void initRoot() {
 		
 		FXMLLoader loader = new FXMLLoader();
-		rootLayout = (BorderPane) getLayout(loader, "controller/RootLayout.fxml");
+		rootLayout = (BorderPane) getLayout(loader, "/views/RootLayout.fxml");
 		
 		rootStage = getStage(rootLayout, label.getString("root.titulo"), CAMINHO_ICONE_APLICACAO);
 		rootStage.show();
 		
 		FXMLLoader loaderCalculadora = new FXMLLoader();
-		AnchorPane calculadoraLayout = (AnchorPane) getLayout(loaderCalculadora, "controller/Calculadora.fxml");
+		AnchorPane calculadoraLayout = (AnchorPane) getLayout(loaderCalculadora, "/views/Calculadora.fxml");
 		
 		rootLayout.setBottom(calculadoraLayout);
 		
@@ -99,7 +97,12 @@ public class MainApp extends Application {
 		calculadoraController.setRootLayout(calculadoraLayout);
 		calculadoraController.show();
 	}
-
+	
+	public void setIdioma(Idioma idioma) {
+		this.idioma = idioma;
+		label = ConfigProperties.getInstance(idioma);
+	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}

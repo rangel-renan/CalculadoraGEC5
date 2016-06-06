@@ -35,7 +35,8 @@ public class EscolherIdiomaController {
 	@FXML
 	private void handleBtnOk() {
 		if (comboIdiomas.getValue() != null) {
-			mainApp.initRoot(comboIdiomas.getValue());
+			mainApp.setIdioma(comboIdiomas.getValue());
+			mainApp.initRoot();
 			escolherIdiomaStage.close();
 		}
 	}
