@@ -23,10 +23,9 @@
 
 .outputPrincipal {
 	-fx-background-radius: 0.0;
-	-fx-text-fill: #555;
-  	-fx-padding: 6.0px 12.0px;
   	-fx-border-width: 1;
   	-fx-border-radius: 4;
+  	-fx-background-color: white;
 }
 
 .outputSecundario {
@@ -85,8 +84,26 @@
 	-fx-border-color: #B4BECC;
 }
 
+.tabArquivo {
+	-fx-background-radius: 2.0;
+	-fx-background-color: red;
+}
+
 .tab-pane, .tab:hover, .tab:selected {
 	-fx-background-color: #F5F6F7;
 	-fx-border-color: #F5F6F7 #B4BECC #F5F6F7 #F5F6F7;
 }
+
+.tabButtons {
+	-fx-text-fill: black;
+	-fx-background-color: #F5F6F7;
+	-fx-border-color: #F5F6F7;
+}
+
+.tabButtons:hover {
+	-fx-background-radius: 4.0;
+	-fx-background-color: #C3C4C4;
+	-fx-border-color: #9FA0A1;
+}
+
 

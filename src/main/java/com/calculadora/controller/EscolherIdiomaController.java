@@ -27,7 +27,10 @@ public class EscolherIdiomaController {
 	private void initialize() {
 	}
 	
-	public void show() {
+	public void show(Stage escolherIdiomaStage, MainApp mainApp) {
+		this.escolherIdiomaStage = escolherIdiomaStage;
+		this.mainApp = mainApp;
+		
 		btnOk.setDisable(true);
 		comboIdiomas.setItems(FXCollections.observableArrayList(Idioma.values()));
 	}

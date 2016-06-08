@@ -4,13 +4,13 @@ import com.calculadora.MainApp;
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.util.Idioma;
 
+import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
 public class RootLayoutController {
 	
 	private MainApp mainApp;
-	private Stage rootLayout;
-	private Stage calculadoraStage;
+	private Stage rootStage;
 	
 	private ConfigProperties label;
 	private Idioma idioma;
@@ -19,16 +19,14 @@ public class RootLayoutController {
 		label = ConfigProperties.getInstance(Idioma.Portugues);
 	}
 	
-	public void initRootLayout() {
-		
+	@FXML
+	public void handleSobre() {
+		mainApp.initSobre();
+		rootStage.hide();
 	}
 	
-	public void setRootLayout(Stage rootLayout) {
-		this.rootLayout = rootLayout;
-	}
-	
-	public void setCalculadoraStage(Stage calculadoraStage) {
-		this.calculadoraStage = calculadoraStage;
+	public void setRootStage(Stage rootStage) {
+		this.rootStage = rootStage;
 	}
 	
 	public void setMainApp(MainApp mainApp) {
