@@ -272,8 +272,12 @@ public class CalculadoraController {
 		handleNumPad(((Button) actionEvent.getSource()).getText());
 	}
 
-	private void handleNumPad(String novoValor) {
-		displayField.setText(displayField.getText() + novoValor);
+	private void handleNumPad(String valorAtual) {
+		String oldValor = displayField.getText();
+		String novoValor = null;
+		novoValor = oldValor + valorAtual;
+		displayField.setText(novoValor);
+		displayField.setText(novoValor);
 	}
 
 	public void setIdioma(Idioma idioma) {

@@ -22,7 +22,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button alignment="TOP_CENTER" contentDisplay="TOP" layoutX="639.0" layoutY="13.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="70.0" styleClass="tabButtons" text="Opções" textAlignment="CENTER">
+                        <Button alignment="TOP_CENTER" contentDisplay="TOP" layoutX="639.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleOpcoes" prefHeight="100.0" prefWidth="70.0" styleClass="tabButtons" text="Opções" textAlignment="CENTER">
                            <graphic>
       								<ImageView fitHeight="79.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" smooth="false" styleClass="btnImagens">
       			                    <image>
@@ -51,7 +51,7 @@
                            </graphic>
                         </Button>
                         <Separator layoutX="801.0" layoutY="11.0" orientation="VERTICAL" prefHeight="115.0" prefWidth="6.0" />
-                        <Button alignment="TOP_CENTER" contentDisplay="TOP" layoutX="818.0" layoutY="13.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="70.0" styleClass="tabButtons" text="Sair" textAlignment="CENTER">
+                        <Button alignment="TOP_CENTER" contentDisplay="TOP" layoutX="818.0" layoutY="13.0" mnemonicParsing="false" onAction="#hndleSair" prefHeight="100.0" prefWidth="70.0" styleClass="tabButtons" text="Sair" textAlignment="CENTER">
                            <graphic>
                               <ImageView fitHeight="79.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" smooth="false" styleClass="btnImagens">
                                  <image>

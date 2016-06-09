@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="163.0" prefWidth="358.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.OpcoesController">
+   <children>
+      <Separator layoutX="-1.0" layoutY="105.0" prefHeight="3.0" prefWidth="358.0" />
+      <Label layoutX="14.0" layoutY="47.0" text="Selecione o Idioma">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnOk" layoutX="71.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="25.0" prefWidth="97.0" styleClass="btnEscolherIdioma" text="Ok" />
+      <Button fx:id="btnCancelar" layoutX="198.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleCancelar" prefHeight="25.0" prefWidth="97.0" styleClass="btnEscolherIdioma" text="Cancelar" />
+      <ComboBox fx:id="comboIdiomas" layoutX="145.0" layoutY="41.0" onHidden="#hiddenBtnComboIdiomas" prefHeight="32.0" prefWidth="197.0" promptText="Escolha o Idioma" />
+   </children>
+</AnchorPane>

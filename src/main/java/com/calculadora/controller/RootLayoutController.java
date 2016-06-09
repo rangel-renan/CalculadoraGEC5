@@ -20,9 +20,25 @@ public class RootLayoutController {
 	}
 	
 	@FXML
-	public void handleSobre() {
+	private void handleSobre() {
 		mainApp.initSobre();
 		rootStage.hide();
+	}
+	
+	@FXML
+	private void handleSair() {
+		System.exit(0);
+	}
+	
+	@FXML
+	private void handleOpcoes() {
+		rootStage.close();
+		mainApp.initOpcoes();
+	}
+	
+	@FXML
+	private void handleAjuda() {
+		
 	}
 	
 	public void setRootStage(Stage rootStage) {

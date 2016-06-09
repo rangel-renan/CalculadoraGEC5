@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.controller.CalculadoraController;
 import com.calculadora.controller.EscolherIdiomaController;
+import com.calculadora.controller.OpcoesController;
 import com.calculadora.controller.RootLayoutController;
 import com.calculadora.controller.SobreController;
 import com.calculadora.util.Idioma;
@@ -27,15 +28,18 @@ public class MainApp extends Application {
 	
 	private Stage escolherIdiomaStage;
 	private Stage rootStage;
+	private Stage opcoesStage;
 	private Stage sobreStage;
 
 	private AnchorPane escolherIdiomaLayout;
 	private AnchorPane sobreLayout;
+	private AnchorPane opcoesLayout;
 	private BorderPane rootLayout;
 	
 	private RootLayoutController rootLayoutController;
 	private CalculadoraController calculadoraController;
 	private EscolherIdiomaController escolherIdiomaController;
+	private OpcoesController opcoesController;
 	private SobreController sobreController;
 	
 	@Override
@@ -102,6 +106,18 @@ public class MainApp extends Application {
 		
 		calculadoraController = loaderCalculadora.getController();
 		calculadoraController.show(idioma, calculadoraLayout);
+	}
+	
+	public void initOpcoes() {
+		
+		FXMLLoader loader = new FXMLLoader();
+		opcoesLayout = (AnchorPane) getLayout(loader, "/views/Opcoes.fxml");
+		
+		opcoesStage = getStage(opcoesLayout, "Opções", CAMINHO_ICONE_APLICACAO);
+		opcoesStage.show();
+		
+		opcoesController = loader.getController();
+		opcoesController.show(this, opcoesStage);
 	}
 	
 	public void initSobre() {
