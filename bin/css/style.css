@@ -1,0 +1,109 @@
+
+.background {
+	-fx-background-color: #F5F6F7;
+}
+
+.button {
+	-fx-background-radius: 0.0;
+	-fx-text-fill: white;
+}
+
+.combo-box {
+	-fx-background-radius: 0.0;
+}
+
+.btnEscolherIdioma {
+	-fx-background-color: #848A99;
+}
+
+.btnEscolherIdioma:hover {
+	-fx-background-color: #B0B8CC;
+}
+
+
+.outputPrincipal {
+	-fx-background-radius: 0.0;
+  	-fx-border-width: 1;
+  	-fx-border-radius: 4;
+  	-fx-background-color: white;
+}
+
+.outputSecundario {
+	-fx-background-color: white;
+}
+
+.numpadApagar {
+	-fx-background-color: #99342C;
+}
+
+.numpadApagar:hover {
+	-fx-background-color: #CC453B;
+}
+
+.numpad {
+	-fx-background-color: #848A99;
+}
+
+.numpad:hover {
+	-fx-background-color: #B0B8CC;
+}
+
+.operadores {
+	-fx-background-color: #2E5B99;
+}
+
+.operadores:hover {
+	-fx-background-color: #3D79CC;
+}
+
+.operadoresAdicionais {
+	-fx-background-color: #220B99;
+}
+
+.operadoresAdicionais:hover {
+	-fx-background-color: #2D0ECC;
+}
+
+.operadoresMC {
+	-fx-background-color: #6C717D;
+}
+
+.operadoresMC:hover {
+	-fx-background-color: #9AA1B2;
+}
+
+
+/* ROOT */
+
+.tab-header-background, .tab {
+	-fx-background-color: white;
+}
+
+.tab {
+	-fx-background-radius: 2.0;
+	-fx-border-color: #B4BECC;
+}
+
+.tabArquivo {
+	-fx-background-radius: 2.0;
+	-fx-background-color: red;
+}
+
+.tab-pane, .tab:hover, .tab:selected {
+	-fx-background-color: #F5F6F7;
+	-fx-border-color: #F5F6F7 #B4BECC #F5F6F7 #F5F6F7;
+}
+
+.tabButtons {
+	-fx-text-fill: black;
+	-fx-background-color: #F5F6F7;
+	-fx-border-color: #F5F6F7;
+}
+
+.tabButtons:hover {
+	-fx-background-radius: 4.0;
+	-fx-background-color: #C3C4C4;
+	-fx-border-color: #9FA0A1;
+}
+
+

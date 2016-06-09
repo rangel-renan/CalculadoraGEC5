@@ -1,6 +1,7 @@
 package com.calculadora.service;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 import com.calculadora.util.TipoOperacao;
 
@@ -43,6 +44,13 @@ public class OperacoesBasicasServiceImpl implements OperacoesBasicasService {
 		return new BigDecimal(Math.E);
 	}
 	
+	public BigDecimal calcularRegraTres(BigDecimal valorA, BigDecimal valorB, BigDecimal valorC) {
+		return valorA.multiply(valorB).divide(valorC);
+	}
+
+	public boolean isPrimo(BigInteger valor) {
+		return valor.isProbablePrime(1);
+	}
 	
 //	public BigDecimal calcularPorcentagem(BigDecimal valor, String porcentagem) {
 //		BigDecimal porcentagemEscala = new BigDecimal(new BigInteger(porcentagem), 2);	
@@ -72,5 +80,7 @@ public class OperacoesBasicasServiceImpl implements OperacoesBasicasService {
 	public BigDecimal operacaoResto(BigDecimal valor, BigDecimal divisor) {
 		return valor.remainder(divisor);
 	}
+
+	
 	
 }
