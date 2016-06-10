@@ -13,10 +13,15 @@ public class RootLayoutController {
 	private Stage rootStage;
 	
 	private ConfigProperties label;
-	private Idioma idioma;
 	
 	public RootLayoutController() {
 		label = ConfigProperties.getInstance(Idioma.Portugues);
+	}
+	
+	public void show(ConfigProperties label, MainApp mainApp, Stage rootStage) {
+		this.label = label;
+		this.rootStage = rootStage;
+		this.mainApp = mainApp;
 	}
 	
 	@FXML
@@ -41,11 +46,21 @@ public class RootLayoutController {
 		
 	}
 	
+	@FXML
+	private void handleConversoes() {
+		rootStage.close();
+		mainApp.initConversoes();
+	}
+	
 	public void setRootStage(Stage rootStage) {
 		this.rootStage = rootStage;
 	}
 	
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
+	}
+	
+	public void setLabel(ConfigProperties label) {
+		this.label = label;
 	}
 }

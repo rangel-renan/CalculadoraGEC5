@@ -2,9 +2,9 @@ package com.calculadora.controller;
 
 import java.math.BigDecimal;
 
+import com.calculadora.config.ConfigProperties;
 import com.calculadora.service.OperacoesBasicasService;
 import com.calculadora.service.OperacoesBasicasServiceImpl;
-import com.calculadora.util.Idioma;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,7 +19,7 @@ public class CalculadoraController {
 	private OperacoesBasicasService operacoesBasicasService;
 
 	private AnchorPane rootLayout;
-	private Idioma idioma;
+	private ConfigProperties label;
 	private BigDecimal currentNumber;
 	
 	private String memory;
@@ -43,9 +43,9 @@ public class CalculadoraController {
 	private void initialize() {
 	}
 
-	public void show(Idioma idioma, AnchorPane rootLayout) {
+	public void show(ConfigProperties label, AnchorPane rootLayout) {
 		this.rootLayout = rootLayout;
-		this.idioma = idioma;
+		this.label = label;
 		operacoesBasicasService = new OperacoesBasicasServiceImpl();
 		
 		firstParenteses.setDisable(true);
@@ -279,11 +279,11 @@ public class CalculadoraController {
 		displayField.setText(novoValor);
 		displayField.setText(novoValor);
 	}
-
-	public void setIdioma(Idioma idioma) {
-		this.idioma = idioma;
+	
+	public void setLabel(ConfigProperties label) {
+		this.label = label;
 	}
-
+	
 	public void setRootLayout(AnchorPane rootLayout) {
 		this.rootLayout = rootLayout;
 	}

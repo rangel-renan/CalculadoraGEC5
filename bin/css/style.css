@@ -3,9 +3,18 @@
 	-fx-background-color: #F5F6F7;
 }
 
+.text-field {
+	-fx-background-radius: 0.0;
+}
+
 .button {
 	-fx-background-radius: 0.0;
+	-fx-background-color: #848A99;
 	-fx-text-fill: white;
+}
+
+.button:hover {
+	-fx-background-color: #B0B8CC;
 }
 
 .combo-box {

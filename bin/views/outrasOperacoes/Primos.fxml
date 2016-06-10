@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="266.0" prefWidth="438.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.PrimosController>
+   <children>
+      <TextField layoutX="145.0" layoutY="29.0" prefHeight="41.0" prefWidth="149.0" />
+      <Button ellipsisString="" layoutX="61.0" layoutY="218.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" text="%botoes.voltar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="161.0" layoutY="85.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="117.0" text="%botoes.calcular">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="285.0" layoutY="218.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" text="%botoes.ajuda">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label alignment="CENTER" layoutX="60.0" layoutY="135.0" prefHeight="33.0" prefWidth="319.0" style="-fx-border-color: #C3C4C4;" text="O Número 2 não é Primo" textAlignment="CENTER" />
+      <Label alignment="CENTER" layoutX="60.0" layoutY="176.0" prefHeight="33.0" prefWidth="319.0" style="-fx-border-color: #C3C4C4;" text="O Número é dívisivel por 2." textAlignment="CENTER" />
+      <Label alignment="CENTER" layoutX="147.0" layoutY="10.0" prefHeight="17.0" prefWidth="142.0" text="%root.tab.arquivo.primo.digiteNum" />
+   </children>
+</AnchorPane>

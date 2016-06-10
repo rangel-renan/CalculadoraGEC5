@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -10,10 +11,13 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="232.0" prefWidth="485.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.SobreController">
    <children>
       <Separator layoutX="167.0" layoutY="8.0" orientation="VERTICAL" prefHeight="202.0" prefWidth="6.0" />
-      <Button layoutX="262.0" layoutY="188.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="30.0" prefWidth="113.0" styleClass="btnEscolherIdioma" text="Ok" />
-      <Label layoutX="183.0" layoutY="22.0" prefHeight="25.0" prefWidth="113.0" text="Calculadora GEC5" />
-      <Label layoutX="183.0" layoutY="45.0" prefHeight="17.0" prefWidth="67.0" text="Versão: 1.0" />
-      <Label alignment="TOP_LEFT" layoutX="183.0" layoutY="62.0" prefHeight="114.0" prefWidth="270.0" text="Copyright © 2016. Todos os direitos reservados.&#10;&#10;Autores: &#10;Tiago H. Silva, Yasmin Farias, &#10;Renan M. R. de Oliveira, Ramon Portela Santos,&#10;Nyelson Gomes Barbosa" />
+      <Button layoutX="262.0" layoutY="188.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="30.0" prefWidth="113.0" text="%botoes.ok">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label layoutX="183.0" layoutY="22.0" prefHeight="25.0" prefWidth="113.0" text="%sobre.titulo" />
+      <Label layoutX="183.0" layoutY="45.0" prefHeight="17.0" prefWidth="67.0" text="%sobre.versao" />
+      <Label alignment="TOP_LEFT" layoutX="183.0" layoutY="62.0" prefHeight="114.0" prefWidth="270.0" text="%sobre.descricao" />
       <ImageView fitHeight="136.0" fitWidth="138.0" layoutX="18.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/logo.png" />

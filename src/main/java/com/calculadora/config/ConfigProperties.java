@@ -34,7 +34,7 @@ public class ConfigProperties {
 		return instance;
 	}
 	
-	private void setConfigJanelas(Idioma idiomaEscolhido) throws MalformedURLException {
+	public void setConfigJanelas(Idioma idiomaEscolhido) throws MalformedURLException {
 		File file = new File("config");
 		URL[] urls = {file.toURI().toURL()};
 		ClassLoader loader = new URLClassLoader(urls);

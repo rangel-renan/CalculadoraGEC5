@@ -1,9 +1,11 @@
 package com.calculadora;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.controller.CalculadoraController;
+import com.calculadora.controller.ConversoesController;
 import com.calculadora.controller.EscolherIdiomaController;
 import com.calculadora.controller.OpcoesController;
 import com.calculadora.controller.RootLayoutController;
@@ -24,16 +26,14 @@ public class MainApp extends Application {
 	public static final String CAMINHO_ICONE_APLICACAO = "/images/logo.png";
 
 	private ConfigProperties label;
-	private Idioma idioma;
-	
+
 	private Stage escolherIdiomaStage;
 	private Stage rootStage;
 	private Stage opcoesStage;
 	private Stage sobreStage;
+	private Stage conversoesStage;
 
 	private AnchorPane escolherIdiomaLayout;
-	private AnchorPane sobreLayout;
-	private AnchorPane opcoesLayout;
 	private BorderPane rootLayout;
 	
 	private RootLayoutController rootLayoutController;
@@ -41,6 +41,7 @@ public class MainApp extends Application {
 	private EscolherIdiomaController escolherIdiomaController;
 	private OpcoesController opcoesController;
 	private SobreController sobreController;
+	private ConversoesController conversoesController;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -49,7 +50,14 @@ public class MainApp extends Application {
 
 		initEscolherIdioma();
 	}
-
+	
+	public FXMLLoader getLoader() {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setResources(label.getBundle());
+		
+		return loader;
+	}
+	
 	public Object getLayout(FXMLLoader loader, String pathFXML) {
 
 		try {
@@ -62,7 +70,7 @@ public class MainApp extends Application {
 		return null;
 	}
 	
-	public Stage getStage(Parent pageLayout, String nomeAplicacao, String icone) {
+	public Stage getStage(FXMLLoader loader, Parent pageLayout, String nomeAplicacao, String icone) {
 		
 		Stage tempStage = new Stage();
 		tempStage.initModality(Modality.WINDOW_MODAL);
@@ -89,31 +97,27 @@ public class MainApp extends Application {
 	
 	public void initRoot() {
 		
-		FXMLLoader loader = new FXMLLoader();
+		FXMLLoader loader = getLoader();
 		rootLayout = (BorderPane) getLayout(loader, "/views/RootLayout.fxml");
-		
-		rootStage = getStage(rootLayout, label.getString("root.titulo"), CAMINHO_ICONE_APLICACAO);
+		rootStage = getStage(loader, rootLayout, label.getString("root.titulo"), CAMINHO_ICONE_APLICACAO);
 		rootStage.show();
 		
 		rootLayoutController = loader.getController();
-		rootLayoutController.setMainApp(this);
-		rootLayoutController.setRootStage(rootStage);
+		rootLayoutController.show(label, this, rootStage);
 		
-		FXMLLoader loaderCalculadora = new FXMLLoader();
+		FXMLLoader loaderCalculadora = getLoader();
 		AnchorPane calculadoraLayout = (AnchorPane) getLayout(loaderCalculadora, "/views/Calculadora.fxml");
 		
 		rootLayout.setBottom(calculadoraLayout);
 		
 		calculadoraController = loaderCalculadora.getController();
-		calculadoraController.show(idioma, calculadoraLayout);
+		calculadoraController.show(label, calculadoraLayout);
 	}
 	
 	public void initOpcoes() {
 		
-		FXMLLoader loader = new FXMLLoader();
-		opcoesLayout = (AnchorPane) getLayout(loader, "/views/Opcoes.fxml");
-		
-		opcoesStage = getStage(opcoesLayout, "Opções", CAMINHO_ICONE_APLICACAO);
+		FXMLLoader loader = getLoader();
+		opcoesStage = getStage(loader, (AnchorPane) getLayout(loader, "/views/Opcoes.fxml"), label.getString("opcoes.titulo"), CAMINHO_ICONE_APLICACAO);
 		opcoesStage.show();
 		
 		opcoesController = loader.getController();
@@ -122,19 +126,35 @@ public class MainApp extends Application {
 	
 	public void initSobre() {
 		
-		FXMLLoader loader = new FXMLLoader();
-		sobreLayout = (AnchorPane) getLayout(loader, "/views/Sobre.fxml");
-		
-		sobreStage = getStage(sobreLayout, "Sobre o Calculadora GEC5", CAMINHO_ICONE_APLICACAO);
+		FXMLLoader loader = getLoader();
+		sobreStage = getStage(loader, (AnchorPane) getLayout(loader, "/views/Sobre.fxml"), label.getString("sobre.tituloJanela"), CAMINHO_ICONE_APLICACAO);
 		sobreStage.show();
 		
 		sobreController = loader.getController();
 		sobreController.show(rootStage, sobreStage);
 	}
 	
+	public void initConversoes() {
+		
+		FXMLLoader loader = getLoader();
+		conversoesStage = getStage(loader, (AnchorPane) getLayout(loader, "/views/outrasOperacoes/Conversoes.fxml"), label.getString("root.tab.arquivo.conversoes.titulo"), CAMINHO_ICONE_APLICACAO);
+		conversoesStage.show();
+		
+		conversoesController = loader.getController();
+		conversoesController.show(this, conversoesStage);
+	}
+	
 	public void setIdioma(Idioma idioma) {
-		this.idioma = idioma;
-		label = ConfigProperties.getInstance(idioma);
+		
+		if (label == null)
+			label = ConfigProperties.getInstance(idioma);
+		else {
+			try {
+				label.setConfigJanelas(idioma);
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public static void main(String[] args) {
