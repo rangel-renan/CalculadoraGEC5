@@ -2,9 +2,11 @@ package com.calculadora.controller;
 
 import com.calculadora.MainApp;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class FracoesController {
 	private MainApp mainApp;
@@ -22,26 +24,23 @@ public class FracoesController {
 	public void show(MainApp mainApp, Stage fracoesStage) {
 		this.mainApp = mainApp;
 		this.fracoesStage = fracoesStage;
+		
+		this.fracoesStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			public void handle(WindowEvent we) {
+				handleVoltar();
+			}
+		});
 	}
 
 	@FXML
-	private void handleCalcularPorcentagem() {
-		
-	}
-	
-	@FXML
-	private void handleCalcularQuantidade() {
-		
-	}
-	
-	@FXML
-	private void handleCalcularTotal() {
+	private void handleCalcular() {
 		
 	}
 	
 	@FXML
 	private void handleVoltar() {
-		
+		mainApp.initRoot();
+		fracoesStage.close();
 	}
 	
 	@FXML

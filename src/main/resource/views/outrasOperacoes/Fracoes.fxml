@@ -9,9 +9,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.0" prefWidth="502.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.FracoesController>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.0" prefWidth="502.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.FracoesController">
    <children>
-      <Button ellipsisString="Voltar" layoutX="81.0" layoutY="157.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" text="%botoes.voltar">
+      <Button ellipsisString="Voltar" layoutX="81.0" layoutY="157.0" onAction="#handleVoltar" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" text="%botoes.voltar">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -34,7 +34,7 @@
       <TextField layoutX="403.0" layoutY="37.0" prefHeight="33.0" prefWidth="48.0" />
       <Line endX="5.0" layoutX="474.0" layoutY="81.0" startX="-100.0" />
       <TextField layoutX="403.0" layoutY="92.0" prefHeight="33.0" prefWidth="48.0" />
-      <Button layoutX="305.0" layoutY="157.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" text="%botoes.ajuda">
+      <Button layoutX="305.0" layoutY="157.0" onAction="#handleAjuda" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" text="%botoes.ajuda">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>

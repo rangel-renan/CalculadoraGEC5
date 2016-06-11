@@ -8,9 +8,9 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="578.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.PorcentagensController>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="578.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.PorcentagensController">
    <children>
-      <Button layoutX="185.0" layoutY="247.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" text="%botoes.voltar">
+      <Button layoutX="185.0" layoutY="247.0" onAction="#handleVoltar" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" text="%botoes.voltar">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -20,7 +20,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="286.0" layoutY="247.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" text="%botoes.ajuda">
+      <Button layoutX="286.0" layoutY="247.0" onAction="#handleAjuda" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" text="%botoes.ajuda">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

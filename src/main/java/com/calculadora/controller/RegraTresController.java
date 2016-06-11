@@ -2,9 +2,11 @@ package com.calculadora.controller;
 
 import com.calculadora.MainApp;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class RegraTresController {
 	private MainApp mainApp;
@@ -16,6 +18,12 @@ public class RegraTresController {
 	public void show(MainApp mainApp, Stage regraTresStage) {
 		this.mainApp = mainApp;
 		this.regraTresStage = regraTresStage;
+		
+		this.regraTresStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			public void handle(WindowEvent we) {
+				handleVoltar();
+			}
+		});
 	}
 
 	@FXML
@@ -25,7 +33,8 @@ public class RegraTresController {
 	
 	@FXML
 	private void handleVoltar() {
-		
+		mainApp.initRoot();
+		regraTresStage.close();
 	}
 	
 	@FXML

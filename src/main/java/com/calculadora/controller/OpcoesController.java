@@ -4,10 +4,12 @@ import com.calculadora.MainApp;
 import com.calculadora.util.Idioma;
 
 import javafx.collections.FXCollections;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class OpcoesController {
 	
@@ -26,6 +28,13 @@ public class OpcoesController {
 		
 		btnOk.setDisable(true);
 		comboIdiomas.setItems(FXCollections.observableArrayList(Idioma.values()));
+		
+		this.opcoesStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			public void handle(WindowEvent we) {
+				mainApp.initRoot();
+				opcoesStage.close();
+			}
+		});
 	}
 	
 	@FXML

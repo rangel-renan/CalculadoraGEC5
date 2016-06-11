@@ -7,7 +7,11 @@ import com.calculadora.config.ConfigProperties;
 import com.calculadora.controller.CalculadoraController;
 import com.calculadora.controller.ConversoesController;
 import com.calculadora.controller.EscolherIdiomaController;
+import com.calculadora.controller.FracoesController;
 import com.calculadora.controller.OpcoesController;
+import com.calculadora.controller.PorcentagensController;
+import com.calculadora.controller.PrimosController;
+import com.calculadora.controller.RegraTresController;
 import com.calculadora.controller.RootLayoutController;
 import com.calculadora.controller.SobreController;
 import com.calculadora.util.Idioma;
@@ -32,6 +36,10 @@ public class MainApp extends Application {
 	private Stage opcoesStage;
 	private Stage sobreStage;
 	private Stage conversoesStage;
+	private Stage fracoesStage;
+	private Stage porcentagensStage;
+	private Stage primosStage;
+	private Stage regraTresStage;
 
 	private AnchorPane escolherIdiomaLayout;
 	private BorderPane rootLayout;
@@ -42,6 +50,10 @@ public class MainApp extends Application {
 	private OpcoesController opcoesController;
 	private SobreController sobreController;
 	private ConversoesController conversoesController;
+	private FracoesController fracoesController;
+	private PorcentagensController porcentagensController;
+	private PrimosController primosController;
+	private RegraTresController regraTresController;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -64,22 +76,20 @@ public class MainApp extends Application {
 			loader.setLocation(MainApp.class.getResource(pathFXML));
 			return loader.load();
 		} catch (IOException e) {
-			e.printStackTrace();
+			return null;
 		}
-
-		return null;
 	}
 	
 	public Stage getStage(FXMLLoader loader, Parent pageLayout, String nomeAplicacao, String icone) {
 		
-		Stage tempStage = new Stage();
-		tempStage.initModality(Modality.WINDOW_MODAL);
-		tempStage.setResizable(false);
-		tempStage.setTitle(nomeAplicacao);
-		tempStage.getIcons().add(new Image(icone));
-		tempStage.setScene(new Scene(pageLayout));
+		Stage novoStage = new Stage();
+		novoStage.initModality(Modality.WINDOW_MODAL);
+		novoStage.setResizable(false);
+		novoStage.setTitle(nomeAplicacao);
+		novoStage.getIcons().add(new Image(icone));
+		novoStage.setScene(new Scene(pageLayout));
 		
-		return tempStage;
+		return novoStage;
 	}
 
 	public void initEscolherIdioma() {
@@ -142,6 +152,46 @@ public class MainApp extends Application {
 		
 		conversoesController = loader.getController();
 		conversoesController.show(this, conversoesStage);
+	}
+	
+	public void initFracoes() {
+		
+		FXMLLoader loader = getLoader();
+		fracoesStage = getStage(loader, (AnchorPane) getLayout(loader, "/views/outrasOperacoes/Fracoes.fxml"), label.getString("root.tab.arquivo.fracoes.titulo"), CAMINHO_ICONE_APLICACAO);
+		fracoesStage.show();
+		
+		fracoesController = loader.getController();
+		fracoesController.show(this, fracoesStage);
+	}
+	
+	public void initPorcentagens() {
+		
+		FXMLLoader loader = getLoader();
+		porcentagensStage = getStage(loader, (AnchorPane) getLayout(loader, "/views/outrasOperacoes/Porcentagens.fxml"), label.getString("root.tab.arquivo.porcentagem.titulo"), CAMINHO_ICONE_APLICACAO);
+		porcentagensStage.show();
+		
+		porcentagensController = loader.getController();
+		porcentagensController.show(this, porcentagensStage);
+	}
+	
+	public void initPrimos() {
+		
+		FXMLLoader loader = getLoader();
+		primosStage = getStage(loader, (AnchorPane) getLayout(loader, "/views/outrasOperacoes/Primos.fxml"), label.getString("root.tab.arquivo.primo.titulo"), CAMINHO_ICONE_APLICACAO);
+		primosStage.show();
+		
+		primosController = loader.getController();
+		primosController.show(this, primosStage);
+	}
+	
+	public void initRegraTres() {
+		
+		FXMLLoader loader = getLoader();
+		regraTresStage = getStage(loader, (AnchorPane) getLayout(loader, "/views/outrasOperacoes/RegraTres.fxml"), label.getString("root.tab.arquivo.regratres.titulo"), CAMINHO_ICONE_APLICACAO);
+		regraTresStage.show();
+		
+		regraTresController = loader.getController();
+		regraTresController.show(this, regraTresStage);
 	}
 	
 	public void setIdioma(Idioma idioma) {

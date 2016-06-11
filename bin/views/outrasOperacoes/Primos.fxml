@@ -6,10 +6,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="266.0" prefWidth="438.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.PrimosController>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="266.0" prefWidth="438.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.PrimosController">
    <children>
       <TextField layoutX="145.0" layoutY="29.0" prefHeight="41.0" prefWidth="149.0" />
-      <Button ellipsisString="" layoutX="61.0" layoutY="218.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" text="%botoes.voltar">
+      <Button ellipsisString="" layoutX="61.0" layoutY="218.0" onAction="#handleVoltar" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" text="%botoes.voltar">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -19,7 +19,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="285.0" layoutY="218.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" text="%botoes.ajuda">
+      <Button layoutX="285.0" layoutY="218.0" onAction="#handleAjuda" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" text="%botoes.ajuda">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

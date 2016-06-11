@@ -7,6 +7,7 @@ import com.calculadora.util.Idioma;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
+@SuppressWarnings("unused")
 public class RootLayoutController {
 	
 	private MainApp mainApp;
@@ -50,6 +51,30 @@ public class RootLayoutController {
 	private void handleConversoes() {
 		rootStage.close();
 		mainApp.initConversoes();
+	}
+	
+	@FXML
+	private void handleFracoes() {
+		rootStage.close();
+		mainApp.initFracoes();
+	}
+	
+	@FXML
+	private void handlePorcentagens() {
+		rootStage.close();
+		mainApp.initPorcentagens();
+	}
+	
+	@FXML
+	private void handlePrimos() {
+		rootStage.close();
+		mainApp.initPrimos();
+	}
+	
+	@FXML
+	private void handleRegraTres() {
+		rootStage.close();
+		mainApp.initRegraTres();
 	}
 	
 	public void setRootStage(Stage rootStage) {
