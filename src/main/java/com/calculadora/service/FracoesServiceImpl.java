@@ -1,5 +1,7 @@
 package com.calculadora.service;
 
+import java.math.BigDecimal;
+
 import com.calculadora.model.Fracao;
 import com.calculadora.util.TipoOperacao;
 
@@ -11,9 +13,7 @@ public class FracoesServiceImpl implements FracoesService {
 	}
 	
 	@Override
-	public Fracao calcular(Fracao firstFracao, Fracao secondFracao, String operacao) {
-		
-		TipoOperacao tipoOperacao = TipoOperacao.getOperacao(operacao);
+	public Fracao calcular(Fracao firstFracao, Fracao secondFracao, TipoOperacao tipoOperacao) {
 		
 		switch (tipoOperacao) {
 			case SOMA:
@@ -30,33 +30,52 @@ public class FracoesServiceImpl implements FracoesService {
 	}
 	
 	private Fracao adicao(Fracao firstFracao, Fracao secondFracao) {
-		resposta.setNumerador(firstFracao.getNumerador().multiply(secondFracao.getDenominador())
-				   										.add(secondFracao.getNumerador().multiply(firstFracao.getDenominador())));
-		resposta.setDenominador(firstFracao.getNumerador().multiply(secondFracao.getDenominador()));
-		
-		return resposta;
+		return addResposta((firstFracao.getNumerador().multiply(secondFracao.getDenominador()))
+							.add((secondFracao.getNumerador().multiply(firstFracao.getDenominador()))), 
+							firstFracao.getDenominador().multiply(secondFracao.getDenominador()));
 	}
 	
 	private Fracao subtracao(Fracao firstFracao, Fracao secondFracao) {
-		resposta.setNumerador(firstFracao.getNumerador().multiply(secondFracao.getDenominador())
-					.subtract(secondFracao.getNumerador().multiply(firstFracao.getDenominador())));
-		resposta.setDenominador(firstFracao.getNumerador().multiply(secondFracao.getDenominador()));
-		
-		return resposta;
+		return addResposta((firstFracao.getNumerador().multiply(secondFracao.getDenominador()))
+							.subtract((secondFracao.getNumerador().multiply(firstFracao.getDenominador()))),
+							firstFracao.getDenominador().multiply(secondFracao.getDenominador()));
 	}
 	
 	private Fracao multiplicacao(Fracao firstFracao, Fracao secondFracao) {
-		resposta.setNumerador(firstFracao.getNumerador().multiply(secondFracao.getNumerador()));
-		resposta.setNumerador(firstFracao.getDenominador().multiply(secondFracao.getDenominador()));
-
-		return resposta;
+		return addResposta(firstFracao.getNumerador().multiply(secondFracao.getNumerador()),
+						   firstFracao.getDenominador().multiply(secondFracao.getDenominador()));
 	}
 	
 	private Fracao divisao(Fracao firstFracao, Fracao secondFracao) {
-		resposta.setNumerador(firstFracao.getNumerador().multiply(secondFracao.getDenominador()));
-		resposta.setDenominador(firstFracao.getDenominador().multiply(secondFracao.getNumerador()));
+		return addResposta(firstFracao.getNumerador().multiply(secondFracao.getDenominador()),
+						   firstFracao.getDenominador().multiply(secondFracao.getNumerador()));
+	}
+	
+	private BigDecimal verificaSimplificacao(BigDecimal numerador, BigDecimal denominador) {
+		BigDecimal resultadoSimplificado;
+		
+		if (numerador.remainder(denominador).compareTo(new BigDecimal(0)) == 0) {
+			resultadoSimplificado = numerador.divide(denominador);
+			return resultadoSimplificado;
+		} else if (denominador.compareTo(new BigDecimal(1)) == 0) {
+			return denominador;
+		}
+		
+		return null;
+	}
+	
+	private Fracao addResposta(BigDecimal numeradorResult, BigDecimal denominadorResult) {
+		BigDecimal simplificacao = verificaSimplificacao(numeradorResult, denominadorResult);
+		
+		if (simplificacao != null) {
+			resposta.setNumerador(simplificacao);
+			resposta.setDenominador(simplificacao);
+		} else {
+			resposta.setNumerador(numeradorResult);
+			resposta.setDenominador(denominadorResult);
+		}
 		
 		return resposta;
 	}
-
+	
 }

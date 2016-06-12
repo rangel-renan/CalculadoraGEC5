@@ -67,6 +67,7 @@ public class MainApp extends Application {
 		AnchorPane welcome = (AnchorPane) getLayout(loader, "/views/welcome.fxml");
 		
 		primaryStage.initStyle(StageStyle.UNDECORATED);
+		primaryStage.getIcons().add(new Image(CAMINHO_ICONE_APLICACAO));
 		primaryStage.setScene(new Scene(welcome));
 		primaryStage.show();
 		
@@ -191,7 +192,7 @@ public class MainApp extends Application {
 		primosStage.show();
 		
 		primosController = loader.getController();
-		primosController.show(this, primosStage);
+		primosController.show(this, primosStage, label);
 	}
 	
 	public void initRegraTres() {

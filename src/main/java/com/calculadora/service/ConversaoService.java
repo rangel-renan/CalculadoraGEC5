@@ -6,5 +6,5 @@ import javax.measure.unit.Unit;
 
 public interface ConversaoService {
 	
-	public BigDecimal converterComprimentos(BigDecimal valor1, Unit<?> tipoInicial, Unit<?> tipoFinal);
+	public BigDecimal converter(BigDecimal valor1, Unit<?> tipoInicial, Unit<?> tipoFinal) throws NumberFormatException;
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
@@ -12,15 +13,16 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import com.calculadora.validacao.InputOnlyNumAndDecTextField?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="222.0" prefWidth="491.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.ConversoesController">
    <children>
-      <ComboBox layoutX="53.0" layoutY="21.0" prefHeight="33.0" prefWidth="385.0" promptText="Escolha o tipo de Conversão" />
+      <ComboBox fx:id="comboTipoConversoes" layoutX="53.0" layoutY="21.0" onHidden="#hiddenTipoConversao" prefHeight="33.0" prefWidth="385.0" />
       <Button layoutX="87.0" layoutY="173.0" mnemonicParsing="false" onAction="#handleVoltar" prefHeight="33.0" prefWidth="94.0" text="%botoes.voltar">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button layoutX="187.0" layoutY="173.0" mnemonicParsing="false" onAction="#handleCalcular" prefHeight="33.0" prefWidth="117.0" text="%botoes.calcular">
+      <Button fx:id="btnCalcular" layoutX="187.0" layoutY="173.0" mnemonicParsing="false" onAction="#handleCalcular" prefHeight="33.0" prefWidth="117.0" text="%botoes.calcular">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -28,14 +30,29 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <TextField layoutX="122.0" layoutY="74.0" prefHeight="40.0" prefWidth="86.0" />
-      <TextField layoutX="284.0" layoutY="74.0" prefHeight="40.0" prefWidth="86.0" />
+      <InputOnlyNumAndDecTextField fx:id="textFieldInput" layoutX="91.0" layoutY="74.0" prefHeight="40.0" prefWidth="86.0" />
       <Label layoutX="225.0" layoutY="44.0" prefHeight="70.0" prefWidth="55.0" text="=">
          <font>
             <Font size="64.0" />
          </font>
       </Label>
-      <ComboBox layoutX="122.0" layoutY="119.0" prefHeight="33.0" prefWidth="86.0" />
-      <ComboBox layoutX="284.0" layoutY="119.0" prefHeight="33.0" prefWidth="86.0" />
+      <ComboBox fx:id="comboFistTipo" layoutX="59.0" layoutY="119.0" prefHeight="33.0" prefWidth="149.0" />
+      <ComboBox fx:id="comboSecondTipo" layoutX="284.0" layoutY="119.0" prefHeight="33.0" prefWidth="149.0" />
+      <ScrollPane fitToHeight="true" layoutX="316.0" layoutY="65.0" prefHeight="52.0" prefWidth="86.0" style="-fx-bo: #C3C4C4;">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="37.0" prefWidth="85.0">
+               <children>
+                  <Label fx:id="labelResult" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" prefHeight="33.0" textAlignment="CENTER">
+                     <padding>
+                        <Insets right="6.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets right="3.0" />
+               </padding>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

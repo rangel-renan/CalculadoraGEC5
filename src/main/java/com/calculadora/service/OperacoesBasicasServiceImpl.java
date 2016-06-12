@@ -2,6 +2,7 @@ package com.calculadora.service;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.MathContext;
 
 import com.calculadora.util.TipoOperacao;
 
@@ -44,19 +45,14 @@ public class OperacoesBasicasServiceImpl implements OperacoesBasicasService {
 		return new BigDecimal(Math.E);
 	}
 	
-	public BigDecimal calcularRegraTres(BigDecimal valorA, BigDecimal valorB, BigDecimal valorC) {
-		return valorA.multiply(valorB).divide(valorC);
+	public BigDecimal calcularRegraTres(BigDecimal valorA, BigDecimal valorB, BigDecimal valorC) throws NumberFormatException {
+		return (valorB.multiply(valorC)).divide(valorA, MathContext.DECIMAL128);
 	}
 
 	public boolean isPrimo(BigInteger valor) {
 		return valor.isProbablePrime(1);
 	}
 	
-//	public BigDecimal calcularPorcentagem(BigDecimal valor, String porcentagem) {
-//		BigDecimal porcentagemEscala = new BigDecimal(new BigInteger(porcentagem), 2);	
-//		return valor.multiply(porcentagemEscala).setScale(0);
-//	}
-//	
 	private BigDecimal operacaodeSoma(BigDecimal valor1, BigDecimal valor2) {
 		return valor1.add(valor2);
 	}
@@ -70,7 +66,7 @@ public class OperacoesBasicasServiceImpl implements OperacoesBasicasService {
 	}
 	
 	private BigDecimal operacaodeDivisao(BigDecimal valor1, BigDecimal valor2) {
-		return valor1.divide(valor2);
+		return valor1.divide(valor2, MathContext.DECIMAL128);
 	}
 	
 	private BigDecimal operacaoRaizQuadrada(BigDecimal valor1) {
@@ -81,6 +77,4 @@ public class OperacoesBasicasServiceImpl implements OperacoesBasicasService {
 		return valor.remainder(divisor);
 	}
 
-	
-	
 }

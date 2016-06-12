@@ -1,7 +1,7 @@
 package com.calculadora.service;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 
 import com.calculadora.util.TipoCalPorcentagem;
 
@@ -22,17 +22,18 @@ public class PorcentagemServiceImpl implements PorcentagemService {
 		return null;
 	}
 	
-	private BigDecimal calcularPorcentagemEmValor(BigDecimal valor, String porcentagem) {
-		BigDecimal quantidadeTotal = calcularQuantidade(valor, porcentagem);
-		return quantidadeTotal.divide(new BigDecimal(porcentagem), 0, RoundingMode.HALF_UP);
+	private BigDecimal calcularPorcentagemEmValor(BigDecimal valor, String valorTotal) throws NumberFormatException {
+		return (valor.divide(new BigDecimal(valorTotal), MathContext.DECIMAL128))
+				.multiply(new BigDecimal(100.0));
 	}
 	
-	private BigDecimal calcularQuantidade(BigDecimal valor, String porcentagem) {
-		return valor.divide(new BigDecimal(porcentagem), 0, RoundingMode.HALF_UP);
+	private BigDecimal calcularQuantidade(BigDecimal valor, String porcentagem) throws NumberFormatException {
+		return ((valor.multiply(new BigDecimal(porcentagem)))
+				.divide(new BigDecimal(100), MathContext.DECIMAL128));
 	}
 	
-	private BigDecimal calcularTotal(BigDecimal valor, String porcentagem) {
-		return valor.multiply(new BigDecimal(porcentagem)).setScale(0, RoundingMode.HALF_UP);
+	private BigDecimal calcularTotal(BigDecimal valor, String porcentagem) throws NumberFormatException {
+		return valor.multiply(new BigDecimal(porcentagem), MathContext.DECIMAL128);
 	}
 	
 }
