@@ -9,22 +9,27 @@ import com.calculadora.config.ConfigProperties;
 import com.calculadora.controller.CalculadoraController;
 import com.calculadora.controller.ConversoesController;
 import com.calculadora.controller.FracoesController;
+import com.calculadora.controller.MatrizOperacoesController;
 import com.calculadora.controller.OpcoesController;
 import com.calculadora.controller.PorcentagensController;
 import com.calculadora.controller.PrimosController;
 import com.calculadora.controller.RegraTresController;
 import com.calculadora.controller.RootLayoutController;
 import com.calculadora.controller.SobreController;
+import com.calculadora.util.GeradorDeJanelaMatriz;
 import com.calculadora.util.Idioma;
 
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -43,8 +48,11 @@ public class MainApp extends Application {
 	private Stage porcentagensStage;
 	private Stage primosStage;
 	private Stage regraTresStage;
+	private Stage matrizOperacoesStage;
+	private Stage matriz;
 
 	private BorderPane rootLayout;
+	private BorderPane matrizLayout;
 	
 	private RootLayoutController rootLayoutController;
 	private CalculadoraController calculadoraController;
@@ -55,6 +63,7 @@ public class MainApp extends Application {
 	private PorcentagensController porcentagensController;
 	private PrimosController primosController;
 	private RegraTresController regraTresController;
+	private MatrizOperacoesController matrizOperacoesController;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -112,6 +121,7 @@ public class MainApp extends Application {
 		novoStage.setTitle(nomeAplicacao);
 		novoStage.getIcons().add(new Image(icone));
 		novoStage.setScene(new Scene(pageLayout));
+		novoStage.show();
 		
 		return novoStage;
 	}
@@ -121,8 +131,7 @@ public class MainApp extends Application {
 		FXMLLoader loader = getLoader();
 		rootLayout = (BorderPane) getLayout(loader, "/views/RootLayout.fxml");
 		rootStage = getStage(rootLayout, label.getString("root.titulo"), CAMINHO_ICONE_APLICACAO);
-		rootStage.show();
-		
+
 		rootLayoutController = loader.getController();
 		rootLayoutController.show(label, this, rootStage);
 		
@@ -139,8 +148,6 @@ public class MainApp extends Application {
 		
 		FXMLLoader loader = getLoader();
 		opcoesStage = getStage((AnchorPane) getLayout(loader, "/views/Opcoes.fxml"), label.getString("opcoes.titulo"), CAMINHO_ICONE_APLICACAO);
-		opcoesStage.show();
-		
 		opcoesController = loader.getController();
 		opcoesController.show(this, opcoesStage);
 	}
@@ -149,8 +156,6 @@ public class MainApp extends Application {
 		
 		FXMLLoader loader = getLoader();
 		sobreStage = getStage((AnchorPane) getLayout(loader, "/views/Sobre.fxml"), label.getString("sobre.tituloJanela"), CAMINHO_ICONE_APLICACAO);
-		sobreStage.show();
-		
 		sobreController = loader.getController();
 		sobreController.show(rootStage, sobreStage);
 	}
@@ -159,8 +164,6 @@ public class MainApp extends Application {
 		
 		FXMLLoader loader = getLoader();
 		conversoesStage = getStage((AnchorPane) getLayout(loader, "/views/outrasOperacoes/Conversoes.fxml"), label.getString("root.tab.arquivo.conversoes.titulo"), CAMINHO_ICONE_APLICACAO);
-		conversoesStage.show();
-		
 		conversoesController = loader.getController();
 		conversoesController.show(this, conversoesStage);
 	}
@@ -169,8 +172,6 @@ public class MainApp extends Application {
 		
 		FXMLLoader loader = getLoader();
 		fracoesStage = getStage((AnchorPane) getLayout(loader, "/views/outrasOperacoes/Fracoes.fxml"), label.getString("root.tab.arquivo.fracoes.titulo"), CAMINHO_ICONE_APLICACAO);
-		fracoesStage.show();
-		
 		fracoesController = loader.getController();
 		fracoesController.show(this, fracoesStage);
 	}
@@ -179,8 +180,6 @@ public class MainApp extends Application {
 		
 		FXMLLoader loader = getLoader();
 		porcentagensStage = getStage((AnchorPane) getLayout(loader, "/views/outrasOperacoes/Porcentagens.fxml"), label.getString("root.tab.arquivo.porcentagem.titulo"), CAMINHO_ICONE_APLICACAO);
-		porcentagensStage.show();
-		
 		porcentagensController = loader.getController();
 		porcentagensController.show(this, porcentagensStage);
 	}
@@ -189,8 +188,6 @@ public class MainApp extends Application {
 		
 		FXMLLoader loader = getLoader();
 		primosStage = getStage((AnchorPane) getLayout(loader, "/views/outrasOperacoes/Primos.fxml"), label.getString("root.tab.arquivo.primo.titulo"), CAMINHO_ICONE_APLICACAO);
-		primosStage.show();
-		
 		primosController = loader.getController();
 		primosController.show(this, primosStage, label);
 	}
@@ -199,10 +196,28 @@ public class MainApp extends Application {
 		
 		FXMLLoader loader = getLoader();
 		regraTresStage = getStage((AnchorPane) getLayout(loader, "/views/outrasOperacoes/RegraTres.fxml"), label.getString("root.tab.arquivo.regratres.titulo"), CAMINHO_ICONE_APLICACAO);
-		regraTresStage.show();
-		
 		regraTresController = loader.getController();
 		regraTresController.show(this, regraTresStage);
+	}
+	
+	public void initMatriz(int altura, int largura) {
+		
+		matrizLayout = new BorderPane();
+		matrizLayout.setPrefHeight((altura * 50) + 113);
+		matrizLayout.setPrefWidth(600);
+		
+		matriz = getStage(matrizLayout, "Matriz", CAMINHO_ICONE_APLICACAO);
+
+		FXMLLoader loaderMatriz = getLoader();
+		AnchorPane operacoesLayout = (AnchorPane) getLayout(loaderMatriz, "/views/matriz/Operacoes.fxml");
+		GridPane matrizGerada = (GridPane) GeradorDeJanelaMatriz.gerar(altura, largura);
+		
+		matrizLayout.setTop(matrizGerada);
+		matrizLayout.setAlignment(matrizGerada, Pos.CENTER);
+		matrizLayout.setBottom(operacoesLayout);
+		matrizLayout.setAlignment(operacoesLayout, Pos.CENTER);
+		
+		opcoesController = loaderMatriz.getController();
 	}
 	
 	public void setIdioma(Idioma idioma) {

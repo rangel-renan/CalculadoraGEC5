@@ -10,7 +10,6 @@ import com.calculadora.util.TipoCalPorcentagem;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -39,13 +38,13 @@ public class PorcentagensController {
 	private TextField textFieldPorcValor;
 	
 	@FXML
-	private Label labelResultQuantidade;
+	private TextField textFieldResultQuantidade;
 	
 	@FXML
-	private Label labelResultTotal;
+	private TextField textFieldResultTotal;
 	
 	@FXML
-	private Label labelResultPorcentagem;
+	private TextField textFieldResultPorcentagem;
 	
 	@FXML
 	private Button btnCalcularQuantidade;
@@ -82,8 +81,8 @@ public class PorcentagensController {
 		});
 	}
 	
-	private void setListeners(TextField label, TextField labelPorcentagem, TextField labelValor, Button btnCalcular) {
-		label.textProperty().addListener((observable, oldValue, newValue) -> {
+	private void setListeners(TextField textField, TextField labelPorcentagem, TextField labelValor, Button btnCalcular) {
+		textField.textProperty().addListener((observable, oldValue, newValue) -> {
 		    if (labelPorcentagem.getText().length() == 0 || 
 		    	labelValor.getText().length() == 0) {
 		    	btnCalcular.setDisable(true);
@@ -95,20 +94,20 @@ public class PorcentagensController {
 	
 	@FXML
 	private void handleCalcularPorcentagem() {
-		calcular(textFieldPorcValor, textFieldPorcValorTotal, labelResultPorcentagem, TipoCalPorcentagem.PORCENTAGEM);
+		calcular(textFieldPorcValor, textFieldPorcValorTotal, textFieldResultPorcentagem, TipoCalPorcentagem.PORCENTAGEM);
 	}
 	
 	@FXML
 	private void handleCalcularQuantidade() {
-		calcular(textFieldQuantValor, textFieldQuantPorcent, labelResultQuantidade, TipoCalPorcentagem.QUANTIDADE);
+		calcular(textFieldQuantValor, textFieldQuantPorcent, textFieldResultQuantidade, TipoCalPorcentagem.QUANTIDADE);
 	}
 	
 	@FXML
 	private void handleCalcularTotal() {
-		calcular(textFieldTotalValor, textFieldTotalPorcent, labelResultTotal, TipoCalPorcentagem.TOTAL);
+		calcular(textFieldTotalValor, textFieldTotalPorcent, textFieldResultTotal, TipoCalPorcentagem.TOTAL);
 	}
 	
-	private void calcular(TextField valor, TextField porcentagem, Label labelResult, TipoCalPorcentagem tipoCalculo) {
+	private void calcular(TextField valor, TextField porcentagem, TextField textFieldResult, TipoCalPorcentagem tipoCalculo) {
 		BigDecimal result = null;
 		
 		try {
@@ -118,11 +117,11 @@ public class PorcentagensController {
 			valor.setText("");
 			porcentagem.setText("");
 			valor.requestFocus();
-			labelResult.setText("");
+			textFieldResult.setText("");
 			return;
 		}
 		
-		labelResult.setText(result.toString());
+		textFieldResult.setText(result.toString());
 	}
 	
 	@FXML

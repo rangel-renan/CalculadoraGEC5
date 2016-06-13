@@ -10,7 +10,6 @@ import com.calculadora.service.OperacoesBasicasServiceImpl;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -28,10 +27,10 @@ public class PrimosController {
 	private TextField textFieldInputPrimo;
 	
 	@FXML
-	private Label labelIsPrimo;
+	private TextField textFieldIsPrimo;
 	
 	@FXML
-	private Label labelExplicacao;
+	private TextField textFieldExplicacao;
 	
 	public void show(MainApp mainApp, Stage primosStage, ConfigProperties label) {
 		this.mainApp = mainApp;
@@ -55,8 +54,8 @@ public class PrimosController {
 		label.textProperty().addListener((observable, oldValue, newValue) -> {
 		    if (textFieldInputPrimo.getText().length() == 0) {
 		    	btnCalcular.setDisable(true);
-		    	labelIsPrimo.setText("");
-		    	labelExplicacao.setText("");
+		    	textFieldIsPrimo.setText("");
+		    	textFieldExplicacao.setText("");
 		    } else {
 		    	btnCalcular.setDisable(false);
 		    }
@@ -74,23 +73,23 @@ public class PrimosController {
 	}
 	
 	private void showIsPrimo() {
-		labelIsPrimo.setText(label.getString("root.tab.arquivo.primo.isPrimoFristPt") + 
+		textFieldIsPrimo.setText(label.getString("root.tab.arquivo.primo.isPrimoFristPt") + 
 				textFieldInputPrimo.getText() + 
 				label.getString("root.tab.arquivo.primo.isPrimoSecondPt"));
 	}
 	
 	private void showNotIsPrimo(BigInteger numPrimo) {
-		labelIsPrimo.setText(label.getString("root.tab.arquivo.primo.isPrimoFristPt") + 
+		textFieldIsPrimo.setText(label.getString("root.tab.arquivo.primo.isPrimoFristPt") + 
 							textFieldInputPrimo.getText() + 
 							label.getString("root.tab.arquivo.primo.notPrimoSecondPt"));
 
 		if (numPrimo.compareTo(new BigInteger("1")) == 0) {
-			labelExplicacao.setText(label.getString("root.tab.arquivo.primo.isPrimoFristPt") + 
+			textFieldExplicacao.setText(label.getString("root.tab.arquivo.primo.isPrimoFristPt") + 
 									textFieldInputPrimo.getText() + 
 									label.getString("root.tab.arquivo.primo.notPrimeExplicOneSecond"));
 			return;
 		} else if (numPrimo.remainder(new BigInteger("2")).compareTo(new BigInteger("0")) == 0) 
-			labelExplicacao.setText(label.getString("root.tab.arquivo.primo.isPrimoFristPt") + 
+			textFieldExplicacao.setText(label.getString("root.tab.arquivo.primo.isPrimoFristPt") + 
 									textFieldInputPrimo.getText() + 
 									label.getString("root.tab.arquivo.primo.notPrimeExplicPar"));
 	}

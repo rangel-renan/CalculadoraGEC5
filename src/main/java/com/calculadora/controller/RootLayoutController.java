@@ -4,7 +4,9 @@ import com.calculadora.MainApp;
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.util.Idioma;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 @SuppressWarnings("unused")
@@ -75,6 +77,27 @@ public class RootLayoutController {
 	private void handleRegraTres() {
 		rootStage.close();
 		mainApp.initRegraTres();
+	}
+	
+	@FXML
+	private void handleMatriz(ActionEvent actionEvent) {
+		rootStage.close();
+		
+		switch (((Button) actionEvent.getSource()).getText()) {
+			case "Matriz 1x1":
+				mainApp.initMatriz(1, 1);
+				break;
+			case "Matriz 2x2":
+				mainApp.initMatriz(2, 2);
+				break;
+			case "Matriz 3x3":
+				mainApp.initMatriz(3, 3);
+				break;
+			case "Matriz 4x4":
+				mainApp.initMatriz(4, 4);
+				break;
+		}
+		
 	}
 	
 	public void setRootStage(Stage rootStage) {

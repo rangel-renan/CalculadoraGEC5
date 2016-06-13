@@ -14,7 +14,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -37,7 +36,7 @@ public class ConversoesController {
 	private TextField textFieldInput;
 	
 	@FXML
-	private Label labelResult;
+	private TextField textFieldResult;
 	
 	@FXML
 	private Button btnCalcular;
@@ -89,7 +88,7 @@ public class ConversoesController {
 				break;
 		}
 		textFieldInput.setText("");
-		labelResult.setText("");
+		textFieldResult.setText("");
 		comboFistTipo.getSelectionModel().select(0);
 		comboSecondTipo.getSelectionModel().select(0);
 	}
@@ -113,11 +112,11 @@ public class ConversoesController {
 			}
 			} catch (NumberFormatException e) {
 				textFieldInput.setText("");
-				labelResult.setText("");
+				textFieldResult.setText("");
 				return;
 			}
 		
-		labelResult.setText(result.toString());
+		textFieldResult.setText(result.toString());
 	}
 	
 	@FXML

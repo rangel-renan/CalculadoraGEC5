@@ -39,7 +39,7 @@ public class CalculadoraController {
 	private Label displayField;
 
 	@FXML
-	private Label displayAnteriorField;
+	private Label displaySubField;
 
 	@FXML
 	private void initialize() {
@@ -142,7 +142,7 @@ public class CalculadoraController {
 		isStartCurrentNumber = null;
 		if (displayField.getText() != null || !displayField.getText().isEmpty()) {
 			displayField.setText("");
-			displayAnteriorField.setText("");
+			displaySubField.setText("");
 		}
 	}
 
@@ -157,20 +157,14 @@ public class CalculadoraController {
 		}
 	}
 
-	@FXML
-	private void handleIgual() {
-
-		if (displayField.getText() != null) {
-			System.out.println(operador);
-			isStartCurrentNumber = calcular(isStartCurrentNumber, new BigDecimal(displayField.getText()), operador);
-			displayField.setText(isStartCurrentNumber.toString());
-			displayAnteriorField.setText("");
-			isStartCurrentNumber = null;
-		}
-	}
-
 	public BigDecimal calcular(BigDecimal valor1, BigDecimal valor2, String operador) {
-		return operacoesBasicasService.calcular(valor1, valor2, operador);
+		try {
+			return operacoesBasicasService.calcular(valor1, valor2, operador);
+		} catch (NumberFormatException e) {
+			displayField.setText("NaN");
+		}
+		
+		return null;
 	}
 
 	@FXML
@@ -328,6 +322,26 @@ public class CalculadoraController {
 	}
 	
 	@FXML
+	private void handleIgual() {
+
+		if (displayField.getText() != null) {
+			isStartCurrentNumber = calcular(isStartCurrentNumber, new BigDecimal(displayField.getText()), operador);
+			displayField.setText(isStartCurrentNumber.toString());
+			displaySubField.setText("");
+			isStartCurrentNumber = null;
+		}
+	}
+	
+	@FXML
+	private void handleExp() {
+		if (displayField.getText().contains(".")) {
+			displayField.setText(displayField.getText() + "E+0");
+        } else {
+        	displayField.setText(displayField.getText() + ".E+0");
+        }
+	}
+	
+	@FXML
 	private void handleOperadorTrigonometrico(ActionEvent actionEvent) {
 		BigDecimal result = null;
 		
@@ -348,33 +362,38 @@ public class CalculadoraController {
 	}
 
 	private void handleOperador(String operacaoAtual) {
-		String currentText = displayField.getText();
-		String currentAnteriorText = displayAnteriorField.getText();
+		String displayAtual = displayField.getText();
+		String displaySub = displaySubField.getText();
 		
+		if (operacaoAtual.equals("Mod")) operacaoAtual = "%";
 		if (operacaoAtual.equals("x^y")) operacaoAtual = "^";
 		if (operacaoAtual.equals("y √x")) operacaoAtual = "yroot";
 		
-		
-		
-		if (!currentText.isEmpty()) {
-			if (isStartCurrentNumber == null) {
-				isStartCurrentNumber = new BigDecimal(currentText);
-				displayField.setText("");
-				if (currentAnteriorText.isEmpty())
-					displayAnteriorField.setText(isStartCurrentNumber.toString() + " " + operacaoAtual + " ");
-				else
-					displayAnteriorField.setText(currentAnteriorText + " " + operacaoAtual + " ");
-				operador = operacaoAtual;
-			} else {
-				String displayAnterior = displayAnteriorField.getText();
-				displayAnteriorField.setText(displayAnterior + " " + currentText + " " + operacaoAtual);
-				isStartCurrentNumber = calcular(isStartCurrentNumber, new BigDecimal(displayField.getText()), operador);
-				displayField.setText(isStartCurrentNumber.toString());
-				isResultado = true;
-			}
-		} else {
-			displayAnteriorField.setText(currentText + " " + operador + " ");
-		}
+		if (!displayAtual.isEmpty()) {
+			if (isStartCurrentNumber == null) 
+				preenxer(displayAtual, displaySub, operacaoAtual);
+			else 
+				realizarOperacaoAndPreenxer(displayAtual, operacaoAtual);
+		} else 
+			displaySubField.setText(displayAtual + " " + operador + " ");
+	}
+	
+	private void preenxer(String displayAtual, String displaySub, String operacaoAtual) {
+		isStartCurrentNumber = new BigDecimal(displayAtual);
+		displayField.setText("");
+		if (displaySub.isEmpty())
+			displaySubField.setText(isStartCurrentNumber.toString() + " " + operacaoAtual + " ");
+		else
+			displaySubField.setText(displaySub + " " + operacaoAtual + " ");
+		operador = operacaoAtual;
+	}
+	
+	private void realizarOperacaoAndPreenxer(String displayAtual, String operacaoAtual) {
+		String displayAnterior = displaySubField.getText();
+		displaySubField.setText(displayAnterior + " " + displayAtual + " " + operacaoAtual);
+		isStartCurrentNumber = calcular(isStartCurrentNumber, new BigDecimal(displayField.getText()), operador);
+		displayField.setText(isStartCurrentNumber.toString());
+		isResultado = true;
 	}
 
 	@FXML

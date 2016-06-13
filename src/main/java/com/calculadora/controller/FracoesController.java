@@ -13,7 +13,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -30,22 +29,22 @@ public class FracoesController {
 	private ComboBox<TipoOperacao> comboTipoOperacoes;
 	
 	@FXML
-	private TextField labelFirstFracaoNumerador;
+	private TextField textFieldFirstFracaoNumerador;
 	
 	@FXML
-	private TextField labelFirstFracaoDenominador;
+	private TextField textFieldFirstFracaoDenominador;
 	
 	@FXML
-	private TextField labelSecondFracaoNumerador;
+	private TextField textFieldSecondFracaoNumerador;
 	
 	@FXML
-	private TextField labelSecondFracaoDenominador;
+	private TextField textFieldSecondFracaoDenominador;
 	
 	@FXML
-	private Label labelResultFracaoNumerador;
+	private TextField textFieldResultFracaoNumerador;
 	
 	@FXML
-	private Label labelResultFracaoDenominador;
+	private TextField textFieldResultFracaoDenominador;
 	
 	public void show(MainApp mainApp, Stage fracoesStage) {
 		this.mainApp = mainApp;
@@ -57,13 +56,13 @@ public class FracoesController {
 		comboTipoOperacoes.getSelectionModel().select(0);
 		comboTipoOperacoes.getItems().remove(4);
 		
-		labelFirstFracaoNumerador.requestFocus();
+		textFieldFirstFracaoNumerador.requestFocus();
 		btnCalcular.setDisable(true);
 		
-		setListerners(labelFirstFracaoNumerador);
-		setListerners(labelFirstFracaoDenominador);
-		setListerners(labelSecondFracaoNumerador);
-		setListerners(labelSecondFracaoDenominador);
+		setListerners(textFieldFirstFracaoNumerador);
+		setListerners(textFieldFirstFracaoDenominador);
+		setListerners(textFieldSecondFracaoNumerador);
+		setListerners(textFieldSecondFracaoDenominador);
 		
 		this.fracoesStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			public void handle(WindowEvent we) {
@@ -72,12 +71,12 @@ public class FracoesController {
 		});
 	}
 	
-	private void setListerners(TextField label) {
-		label.textProperty().addListener((observable, oldValue, newValue) -> {
-		    if (labelFirstFracaoNumerador.getText().length() == 0 
-		    || labelFirstFracaoDenominador.getText().length() == 0
-		    || labelSecondFracaoNumerador.getText().length() == 0
-		    || labelSecondFracaoDenominador.getText().length() == 0) {
+	private void setListerners(TextField textField) {
+		textField.textProperty().addListener((observable, oldValue, newValue) -> {
+		    if (textFieldFirstFracaoNumerador.getText().length() == 0 
+		    || textFieldFirstFracaoDenominador.getText().length() == 0
+		    || textFieldSecondFracaoNumerador.getText().length() == 0
+		    || textFieldSecondFracaoDenominador.getText().length() == 0) {
 		    	btnCalcular.setDisable(true);
 		    } else {
 		    	btnCalcular.setDisable(false);
@@ -87,13 +86,13 @@ public class FracoesController {
 	
 	@FXML
 	private void handleCalcular() {
-		Fracao firstFracao = new Fracao(new BigDecimal(labelFirstFracaoNumerador.getText()), new BigDecimal(labelFirstFracaoDenominador.getText()));
-		Fracao secondFracao = new Fracao(new BigDecimal(labelSecondFracaoNumerador.getText()), new BigDecimal(labelSecondFracaoDenominador.getText()));;
+		Fracao firstFracao = new Fracao(new BigDecimal(textFieldFirstFracaoNumerador.getText()), new BigDecimal(textFieldFirstFracaoDenominador.getText()));
+		Fracao secondFracao = new Fracao(new BigDecimal(textFieldSecondFracaoNumerador.getText()), new BigDecimal(textFieldSecondFracaoDenominador.getText()));;
 		
 		Fracao resultFracao = fracoesService.calcular(firstFracao, secondFracao, comboTipoOperacoes.getValue());
 		
-		labelResultFracaoNumerador.setText(resultFracao.getNumerador().toString());
-		labelResultFracaoDenominador.setText(resultFracao.getDenominador().toString());
+		textFieldResultFracaoNumerador.setText(resultFracao.getNumerador().toString());
+		textFieldResultFracaoDenominador.setText(resultFracao.getDenominador().toString());
 	}
 	
 	@FXML

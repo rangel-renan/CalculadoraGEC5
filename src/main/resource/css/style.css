@@ -17,6 +17,10 @@
 	-fx-background-color: #B0B8CC;
 }
 
+.btnResults {
+	-fx-border-color: #2E5B99;
+}
+
 .combo-box {
 	-fx-background-radius: 0.0;
 }

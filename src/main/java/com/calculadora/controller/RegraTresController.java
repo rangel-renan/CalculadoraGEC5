@@ -9,7 +9,6 @@ import com.calculadora.service.OperacoesBasicasServiceImpl;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -29,7 +28,7 @@ public class RegraTresController {
 	private TextField textFieldNovoValor;
 	
 	@FXML
-	private Label labelResult;
+	private TextField textFieldResult;
 	
 	@FXML
 	private Button btnCalcular;
@@ -78,11 +77,11 @@ public class RegraTresController {
 			textFieldValorA.setText("");
 			textFieldValorB.setText("");
 			textFieldNovoValor.setText("");
-			labelResult.setText("");
+			textFieldResult.setText("");
 			return;
 		}
 		
-		labelResult.setText(result.toString());
+		textFieldResult.setText(result.toString());
 	}
 	
 	@FXML
