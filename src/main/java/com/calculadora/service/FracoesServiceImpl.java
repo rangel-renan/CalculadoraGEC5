@@ -54,10 +54,10 @@ public class FracoesServiceImpl implements FracoesService {
 	private BigDecimal verificaSimplificacao(BigDecimal numerador, BigDecimal denominador) {
 		BigDecimal resultadoSimplificado;
 		
-		if (numerador.remainder(denominador).compareTo(new BigDecimal(0)) == 0) {
+		if (numerador.remainder(denominador).equals(BigDecimal.ZERO)) {
 			resultadoSimplificado = numerador.divide(denominador);
 			return resultadoSimplificado;
-		} else if (denominador.compareTo(new BigDecimal(1)) == 0) {
+		} else if (denominador.equals(BigDecimal.ONE)) {
 			return denominador;
 		}
 		

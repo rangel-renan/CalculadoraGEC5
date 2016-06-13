@@ -1,5 +1,9 @@
 package com.calculadora.service;
 
+import java.math.BigDecimal;
+
+import com.calculadora.util.TipoOperacaoTrigono;
+
 /**
  * Classe de Implementação da Interface RazoesTrigonometricasService.
  * 
@@ -11,86 +15,132 @@ package com.calculadora.service;
  * @version 1.2 (25/05/2016)
  */
 public class RazaoTrigonometricaServiceImpl implements RazaoTrigonometricaService {
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.calculadora.service.RazaoTrigonometricaService#calcularCosseno(java.lang.Double)
-	 */
+	
 	@Override
-	public Double calcularCosseno(Double valor) {
-		return Math.cos(valor);
+	public BigDecimal calcular(BigDecimal valor, String nomeOperacao) throws NumberFormatException {
+		TipoOperacaoTrigono operacao = TipoOperacaoTrigono.getOperacao(nomeOperacao);
+		
+		switch (operacao) {
+			case COSSENO:
+				return calcularCosseno(valor.doubleValue());
+			case SENO:
+				return calcularSeno(valor.doubleValue());
+			case TANGENTE:
+				return calcularTangente(valor.doubleValue());
+			case ARCO_COSSENO:
+				return calcularArcoCosseno(valor.doubleValue());
+			case ARCO_SENO:
+				return calcularArcoSeno(valor.doubleValue());
+			case ARCO_TANGENTE:
+				return calcularArcoTangente(valor.doubleValue());
+			case COSSECANTE:
+				return calcularCossecante(valor.doubleValue());
+			case COTANGENTE:	
+				return calcularCotangente(valor.doubleValue());
+			case SECANTE:
+				return calcularSecante(valor.doubleValue());
+		}
+		
+		return null;
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * @see com.calculadora.service.RazaoTrigonometricaService#calcularArcoCosseno(java.lang.Double)
+	/**
+	 * Calcula o cosseno a partir de um valor em radiano.
+	 * 
+	 * @param valor
+	 *  			valor
+	 * @return cosseno
 	 */
-	@Override
-	public Double calcularArcoCosseno(Double valor) {
-		return Math.acos(valor);
+	private BigDecimal calcularCosseno(Double valor) throws NumberFormatException {
+		return new BigDecimal(Math.cos(valor));
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * @see com.calculadora.service.RazaoTrigonometricaService#calcularSecante(java.lang.Double)
+	/**
+	 * Calcula a função inversa do cosseno a partir de um valor em radiano
+	 * 
+	 * @param valor
+	 *  			valor
+	 * @return arco-cosseno
 	 */
-	@Override
-	public Double calcularSecante(Double valor) {
-		return (1 / Math.cos(valor));
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.calculadora.service.RazaoTrigonometricaService#calcularSeno(java.lang.Double)
-	 */
-	@Override
-	public Double calcularSeno(Double valor) {
-		return Math.sin(valor);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.calculadora.service.RazaoTrigonometricaService#calcularArcoSeno(java.lang.Double)
-	 */
-	@Override
-	public Double calcularArcoSeno(Double valor) {
-		return Math.asin(valor);
+	private BigDecimal calcularArcoCosseno(Double valor) throws NumberFormatException {
+		return new BigDecimal(Math.acos(valor));
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * @see com.calculadora.service.RazaoTrigonometricaService#calcularCossecante(java.lang.Double)
+	/**
+	 * Calcula a secante a partir de um valor em radiano
+	 * 
+	 * @param valor
+	 *  			valor
+	 * @return secante
 	 */
-	@Override
-	public Double calcularCossecante(Double valor) {
-		return (1 / Math.sin(valor));
+	private BigDecimal calcularSecante(Double valor) throws NumberFormatException {
+		return new BigDecimal((1 / Math.cos(valor)));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.calculadora.service.RazaoTrigonometricaService#calcularTangente(java.lang.Double)
+	/**
+	 * Calcula o seno a partir de um valor em radiano.
+	 * 
+	 * @param valor
+	 *  			valor
+	 * @return seno
 	 */
-	@Override
-	public Double calcularTangente(Double valor) {
-		return Math.tan(valor);
+	private BigDecimal calcularSeno(Double valor) throws NumberFormatException {
+		return new BigDecimal(Math.sin(valor));
+	}
+
+	/**
+	 * Calcula o arcosseno a partir de um valor em radiano
+	 * 
+	 * @param valor
+	 *  			valor
+	 * @return arco-seno
+	 */
+	private BigDecimal calcularArcoSeno(Double valor) throws NumberFormatException {
+		return new BigDecimal(Math.asin(valor));
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * @see com.calculadora.service.RazaoTrigonometricaService#calcularArcoTangente(java.lang.Double)
+	/**
+	 * Calcula a cossecante a partir de um valor em radiano
+	 * 
+	 * @param valor
+	 *  			valor
+	 * @return cossecante
 	 */
-	@Override
-	public Double calcularArcoTangente(Double valor) {
-		return Math.atan(valor);
+	private BigDecimal calcularCossecante(Double valor) throws NumberFormatException {
+		return new BigDecimal((1 / Math.sin(valor)));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.calculadora.service.RazaoTrigonometricaService#calcularCotangente(java.lang.Double)
+	/**
+	 * Calcula a tangente a partir a partir de um valor em radiano
+	 * 
+	 * @param valor
+	 *  			valor
+	 * @return tangente
 	 */
-	@Override
-	public Double calcularCotangente(Double valor) {
-		return (1 / Math.tan(valor));
+	private BigDecimal calcularTangente(Double valor) throws NumberFormatException {
+		return new BigDecimal(Math.tan(valor));
+	}
+	
+	/**
+	 * Calcula a função inversa da tangente a partir de um valor em radiano
+	 * 
+	 * @param valor
+	 *  			valor
+	 * @return arco-tangente
+	 */
+	private BigDecimal calcularArcoTangente(Double valor) throws NumberFormatException {
+		return new BigDecimal(Math.atan(valor));
+	}
+
+	/**
+	 * Calcula a cotangente a partir da tangente
+	 * 
+	 * @param valor
+	 *  			valor
+	 * @return cotangente
+	 */
+	private BigDecimal calcularCotangente(Double valor) throws NumberFormatException {
+		return new BigDecimal((1 / Math.tan(valor)));
 	}
 
 }

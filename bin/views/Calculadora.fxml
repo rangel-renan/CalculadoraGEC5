@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -7,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="407.0" prefWidth="920.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.CalculadoraController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="407.0" prefWidth="920.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.CalculadoraController">
    <children>
       <Label fx:id="displayField" alignment="BOTTOM_RIGHT" layoutX="-2.0" prefHeight="56.0" prefWidth="920.0" styleClass="outputPrincipal" textAlignment="RIGHT">
          <font>
@@ -26,7 +30,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#apagarUltimaLetra" prefHeight="20.0" prefWidth="162.0" styleClass="numpadApagar" text="DEL">
+            <Button mnemonicParsing="false" onAction="#handleOperador" prefHeight="20.0" prefWidth="162.0" styleClass="operadores" text="x^y">
                <font>
                   <Font size="20.0" />
                </font>
@@ -155,55 +159,7 @@
       </HBox>
       <HBox layoutX="487.0" layoutY="336.0" prefHeight="70.0" prefWidth="433.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="x²">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="x³">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="y √x^3">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="ln">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-         </children>
-      </HBox>
-      <HBox layoutX="487.0" layoutY="266.0" prefHeight="89.0" prefWidth="433.0">
-         <children>
             <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Deg">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="n!">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Int">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Log">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-         </children>
-      </HBox>
-      <HBox layoutX="487.0" layoutY="196.0" prefHeight="70.0" prefWidth="433.0">
-         <children>
-            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Mod">
                <font>
                   <Font size="20.0" />
                </font>
@@ -213,12 +169,60 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="dms">
+            <Button mnemonicParsing="false" onAction="#handleOperador" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="y √x">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="1/x">
+            <Button mnemonicParsing="false" onAction="#handleLn" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="ln">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutX="487.0" layoutY="266.0" prefHeight="70.0" prefWidth="433.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Mod">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleDms" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="dms">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleInv" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Int">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleLog" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Log">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutX="487.0" layoutY="196.0" prefHeight="70.0" prefWidth="433.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Cot^-1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Sec^-1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Coss^-1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleUnder" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="1/x">
                <font>
                   <Font size="20.0" />
                </font>
@@ -227,22 +231,22 @@
       </HBox>
       <HBox layoutX="487.0" layoutY="126.0" prefHeight="70.0" prefWidth="433.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Tan^-1">
+            <Button mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Tan^-1">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Cos^-1">
+            <Button mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Cos^-1">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Sin^-1">
+            <Button mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Sin^-1">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="10^x">
+            <Button mnemonicParsing="false" onAction="#handleDezElevadoX" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="10^x">
                <font>
                   <Font size="20.0" />
                </font>
@@ -251,22 +255,22 @@
       </HBox>
       <HBox layoutX="487.0" layoutY="56.0" prefHeight="70.0" prefWidth="433.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Tan">
+            <Button mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Tan">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Cos">
+            <Button mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Cos">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Sin">
+            <Button mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Sin">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="x^y">
+            <Button mnemonicParsing="false" onAction="#handleFatorial" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="n!">
                <font>
                   <Font size="20.0" />
                </font>
@@ -276,12 +280,12 @@
       <Label fx:id="displayAnteriorField" alignment="CENTER_RIGHT" layoutX="16.0" layoutY="4.0" prefHeight="22.0" prefWidth="899.0" styleClass="outputSecundario" textAlignment="RIGHT" />
       <HBox layoutX="291.0" layoutY="56.0" prefHeight="70.0" prefWidth="195.0">
          <children>
-            <Button fx:id="firstParenteses" mnemonicParsing="false" onAction="#handleFirstParenteses" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="(">
+            <Button mnemonicParsing="false" onAction="#handleRaizQuadrada" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="x²">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="lastParenteses" mnemonicParsing="false" onAction="#handleLastParenteses" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text=")">
+            <Button mnemonicParsing="false" onAction="#handleRaizCubica" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="x³">
                <font>
                   <Font size="20.0" />
                </font>

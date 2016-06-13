@@ -5,7 +5,9 @@ public enum TipoOperacao {
 	SUBTRACAO("-", "Subtração"),
 	MULTIPLICACAO("*", "Multiplicação"),
 	DIVISAO("/", "Divisão"),
-	RESTO("%", "Resto");
+	RESTO("%", "Resto"),
+	ELEVADO_Y("^", "X Elevado a Y"),
+	RAIZ_QUADRADA_Y("yroot", "Raiz de Y");
 	
 	private String sinalOperacao;
 	private String nomeOperacao;

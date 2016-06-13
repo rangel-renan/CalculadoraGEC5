@@ -1,10 +1,13 @@
 package com.calculadora.controller;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.service.OperacoesBasicasService;
 import com.calculadora.service.OperacoesBasicasServiceImpl;
+import com.calculadora.service.RazaoTrigonometricaService;
+import com.calculadora.service.RazaoTrigonometricaServiceImpl;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,13 +19,15 @@ import javafx.scene.layout.AnchorPane;
 
 @SuppressWarnings("unused")
 public class CalculadoraController {
-	private String operador = "";
-	private OperacoesBasicasService operacoesBasicasService;
-	
 	private AnchorPane rootLayout;
 	private ConfigProperties label;
+	
+	private OperacoesBasicasService operacoesBasicasService;
+	private RazaoTrigonometricaService razaoTrigonometricaService;
+	
 	private BigDecimal currentNumber;
 	private BigDecimal isStartCurrentNumber;
+	private String operador = "";
 	private boolean isResultado;
 	
 	private String memory;
@@ -37,12 +42,6 @@ public class CalculadoraController {
 	private Label displayAnteriorField;
 
 	@FXML
-	private Button firstParenteses;
-
-	@FXML
-	private Button lastParenteses;
-
-	@FXML
 	private void initialize() {
 	}
 
@@ -52,10 +51,9 @@ public class CalculadoraController {
 		isResultado = false;
 		
 		operacoesBasicasService = new OperacoesBasicasServiceImpl();
-
-		firstParenteses.focusedProperty();
-		firstParenteses.setDisable(true);
-		lastParenteses.setDisable(true);
+		razaoTrigonometricaService = new RazaoTrigonometricaServiceImpl();
+		
+		displayField.requestFocus();
 		mLabel.setVisible(false);
 
 		rootLayout.getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -142,7 +140,7 @@ public class CalculadoraController {
 	public void apagarTudo() {
 
 		isStartCurrentNumber = null;
-		if (displayField.getText() != null || !displayField.getText().equals("")) {
+		if (displayField.getText() != null || !displayField.getText().isEmpty()) {
 			displayField.setText("");
 			displayAnteriorField.setText("");
 		}
@@ -163,6 +161,7 @@ public class CalculadoraController {
 	private void handleIgual() {
 
 		if (displayField.getText() != null) {
+			System.out.println(operador);
 			isStartCurrentNumber = calcular(isStartCurrentNumber, new BigDecimal(displayField.getText()), operador);
 			displayField.setText(isStartCurrentNumber.toString());
 			displayAnteriorField.setText("");
@@ -213,7 +212,7 @@ public class CalculadoraController {
 	@FXML
 	private void handleFirstParenteses() {
 
-		if (displayField.getText() != null && !displayField.getText().equals("")) {
+		if (displayField.getText() != null && !displayField.getText().isEmpty()) {
 			if (displayField.getText().charAt(displayField.getText().length() - 1) != ')')
 				displayField.setText(displayField.getText() + "(");
 		} else {
@@ -225,7 +224,7 @@ public class CalculadoraController {
 	@FXML
 	private void handleLastParenteses() {
 
-		if (displayField.getText() != null && !displayField.getText().equals("")) {
+		if (displayField.getText() != null && !displayField.getText().isEmpty()) {
 			if (displayField.getText().charAt(displayField.getText().length() - 1) == '(')
 				displayField.setText(displayField.getText() + "0)");
 			else
@@ -252,7 +251,7 @@ public class CalculadoraController {
 	@FXML
 	private void handleMudarSinal() {
 
-		if (displayField.getText() != "") {
+		if (!displayField.getText().isEmpty()) {
 			BigDecimal novoValor = operacoesBasicasService.changeSinal(new BigDecimal(displayField.getText()));
 			displayField.setText(novoValor.toString());
 		}
@@ -263,7 +262,86 @@ public class CalculadoraController {
 	private void handleEuler() {
 		displayField.setText(operacoesBasicasService.valorEuler().toString());
 	}
-
+	
+	@FXML
+	private void handleRaizQuadrada() {
+		if (!displayField.getText().isEmpty())
+			displayField.setText(operacoesBasicasService.calcularElevadoAoQuadrado(
+										new BigDecimal(displayField.getText())).toString());
+	}
+	
+	@FXML
+	private void handleRaizCubica() {
+		if (!displayField.getText().isEmpty())
+			displayField.setText(operacoesBasicasService.calcularElevadoAoCubo(
+										new BigDecimal(displayField.getText())).toString());
+	}
+	
+	@FXML
+	private void handleDms() {
+		if (!displayField.getText().isEmpty()) {
+            displayField.setText(operacoesBasicasService.calcularDms(new BigDecimal(displayField.getText())).toString());
+        }
+	}
+	
+	@FXML
+	private void handleInv() {
+		if (!displayField.getText().isEmpty()) {
+			displayField.setText(new BigDecimal(displayField.getText()).setScale(0, RoundingMode.FLOOR).toString());
+		}
+	}
+	
+	@FXML
+	private void handleFatorial() {
+		if (!displayField.getText().isEmpty()) {
+			BigDecimal valor = new BigDecimal(displayField.getText());
+			displayField.setText((operacoesBasicasService.calcularFatorial(valor, valor)).toString());
+		}
+	}
+	
+	@FXML
+	private void handleLog() {
+		if (!displayField.getText().isEmpty()) {
+            displayField.setText(operacoesBasicasService.calcularLog(new BigDecimal(displayField.getText())).toString());
+        }
+	}
+	
+	@FXML
+	private void handleLn() {
+		if (!displayField.getText().isEmpty()) {
+            displayField.setText(operacoesBasicasService.calcularLn(new BigDecimal(displayField.getText())).toString());
+        }
+	}
+	
+	@FXML
+	private void handleDezElevadoX() {
+		if (!displayField.getText().isEmpty()) {
+            displayField.setText(operacoesBasicasService.calcularDezElevadoX(new BigDecimal(displayField.getText())).toString());
+        }
+	}
+	
+	@FXML
+	private void handleUnder() {
+		if (!displayField.getText().isEmpty()) {
+            displayField.setText(operacoesBasicasService.calcularUnder(new BigDecimal(displayField.getText())).toString());
+        }
+	}
+	
+	@FXML
+	private void handleOperadorTrigonometrico(ActionEvent actionEvent) {
+		BigDecimal result = null;
+		
+		try {
+			result = razaoTrigonometricaService.calcular(new BigDecimal(displayField.getText()), 
+					((Button) actionEvent.getSource()).getText());
+		} catch (NumberFormatException e) {
+			displayField.setText("NaN");
+			return;
+		}
+		
+		displayField.setText(result.toString());
+	}
+	
 	@FXML
 	private void handleOperador(ActionEvent actionEvent) {
 		handleOperador(((Button) actionEvent.getSource()).getText());
@@ -272,6 +350,11 @@ public class CalculadoraController {
 	private void handleOperador(String operacaoAtual) {
 		String currentText = displayField.getText();
 		String currentAnteriorText = displayAnteriorField.getText();
+		
+		if (operacaoAtual.equals("x^y")) operacaoAtual = "^";
+		if (operacaoAtual.equals("y √x")) operacaoAtual = "yroot";
+		
+		
 		
 		if (!currentText.isEmpty()) {
 			if (isStartCurrentNumber == null) {
