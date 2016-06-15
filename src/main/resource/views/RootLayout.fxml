@@ -140,13 +140,13 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab text="%root.tab.matriz.titulo">
+            <Tab text="%root.tab.matrizEquacao.titulo">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="128.0" layoutY="118.0" text="%root.tab.arquivo.ferramentasAjuda" />
-                        <Separator layoutX="370.0" layoutY="14.0" orientation="VERTICAL" prefHeight="115.0" prefWidth="6.0" />
-                        <Button alignment="TOP_CENTER" contentDisplay="TOP" layoutX="27.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleMatriz" prefHeight="100.0" prefWidth="70.0" styleClass="tabButtons" text="Matriz 1x1" textAlignment="CENTER">
+                        <Label layoutX="183.0" layoutY="121.0" text="Matrizes" />
+                        <Separator layoutX="282.0" layoutY="14.0" orientation="VERTICAL" prefHeight="115.0" prefWidth="6.0" />
+                        <Button alignment="TOP_CENTER" contentDisplay="TOP" layoutX="163.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleMatriz" prefHeight="100.0" prefWidth="70.0" styleClass="tabButtons" text="Matriz NxN" textAlignment="CENTER">
                            <graphic>
                               <ImageView fitHeight="79.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" smooth="false" styleClass="btnImagens">
                                  <image>
@@ -158,55 +158,15 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button alignment="TOP_CENTER" contentDisplay="TOP" layoutX="111.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleMatriz" prefHeight="100.0" prefWidth="70.0" styleClass="tabButtons" text="Matriz 2x2" textAlignment="CENTER">
-                           <graphic>
-                              <ImageView fitHeight="79.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" smooth="false" styleClass="btnImagens">
-                                 <image>
-                                    <Image url="@../images/sobre.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Button alignment="TOP_CENTER" contentDisplay="TOP" layoutX="195.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleMatriz" prefHeight="100.0" prefWidth="70.0" styleClass="tabButtons" text="Matriz 3x3" textAlignment="CENTER">
-                           <graphic>
-                              <ImageView fitHeight="79.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" smooth="false" styleClass="btnImagens">
-                                 <image>
-                                    <Image url="@../images/sobre.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Button alignment="TOP_CENTER" contentDisplay="TOP" layoutX="279.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleMatriz" prefHeight="100.0" prefWidth="70.0" styleClass="tabButtons" text="Matriz 4x4" textAlignment="CENTER">
-                           <graphic>
-                              <ImageView fitHeight="79.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" smooth="false" styleClass="btnImagens">
-                                 <image>
-                                    <Image url="@../images/sobre.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
+                        <Separator layoutX="126.0" layoutY="14.0" orientation="VERTICAL" prefHeight="115.0" prefWidth="6.0" />
                      </children></AnchorPane>
               </content>
             </Tab>
-            <Tab text="%root.tab.equacao.titulo">
+            <Tab text="%root.tab.vetor.titulo">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
             </Tab>
-          <Tab text="%root.tab.vetor.titulo">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </Tab>
         </tabs>
       </TabPane>
    </top>

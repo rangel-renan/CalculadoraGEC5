@@ -9,14 +9,13 @@ import com.calculadora.config.ConfigProperties;
 import com.calculadora.controller.CalculadoraController;
 import com.calculadora.controller.ConversoesController;
 import com.calculadora.controller.FracoesController;
-import com.calculadora.controller.MatrizOperacoesController;
+import com.calculadora.controller.MatrizController;
 import com.calculadora.controller.OpcoesController;
 import com.calculadora.controller.PorcentagensController;
 import com.calculadora.controller.PrimosController;
 import com.calculadora.controller.RegraTresController;
 import com.calculadora.controller.RootLayoutController;
 import com.calculadora.controller.SobreController;
-import com.calculadora.util.GeradorDeJanelaMatriz;
 import com.calculadora.util.Idioma;
 
 import javafx.application.Application;
@@ -48,22 +47,20 @@ public class MainApp extends Application {
 	private Stage porcentagensStage;
 	private Stage primosStage;
 	private Stage regraTresStage;
-	private Stage matrizOperacoesStage;
-	private Stage matriz;
+	private Stage matrizStage;
 
 	private BorderPane rootLayout;
-	private BorderPane matrizLayout;
 	
 	private RootLayoutController rootLayoutController;
 	private CalculadoraController calculadoraController;
-	private OpcoesController opcoesController;
 	private SobreController sobreController;
 	private ConversoesController conversoesController;
+	private OpcoesController opcoesController;
 	private FracoesController fracoesController;
 	private PorcentagensController porcentagensController;
 	private PrimosController primosController;
 	private RegraTresController regraTresController;
-	private MatrizOperacoesController matrizOperacoesController;
+	private MatrizController matrizController;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -200,24 +197,11 @@ public class MainApp extends Application {
 		regraTresController.show(this, regraTresStage);
 	}
 	
-	public void initMatriz(int altura, int largura) {
-		
-		matrizLayout = new BorderPane();
-		matrizLayout.setPrefHeight((altura * 50) + 113);
-		matrizLayout.setPrefWidth(600);
-		
-		matriz = getStage(matrizLayout, "Matriz", CAMINHO_ICONE_APLICACAO);
-
-		FXMLLoader loaderMatriz = getLoader();
-		AnchorPane operacoesLayout = (AnchorPane) getLayout(loaderMatriz, "/views/matriz/Operacoes.fxml");
-		GridPane matrizGerada = (GridPane) GeradorDeJanelaMatriz.gerar(altura, largura);
-		
-		matrizLayout.setTop(matrizGerada);
-		matrizLayout.setAlignment(matrizGerada, Pos.CENTER);
-		matrizLayout.setBottom(operacoesLayout);
-		matrizLayout.setAlignment(operacoesLayout, Pos.CENTER);
-		
-		opcoesController = loaderMatriz.getController();
+	public void initMatriz() {
+		FXMLLoader loader = getLoader();
+		matrizStage = getStage((AnchorPane) getLayout(loader, "/views/matriz/MatrizNxN.fxml"), label.getString("root.tab.matrizEquacao.matrizTitulo"), CAMINHO_ICONE_APLICACAO);
+		matrizController = loader.getController();
+		matrizController.show(this, matrizStage, label);
 	}
 	
 	public void setIdioma(Idioma idioma) {
