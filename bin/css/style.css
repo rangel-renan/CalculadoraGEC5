@@ -115,8 +115,8 @@
 
 .tabButtons:hover {
 	-fx-background-radius: 4.0;
-	-fx-background-color: #C3C4C4;
-	-fx-border-color: #9FA0A1;
+	-fx-background-color: #DDDDDD;
+	-fx-border-color: #C5C5C5;
 }
 
 

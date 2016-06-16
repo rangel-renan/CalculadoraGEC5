@@ -6,6 +6,7 @@ import com.calculadora.config.ConfigProperties;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
+@SuppressWarnings("unused")
 public class MatrizController {
 	private MainApp mainApp;
 	private Stage matrizStage;
