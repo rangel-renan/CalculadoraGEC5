@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -30,7 +31,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#apagarUltimaLetra" prefHeight="20.0" prefWidth="162.0" styleClass="numpadApagar" text="DEL">
+            <Button mnemonicParsing="false" onAction="#handeRaizQuadrada" prefHeight="20.0" prefWidth="162.0" styleClass="operadores" text="√">
                <font>
                   <Font size="20.0" />
                </font>
@@ -236,10 +237,17 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Cos^-1">
+            <Button mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
                <font>
                   <Font size="20.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/arcocos.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
             <Button mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Sin^-1">
                <font>
@@ -280,12 +288,12 @@
       <Label fx:id="displaySubField" alignment="CENTER_RIGHT" layoutX="16.0" layoutY="4.0" prefHeight="22.0" prefWidth="899.0" styleClass="outputSecundario" textAlignment="RIGHT" />
       <HBox layoutX="291.0" layoutY="56.0" prefHeight="70.0" prefWidth="195.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#handleRaizQuadrada" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="x²">
+            <Button mnemonicParsing="false" onAction="#handleElevadoAoQuadrado" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="x²">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#handleRaizCubica" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="x³">
+            <Button mnemonicParsing="false" onAction="#handleElevadoAoCubo" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="x³">
                <font>
                   <Font size="20.0" />
                </font>

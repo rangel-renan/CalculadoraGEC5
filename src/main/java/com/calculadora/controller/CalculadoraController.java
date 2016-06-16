@@ -40,7 +40,7 @@ public class CalculadoraController {
 
 	@FXML
 	private Label displaySubField;
-
+	
 	@FXML
 	private void initialize() {
 	}
@@ -258,16 +258,23 @@ public class CalculadoraController {
 	}
 	
 	@FXML
-	private void handleRaizQuadrada() {
+	private void handleElevadoAoQuadrado() {
 		if (!displayField.getText().isEmpty())
 			displayField.setText(operacoesBasicasService.calcularElevadoAoQuadrado(
 										new BigDecimal(displayField.getText())).toString());
 	}
 	
 	@FXML
-	private void handleRaizCubica() {
+	private void handleElevadoAoCubo() {
 		if (!displayField.getText().isEmpty())
 			displayField.setText(operacoesBasicasService.calcularElevadoAoCubo(
+										new BigDecimal(displayField.getText())).toString());
+	}
+	
+	@FXML
+	private void handeRaizQuadrada() {
+		if (!displayField.getText().isEmpty())
+			displayField.setText(operacoesBasicasService.calcularRaizQuadrada(
 										new BigDecimal(displayField.getText())).toString());
 	}
 	
