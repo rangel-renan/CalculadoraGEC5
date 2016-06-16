@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="701.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.VetoresController">
+   <children>
+      <TextField layoutX="39.0" layoutY="55.0" prefHeight="40.0" prefWidth="212.0" />
+      <Label layoutX="17.0" layoutY="32.0" text="{">
+         <font>
+            <Font size="53.0" />
+         </font>
+      </Label>
+      <Label layoutX="256.0" layoutY="32.0" text="}">
+         <font>
+            <Font size="53.0" />
+         </font>
+      </Label>
+      <Label layoutX="103.0" layoutY="32.0" text="%root.tab.vetor.primVetor" />
+      <TextField layoutX="435.0" layoutY="55.0" prefHeight="40.0" prefWidth="212.0" />
+      <Label layoutX="413.0" layoutY="32.0" text="{">
+         <font>
+            <Font size="53.0" />
+         </font>
+      </Label>
+      <Label layoutX="652.0" layoutY="32.0" text="}">
+         <font>
+            <Font size="53.0" />
+         </font>
+      </Label>
+      <Label layoutX="499.0" layoutY="32.0" text="%root.tab.vetor.segVetor" />
+      <Button layoutX="314.0" layoutY="34.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="62.0" styleClass="operadores" text="A + B" />
+      <Button layoutX="314.0" layoutY="73.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="62.0" styleClass="operadores" text="A - B" />
+      <TextField editable="false" layoutX="237.0" layoutY="344.0" prefHeight="40.0" prefWidth="212.0" />
+      <Label layoutX="215.0" layoutY="321.0" text="{">
+         <font>
+            <Font size="53.0" />
+         </font>
+      </Label>
+      <Label layoutX="454.0" layoutY="321.0" text="}">
+         <font>
+            <Font size="53.0" />
+         </font>
+      </Label>
+      <Label layoutX="315.0" layoutY="321.0" text="%root.tab.vetor.Resultado" />
+      <Button layoutX="82.0" layoutY="108.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="121.0" styleClass="operadores" text="%root.tab.vetor.modulo" />
+      <Button layoutX="71.0" layoutY="145.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="operadores" text="%root.tab.vetor.mulPor" />
+      <TextField layoutX="175.0" layoutY="146.0" prefHeight="34.0" prefWidth="44.0" />
+      <Button layoutX="71.0" layoutY="183.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="operadores" text="%root.tab.vetor.elevPor" />
+      <TextField layoutX="175.0" layoutY="183.0" prefHeight="34.0" prefWidth="44.0" />
+      <Button layoutX="479.0" layoutY="108.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="121.0" styleClass="operadores" text="%root.tab.vetor.modulo" />
+      <Button layoutX="468.0" layoutY="145.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="operadores" text="%root.tab.vetor.mulPor" />
+      <TextField layoutX="572.0" layoutY="146.0" prefHeight="34.0" prefWidth="44.0" />
+      <Button layoutX="468.0" layoutY="183.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="operadores" text="%root.tab.vetor.elevPor" />
+      <TextField layoutX="572.0" layoutY="183.0" prefHeight="34.0" prefWidth="44.0" />
+      <Button layoutX="282.0" layoutY="145.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="121.0" styleClass="operadoresAdicionais" text="%root.tab.vetor.escalar" />
+      <Button layoutX="282.0" layoutY="183.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="121.0" styleClass="operadoresAdicionais" text="%root.tab.vetor.vetorial" />
+      <Button layoutX="282.0" layoutY="221.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="121.0" styleClass="operadoresAdicionais" text="%root.tab.vetor.projecao" />
+      <Button layoutX="282.0" layoutY="259.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="121.0" styleClass="operadoresAdicionais" text="%root.tab.vetor.coss" />
+      <Button ellipsisString="" layoutX="173.0" layoutY="402.0" mnemonicParsing="false" onAction="#handleVoltar" prefHeight="33.0" prefWidth="162.0" text="%botoes.voltar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="350.0" layoutY="402.0" mnemonicParsing="false" onAction="#handleAjuda" prefHeight="33.0" prefWidth="162.0" text="%botoes.ajuda">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>

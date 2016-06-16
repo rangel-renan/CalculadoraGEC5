@@ -80,9 +80,15 @@ public class RootLayoutController {
 	}
 	
 	@FXML
-	private void handleMatriz(ActionEvent actionEvent) {
+	private void handleMatriz() {
 		rootStage.close();
 		mainApp.initMatriz();
+	}
+	
+	@FXML
+	private void handleVetores() {
+		rootStage.close();
+		mainApp.initVetores();;
 	}
 	
 	public void setRootStage(Stage rootStage) {

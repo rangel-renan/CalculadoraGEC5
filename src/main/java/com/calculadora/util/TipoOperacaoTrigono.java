@@ -3,7 +3,7 @@ package com.calculadora.util;
 public enum TipoOperacaoTrigono {
 	SENO("Sin"), COSSENO("Cos"), TANGENTE("Tan"), 
 	ARCO_COSSENO("Cos^-1"), ARCO_SENO("Sin^-1"), ARCO_TANGENTE("Tan^-1"),
-	SECANTE("Cot^-1"), COSSECANTE("Sec^-1"), COTANGENTE("Cot^-1");
+	SECANTE("Sec^-1"), COSSECANTE("Coss^-1"), COTANGENTE("Cot^-1");
 	
 	private String nome;
 

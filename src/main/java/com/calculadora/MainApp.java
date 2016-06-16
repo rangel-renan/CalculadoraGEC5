@@ -16,6 +16,7 @@ import com.calculadora.controller.PrimosController;
 import com.calculadora.controller.RegraTresController;
 import com.calculadora.controller.RootLayoutController;
 import com.calculadora.controller.SobreController;
+import com.calculadora.controller.VetoresController;
 import com.calculadora.util.Idioma;
 
 import javafx.application.Application;
@@ -45,7 +46,7 @@ public class MainApp extends Application {
 	private Stage primosStage;
 	private Stage regraTresStage;
 	private Stage matrizStage;
-
+	private Stage vetoresStage;
 	private BorderPane rootLayout;
 	
 	private RootLayoutController rootLayoutController;
@@ -58,6 +59,7 @@ public class MainApp extends Application {
 	private PrimosController primosController;
 	private RegraTresController regraTresController;
 	private MatrizController matrizController;
+	private VetoresController vetoresController;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -199,6 +201,13 @@ public class MainApp extends Application {
 		matrizStage = getStage((AnchorPane) getLayout(loader, "/views/matriz/MatrizNxN.fxml"), label.getString("root.tab.matrizEquacao.matrizTitulo"), CAMINHO_ICONE_APLICACAO);
 		matrizController = loader.getController();
 		matrizController.show(this, matrizStage, label);
+	}
+	
+	public void initVetores() {
+		FXMLLoader loader = getLoader();
+		vetoresStage = getStage((AnchorPane) getLayout(loader, "/views/vetores/Vetores.fxml"), label.getString("root.tab.vetor.tituloJanela"), CAMINHO_ICONE_APLICACAO);
+		vetoresController = loader.getController();
+		vetoresController.show(this, vetoresStage, label);
 	}
 	
 	public void setIdioma(Idioma idioma) {

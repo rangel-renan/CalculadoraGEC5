@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="908.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.MatrizController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="908.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.MatrizController">
    <children>
       <Label layoutX="-10.0" layoutY="-59.0" prefHeight="331.0" prefWidth="76.0" text="(">
          <font>
@@ -25,18 +18,18 @@
       </Label>
       <TextArea layoutX="65.0" layoutY="42.0" prefHeight="205.0" prefWidth="291.0" />
       <TextArea layoutX="541.0" layoutY="42.0" prefHeight="205.0" prefWidth="291.0" />
-      <Button layoutX="62.0" layoutY="262.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" text="%root.tab.matrizEquacao.determinante" />
-      <Button layoutX="212.0" layoutY="262.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" text="%root.tab.matrizEquacao.transposta" />
-      <Button layoutX="62.0" layoutY="372.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" text="%root.tab.matrizEquacao.diagonal" />
-      <Button layoutX="62.0" layoutY="299.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" text="%root.tab.matrizEquacao.multPor" />
-      <Button layoutX="62.0" layoutY="336.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" text="%root.tab.matrizEquacao.inversa" />
-      <Button layoutX="212.0" layoutY="336.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" text="%root.tab.matrizEquacao.triangular" />
+      <Button layoutX="62.0" layoutY="262.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.determinante" />
+      <Button layoutX="212.0" layoutY="262.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.transposta" />
+      <Button layoutX="62.0" layoutY="372.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.diagonal" />
+      <Button layoutX="62.0" layoutY="299.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="operadores" text="%root.tab.matrizEquacao.multPor" />
+      <Button layoutX="62.0" layoutY="336.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.inversa" />
+      <Button layoutX="212.0" layoutY="336.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.triangular" />
       <TextField layoutX="166.0" layoutY="299.0" prefHeight="34.0" prefWidth="44.0" />
-      <Button layoutX="212.0" layoutY="299.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" text="%root.tab.matrizEquacao.elevPor" />
+      <Button layoutX="212.0" layoutY="299.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="operadores" text="%root.tab.matrizEquacao.elevPor" />
       <TextField layoutX="316.0" layoutY="299.0" prefHeight="34.0" prefWidth="44.0" />
-      <Button layoutX="418.0" layoutY="84.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="62.0" text="A + B" />
-      <Button layoutX="418.0" layoutY="174.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="62.0" text="A x B" />
-      <Button layoutX="418.0" layoutY="129.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="62.0" text="A - B" />
+      <Button layoutX="418.0" layoutY="84.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="62.0" styleClass="operadores" text="A + B" />
+      <Button layoutX="418.0" layoutY="174.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="62.0" styleClass="operadores" text="A x B" />
+      <Button layoutX="418.0" layoutY="129.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="62.0" styleClass="operadores" text="A - B" />
       <Label layoutX="465.0" layoutY="-59.0" prefHeight="331.0" prefWidth="76.0" text="(">
          <font>
             <Font size="250.0" />
@@ -77,16 +70,16 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="538.0" layoutY="261.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" text="%root.tab.matrizEquacao.determinante" />
-      <Button layoutX="688.0" layoutY="261.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" text="%root.tab.matrizEquacao.transposta" />
-      <Button layoutX="614.0" layoutY="372.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" text="%root.tab.matrizEquacao.diagonal" />
-      <Button layoutX="538.0" layoutY="298.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" text="%root.tab.matrizEquacao.multPor" />
-      <Button layoutX="538.0" layoutY="335.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" text="%root.tab.matrizEquacao.inversa" />
-      <Button layoutX="688.0" layoutY="335.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" text="%root.tab.matrizEquacao.triangular" />
+      <Button layoutX="538.0" layoutY="261.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.determinante" />
+      <Button layoutX="688.0" layoutY="261.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.transposta" />
+      <Button layoutX="614.0" layoutY="372.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.diagonal" />
+      <Button layoutX="538.0" layoutY="298.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="operadores" text="%root.tab.matrizEquacao.multPor" />
+      <Button layoutX="538.0" layoutY="335.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.inversa" />
+      <Button layoutX="688.0" layoutY="335.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.triangular" />
       <TextField layoutX="642.0" layoutY="298.0" prefHeight="34.0" prefWidth="44.0" />
-      <Button layoutX="688.0" layoutY="298.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" text="%root.tab.matrizEquacao.elevPor" />
+      <Button layoutX="688.0" layoutY="298.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="operadores" text="%root.tab.matrizEquacao.elevPor" />
       <TextField layoutX="792.0" layoutY="298.0" prefHeight="34.0" prefWidth="44.0" />
-      <Button layoutX="212.0" layoutY="372.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" text="%root.tab.matrizEquacao.adjunta" />
+      <Button layoutX="212.0" layoutY="372.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.adjunta" />
       <TextArea editable="false" layoutX="22.0" layoutY="430.0" prefHeight="156.0" prefWidth="259.0" />
       <TextArea editable="false" layoutX="336.0" layoutY="423.0" prefHeight="156.0" prefWidth="259.0" />
       <TextArea editable="false" layoutX="633.0" layoutY="423.0" prefHeight="156.0" prefWidth="259.0" />

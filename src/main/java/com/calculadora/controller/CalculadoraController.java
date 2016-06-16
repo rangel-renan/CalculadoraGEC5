@@ -181,7 +181,7 @@ public class CalculadoraController {
 
 	@FXML
 	private void handleMs() {
-		if (!displayField.getText().isEmpty()) {
+		if (displayField.getText() != null && !displayField.getText().isEmpty()) {
 			memory = displayField.getText();
 			mLabel.setVisible(true);
 		}
@@ -189,7 +189,7 @@ public class CalculadoraController {
 
 	@FXML
 	private void handleMplus() {
-		if (!displayField.getText().isEmpty()) {
+		if (displayField.getText() != null && !displayField.getText().isEmpty()) {
 			memory = displayField.getText();
 			mLabel.setVisible(true);
 		}
@@ -197,7 +197,7 @@ public class CalculadoraController {
 
 	@FXML
 	private void handleMmin() {
-		if (!displayField.getText().isEmpty()) {
+		if (displayField.getText() != null && !displayField.getText().isEmpty()) {
 			memory = "-" + displayField.getText();
 			mLabel.setVisible(true);
 		}
@@ -245,7 +245,7 @@ public class CalculadoraController {
 	@FXML
 	private void handleMudarSinal() {
 
-		if (!displayField.getText().isEmpty()) {
+		if (displayField.getText() != null && !displayField.getText().isEmpty()) {
 			BigDecimal novoValor = operacoesBasicasService.changeSinal(new BigDecimal(displayField.getText()));
 			displayField.setText(novoValor.toString());
 		}
@@ -259,42 +259,42 @@ public class CalculadoraController {
 	
 	@FXML
 	private void handleElevadoAoQuadrado() {
-		if (!displayField.getText().isEmpty())
+		if (displayField.getText() != null && !displayField.getText().isEmpty())
 			displayField.setText(operacoesBasicasService.calcularElevadoAoQuadrado(
 										new BigDecimal(displayField.getText())).toString());
 	}
 	
 	@FXML
 	private void handleElevadoAoCubo() {
-		if (!displayField.getText().isEmpty())
+		if (displayField.getText() != null && !displayField.getText().isEmpty())
 			displayField.setText(operacoesBasicasService.calcularElevadoAoCubo(
 										new BigDecimal(displayField.getText())).toString());
 	}
 	
 	@FXML
 	private void handeRaizQuadrada() {
-		if (!displayField.getText().isEmpty())
+		if (displayField.getText() != null && !displayField.getText().isEmpty())
 			displayField.setText(operacoesBasicasService.calcularRaizQuadrada(
 										new BigDecimal(displayField.getText())).toString());
 	}
 	
 	@FXML
 	private void handleDms() {
-		if (!displayField.getText().isEmpty()) {
+		if (displayField.getText() != null && !displayField.getText().isEmpty()) {
             displayField.setText(operacoesBasicasService.calcularDms(new BigDecimal(displayField.getText())).toString());
         }
 	}
 	
 	@FXML
 	private void handleInv() {
-		if (!displayField.getText().isEmpty()) {
+		if (displayField.getText() != null && !displayField.getText().isEmpty()) {
 			displayField.setText(new BigDecimal(displayField.getText()).setScale(0, RoundingMode.FLOOR).toString());
 		}
 	}
 	
 	@FXML
 	private void handleFatorial() {
-		if (!displayField.getText().isEmpty()) {
+		if (displayField.getText() != null && !displayField.getText().isEmpty()) {
 			BigDecimal valor = new BigDecimal(displayField.getText());
 			displayField.setText((operacoesBasicasService.calcularFatorial(valor, valor)).toString());
 		}
@@ -302,22 +302,23 @@ public class CalculadoraController {
 	
 	@FXML
 	private void handleLog() {
-		if (!displayField.getText().isEmpty()) {
+		if (displayField.getText() != null && !displayField.getText().isEmpty()) {
             displayField.setText(operacoesBasicasService.calcularLog(new BigDecimal(displayField.getText())).toString());
         }
 	}
 	
 	@FXML
 	private void handleLn() {
-		if (!displayField.getText().isEmpty()) {
+		if (displayField.getText() != null && !displayField.getText().isEmpty()) {
             displayField.setText(operacoesBasicasService.calcularLn(new BigDecimal(displayField.getText())).toString());
         }
 	}
 	
 	@FXML
 	private void handleDezElevadoX() {
-		if (!displayField.getText().isEmpty()) {
-            displayField.setText(operacoesBasicasService.calcularDezElevadoX(new BigDecimal(displayField.getText())).toString());
+		if (displayField.getText() != null && !displayField.getText().isEmpty()) {
+			displayField.setText(operacoesBasicasService.calcularDezElevadoX(new BigDecimal(displayField.getText())).toString());
+            displaySubField.setText("10 ^ " + displayField.getText());
         }
 	}
 	
@@ -352,29 +353,35 @@ public class CalculadoraController {
 	private void handleOperadorTrigonometrico(ActionEvent actionEvent) {
 		BigDecimal result = null;
 		
-		try {
-			result = razaoTrigonometricaService.calcular(new BigDecimal(displayField.getText()), 
-					((Button) actionEvent.getSource()).getText());
-		} catch (NumberFormatException e) {
-			displayField.setText("NaN");
-			return;
+		if (displayField.getText() != null && !displayField.getText().isEmpty()) {
+			try {
+				result = razaoTrigonometricaService.calcular(new BigDecimal(displayField.getText()), 
+						((Button) actionEvent.getSource()).getAccessibleText());
+			} catch (NumberFormatException e) {
+				displayField.setText("NaN");
+				return;
+			}
+			
+			displayField.setText(result.toString());
 		}
 		
-		displayField.setText(result.toString());
 	}
 	
 	@FXML
 	private void handleOperador(ActionEvent actionEvent) {
-		handleOperador(((Button) actionEvent.getSource()).getText());
+		String operador = ((Button) actionEvent.getSource()).getText();
+		String textAcessOperador = ((Button) actionEvent.getSource()).getAccessibleText();
+		
+		if (operador.equals("Mod")) operador = "%";
+		if (textAcessOperador != null && textAcessOperador.equals("x^y")) operador = "^";
+		if (textAcessOperador != null && textAcessOperador.equals("y √x")) operador = "yroot";
+		
+		handleOperador(operador);
 	}
 
 	private void handleOperador(String operacaoAtual) {
 		String displayAtual = displayField.getText();
 		String displaySub = displaySubField.getText();
-		
-		if (operacaoAtual.equals("Mod")) operacaoAtual = "%";
-		if (operacaoAtual.equals("x^y")) operacaoAtual = "^";
-		if (operacaoAtual.equals("y √x")) operacaoAtual = "yroot";
 		
 		if (!displayAtual.isEmpty()) {
 			if (isStartCurrentNumber == null) 
