@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -9,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="407.0" prefWidth="920.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.CalculadoraController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="407.0" prefWidth="920.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.CalculadoraController">
    <children>
       <Label fx:id="displayField" alignment="BOTTOM_RIGHT" layoutX="-2.0" prefHeight="56.0" prefWidth="920.0" styleClass="outputPrincipal" textAlignment="RIGHT">
          <font>
@@ -157,7 +162,7 @@
       </HBox>
       <HBox layoutX="487.0" layoutY="336.0" prefHeight="70.0" prefWidth="433.0">
          <children>
-            <Button accessibleText="x^y" mnemonicParsing="false" onAction="#handleOperador" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
+            <Button id="x^y" mnemonicParsing="false" onAction="#handleOperador" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
                <font>
                   <Font size="20.0" />
                </font>
@@ -174,10 +179,17 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button accessibleText="y √x" mnemonicParsing="false" onAction="#handleOperador" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="y √x">
+            <Button id="y √x" mnemonicParsing="false" onAction="#handleOperador" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
                <font>
                   <Font size="20.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/raizxsuby.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
             <Button mnemonicParsing="false" onAction="#handleLn" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="ln">
                <font>
@@ -212,7 +224,7 @@
       </HBox>
       <HBox layoutX="487.0" layoutY="196.0" prefHeight="70.0" prefWidth="433.0">
          <children>
-            <Button accessibleText="Sec^-1" mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
+            <Button id="Sec^-1" mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
                <font>
                   <Font size="20.0" />
                </font>
@@ -224,7 +236,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button accessibleText="Coss^-1" mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
+            <Button id="Coss^-1" mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
                <font>
                   <Font size="20.0" />
                </font>
@@ -236,7 +248,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button accessibleText="Cot^-1" mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
+            <Button id="Cot^-1" mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
                <font>
                   <Font size="20.0" />
                </font>
@@ -257,7 +269,7 @@
       </HBox>
       <HBox layoutX="487.0" layoutY="126.0" prefHeight="70.0" prefWidth="433.0">
          <children>
-            <Button accessibleText="Sin^-1" mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
+            <Button id="Sin^-1" ellipsisString="" mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
                <font>
                   <Font size="20.0" />
                </font>
@@ -269,7 +281,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button accessibleText="Cos^-1" mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
+            <Button id="Cos^-1" mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
                <font>
                   <Font size="20.0" />
                </font>
@@ -281,7 +293,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button accessibleText="Tan^-1" mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
+            <Button id="Tan^-1" mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
                <font>
                   <Font size="20.0" />
                </font>
@@ -293,7 +305,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button accessibleText="10 ^" mnemonicParsing="false" onAction="#handleDezElevadoX" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
+            <Button mnemonicParsing="false" onAction="#handleDezElevadoX" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
                <font>
                   <Font size="20.0" />
                </font>

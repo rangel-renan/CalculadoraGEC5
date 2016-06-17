@@ -317,8 +317,9 @@ public class CalculadoraController {
 	@FXML
 	private void handleDezElevadoX() {
 		if (displayField.getText() != null && !displayField.getText().isEmpty()) {
-			displayField.setText(operacoesBasicasService.calcularDezElevadoX(new BigDecimal(displayField.getText())).toString());
-            displaySubField.setText("10 ^ " + displayField.getText());
+			String valorElevado = displayField.getText();
+			displayField.setText(operacoesBasicasService.calcularDezElevadoX(new BigDecimal(valorElevado)).toString());
+            displaySubField.setText("10 ^ " + valorElevado);
         }
 	}
 	
@@ -356,7 +357,7 @@ public class CalculadoraController {
 		if (displayField.getText() != null && !displayField.getText().isEmpty()) {
 			try {
 				result = razaoTrigonometricaService.calcular(new BigDecimal(displayField.getText()), 
-						((Button) actionEvent.getSource()).getAccessibleText());
+						((Button) actionEvent.getSource()).getId());
 			} catch (NumberFormatException e) {
 				displayField.setText("NaN");
 				return;
@@ -370,11 +371,11 @@ public class CalculadoraController {
 	@FXML
 	private void handleOperador(ActionEvent actionEvent) {
 		String operador = ((Button) actionEvent.getSource()).getText();
-		String textAcessOperador = ((Button) actionEvent.getSource()).getAccessibleText();
+		String textId = ((Button) actionEvent.getSource()).getId();
 		
 		if (operador.equals("Mod")) operador = "%";
-		if (textAcessOperador != null && textAcessOperador.equals("x^y")) operador = "^";
-		if (textAcessOperador != null && textAcessOperador.equals("y √x")) operador = "yroot";
+		if (textId != null && textId.equals("x^y")) operador = "^";
+		if (textId != null && textId.equals("y √x")) operador = "yroot";
 		
 		handleOperador(operador);
 	}
