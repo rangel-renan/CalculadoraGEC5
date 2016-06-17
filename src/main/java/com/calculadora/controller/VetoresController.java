@@ -3,8 +3,10 @@ package com.calculadora.controller;
 import com.calculadora.MainApp;
 import com.calculadora.config.ConfigProperties;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 @SuppressWarnings("unused")
 public class VetoresController {
@@ -17,6 +19,12 @@ public class VetoresController {
 		this.label = label;
 		this.mainApp = mainApp;
 		this.vetorStage = vetorStage;
+		
+		this.vetorStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			public void handle(WindowEvent we) {
+				handleVoltar();
+			}
+		});
 	}
 	@FXML
 	private void handleVoltar() {
