@@ -27,18 +27,7 @@ public class VetoresServiceImpl implements VetoresService {
 		Double modulo = calcularModulo(vetor2);
 		Double numeroProduto = produtoEscalar / (modulo * modulo);
 
-		return calcularProdutoPorX(numeroProduto, vetor2);
-	}
-
-	@Override
-	public Double[] calcularProdutoPorX(Double valor, Double[] vetor) {
-		Double[] vetorResultante = new Double[vetor.length];
-
-		for (int cont = 0; cont < vetor.length; cont++) {
-			vetorResultante[cont] += (vetor[cont] * valor);
-		}
-
-		return vetorResultante;
+		return multiplicarPor(numeroProduto, vetor2);
 	}
 
 	@Override
@@ -138,6 +127,28 @@ if (vetor1.length != vetor2.length) throw new VetoresTamanhosDiferentesException
 			vetorResultante[cont] = vetor1[cont] - vetor2[cont];
 		}
 
+		return vetorResultante;
+	}
+
+	@Override
+	public Double[] multiplicarPor(Double valor, Double[] vetor) {
+		Double[] vetorResultante = new Double[vetor.length];
+
+		for (int cont = 0; cont < vetor.length; cont++) {
+			vetorResultante[cont] = (vetor[cont] * valor);
+		}
+		
+		return vetorResultante;
+	}
+	
+	@Override
+	public Double[] elevarPor(Double valor, Double[] vetor) {
+		Double[] vetorResultante = new Double[vetor.length];
+
+		for (int cont = 0; cont < vetor.length; cont++) {
+			vetorResultante[cont] =  Math.pow(vetor[cont], valor);
+		}
+		
 		return vetorResultante;
 	}
 

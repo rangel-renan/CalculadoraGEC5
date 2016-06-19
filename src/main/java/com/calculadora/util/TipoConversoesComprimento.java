@@ -1,6 +1,5 @@
 package com.calculadora.util;
 
-import javax.measure.unit.NonSI;
 import javax.measure.unit.SI;
 import javax.measure.unit.Unit;
 
