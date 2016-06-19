@@ -1,12 +1,13 @@
 package com.calculadora.service;
 
+import com.calculadora.util.MatrizesTamanhosDiferentesException;
 import com.calculadora.util.TipoOperacao;
 
 public class MatrizServiceImpl implements MatrizService {
 	private int iDF = 1;
 	
 	@Override
-	public Double[][] operacaoMatrizes(Double[][] firstMatriz, Double[][] secondMatriz, TipoOperacao tipoOperacao) {
+	public Double[][] operacaoMatrizes(Double[][] firstMatriz, Double[][] secondMatriz, TipoOperacao tipoOperacao) throws MatrizesTamanhosDiferentesException {
 		
 		switch (tipoOperacao) {
 			case SOMA:
@@ -21,59 +22,67 @@ public class MatrizServiceImpl implements MatrizService {
 	}
 
 	
-	private Double[][] somarMatrizes(Double[][] firstMatriz, Double[][] secondMatriz) {
-		int tamanhoFirstMatriz = firstMatriz.length;
-		int tamanhoSecondMatriz = secondMatriz.length;
+	private Double[][] somarMatrizes(Double[][] firstMatriz, Double[][] secondMatriz) throws MatrizesTamanhosDiferentesException {
+		int tamanhoLinhaFirstMatriz = firstMatriz.length;
+		int tamanhoColunaFirstMatriz = firstMatriz[0].length;
+		int tamanhoLinhaSecondMatriz = secondMatriz.length;
+		int tamanhoColunaSecondMatriz = secondMatriz[0].length;
 		
-		if (tamanhoFirstMatriz != tamanhoSecondMatriz) {
-			System.out.println("Matrix Size Mismatch");
-		}
+		if (tamanhoLinhaFirstMatriz != tamanhoLinhaSecondMatriz
+			|| tamanhoColunaFirstMatriz != tamanhoColunaSecondMatriz) 
+			throw new MatrizesTamanhosDiferentesException("Matrizes de Tamanho Diferentes.");
 
-		Double matrizResultante[][] = new Double[tamanhoFirstMatriz][tamanhoFirstMatriz];
+		Double matrizResultante[][] = new Double[tamanhoLinhaFirstMatriz][tamanhoColunaFirstMatriz];
 
-		for (int coluna = 0; coluna < tamanhoFirstMatriz; coluna++)
-			for (int linha = 0; linha < tamanhoFirstMatriz; linha++) {
+		for (int coluna = 0; coluna < tamanhoLinhaFirstMatriz; coluna++)
+			for (int linha = 0; linha < tamanhoColunaFirstMatriz; linha++) {
 				matrizResultante[coluna][linha] = firstMatriz[coluna][linha] + secondMatriz[coluna][linha];
 			}
 
 		return matrizResultante;
 	}
 	
-	private Double[][] subtrairMatrizes(Double[][] firstMatriz, Double[][] secondMatriz) {
-		int tamanhoFirstMatriz = firstMatriz.length;
-		int tamanhoSecondMatriz = secondMatriz.length;
+	private Double[][] subtrairMatrizes(Double[][] firstMatriz, Double[][] secondMatriz) throws MatrizesTamanhosDiferentesException {
+		int tamanhoLinhaFirstMatriz = firstMatriz.length;
+		int tamanhoColunaFirstMatriz = firstMatriz[0].length;
+		int tamanhoLinhaSecondMatriz = secondMatriz.length;
+		int tamanhoColunaSecondMatriz = secondMatriz[0].length;
 		
-		if (tamanhoFirstMatriz != tamanhoSecondMatriz) {
-			System.out.println("Matrix Size Mismatch");
-		}
+		if (tamanhoLinhaFirstMatriz != tamanhoLinhaSecondMatriz
+			|| tamanhoColunaFirstMatriz != tamanhoColunaSecondMatriz) 
+			throw new MatrizesTamanhosDiferentesException("Matrizes de Tamanho Diferentes.");
+		
+		Double matrizResultante[][] = new Double[tamanhoLinhaFirstMatriz][tamanhoColunaFirstMatriz];
 
-		Double matrizResultante[][] = new Double[tamanhoFirstMatriz][tamanhoFirstMatriz];
-
-		for (int coluna = 0; coluna < tamanhoFirstMatriz; coluna++)
-			for (int linha = 0; linha < tamanhoFirstMatriz; linha++) {
+		for (int coluna = 0; coluna < tamanhoLinhaFirstMatriz; coluna++)
+			for (int linha = 0; linha < tamanhoColunaFirstMatriz; linha++) {
 				matrizResultante[coluna][linha] = firstMatriz[coluna][linha] - secondMatriz[coluna][linha];
+				System.out.print(matrizResultante[coluna][linha] + " ");
 			}
 
 		return matrizResultante;
 	}
 	
-	private Double[][] multiplicarMatrizes(Double[][] firstMatriz, Double[][] secondMatriz) {
-		int tamanhoFirstMatriz = firstMatriz.length;
-		int tamanhoSecondMatriz = secondMatriz.length;
+	private Double[][] multiplicarMatrizes(Double[][] firstMatriz, Double[][] secondMatriz) throws MatrizesTamanhosDiferentesException {
+		int tamanhoLinhaFirstMatriz = firstMatriz.length;
+		int tamanhoColunaFirstMatriz = firstMatriz[0].length;
+		int tamanhoLinhaSecondMatriz = secondMatriz.length;
+		int tamanhoColunaSecondMatriz = secondMatriz[0].length;
 		
-		if (tamanhoFirstMatriz != tamanhoSecondMatriz) {
-			System.out.println("Matrix Size Mismatch");
+		if (tamanhoLinhaFirstMatriz != tamanhoLinhaSecondMatriz
+			|| tamanhoColunaFirstMatriz != tamanhoColunaSecondMatriz) {
+			throw new MatrizesTamanhosDiferentesException("Matrizes de Tamanho Diferentes.");
 		}
 
-		Double matrizResultante[][] = new Double[tamanhoFirstMatriz][tamanhoFirstMatriz];
+		Double matrizResultante[][] = new Double[tamanhoLinhaFirstMatriz][tamanhoColunaFirstMatriz];
 
-		for (int coluna = 0; coluna < tamanhoFirstMatriz; coluna++)
-			for (int linha = 0; linha < tamanhoFirstMatriz; linha++)
+		for (int coluna = 0; coluna < tamanhoLinhaFirstMatriz; coluna++)
+			for (int linha = 0; linha < tamanhoColunaFirstMatriz; linha++)
 				matrizResultante[coluna][linha] = 0.0;
 
-		for (int coluna = 0; coluna < tamanhoFirstMatriz; coluna++)
-			for (int linha = 0; linha < tamanhoFirstMatriz; linha++) {
-				for (int p = 0; p < tamanhoFirstMatriz; p++)
+		for (int coluna = 0; coluna < tamanhoLinhaFirstMatriz; coluna++)
+			for (int linha = 0; linha < tamanhoColunaSecondMatriz; linha++) {
+				for (int p = 0; p < tamanhoLinhaFirstMatriz; p++)
 					matrizResultante[coluna][linha] += firstMatriz[coluna][p] * secondMatriz[p][linha];
 			}
 
@@ -192,19 +201,19 @@ public class MatrizServiceImpl implements MatrizService {
 	public Double[][] calcularMatrizAdjunta(Double[][] matriz) {
 		int tamanhoMatriz = matriz.length;
 
-		Double matrizAdjunta[][] = new Double[tamanhoMatriz][tamanhoMatriz];
+		Double matrizAdjunta[][] = new Double[tamanhoMatriz][matriz[0].length];
 
 		int ii, jj, ia, ja;
 		Double determinante;
 
 		for (int coluna = 0; coluna < tamanhoMatriz; coluna++)
-			for (int linha = 0; linha < tamanhoMatriz; linha++) {
+			for (int linha = 0; linha < matriz[0].length; linha++) {
 				ia = ja = 0;
 
 				Double ap[][] = new Double[tamanhoMatriz - 1][tamanhoMatriz - 1];
 
 				for (ii = 0; ii < tamanhoMatriz; ii++) {
-					for (jj = 0; jj < tamanhoMatriz; jj++) {
+					for (jj = 0; jj < matriz[0].length; jj++) {
 
 						if ((ii != coluna) && (jj != linha)) {
 							ap[ia][ja] = matriz[ii][jj];
@@ -232,10 +241,10 @@ public class MatrizServiceImpl implements MatrizService {
 	public Double[][] multiplicarPor(Double[][] matriz, Double valor) {
 		int tamanhoMatriz = matriz.length;
 		
-		Double matrizResultante[][] = new Double[tamanhoMatriz][tamanhoMatriz];
+		Double matrizResultante[][] = new Double[tamanhoMatriz][matriz[0].length];
 		
 		for (int coluna = 0; coluna < tamanhoMatriz; coluna++)
-			for (int linha = 0; linha < tamanhoMatriz; linha++) {
+			for (int linha = 0; linha < matriz[0].length; linha++) {
 				matrizResultante[coluna][linha] = matriz[coluna][linha] * valor;
 			}
 		
@@ -246,11 +255,10 @@ public class MatrizServiceImpl implements MatrizService {
 	@Override
 	public Double[][] elevarPor(Double[][] matriz, Double valor) {
 		int tamanhoMatriz = matriz.length;
-		
-		Double matrizResultante[][] = new Double[tamanhoMatriz][tamanhoMatriz];
+		Double matrizResultante[][] = new Double[matriz.length][matriz[0].length];
 		
 		for (int coluna = 0; coluna < tamanhoMatriz; coluna++)
-			for (int linha = 0; linha < tamanhoMatriz; linha++) {
+			for (int linha = 0; linha < matriz[0].length; linha++) {
 				matrizResultante[coluna][linha] = Math.pow(matriz[coluna][linha], valor);
 			}
 		

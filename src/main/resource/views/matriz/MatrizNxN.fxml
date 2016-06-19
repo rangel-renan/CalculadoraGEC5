@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -9,27 +15,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="908.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.MatrizController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="894.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.MatrizController">
    <children>
       <Label layoutX="-10.0" layoutY="-59.0" prefHeight="331.0" prefWidth="76.0" text="(">
          <font>
             <Font size="250.0" />
          </font>
       </Label>
-      <TextArea fx:id="matrizA" layoutX="65.0" layoutY="42.0" prefHeight="205.0" prefWidth="291.0" />
-      <TextArea layoutX="541.0" layoutY="42.0" prefHeight="205.0" prefWidth="291.0" />
-      <Button layoutX="62.0" layoutY="262.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.determinante" />
-      <Button layoutX="212.0" layoutY="262.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.transposta" />
-      <Button layoutX="62.0" layoutY="372.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.diagonal" />
-      <Button layoutX="62.0" layoutY="299.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="operadores" text="%root.tab.matrizEquacao.multPor" />
-      <Button layoutX="62.0" layoutY="336.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.inversa" />
-      <Button layoutX="212.0" layoutY="336.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.triangular" />
-      <TextField layoutX="166.0" layoutY="299.0" prefHeight="34.0" prefWidth="44.0" />
-      <Button layoutX="212.0" layoutY="299.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="operadores" text="%root.tab.matrizEquacao.elevPor" />
-      <TextField layoutX="316.0" layoutY="299.0" prefHeight="34.0" prefWidth="44.0" />
-      <Button layoutX="418.0" layoutY="84.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="62.0" styleClass="operadores" text="A + B" />
-      <Button layoutX="418.0" layoutY="174.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="62.0" styleClass="operadores" text="A x B" />
-      <Button layoutX="418.0" layoutY="129.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="62.0" styleClass="operadores" text="A - B" />
+      <TextArea fx:id="textAreaMatrizA" layoutX="65.0" layoutY="42.0" prefHeight="205.0" prefWidth="291.0" />
+      <TextArea fx:id="textAreaMatrizB" layoutX="541.0" layoutY="42.0" prefHeight="205.0" prefWidth="291.0" />
+      <Button id="mA" fx:id="btnDeterminanteA" layoutX="62.0" layoutY="262.0" mnemonicParsing="false" onAction="#handleDeterminante" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.determinante" />
+      <Button id="mA" fx:id="btnTranspostaA" layoutX="212.0" layoutY="262.0" mnemonicParsing="false" onAction="#handleTransposta" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.transposta" />
+      <Button id="mA" fx:id="btnMultiplicaPorA" layoutX="62.0" layoutY="299.0" mnemonicParsing="false" onAction="#handleMultiplicaPor" prefHeight="34.0" prefWidth="102.0" styleClass="operadores" text="%root.tab.matrizEquacao.multPor" />
+      <Button id="mA" fx:id="btnInversaA" layoutX="62.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleInversa" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.inversa" />
+      <Button id="mA" fx:id="btnTriangularA" layoutX="212.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleTriangular" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.triangular" />
+      <TextField id="mA" fx:id="textFieldMultiPorA" alignment="CENTER" layoutX="166.0" layoutY="299.0" prefHeight="34.0" prefWidth="44.0" />
+      <Button id="mA" fx:id="btnElevadoPorA" layoutX="212.0" layoutY="299.0" mnemonicParsing="false" onAction="#handleElevadoPor" prefHeight="34.0" prefWidth="102.0" styleClass="operadores" text="%root.tab.matrizEquacao.elevPor" />
+      <TextField id="mA" fx:id="textFieldElevadoPorA" alignment="CENTER" layoutX="316.0" layoutY="299.0" prefHeight="34.0" prefWidth="44.0" />
+      <Button fx:id="btnAsomaB" layoutX="418.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleOperacao" prefHeight="34.0" prefWidth="62.0" styleClass="operadores" text="A + B" />
+      <Button fx:id="btnAmultiplicaB" layoutX="418.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleOperacao" prefHeight="34.0" prefWidth="62.0" styleClass="operadores" text="A x B" />
+      <Button fx:id="btnAsubtraiB" layoutX="418.0" layoutY="129.0" mnemonicParsing="false" onAction="#handleOperacao" prefHeight="34.0" prefWidth="62.0" styleClass="operadores" text="A - B" />
       <Label layoutX="465.0" layoutY="-59.0" prefHeight="331.0" prefWidth="76.0" text="(">
          <font>
             <Font size="250.0" />
@@ -50,38 +55,44 @@
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
          </padding>
       </Label>
-      <Label layoutX="597.0" layoutY="458.0" prefHeight="70.0" prefWidth="44.0" text="=">
-         <font>
-            <Font name="System Bold" size="50.0" />
-         </font>
-      </Label>
-      <Label layoutX="292.0" layoutY="452.0" prefHeight="70.0" prefWidth="44.0" text="+">
-         <font>
-            <Font name="System Bold" size="50.0" />
-         </font>
-      </Label>
-      <Button ellipsisString="" layoutX="273.0" layoutY="598.0" mnemonicParsing="false" onAction="#handleVoltar" prefHeight="33.0" prefWidth="162.0" text="%botoes.voltar">
+      <Button ellipsisString="" layoutX="307.0" layoutY="602.0" mnemonicParsing="false" onAction="#handleVoltar" prefHeight="33.0" prefWidth="162.0" text="%botoes.voltar">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="450.0" layoutY="598.0" mnemonicParsing="false" onAction="#handleAjuda" prefHeight="33.0" prefWidth="162.0" text="%botoes.ajuda">
+      <Button layoutX="478.0" layoutY="602.0" mnemonicParsing="false" onAction="#handleAjuda" prefHeight="33.0" prefWidth="162.0" text="%botoes.ajuda">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="538.0" layoutY="261.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.determinante" />
-      <Button layoutX="688.0" layoutY="261.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.transposta" />
-      <Button layoutX="614.0" layoutY="372.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.diagonal" />
-      <Button layoutX="538.0" layoutY="298.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="operadores" text="%root.tab.matrizEquacao.multPor" />
-      <Button layoutX="538.0" layoutY="335.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.inversa" />
-      <Button layoutX="688.0" layoutY="335.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.triangular" />
-      <TextField layoutX="642.0" layoutY="298.0" prefHeight="34.0" prefWidth="44.0" />
-      <Button layoutX="688.0" layoutY="298.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="operadores" text="%root.tab.matrizEquacao.elevPor" />
-      <TextField layoutX="792.0" layoutY="298.0" prefHeight="34.0" prefWidth="44.0" />
-      <Button layoutX="212.0" layoutY="372.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.adjunta" />
-      <TextArea editable="false" layoutX="22.0" layoutY="430.0" prefHeight="156.0" prefWidth="259.0" />
-      <TextArea editable="false" layoutX="336.0" layoutY="423.0" prefHeight="156.0" prefWidth="259.0" />
-      <TextArea editable="false" layoutX="633.0" layoutY="423.0" prefHeight="156.0" prefWidth="259.0" />
+      <Button id="mB" fx:id="btnDeterminanteB" layoutX="538.0" layoutY="261.0" mnemonicParsing="false" onAction="#handleDeterminante" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.determinante" />
+      <Button id="mB" fx:id="btnTranspostaB" layoutX="688.0" layoutY="261.0" mnemonicParsing="false" onAction="#handleTransposta" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.transposta" />
+      <Button id="mB" fx:id="btnMultiplicaPorB" layoutX="538.0" layoutY="298.0" mnemonicParsing="false" onAction="#handleMultiplicaPor" prefHeight="34.0" prefWidth="102.0" styleClass="operadores" text="%root.tab.matrizEquacao.multPor" />
+      <Button id="mB" fx:id="btnInversaB" layoutX="538.0" layoutY="335.0" mnemonicParsing="false" onAction="#handleInversa" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.inversa" />
+      <Button id="mB" fx:id="btnTriangularB" layoutX="688.0" layoutY="335.0" mnemonicParsing="false" onAction="#handleTriangular" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.triangular" />
+      <TextField id="mB" fx:id="textFieldMultiPorB" alignment="CENTER" layoutX="642.0" layoutY="298.0" prefHeight="34.0" prefWidth="44.0" />
+      <Button id="mB" fx:id="btnElevadoPorB" layoutX="688.0" layoutY="298.0" mnemonicParsing="false" onAction="#handleElevadoPor" prefHeight="34.0" prefWidth="102.0" styleClass="operadores" text="%root.tab.matrizEquacao.elevPor" />
+      <TextField id="mB" fx:id="textFieldElevadoPorB" alignment="CENTER" layoutX="792.0" layoutY="298.0" prefHeight="34.0" prefWidth="44.0" />
+      <Button id="mA" fx:id="btnAdjuntaA" layoutX="142.0" layoutY="373.0" mnemonicParsing="false" onAction="#handleAdjunta" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.adjunta" />
+      <Button ellipsisString="" layoutX="375.0" layoutY="372.0" mnemonicParsing="false" onAction="#handleLimparTudo" prefHeight="34.0" prefWidth="148.0" styleClass="numpadApagar" text="%root.tab.matrizEquacao.limpar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="536.0" layoutY="18.0" text="%root.tab.matrizEquacao.digiteMatriz" />
+      <Button id="mA" fx:id="btnAdjuntaB" layoutX="615.0" layoutY="371.0" mnemonicParsing="false" onAction="#handleAdjunta" prefHeight="34.0" prefWidth="148.0" styleClass="operadoresAdicionais" text="%root.tab.matrizEquacao.adjunta" />
+      <Label layoutX="59.0" layoutY="18.0" text="%root.tab.matrizEquacao.digiteMatriz" />
+      <ScrollPane layoutX="55.0" layoutY="417.0" prefHeight="174.0" prefWidth="790.0" style="-fx-border-color: #848A99;">
+         <content>
+            <Label fx:id="labelResultado" alignment="CENTER" maxHeight="713.0" prefWidth="790.0">
+               <padding>
+                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

@@ -1,10 +1,11 @@
 package com.calculadora.service;
 
+import com.calculadora.util.MatrizesTamanhosDiferentesException;
 import com.calculadora.util.TipoOperacao;
 
 public interface MatrizService {
 	
-	public Double[][] operacaoMatrizes(Double[][] firstMatriz, Double[][] secondMatriz, TipoOperacao tipoOperacao);
+	public Double[][] operacaoMatrizes(Double[][] firstMatriz, Double[][] secondMatriz, TipoOperacao tipoOperacao) throws MatrizesTamanhosDiferentesException;
 	public Double calcularDeterminante(Double[][] matriz);
 	public Double[][] calcularMatrizTriangular(Double[][] matriz);
 	public Double[][] calcularTransposta(Double[][] matriz);
