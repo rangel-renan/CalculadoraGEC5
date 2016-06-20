@@ -5,6 +5,7 @@ import com.calculadora.config.ConfigProperties;
 import com.calculadora.service.MatrizService;
 import com.calculadora.service.MatrizServiceImpl;
 import com.calculadora.util.MatrizesTamanhosDiferentesException;
+import com.calculadora.util.ParseMatriz;
 import com.calculadora.util.TipoOperacao;
 
 import javafx.event.ActionEvent;
@@ -206,13 +207,13 @@ public class MatrizController {
 		try {
 			switch (((Button) actionEvent.getSource()).getText()) {
 			case "A + B":
-				soma(convertMatriz(textAreaMatrizA), convertMatriz(textAreaMatrizB));
+				soma(ParseMatriz.parse(textAreaMatrizA.getText()), ParseMatriz.parse(textAreaMatrizB.getText()));
 				break;
 			case "A - B":
-				subtracao(convertMatriz(textAreaMatrizA), convertMatriz(textAreaMatrizB));
+				subtracao(ParseMatriz.parse(textAreaMatrizA.getText()), ParseMatriz.parse(textAreaMatrizB.getText()));
 				break;
 			case "A x B":
-				multiplicacao(convertMatriz(textAreaMatrizA), convertMatriz(textAreaMatrizB));
+				multiplicacao(ParseMatriz.parse(textAreaMatrizA.getText()), ParseMatriz.parse(textAreaMatrizB.getText()));
 				break;
 			}
 		} catch (MatrizesTamanhosDiferentesException e) {
@@ -225,26 +226,26 @@ public class MatrizController {
 	
 	private void soma(Double[][] firstMatriz, Double[][] secondMatriz) throws MatrizesTamanhosDiferentesException {
 		labelResultado.setText(label.getString("root.tab.matrizEquacao.soma") + ": \n\n" + label.getString("root.tab.matrizEquacao.primMatriz") + ":\n" 
-							+ montarMatriz(firstMatriz) + "\n" + label.getString("root.tab.matrizEquacao.segMatriz") 
-							+ ":\n" + montarMatriz(secondMatriz) + "\n" 
+							+ ParseMatriz.montarMatriz(firstMatriz) + "\n" + label.getString("root.tab.matrizEquacao.segMatriz") 
+							+ ":\n" + ParseMatriz.montarMatriz(secondMatriz) + "\n" 
 							+ label.getString("root.tab.matrizEquacao.result") +": \n" + 
-							montarMatriz(matrizService.operacaoMatrizes(firstMatriz, secondMatriz, TipoOperacao.SOMA)));
+							ParseMatriz.montarMatriz(matrizService.operacaoMatrizes(firstMatriz, secondMatriz, TipoOperacao.SOMA)));
 	}
 	
 	private void subtracao(Double[][] firstMatriz, Double[][] secondMatriz) throws MatrizesTamanhosDiferentesException {
 		labelResultado.setText(label.getString("root.tab.matrizEquacao.subt") + ": \n\n" + label.getString("root.tab.matrizEquacao.primMatriz") + ":\n" 
-				+ montarMatriz(firstMatriz) + "\n" + label.getString("root.tab.matrizEquacao.segMatriz") 
-				+ ":\n" + montarMatriz(secondMatriz) + "\n" 
+				+ ParseMatriz.montarMatriz(firstMatriz) + "\n" + label.getString("root.tab.matrizEquacao.segMatriz") 
+				+ ":\n" + ParseMatriz.montarMatriz(secondMatriz) + "\n" 
 				+ label.getString("root.tab.matrizEquacao.result") +": \n" +  
-				montarMatriz(matrizService.operacaoMatrizes(firstMatriz, secondMatriz, TipoOperacao.SUBTRACAO)));
+				ParseMatriz.montarMatriz(matrizService.operacaoMatrizes(firstMatriz, secondMatriz, TipoOperacao.SUBTRACAO)));
 	}
 	
 	private void multiplicacao(Double[][] firstMatriz, Double[][] secondMatriz) throws MatrizesTamanhosDiferentesException {
 		labelResultado.setText(label.getString("root.tab.matrizEquacao.mult") + ": \n\n" + label.getString("root.tab.matrizEquacao.primMatriz") + ":\n" 
-				+ montarMatriz(firstMatriz) + "\n" + label.getString("root.tab.matrizEquacao.segMatriz") 
-				+ ":\n" + montarMatriz(secondMatriz) + "\n" 
+				+ ParseMatriz.montarMatriz(firstMatriz) + "\n" + label.getString("root.tab.matrizEquacao.segMatriz") 
+				+ ":\n" + ParseMatriz.montarMatriz(secondMatriz) + "\n" 
 				+ label.getString("root.tab.matrizEquacao.result") +": \n" + 
-				montarMatriz(matrizService.operacaoMatrizes(firstMatriz, secondMatriz, TipoOperacao.MULTIPLICACAO)));
+				ParseMatriz.montarMatriz(matrizService.operacaoMatrizes(firstMatriz, secondMatriz, TipoOperacao.MULTIPLICACAO)));
 	}
 	
 	@FXML
@@ -252,15 +253,15 @@ public class MatrizController {
 		String matrizEmUso = ((Button) actionEvent.getSource()).getId();
 		
 		if (matrizEmUso.equals("mA")) 
-			determinante(convertMatriz(textAreaMatrizA));
+			determinante(ParseMatriz.parse(textAreaMatrizA.getText()));
 		 else if (matrizEmUso.equals("mB")) 
-			determinante(convertMatriz(textAreaMatrizB));
+			determinante(ParseMatriz.parse(textAreaMatrizB.getText()));
 	}
 
 	private void determinante(Double[][] matriz) {
 		
 		if (matriz != null) 
-			labelResultado.setText(montarMatriz(matriz) + 
+			labelResultado.setText(ParseMatriz.montarMatriz(matriz) + 
 					"\n" + "det(A)" + ": " + matrizService.calcularDeterminante(matriz));
 		 else 
 			labelResultado.setText(label.getString("root.tab.matrizEquacao.erroNumero"));
@@ -271,16 +272,16 @@ public class MatrizController {
 		String matrizEmUso = ((Button) actionEvent.getSource()).getId();
 		
 		if (matrizEmUso.equals("mA")) 
-			trasposta(convertMatriz(textAreaMatrizA));
+			trasposta(ParseMatriz.parse(textAreaMatrizA.getText()));
 		 else if (matrizEmUso.equals("mB")) 
-			 trasposta(convertMatriz(textAreaMatrizB));
+			 trasposta(ParseMatriz.parse(textAreaMatrizB.getText()));
 	}
 	
 	private void trasposta(Double[][] matriz) {
 		if (matriz != null) 
-			labelResultado.setText(montarMatriz(matriz) + 
+			labelResultado.setText(ParseMatriz.montarMatriz(matriz) + 
 					"\n" + label.getString("root.tab.matrizEquacao.transposta") + ":\n\n" + 
-					montarMatriz(matrizService.calcularTransposta(matriz)));
+					ParseMatriz.montarMatriz(matrizService.calcularTransposta(matriz)));
 		 else 
 			labelResultado.setText(label.getString("root.tab.matrizEquacao.erroNumero"));
 	}
@@ -290,16 +291,16 @@ public class MatrizController {
 		String matrizEmUso = ((Button) actionEvent.getSource()).getId();
 		
 		if (matrizEmUso.equals("mA")) 
-			elevadoPor(convertMatriz(textAreaMatrizA), Double.valueOf(textFieldElevadoPorA.getText()));
+			elevadoPor(ParseMatriz.parse(textAreaMatrizA.getText()), Double.valueOf(textFieldElevadoPorA.getText()));
 		 else if (matrizEmUso.equals("mB")) 
-			 elevadoPor(convertMatriz(textAreaMatrizB), Double.valueOf(textFieldElevadoPorB.getText()));
+			 elevadoPor(ParseMatriz.parse(textAreaMatrizB.getText()), Double.valueOf(textFieldElevadoPorB.getText()));
 	}
 	
 	private void elevadoPor(Double[][] matriz, Double valor) {
 		if (matriz != null) 
-			labelResultado.setText(montarMatriz(matriz) + 
+			labelResultado.setText(ParseMatriz.montarMatriz(matriz) + 
 					"\n" + label.getString("root.tab.matrizEquacao.elevPor") + ": " + valor + " = \n\n" + 
-					montarMatriz(matrizService.elevarPor(matriz, valor)));
+					ParseMatriz.montarMatriz(matrizService.elevarPor(matriz, valor)));
 		 else 
 			labelResultado.setText(label.getString("root.tab.matrizEquacao.erroNumero"));
 	}
@@ -309,17 +310,17 @@ public class MatrizController {
 		String matrizEmUso = ((Button) actionEvent.getSource()).getId();
 		
 		if (matrizEmUso.equals("mA")) 
-			multiplicaPor(convertMatriz(textAreaMatrizA), Double.valueOf(textFieldMultiPorA.getText()));
+			multiplicaPor(ParseMatriz.parse(textAreaMatrizA.getText()), Double.valueOf(textFieldMultiPorA.getText()));
 		 else if (matrizEmUso.equals("mB")) 
-			 multiplicaPor(convertMatriz(textAreaMatrizB), Double.valueOf(textFieldMultiPorB.getText()));
+			 multiplicaPor(ParseMatriz.parse(textAreaMatrizB.getText()), Double.valueOf(textFieldMultiPorB.getText()));
 	}
 	
 	private void multiplicaPor(Double[][] matriz, Double valor) {
 		
 		if (matriz != null) 
-			labelResultado.setText(montarMatriz(matriz) + 
+			labelResultado.setText(ParseMatriz.montarMatriz(matriz) + 
 					"\n" + label.getString("root.tab.matrizEquacao.mulPor2") + ": " + valor + " = \n\n" + 
-					montarMatriz(matrizService.multiplicarPor(matriz, valor)));
+					ParseMatriz.montarMatriz(matrizService.multiplicarPor(matriz, valor)));
 		 else 
 			labelResultado.setText(label.getString("root.tab.matrizEquacao.erroNumero"));
 	}
@@ -329,16 +330,16 @@ public class MatrizController {
 		String matrizEmUso = ((Button) actionEvent.getSource()).getId();
 		
 		if (matrizEmUso.equals("mA")) 
-			inversa(convertMatriz(textAreaMatrizA));
+			inversa(ParseMatriz.parse(textAreaMatrizA.getText()));
 		 else if (matrizEmUso.equals("mB")) 
-			 inversa(convertMatriz(textAreaMatrizB));
+			 inversa(ParseMatriz.parse(textAreaMatrizB.getText()));
 	}
 	
 	private void inversa(Double[][] matriz) {
 		if (matriz != null) 
-			labelResultado.setText(montarMatriz(matriz) + 
+			labelResultado.setText(ParseMatriz.montarMatriz(matriz) + 
 					"\n" + label.getString("root.tab.matrizEquacao.inversa") + ":\n\n" + 
-					montarMatriz(matrizService.calcularMatrizInversa(matriz)));
+					ParseMatriz.montarMatriz(matrizService.calcularMatrizInversa(matriz)));
 		 else 
 			labelResultado.setText(label.getString("root.tab.matrizEquacao.erroNumero"));
 		
@@ -349,16 +350,16 @@ public class MatrizController {
 		String matrizEmUso = ((Button) actionEvent.getSource()).getId();
 		
 		if (matrizEmUso.equals("mA")) 
-			triangular(convertMatriz(textAreaMatrizA));
+			triangular(ParseMatriz.parse(textAreaMatrizA.getText()));
 		 else if (matrizEmUso.equals("mB")) 
-			triangular(convertMatriz(textAreaMatrizB));
+			triangular(ParseMatriz.parse(textAreaMatrizB.getText()));
 	}
 	
 	private void triangular(Double[][] matriz) {
 		if (matriz != null) 
-			labelResultado.setText(montarMatriz(matriz) + 
+			labelResultado.setText(ParseMatriz.montarMatriz(matriz) + 
 					"\n" + label.getString("root.tab.matrizEquacao.triangular") + ":\n\n" + 
-					montarMatriz(matrizService.calcularMatrizTriangular(matriz)));
+					ParseMatriz.montarMatriz(matrizService.calcularMatrizTriangular(matriz)));
 		 else 
 			labelResultado.setText(label.getString("root.tab.matrizEquacao.erroNumero"));
 	}
@@ -368,16 +369,16 @@ public class MatrizController {
 		String matrizEmUso = ((Button) actionEvent.getSource()).getId();
 		
 		if (matrizEmUso.equals("mA")) 
-			adjunta(convertMatriz(textAreaMatrizA));
+			adjunta(ParseMatriz.parse(textAreaMatrizA.getText()));
 		 else if (matrizEmUso.equals("mB")) 
-			adjunta(convertMatriz(textAreaMatrizB));
+			adjunta(ParseMatriz.parse(textAreaMatrizB.getText()));
 	}
 	
 	private void adjunta(Double[][] matriz) {
 		if (matriz != null) 
-			labelResultado.setText(montarMatriz(matriz) + 
+			labelResultado.setText(ParseMatriz.montarMatriz(matriz) + 
 					"\n" + label.getString("root.tab.matrizEquacao.adjunta") + ":\n\n" + 
-					montarMatriz(matrizService.calcularMatrizAdjunta(matriz)));
+					ParseMatriz.montarMatriz(matrizService.calcularMatrizAdjunta(matriz)));
 		 else 
 			labelResultado.setText(label.getString("root.tab.matrizEquacao.erroNumero"));
 	}
@@ -402,42 +403,6 @@ public class MatrizController {
 	@FXML
 	private void handleAjuda() {
 		
-	}
-
-	private Double[][] convertMatriz(TextArea matriz) {
-		Double[][] matrizDouble = null;
-		
-		try {
-			String[] linhas = matriz.getText().split("\n");
-			String[][] colunas = new String[linhas.length][];
-			
-			for (int l = 0; l < linhas.length; l++)
-				colunas[l] = linhas[l].split(",");
-
-			matrizDouble = new Double[linhas.length][colunas[0].length];
-
-			for (int l = 0; l < linhas.length; l++)
-				for (int c = 0; c < colunas[0].length; c++)
-					matrizDouble[l][c] = new Double(colunas[l][c]);
-		} catch (NumberFormatException e) {
-			System.out.println("Numero em Formato Inválido.");
-			return null;
-		}
-		
-		return matrizDouble;
-	}
-
-	private String montarMatriz(Double[][] matriz) {
-		String matrizMontada = new String();
-
-		for (int i = 0; i < matriz.length; i++) {
-			matrizMontada += "|  ";
-			for (int j = 0; j < matriz[0].length; j++) 
-				matrizMontada += matriz[i][j] + "  ";
-			matrizMontada += "|\n";
-		}
-
-		return matrizMontada;
 	}
 
 	public void setLabel(ConfigProperties label) {

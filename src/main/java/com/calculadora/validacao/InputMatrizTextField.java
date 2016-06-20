@@ -17,6 +17,8 @@ public class InputMatrizTextField extends TextArea {
 			super.replaceText(start, end, text);
 		else if (text.contains(",") && end > 0)
 			super.replaceText(start, end, text);
+		else if (text.contains("\n"))
+			super.replaceText(start, end, text);
 
 	}
 
