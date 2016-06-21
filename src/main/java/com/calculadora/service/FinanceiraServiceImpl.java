@@ -1,19 +1,7 @@
 package com.calculadora.service;
 
 public class FinanceiraServiceImpl implements FinanceiraService {
-	private final int pagamentosPorAno = 12;
-
-	@Override
-	public Double calcularEmprestimo(Double valorFinanciado, Double prazo, Double taxaMensal) {
-		taxaMensal = taxaMensal / 100;
-		double numer = taxaMensal * valorFinanciado / pagamentosPorAno;
-		double e = -(pagamentosPorAno * prazo);
-		double b = (taxaMensal / pagamentosPorAno) + 1.0;
-
-		double denom = 1.0 - Math.pow(b, e);
-		return (numer / denom);
-	}
-
+	
 	public Double calcularValorFuturoInvestimento(Double valorAtualInvestimento, Double prazoEmAnos, Double taxaMensal,
 			Double ajustesPorAno) {
 		taxaMensal = taxaMensal / 100;
@@ -46,13 +34,17 @@ public class FinanceiraServiceImpl implements FinanceiraService {
         return valorInvestPretendido / Math.pow(b, e);
 	}
 	
+	/* Empréstimo - Juros*/
 	public Double calcularJuros(Double valorTotal, Double taxaJuros, Double peridoTotalEmMeses) {
 		taxaJuros = taxaJuros / 100;
+		peridoTotalEmMeses = peridoTotalEmMeses / 12;
 		return valorTotal * taxaJuros * peridoTotalEmMeses;
 	}
 	
+	/* Empréstimo - Valor Total*/
 	public Double calcularJurosComposto(Double valorTotal, Double taxaJuros, Double peridoTotalEmMeses) {
 		taxaJuros = taxaJuros / 100;
+		peridoTotalEmMeses = peridoTotalEmMeses / 12;
 		return valorTotal * Math.pow((1 + taxaJuros), peridoTotalEmMeses);
 	}
 	
@@ -66,8 +58,40 @@ public class FinanceiraServiceImpl implements FinanceiraService {
 		return valorTotal * (taxaJuros / (1 - Math.pow((1 + taxaJuros), -periodoFinanciamentoEmMeses)));
 	}
 	
+    //remainingBalance=cwBalance1;
+    //var startBalance=cwBalance1
+    //cwMonthlyAmount
+	public Double calcularContaCartaoCredito(Double saldoCartaoCredito, Double taxaJuros, Double valorParcela) {
+		taxaJuros= (taxaJuros / 100) / 12;
+		Double balancoInicial = saldoCartaoCredito;
+		Double pagamentoMinimo  = taxaJuros * saldoCartaoCredito;
+		Double meses = 0.0;
+		Double ultimoPagamento = 0.0;
+		Double juro = 0.0;
+		
+		if (pagamentoMinimo > valorParcela) {
+			System.out.println("Your monthly payment is less than the monthly interest charged by this card.");
+			return null;
+		}
+		
+		while (saldoCartaoCredito > 0) {
+			meses++;
+			juro += saldoCartaoCredito * taxaJuros;
+			saldoCartaoCredito = saldoCartaoCredito * (1 + taxaJuros) - valorParcela;
+		}
+		
+		Double valorTotal = 0.0;
+		valorTotal = balancoInicial;
+		valorTotal = valorTotal / 100;
+		valorTotal=valorTotal + juro;
+		System.out.println(meses);
+		System.out.println(balancoInicial + valorTotal);
+		return valorTotal;
+		
+	}
+	
 	public static void main(String[] args) {
-		System.out.println(new FinanceiraServiceImpl().calcularValorPrestacao(10000.0, 1.5, 12.0));
+		System.out.println(new FinanceiraServiceImpl().calcularContaCartaoCredito(1000.0, 2.0, 3.0));
 	}
 
 }
