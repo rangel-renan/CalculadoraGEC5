@@ -1,16 +1,16 @@
 package com.calculadora.service;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+
+import com.calculadora.model.Emprestimo;
+
 public class FinanceiraServiceImpl implements FinanceiraService {
+	private final BigDecimal CEM = new BigDecimal("100");
+	private final BigDecimal UM = BigDecimal.ONE;
+	private final BigDecimal DOZE_MESES = new BigDecimal("12");
 	
-	public Double calcularValorFuturoInvestimento(Double valorAtualInvestimento, Double prazoEmAnos, Double taxaMensal,
-			Double ajustesPorAno) {
-		taxaMensal = taxaMensal / 100;
-		double e = ajustesPorAno * prazoEmAnos;
-		double b = (1 + taxaMensal / ajustesPorAno);
-
-		return valorAtualInvestimento * Math.pow(b, e);
-	}
-
 	public Double calcularLimiteRetirada(Double valorAtualInvestimento, Double prazoEmAnos, Double taxaMensal,
 			Integer numRetiradasPorAno) {
 		double t1, t2;
@@ -35,22 +35,18 @@ public class FinanceiraServiceImpl implements FinanceiraService {
 	}
 	
 	/* Empréstimo - Juros*/
-	public Double calcularJuros(Double valorTotal, Double taxaJuros, Double peridoTotalEmMeses) {
-		taxaJuros = taxaJuros / 100;
-		peridoTotalEmMeses = peridoTotalEmMeses / 12;
-		return valorTotal * taxaJuros * peridoTotalEmMeses;
+	public BigDecimal calcularJuros(BigDecimal valorTotal, BigDecimal taxaJuros, BigDecimal peridoTotalEmMeses) {
+		return valorTotal.multiply(porcentagemEmDecimal(taxaJuros)).multiply(peridoTotalEmMeses);
 	}
 	
 	/* Empréstimo - Valor Total*/
-	public Double calcularJurosComposto(Double valorTotal, Double taxaJuros, Double peridoTotalEmMeses) {
-		taxaJuros = taxaJuros / 100;
-		peridoTotalEmMeses = peridoTotalEmMeses / 12;
-		return valorTotal * Math.pow((1 + taxaJuros), peridoTotalEmMeses);
+	public BigDecimal calcularJurosComposto(BigDecimal valorTotal, BigDecimal taxaJuros, Integer peridoTotalEmMeses) {
+		BigDecimal juro = (porcentagemEmDecimal(taxaJuros)).add(UM);
+		return valorTotal.multiply((juro.pow(peridoTotalEmMeses)));
 	}
 	
-	public Double calcularMontante(Double valorTotal, Double taxaJuros, Double peridoTotalEmMeses) {
-		taxaJuros = taxaJuros / 100;
-		return valorTotal * (1 + (taxaJuros * peridoTotalEmMeses));
+	public BigDecimal calcularMontante(BigDecimal valorTotal, BigDecimal taxaJuros, BigDecimal peridoTotalEmMeses) {
+		return valorTotal.add(calcularJuros(valorTotal, taxaJuros, peridoTotalEmMeses));
 	}
 	
 	public Double calcularValorPrestacao(Double valorTotal, Double taxaJuros, Double periodoFinanciamentoEmMeses) {
@@ -58,40 +54,36 @@ public class FinanceiraServiceImpl implements FinanceiraService {
 		return valorTotal * (taxaJuros / (1 - Math.pow((1 + taxaJuros), -periodoFinanciamentoEmMeses)));
 	}
 	
-    //remainingBalance=cwBalance1;
-    //var startBalance=cwBalance1
-    //cwMonthlyAmount
-	public Double calcularContaCartaoCredito(Double saldoCartaoCredito, Double taxaJuros, Double valorParcela) {
-		taxaJuros= (taxaJuros / 100) / 12;
-		Double balancoInicial = saldoCartaoCredito;
-		Double pagamentoMinimo  = taxaJuros * saldoCartaoCredito;
-		Double meses = 0.0;
-		Double ultimoPagamento = 0.0;
-		Double juro = 0.0;
+	public Emprestimo calcularContaCartaoCredito(BigDecimal saldoCartaoCredito, BigDecimal taxaJuros, BigDecimal valorParcela) {
+		taxaJuros = (porcentagemEmDecimal(taxaJuros)).divide(DOZE_MESES, MathContext.DECIMAL128);
+		BigDecimal balancoInicial = saldoCartaoCredito;
+		BigDecimal pagamentoMinimo = taxaJuros.multiply(saldoCartaoCredito);
 		
-		if (pagamentoMinimo > valorParcela) {
+		if (pagamentoMinimo.compareTo(valorParcela) > 0) {
 			System.out.println("Your monthly payment is less than the monthly interest charged by this card.");
 			return null;
 		}
 		
-		while (saldoCartaoCredito > 0) {
+		Integer meses = 0;
+		BigDecimal totalJurosFinal = BigDecimal.ZERO;
+		while (saldoCartaoCredito.compareTo(BigDecimal.ZERO) > 0) {
 			meses++;
-			juro += saldoCartaoCredito * taxaJuros;
-			saldoCartaoCredito = saldoCartaoCredito * (1 + taxaJuros) - valorParcela;
+			totalJurosFinal = totalJurosFinal.add((saldoCartaoCredito.multiply(taxaJuros)));
+			saldoCartaoCredito = saldoCartaoCredito.multiply((taxaJuros.add(UM)));
+			saldoCartaoCredito = saldoCartaoCredito.subtract(valorParcela);
 		}
 		
-		Double valorTotal = 0.0;
-		valorTotal = balancoInicial;
-		valorTotal = valorTotal / 100;
-		valorTotal=valorTotal + juro;
-		System.out.println(meses);
-		System.out.println(balancoInicial + valorTotal);
-		return valorTotal;
-		
+		return new Emprestimo(balancoInicial, meses, balancoInicial.add(totalJurosFinal), totalJurosFinal);
+	}
+	
+	private BigDecimal porcentagemEmDecimal(BigDecimal valor) {
+		return valor.divide(CEM);
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(new FinanceiraServiceImpl().calcularContaCartaoCredito(1000.0, 2.0, 3.0));
+		Emprestimo e = new FinanceiraServiceImpl().calcularContaCartaoCredito(new BigDecimal("500"), new BigDecimal("2"), new BigDecimal(50));
+		System.out.println(e.getTotalMeses() + "\n" + e.getBalancoFinal() + "\n" + e.getTotalDeJuros());
+		//System.out.println(new FinanceiraServiceImpl().calcularCartaoCredito(500.0, 2.0, 50.0));
 	}
 
 }

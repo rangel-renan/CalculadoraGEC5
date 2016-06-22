@@ -198,14 +198,14 @@ public class MainApp extends Application {
 	
 	public void initMatriz() {
 		FXMLLoader loader = getLoader();
-		matrizStage = getStage((AnchorPane) getLayout(loader, "/views/matriz/MatrizNxN.fxml"), label.getString("root.tab.matrizEquacao.matrizTitulo"), CAMINHO_ICONE_APLICACAO);
+		matrizStage = getStage((AnchorPane) getLayout(loader, "/views/outrasOperacoes/MatrizNxN.fxml"), label.getString("root.tab.matrizEquacao.matrizTitulo"), CAMINHO_ICONE_APLICACAO);
 		matrizController = loader.getController();
 		matrizController.show(this, matrizStage, label);
 	}
 	
 	public void initVetores() {
 		FXMLLoader loader = getLoader();
-		vetoresStage = getStage((AnchorPane) getLayout(loader, "/views/vetores/Vetores.fxml"), label.getString("root.tab.vetor.tituloJanela"), CAMINHO_ICONE_APLICACAO);
+		vetoresStage = getStage((AnchorPane) getLayout(loader, "/views/outrasOperacoes/Vetores.fxml"), label.getString("root.tab.vetor.tituloJanela"), CAMINHO_ICONE_APLICACAO);
 		vetoresController = loader.getController();
 		vetoresController.show(this, vetoresStage, label);
 	}
