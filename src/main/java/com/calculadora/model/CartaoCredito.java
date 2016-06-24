@@ -2,16 +2,16 @@ package com.calculadora.model;
 
 import java.math.BigDecimal;
 
-public class Emprestimo {
+public class CartaoCredito {
 	private BigDecimal balancoInicial;
 	private int totalMeses;
 	private BigDecimal balancoFinal;
 	private BigDecimal totalDeJuros;
 	
-	public Emprestimo() {
+	public CartaoCredito() {
 	}
 	
-	public Emprestimo(BigDecimal balancoInicial, int totalMeses, BigDecimal balancoFinal, BigDecimal totalDeJuros) {
+	public CartaoCredito(BigDecimal balancoInicial, int totalMeses, BigDecimal balancoFinal, BigDecimal totalDeJuros) {
 		this.balancoInicial = balancoInicial;
 		this.totalMeses = totalMeses;
 		this.balancoFinal = balancoFinal;

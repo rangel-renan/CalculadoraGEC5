@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="455.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField layoutX="238.0" layoutY="68.0" prefHeight="36.0" prefWidth="154.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="77.0" layoutY="74.0" text="Saldo do Cartão">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField disable="true" layoutX="201.0" layoutY="68.0" prefHeight="36.0" prefWidth="37.0" promptText="R$">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="143.0" layoutY="25.0" text="Moeda">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="201.0" layoutY="21.0" prefHeight="31.0" prefWidth="121.0" promptText="REAL (R$)" />
+      <TextField layoutX="238.0" layoutY="116.0" prefHeight="36.0" prefWidth="154.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="96.0" layoutY="122.0" text="Taxa de Juros">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField disable="true" layoutX="201.0" layoutY="116.0" prefHeight="36.0" prefWidth="37.0" promptText="\%">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="77.0" layoutY="169.0" text="Valor da Parcela">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button ellipsisString="" layoutX="191.0" layoutY="219.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" styleClass="operadores" text="%botoes.calcular">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="96.0" layoutY="313.0" text="Balanço Final">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField disable="true" layoutX="201.0" layoutY="307.0" prefHeight="36.0" prefWidth="37.0" promptText="R$">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="textFieldIsPrimo1" alignment="CENTER" editable="false" layoutX="238.0" layoutY="307.0" prefHeight="36.0" prefWidth="154.0" styleClass="btnResults" />
+      <Label layoutX="91.0" layoutY="271.0" text="Total de Juros">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField disable="true" layoutX="201.0" layoutY="265.0" prefHeight="36.0" prefWidth="37.0" promptText="R$">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="textFieldIsPrimo" alignment="CENTER" editable="false" layoutX="238.0" layoutY="265.0" prefHeight="36.0" prefWidth="154.0" styleClass="btnResults" />
+      <Button layoutX="242.0" layoutY="407.0" mnemonicParsing="false" onAction="#handleAjuda" prefHeight="33.0" prefWidth="94.0" text="%botoes.ajuda">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button ellipsisString="" layoutX="140.0" layoutY="407.0" mnemonicParsing="false" onAction="#handleVoltar" prefHeight="33.0" prefWidth="94.0" text="%botoes.voltar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="80.0" layoutY="358.0" text="Total de Meses">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textFieldIsPrimo11" alignment="CENTER" editable="false" layoutX="201.0" layoutY="353.0" prefHeight="36.0" prefWidth="94.0" styleClass="btnResults" />
+      <TextField disable="true" layoutX="202.0" layoutY="163.0" prefHeight="36.0" prefWidth="37.0" promptText="R$">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="239.0" layoutY="163.0" prefHeight="36.0" prefWidth="154.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>
