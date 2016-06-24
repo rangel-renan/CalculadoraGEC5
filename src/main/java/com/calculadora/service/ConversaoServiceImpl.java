@@ -13,4 +13,10 @@ public class ConversaoServiceImpl implements ConversaoService {
 		return new BigDecimal(toConverter.convert(valor.doubleValue()));
 	}
 	
+	public BigDecimal converterMoeda() {
+		
+		return null;
+	}
+	
+	
 }

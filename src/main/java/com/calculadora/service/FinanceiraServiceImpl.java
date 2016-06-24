@@ -5,6 +5,7 @@ import java.math.MathContext;
 
 import com.calculadora.model.CartaoCredito;
 import com.calculadora.model.Hipoteca;
+import com.calculadora.util.PagamentoMinimoMaiorParcelaException;
 
 public class FinanceiraServiceImpl implements FinanceiraService {
 	private final BigDecimal CEM = new BigDecimal("100");
@@ -32,14 +33,13 @@ public class FinanceiraServiceImpl implements FinanceiraService {
 	}
 	
 	public CartaoCredito calcularCartaoCredito(BigDecimal saldoCartaoCredito, BigDecimal taxaJuros,
-			BigDecimal valorParcela) {
+			BigDecimal valorParcela) throws PagamentoMinimoMaiorParcelaException {
 		taxaJuros = (porcentagemEmDecimal(taxaJuros)).divide(DOZE_MESES, MathContext.DECIMAL128);
 		BigDecimal balancoInicial = saldoCartaoCredito;
 		BigDecimal pagamentoMinimo = taxaJuros.multiply(saldoCartaoCredito);
 
 		if (pagamentoMinimo.compareTo(valorParcela) > 0) {
-			System.out.println("Your monthly payment is less than the monthly interest charged by this card.");
-			return null;
+			throw new PagamentoMinimoMaiorParcelaException("O Pagamento mensal é menor que o Valor da parcela.");
 		}
 
 		Integer meses = 0;
@@ -57,21 +57,5 @@ public class FinanceiraServiceImpl implements FinanceiraService {
 	private BigDecimal porcentagemEmDecimal(BigDecimal valor) {
 		return valor.divide(CEM);
 	}
-
-	public static void main(String[] args) {
-		// Emprestimo e = new
-		// FinanceiraServiceImpl().calcularContaCartaoCredito(new
-		// BigDecimal("500"), new BigDecimal("2"), new BigDecimal(50));
-		// System.out.println(e.getTotalMeses() + "\n" + e.getBalancoFinal() +
-		// "\n" + e.getTotalDeJuros());
-		
-		// System.out.println(new FinanceiraServiceImpl().tablePrice(new
-		// BigDecimal("30000"), new BigDecimal("3.42"), new BigDecimal("12")));
-		// new FinanceiraServiceImpl().calcularEmprestimo(30000.0, 3.42, 12.0);
-		Hipoteca h = new FinanceiraServiceImpl().calcularHipoteca(new BigDecimal("50000"), new BigDecimal("2"), new BigDecimal("45"));
-		System.out.println(h.getJuros());
-		System.out.println(h.getValorTotal());
-		System.out.println(h.getValorPrestacao());
-	}
-
+	
 }

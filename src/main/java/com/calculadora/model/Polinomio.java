@@ -19,7 +19,7 @@ public class Polinomio {
 
     public Polinomio(int[] _coeficientes) {
     	coeficientes = new ArrayList<Integer>(_coeficientes.length);
-    	grau = coeficientes.size() - 1;
+    	grau = _coeficientes.length - 1;
     	
 		for (int cont = 0 ; cont < _coeficientes.length; cont++) 
 			coeficientes.add(_coeficientes[cont]); 	
@@ -27,7 +27,7 @@ public class Polinomio {
     
     public Polinomio(double[] _coeficientes) {
     	coeficientes = new ArrayList<Integer>(_coeficientes.length);
-    	grau = coeficientes.size() - 1;
+    	grau = _coeficientes.length - 1;
     	
 		for (int cont = 0 ; cont < _coeficientes.length; cont++) 
 			coeficientes.add((int) _coeficientes[cont]); 

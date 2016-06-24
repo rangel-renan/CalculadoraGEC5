@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="581.0" prefWidth="536.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="331.0" layoutY="276.0" mnemonicParsing="false" onAction="#handleAjuda" prefHeight="33.0" prefWidth="94.0" text="%botoes.ajuda">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button ellipsisString="" layoutX="133.0" layoutY="276.0" mnemonicParsing="false" onAction="#handleVoltar" prefHeight="33.0" prefWidth="94.0" text="%botoes.voltar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button ellipsisString="" layoutX="231.0" layoutY="276.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" styleClass="operadores" text="%botoes.calcular">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ComboBox layoutX="375.0" layoutY="174.0" prefHeight="36.0" prefWidth="73.0" promptText="Dias" />
+      <Label layoutX="46.0" layoutY="179.0" text="Período de Pagamento">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField layoutX="218.0" layoutY="174.0" prefHeight="36.0" prefWidth="154.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField disable="true" layoutX="218.0" layoutY="122.0" prefHeight="36.0" prefWidth="37.0" promptText="\%">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="113.0" layoutY="128.0" text="Taxa de Juros">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField layoutX="255.0" layoutY="122.0" prefHeight="36.0" prefWidth="154.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <ComboBox layoutX="218.0" layoutY="27.0" prefHeight="31.0" prefWidth="121.0" promptText="REAL (R$)" />
+      <Label layoutX="160.0" layoutY="31.0" text="Moeda">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField disable="true" layoutX="218.0" layoutY="74.0" prefHeight="36.0" prefWidth="37.0" promptText="R$">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="91.0" layoutY="80.0" text="Valor Financiado">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField layoutX="255.0" layoutY="74.0" prefHeight="36.0" prefWidth="154.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <ComboBox layoutX="219.0" layoutY="222.0" prefHeight="36.0" prefWidth="192.0" promptText="Fixas (Tabela Price)" />
+      <Label layoutX="83.0" layoutY="228.0" text="Tipo de Prestação">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TableView layoutX="8.0" layoutY="325.0" prefHeight="251.0" prefWidth="516.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Nº Parcela" />
+          <TableColumn prefWidth="129.0" text="Valor da Parcela" />
+            <TableColumn prefWidth="108.0" text="Amortizações" />
+            <TableColumn prefWidth="92.0" text="Juros" />
+            <TableColumn prefWidth="111.0" text="Saldo Devedor" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
