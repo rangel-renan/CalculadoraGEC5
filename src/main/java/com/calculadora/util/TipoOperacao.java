@@ -2,12 +2,12 @@ package com.calculadora.util;
 
 public enum TipoOperacao {
 	SOMA("+", "Soma"),
-	SUBTRACAO("-", "Subtração"),
-	MULTIPLICACAO("*", "Multiplicação"),
-	DIVISAO("/", "Divisão"),
+	SUBTRACAO("-", "SubtraÃ§Ã£o"),
+	MULTIPLICACAO("Ã—", "MultiplicaÃ§Ã£o"),
+	DIVISAO("Ã·", "DivisÃ£o"),
 	RESTO("%", "Resto"),
 	ELEVADO_Y("^", "X Elevado a Y"),
-	RAIZ_QUADRADA_Y("yroot", "Raiz de Y");
+	RAIZ_QUADRADA_Y("âˆš", "Raiz de Y");
 	
 	private String sinalOperacao;
 	private String nomeOperacao;

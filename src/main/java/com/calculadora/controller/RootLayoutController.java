@@ -5,10 +5,8 @@ import com.calculadora.config.ConfigProperties;
 import com.calculadora.util.Idioma;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -143,6 +141,12 @@ public class RootLayoutController implements Runnable {
 	private void handlePoupanca() {
 		mainApp.ocultarRoot();
 		mainApp.initPoupanca();
+	}
+	
+	@FXML
+	private void handleConversorMoedas() {
+		mainApp.ocultarRoot();
+		mainApp.initConversorMoedas();
 	}
 	
 	public void setRootStage(Stage rootStage) {

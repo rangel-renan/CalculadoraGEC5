@@ -11,6 +11,7 @@ import com.calculadora.config.ConfigProperties;
 import com.calculadora.controller.CalculadoraController;
 import com.calculadora.controller.CartaoCreditoController;
 import com.calculadora.controller.ConversoesController;
+import com.calculadora.controller.ConversorMoedasController;
 import com.calculadora.controller.FinanciamentoController;
 import com.calculadora.controller.FracoesController;
 import com.calculadora.controller.HipotecaController;
@@ -41,7 +42,7 @@ import javafx.stage.StageStyle;
 
 public class MainApp extends Application {
 	public static final String CAMINHO_ICONE_APLICACAO = "/images/logo.png";
-
+	
 	private ConfigProperties label;
 	private int currentSegundos = 0;
 	private ExecutorService threadExecutor;
@@ -62,6 +63,7 @@ public class MainApp extends Application {
 	private Stage hipotecaStage;
 	private Stage cartaoCreditoStage;
 	private Stage poupancaStage;
+	private Stage conversaoMoedasStage;
 	private BorderPane rootLayout;
 	
 	private RootLayoutController rootLayoutController;
@@ -81,6 +83,7 @@ public class MainApp extends Application {
 	private HipotecaController hipotecaController;
 	private CartaoCreditoController cartaoCreditoController;
 	private PoupancaController poupancaController;
+	private ConversorMoedasController conversorMoedasController;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -268,6 +271,13 @@ public class MainApp extends Application {
 		poupancaStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Poupanca.fxml"), "Poupança", CAMINHO_ICONE_APLICACAO);
 		poupancaController = loader.getController();
 		poupancaController.show(this, poupancaStage, label);
+	}
+	
+	public void initConversorMoedas() {
+		FXMLLoader loader = getLoader();
+		conversaoMoedasStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/ConversorMoedas.fxml"), "Conversor Moedas", CAMINHO_ICONE_APLICACAO);
+		conversorMoedasController = loader.getController();
+		conversorMoedasController.show(this, conversaoMoedasStage, label);
 	}
 	
 	public void initVetores() {

@@ -383,7 +383,7 @@ public class CalculadoraController implements Runnable {
 		
 		if (operador.equals("Mod")) operador = "%";
 		if (textId != null && textId.equals("x^y")) operador = "^";
-		if (textId != null && textId.equals("y √x")) operador = "yroot";
+		if (textId != null && textId.equals("y √x")) operador = "√";
 		
 		handleOperador(operador);
 	}

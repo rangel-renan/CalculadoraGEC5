@@ -1,22 +1,70 @@
 package com.calculadora.service;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.measure.converter.UnitConverter;
 import javax.measure.unit.Unit;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import com.calculadora.util.ImpossivelConverterException;
+
+import javafx.concurrent.Worker.State;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+
 public class ConversaoServiceImpl implements ConversaoService {
-	
+	private String resultado;
+
 	@Override
 	public BigDecimal converter(BigDecimal valor, Unit<?> tipoInicial, Unit<?> tipoFinal) throws NumberFormatException {
 		UnitConverter toConverter = tipoInicial.getConverterTo(tipoFinal);
 		return new BigDecimal(toConverter.convert(valor.doubleValue()));
 	}
-	
-	public BigDecimal converterMoeda() {
+
+	public BigDecimal converterMoeda(BigDecimal valor, String firstMoeda, String moedaResultante)
+			throws NumberFormatException, MalformedURLException, IOException, ImpossivelConverterException {
+		String query = "https://www.google.com/finance/converter?a=" + valor.doubleValue() + "&from=" + firstMoeda
+				+ "&to=" + moedaResultante;
+		URL url = new URL(query);
+		InputStreamReader stream = new InputStreamReader(url.openStream());
+		BufferedReader in = new BufferedReader(stream);
+		String str = "";
+		String temp = "";
+
+		while ((temp = in.readLine()) != null) {
+			str = str + temp;
+		}
+
+		WebView view = new WebView();
+		WebEngine engine = view.getEngine();
+		engine.loadContent(str);
+		engine.getLoadWorker().stateProperty().addListener((observable, oldState, newState) -> {
+			if (newState == State.SUCCEEDED) {
+				Document doc = engine.getDocument();
+				Element el = doc.getElementById("currency_converter_result");
+				resultado = el.getTextContent();
+			}
+		});
 		
-		return null;
+		if (resultado.equals("Could not convert.")) 
+			throw new ImpossivelConverterException("Impossível de se Converter.");
+		/*
+		 * } catch (NumberFormatException e) {
+        	System.out.println("Formato de Número Incorreto.");
+        } catch (MalformedURLException e) {
+        	System.out.println("Valores ou Moedas Inexistentes.");
+		} catch (IOException e) {
+			System.out.println("É Necessário acesso a Internet.");
+		} 
+		 */
+		return new BigDecimal(resultado.split("= ")[1].split(" " + moedaResultante)[0]);
 	}
-	
-	
+
 }
