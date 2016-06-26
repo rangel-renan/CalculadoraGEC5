@@ -19,6 +19,7 @@ import com.calculadora.controller.JurosController;
 import com.calculadora.controller.MatrizController;
 import com.calculadora.controller.OpcoesController;
 import com.calculadora.controller.PorcentagensController;
+import com.calculadora.controller.PoupancaController;
 import com.calculadora.controller.PrimosController;
 import com.calculadora.controller.RegraTresController;
 import com.calculadora.controller.RootLayoutController;
@@ -60,6 +61,7 @@ public class MainApp extends Application {
 	private Stage jurosStage;
 	private Stage hipotecaStage;
 	private Stage cartaoCreditoStage;
+	private Stage poupancaStage;
 	private BorderPane rootLayout;
 	
 	private RootLayoutController rootLayoutController;
@@ -78,6 +80,7 @@ public class MainApp extends Application {
 	private JurosController jurosController;
 	private HipotecaController hipotecaController;
 	private CartaoCreditoController cartaoCreditoController;
+	private PoupancaController poupancaController;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -258,6 +261,13 @@ public class MainApp extends Application {
 		cartaoCreditoStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/CartaoCredito.fxml"), "Cartão de Crédito", CAMINHO_ICONE_APLICACAO);
 		cartaoCreditoController = loader.getController();
 		cartaoCreditoController.show(this, cartaoCreditoStage, label);
+	}
+	
+	public void initPoupanca() {
+		FXMLLoader loader = getLoader();
+		poupancaStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Poupanca.fxml"), "Poupança", CAMINHO_ICONE_APLICACAO);
+		poupancaController = loader.getController();
+		poupancaController.show(this, poupancaStage, label);
 	}
 	
 	public void initVetores() {

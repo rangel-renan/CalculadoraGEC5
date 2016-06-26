@@ -139,6 +139,12 @@ public class RootLayoutController implements Runnable {
 		mainApp.initCartaoCredito();
 	}
 	
+	@FXML
+	private void handlePoupanca() {
+		mainApp.ocultarRoot();
+		mainApp.initPoupanca();
+	}
+	
 	public void setRootStage(Stage rootStage) {
 		this.rootStage = rootStage;
 	}

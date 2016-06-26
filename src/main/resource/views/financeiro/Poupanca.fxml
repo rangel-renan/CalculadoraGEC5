@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="446.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.PoupancaController">
+   <children>
+      <TabPane prefHeight="438.0" prefWidth="446.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Valor de Depósitos Regulares">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="401.0" prefWidth="454.0">
+                           <children>
+                              <TextField layoutX="219.0" layoutY="73.0" prefHeight="36.0" prefWidth="154.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                              <Label layoutX="97.0" layoutY="79.0" text="Valor Total">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField disable="true" layoutX="182.0" layoutY="73.0" prefHeight="36.0" prefWidth="37.0" promptText="R$">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                              <Label layoutX="124.0" layoutY="30.0" text="Moeda">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox layoutX="182.0" layoutY="26.0" prefHeight="31.0" prefWidth="121.0" promptText="REAL (R$)" />
+                              <TextField layoutX="219.0" layoutY="121.0" prefHeight="36.0" prefWidth="154.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                              <Label layoutX="77.0" layoutY="127.0" text="Taxa de Juros">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField disable="true" layoutX="182.0" layoutY="121.0" prefHeight="36.0" prefWidth="37.0" promptText="\%">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                              <TextField layoutX="182.0" layoutY="173.0" prefHeight="36.0" prefWidth="154.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                              <Label layoutX="19.0" layoutY="179.0" text="Número de Depósitos">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Button ellipsisString="" layoutX="207.0" layoutY="279.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" styleClass="operadores" text="%botoes.calcular">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <TextField alignment="CENTER" editable="false" layoutX="219.0" layoutY="346.0" prefHeight="36.0" prefWidth="154.0" styleClass="btnResults" />
+                              <TextField disable="true" layoutX="182.0" layoutY="346.0" prefHeight="36.0" prefWidth="37.0" promptText="R$">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                              <Label layoutX="32.0" layoutY="352.0" text="Valor dos Depósitos">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox layoutX="339.0" layoutY="222.0" prefHeight="36.0" prefWidth="73.0" promptText="Dias" />
+                              <Label layoutX="114.0" layoutY="228.0" text="Duração">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField layoutX="182.0" layoutY="222.0" prefHeight="36.0" prefWidth="154.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Valor Total">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="401.0" prefWidth="454.0">
+                           <children>
+                              <TextField layoutX="219.0" layoutY="73.0" prefHeight="36.0" prefWidth="154.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                              <Label layoutX="29.0" layoutY="79.0" text="Valor dos Depósitos">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField disable="true" layoutX="182.0" layoutY="73.0" prefHeight="36.0" prefWidth="37.0" promptText="R$">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                              <Label layoutX="124.0" layoutY="30.0" text="Moeda">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox layoutX="182.0" layoutY="26.0" prefHeight="31.0" prefWidth="121.0" promptText="REAL (R$)" />
+                              <TextField layoutX="219.0" layoutY="121.0" prefHeight="36.0" prefWidth="154.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                              <Label layoutX="77.0" layoutY="127.0" text="Taxa de Juros">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField disable="true" layoutX="182.0" layoutY="121.0" prefHeight="36.0" prefWidth="37.0" promptText="\%">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                              <TextField layoutX="182.0" layoutY="173.0" prefHeight="36.0" prefWidth="154.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                              <Label layoutX="19.0" layoutY="179.0" text="Número de Depósitos">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Button ellipsisString="" layoutX="207.0" layoutY="279.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" styleClass="operadores" text="%botoes.calcular">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <TextField alignment="CENTER" editable="false" layoutX="219.0" layoutY="346.0" prefHeight="36.0" prefWidth="154.0" styleClass="btnResults" />
+                              <TextField disable="true" layoutX="182.0" layoutY="346.0" prefHeight="36.0" prefWidth="37.0" promptText="R$">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                              <Label layoutX="97.0" layoutY="352.0" text="Valor Total">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox layoutX="339.0" layoutY="222.0" prefHeight="36.0" prefWidth="73.0" promptText="Dias" />
+                              <Label layoutX="114.0" layoutY="228.0" text="Duração">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField layoutX="182.0" layoutY="222.0" prefHeight="36.0" prefWidth="154.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <Button ellipsisString="" layoutX="131.0" layoutY="456.0" mnemonicParsing="false" onAction="#handleVoltar" prefHeight="33.0" prefWidth="94.0" text="%botoes.voltar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="233.0" layoutY="456.0" mnemonicParsing="false" onAction="#handleAjuda" prefHeight="33.0" prefWidth="94.0" text="%botoes.ajuda">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>
