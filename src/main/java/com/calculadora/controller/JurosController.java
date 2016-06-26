@@ -3,28 +3,48 @@ package com.calculadora.controller;
 import com.calculadora.MainApp;
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.service.FinanceiraService;
+import com.calculadora.service.FinanceiraServiceImpl;
 
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
-public class JurosController {
+public class JurosController implements Runnable {
 	private MainApp mainApp;
 	private Stage jurosStage;
 
 	private ConfigProperties label;
 	private FinanceiraService financeiraService;
 	
-	public void show(MainApp mainApp, Stage jurosStage, ConfigProperties label,
-			FinanceiraService financeiraService) {
-		this.mainApp = mainApp;
+	@Override
+	public void run() {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				jurosStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+					public void handle(WindowEvent we) {
+						handleVoltar();
+					}
+				});
+			}
+		});
+		
+	}
+	
+	public void show(MainApp _mainApp, Stage jurosStage, ConfigProperties label) {
+		this.mainApp = _mainApp;
 		this.jurosStage = jurosStage;
 		this.label = label;
-		this.financeiraService = financeiraService;
+		this.financeiraService = new FinanceiraServiceImpl();
+		
+		run();
+		mainApp.addThread(new Thread(this));
 	}
 	
 	@FXML
 	private void handleVoltar() {
-		mainApp.initRoot();
+		mainApp.exibirRoot();
 		jurosStage.close();
 	}
 

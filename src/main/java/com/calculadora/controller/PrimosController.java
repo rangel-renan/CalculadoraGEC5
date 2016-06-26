@@ -7,6 +7,7 @@ import com.calculadora.config.ConfigProperties;
 import com.calculadora.service.OperacoesBasicasService;
 import com.calculadora.service.OperacoesBasicasServiceImpl;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,7 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class PrimosController {
+public class PrimosController implements Runnable {
 	private MainApp mainApp;
 	private ConfigProperties label;
 	private Stage primosStage;
@@ -32,33 +33,46 @@ public class PrimosController {
 	@FXML
 	private TextField textFieldExplicacao;
 	
-	public void show(MainApp mainApp, Stage primosStage, ConfigProperties label) {
-		this.mainApp = mainApp;
-		this.primosStage = primosStage;
-		this.label = label;
-		
-		operacoesBasicasService = new OperacoesBasicasServiceImpl();
-		
+	@Override
+	public void run() {
 		btnCalcular.setDisable(true);
 		textFieldInputPrimo.requestFocus();
 		setListerners(textFieldInputPrimo);
 		
-		this.primosStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-			public void handle(WindowEvent we) {
-				handleVoltar();
+		Platform.runLater(new Runnable() {
+			public void run() {
+				primosStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+					public void handle(WindowEvent we) {
+						handleVoltar();
+					}
+				});
 			}
 		});
 	}
 	
+	public void show(MainApp _mainApp, Stage primosStage, ConfigProperties label) {
+		this.mainApp = _mainApp;
+		this.primosStage = primosStage;
+		this.label = label;
+		this.operacoesBasicasService = new OperacoesBasicasServiceImpl();
+		
+		run();
+		mainApp.addThread(new Thread(this));
+	}
+	
 	private void setListerners(TextField label) {
-		label.textProperty().addListener((observable, oldValue, newValue) -> {
-		    if (textFieldInputPrimo.getText().length() == 0) {
-		    	btnCalcular.setDisable(true);
-		    	textFieldIsPrimo.setText("");
-		    	textFieldExplicacao.setText("");
-		    } else {
-		    	btnCalcular.setDisable(false);
-		    }
+		Platform.runLater(new Runnable() {
+			public void run() {
+				label.textProperty().addListener((observable, oldValue, newValue) -> {
+				    if (textFieldInputPrimo.getText().length() == 0) {
+				    	btnCalcular.setDisable(true);
+				    	textFieldIsPrimo.setText("");
+				    	textFieldExplicacao.setText("");
+				    } else {
+				    	btnCalcular.setDisable(false);
+				    }
+				});
+			}
 		});
 	}
 	
@@ -96,7 +110,7 @@ public class PrimosController {
 	
 	@FXML
 	private void handleVoltar() {
-		mainApp.initRoot();
+		mainApp.exibirRoot();
 		primosStage.close();
 	}
 	

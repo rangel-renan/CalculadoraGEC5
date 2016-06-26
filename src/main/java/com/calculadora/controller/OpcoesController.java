@@ -3,6 +3,7 @@ package com.calculadora.controller;
 import com.calculadora.MainApp;
 import com.calculadora.util.Idioma;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,7 +12,7 @@ import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class OpcoesController {
+public class OpcoesController implements Runnable {
 	
 	private MainApp mainApp;
 	private Stage opcoesStage;
@@ -22,19 +23,28 @@ public class OpcoesController {
 	@FXML
 	private ComboBox<Idioma> comboIdiomas;
 	
-	public void show(MainApp mainApp, Stage opcoesStage) {
-		this.mainApp = mainApp;
-		this.opcoesStage = opcoesStage;
-		
+	@Override
+	public void run() {
 		btnOk.setDisable(true);
 		comboIdiomas.setItems(FXCollections.observableArrayList(Idioma.values()));
 		
-		this.opcoesStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-			public void handle(WindowEvent we) {
-				mainApp.initRoot();
-				opcoesStage.close();
+		Platform.runLater(new Runnable() {
+			public void run() {
+				opcoesStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+					public void handle(WindowEvent we) {
+						handleCancelar();
+					}
+				});
 			}
 		});
+	}
+	
+	public void show(MainApp _mainApp, Stage opcoesStage) {
+		this.mainApp = _mainApp;
+		this.opcoesStage = opcoesStage;
+		
+		run();
+		mainApp.addThread(new Thread(this));
 	}
 	
 	@FXML

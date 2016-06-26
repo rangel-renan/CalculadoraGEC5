@@ -4,11 +4,18 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.controller.CalculadoraController;
+import com.calculadora.controller.CartaoCreditoController;
 import com.calculadora.controller.ConversoesController;
+import com.calculadora.controller.FinanciamentoController;
 import com.calculadora.controller.FracoesController;
+import com.calculadora.controller.HipotecaController;
+import com.calculadora.controller.InvestimentoController;
+import com.calculadora.controller.JurosController;
 import com.calculadora.controller.MatrizController;
 import com.calculadora.controller.OpcoesController;
 import com.calculadora.controller.PorcentagensController;
@@ -36,6 +43,7 @@ public class MainApp extends Application {
 
 	private ConfigProperties label;
 	private int currentSegundos = 0;
+	private ExecutorService threadExecutor;
 	
 	private Stage rootStage;
 	private Stage opcoesStage;
@@ -47,6 +55,11 @@ public class MainApp extends Application {
 	private Stage regraTresStage;
 	private Stage matrizStage;
 	private Stage vetoresStage;
+	private Stage financiamentoStage;
+	private Stage investimentoStage;
+	private Stage jurosStage;
+	private Stage hipotecaStage;
+	private Stage cartaoCreditoStage;
 	private BorderPane rootLayout;
 	
 	private RootLayoutController rootLayoutController;
@@ -60,10 +73,17 @@ public class MainApp extends Application {
 	private RegraTresController regraTresController;
 	private MatrizController matrizController;
 	private VetoresController vetoresController;
+	private FinanciamentoController financiamentoController;
+	private InvestimentoController investimentoController;
+	private JurosController jurosController;
+	private HipotecaController hipotecaController;
+	private CartaoCreditoController cartaoCreditoController;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		label = ConfigProperties.getInstance(Idioma.Portugues);
+		threadExecutor = Executors.newCachedThreadPool();
+		
 		initWelcome(primaryStage);
 	}
 	
@@ -130,6 +150,7 @@ public class MainApp extends Application {
 
 		rootLayoutController = loader.getController();
 		rootLayoutController.show(label, this, rootStage);
+		addThread(new Thread(rootLayoutController));
 		
 		FXMLLoader loaderCalculadora = getLoader();
 		AnchorPane calculadoraLayout = (AnchorPane) getLayout(loaderCalculadora, "/views/Calculadora.fxml");
@@ -138,6 +159,7 @@ public class MainApp extends Application {
 		
 		calculadoraController = loaderCalculadora.getController();
 		calculadoraController.show(label, calculadoraLayout);
+		addThread(new Thread(calculadoraController));
 	}
 	
 	public void initOpcoes() {
@@ -153,7 +175,7 @@ public class MainApp extends Application {
 		FXMLLoader loader = getLoader();
 		sobreStage = getStage((AnchorPane) getLayout(loader, "/views/Sobre.fxml"), label.getString("sobre.tituloJanela"), CAMINHO_ICONE_APLICACAO);
 		sobreController = loader.getController();
-		sobreController.show(rootStage, sobreStage);
+		sobreController.show(this, sobreStage);
 	}
 	
 	public void initConversoes() {
@@ -198,9 +220,44 @@ public class MainApp extends Application {
 	
 	public void initMatriz() {
 		FXMLLoader loader = getLoader();
-		matrizStage = getStage((AnchorPane) getLayout(loader, "/views/outrasOperacoes/MatrizNxN.fxml"), label.getString("root.tab.matrizEquacao.matrizTitulo"), CAMINHO_ICONE_APLICACAO);
+		matrizStage = getStage((AnchorPane) getLayout(loader, "/views/outrasOperacoes/Matriz.fxml"), label.getString("root.tab.matrizEquacao.matrizTitulo"), CAMINHO_ICONE_APLICACAO);
 		matrizController = loader.getController();
 		matrizController.show(this, matrizStage, label);
+	}
+	
+	public void initFinanciamento() {
+		FXMLLoader loader = getLoader();
+		financiamentoStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Financiamento.fxml"), "Financiamento", CAMINHO_ICONE_APLICACAO);
+		financiamentoController = loader.getController();
+		financiamentoController.show(this, financiamentoStage, label);
+	}
+	
+	public void initInvestimento() {
+		FXMLLoader loader = getLoader();
+		investimentoStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Investimento.fxml"), "Investimento", CAMINHO_ICONE_APLICACAO);
+		investimentoController = loader.getController();
+		investimentoController.show(this, investimentoStage, label);
+	}
+	
+	public void initJuros() {
+		FXMLLoader loader = getLoader();
+		jurosStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Juros.fxml"), "Juros", CAMINHO_ICONE_APLICACAO);
+		jurosController = loader.getController();
+		jurosController.show(this, jurosStage, label);
+	}
+	
+	public void initHipoteca() {
+		FXMLLoader loader = getLoader();
+		hipotecaStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Hipoteca.fxml"), "Hipoteca", CAMINHO_ICONE_APLICACAO);
+		hipotecaController = loader.getController();
+		hipotecaController.show(this, hipotecaStage, label);
+	}
+	
+	public void initCartaoCredito() {
+		FXMLLoader loader = getLoader();
+		cartaoCreditoStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/CartaoCredito.fxml"), "Cartão de Crédito", CAMINHO_ICONE_APLICACAO);
+		cartaoCreditoController = loader.getController();
+		cartaoCreditoController.show(this, cartaoCreditoStage, label);
 	}
 	
 	public void initVetores() {
@@ -221,6 +278,23 @@ public class MainApp extends Application {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public void addThread(Thread novaThread) {
+		threadExecutor.execute(novaThread);
+	}
+	
+	public void ocultarRoot() {
+		rootStage.hide();
+	}
+	
+	public void exibirRoot() {
+		rootStage.show();
+	}
+	
+	public void exitAplicacao() {
+		System.exit(0);
+		threadExecutor.shutdown();
 	}
 	
 	public static void main(String[] args) {

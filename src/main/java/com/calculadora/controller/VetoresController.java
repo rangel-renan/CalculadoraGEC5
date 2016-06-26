@@ -7,6 +7,7 @@ import com.calculadora.service.VetoresServiceImpl;
 import com.calculadora.util.VetorTamanhoExcedidoException;
 import com.calculadora.util.VetoresTamanhosDiferentesException;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -15,7 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class VetoresController {
+public class VetoresController implements Runnable {
 	private MainApp mainApp;
 	private Stage vetorStage;
 
@@ -78,13 +79,9 @@ public class VetoresController {
 
 	@FXML
 	private Button btnCosseno;
-
-	public void show(MainApp mainApp, Stage vetorStage, ConfigProperties label) {
-		this.label = label;
-		this.mainApp = mainApp;
-		this.vetorStage = vetorStage;
-		this.vetorService = new VetoresServiceImpl();
-
+	
+	@Override
+	public void run() {
 		btnAsomaB.setDisable(true);
 		btnAsubtraiB.setDisable(true);
 		btnModuloA.setDisable(true);
@@ -110,60 +107,90 @@ public class VetoresController {
 		setListerners(textFieldElevadoPorB, textFieldvetorB, btnElevadoPorB);
 		setListernersVetorA(textFieldvetorA);
 		setListernersVetorB(textFieldvetorB);
-
-		this.vetorStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-			public void handle(WindowEvent we) {
-				handleVoltar();
+		
+		Platform.runLater(new Runnable() {
+			public void run() {
+				vetorStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+					public void handle(WindowEvent we) {
+						handleVoltar();
+					}
+				});
 			}
 		});
 	}
+	
+	public void show(MainApp _mainApp, Stage vetorStage, ConfigProperties label) {
+		this.label = label;
+		this.mainApp = _mainApp;
+		this.vetorStage = vetorStage;
+		this.vetorService = new VetoresServiceImpl();
+
+		run();
+		mainApp.addThread(new Thread(this));
+	}
 
 	private void setListernersVetorA(TextField label) {
-		label.textProperty().addListener((observable, oldValue, newValue) -> {
-			if (label.getText().length() == 0) {
-				btnModuloA.setDisable(true);
-			} else {
-				btnModuloA.setDisable(false);
+		Platform.runLater(new Runnable() {
+			public void run() {
+				label.textProperty().addListener((observable, oldValue, newValue) -> {
+					if (label.getText().length() == 0) {
+						btnModuloA.setDisable(true);
+					} else {
+						btnModuloA.setDisable(false);
+					}
+				});
 			}
 		});
 	}
 
 	private void setListernersVetorB(TextField label) {
-		label.textProperty().addListener((observable, oldValue, newValue) -> {
-			if (label.getText().length() == 0) {
-				btnModuloB.setDisable(true);
-			} else {
-				btnModuloB.setDisable(false);
+		Platform.runLater(new Runnable() {
+			public void run() {
+				label.textProperty().addListener((observable, oldValue, newValue) -> {
+					if (label.getText().length() == 0) {
+						btnModuloB.setDisable(true);
+					} else {
+						btnModuloB.setDisable(false);
+					}
+				});
 			}
 		});
 	}
 
 	private void setListerners(TextField textArea, TextField textField, Button btnOperacao) {
-		textField.textProperty().addListener((observable, oldValue, newValue) -> {
-			if (textField.getText().length() == 0 || textArea.getText().length() == 0) {
-				btnOperacao.setDisable(true);
-			} else {
-				btnOperacao.setDisable(false);
+		Platform.runLater(new Runnable() {
+			public void run() {
+				textField.textProperty().addListener((observable, oldValue, newValue) -> {
+					if (textField.getText().length() == 0 || textArea.getText().length() == 0) {
+						btnOperacao.setDisable(true);
+					} else {
+						btnOperacao.setDisable(false);
+					}
+				});
 			}
 		});
 	}
 
 	private void setListerners(TextField textArea) {
-		textArea.textProperty().addListener((observable, oldValue, newValue) -> {
-			if (textFieldvetorA.getText().length() == 0 || textFieldvetorB.getText().length() == 0) {
-				btnAsomaB.setDisable(true);
-				btnAsubtraiB.setDisable(true);
-				btnEscalar.setDisable(true);
-				btnVetorial.setDisable(true);
-				btnProjecao.setDisable(true);
-				btnCosseno.setDisable(true);
-			} else {
-				btnAsomaB.setDisable(false);
-				btnAsubtraiB.setDisable(false);
-				btnEscalar.setDisable(false);
-				btnVetorial.setDisable(false);
-				btnProjecao.setDisable(false);
-				btnCosseno.setDisable(false);
+		Platform.runLater(new Runnable() {
+			public void run() {
+				textArea.textProperty().addListener((observable, oldValue, newValue) -> {
+					if (textFieldvetorA.getText().length() == 0 || textFieldvetorB.getText().length() == 0) {
+						btnAsomaB.setDisable(true);
+						btnAsubtraiB.setDisable(true);
+						btnEscalar.setDisable(true);
+						btnVetorial.setDisable(true);
+						btnProjecao.setDisable(true);
+						btnCosseno.setDisable(true);
+					} else {
+						btnAsomaB.setDisable(false);
+						btnAsubtraiB.setDisable(false);
+						btnEscalar.setDisable(false);
+						btnVetorial.setDisable(false);
+						btnProjecao.setDisable(false);
+						btnCosseno.setDisable(false);
+					}
+				});
 			}
 		});
 	}
@@ -285,7 +312,7 @@ public class VetoresController {
 
 	@FXML
 	private void handleVoltar() {
-		mainApp.initRoot();
+		mainApp.exibirRoot();
 		vetorStage.close();
 	}
 

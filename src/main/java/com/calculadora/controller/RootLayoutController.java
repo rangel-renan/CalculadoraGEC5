@@ -4,13 +4,16 @@ import com.calculadora.MainApp;
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.util.Idioma;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 @SuppressWarnings("unused")
-public class RootLayoutController {
+public class RootLayoutController implements Runnable {
 	
 	private MainApp mainApp;
 	private Stage rootStage;
@@ -20,22 +23,37 @@ public class RootLayoutController {
 	public RootLayoutController() {
 		label = ConfigProperties.getInstance(Idioma.Portugues);
 	}
+
+	@Override
+	public void run() {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				rootStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+					public void handle(WindowEvent we) {
+						handleSair();
+					}
+				});
+			}
+		});
+	}
 	
-	public void show(ConfigProperties label, MainApp mainApp, Stage rootStage) {
+	public void show(ConfigProperties label, MainApp mainApp, Stage _rootStage) {
 		this.label = label;
-		this.rootStage = rootStage;
+		this.rootStage = _rootStage;
 		this.mainApp = mainApp;
+		
+		run();
 	}
 	
 	@FXML
 	private void handleSobre() {
+		mainApp.ocultarRoot();
 		mainApp.initSobre();
-		rootStage.hide();
 	}
 	
 	@FXML
 	private void handleSair() {
-		System.exit(0);
+		mainApp.exitAplicacao();
 	}
 	
 	@FXML
@@ -51,44 +69,74 @@ public class RootLayoutController {
 	
 	@FXML
 	private void handleConversoes() {
-		rootStage.close();
+		mainApp.ocultarRoot();
 		mainApp.initConversoes();
 	}
 	
 	@FXML
 	private void handleFracoes() {
-		rootStage.close();
+		mainApp.ocultarRoot();
 		mainApp.initFracoes();
 	}
 	
 	@FXML
 	private void handlePorcentagens() {
-		rootStage.close();
+		mainApp.ocultarRoot();
 		mainApp.initPorcentagens();
 	}
 	
 	@FXML
 	private void handlePrimos() {
-		rootStage.close();
+		mainApp.ocultarRoot();
 		mainApp.initPrimos();
 	}
 	
 	@FXML
 	private void handleRegraTres() {
-		rootStage.close();
+		mainApp.ocultarRoot();
 		mainApp.initRegraTres();
 	}
 	
 	@FXML
 	private void handleMatriz() {
-		rootStage.close();
+		mainApp.ocultarRoot();
 		mainApp.initMatriz();
 	}
 	
 	@FXML
 	private void handleVetores() {
-		rootStage.close();
+		mainApp.ocultarRoot();
 		mainApp.initVetores();;
+	}
+	
+	@FXML
+	private void handleFinanciamento() {
+		mainApp.ocultarRoot();
+		mainApp.initFinanciamento();
+	}
+	
+	@FXML
+	private void handleInvestimento() {
+		mainApp.ocultarRoot();
+		mainApp.initInvestimento();
+	}
+	
+	@FXML
+	private void handleJuros() {
+		mainApp.ocultarRoot();
+		mainApp.initJuros();
+	}
+	
+	@FXML
+	private void handleHipoteca() {
+		mainApp.ocultarRoot();
+		mainApp.initHipoteca();
+	}
+	
+	@FXML
+	private void handleCartaoCredito() {
+		mainApp.ocultarRoot();
+		mainApp.initCartaoCredito();
 	}
 	
 	public void setRootStage(Stage rootStage) {
@@ -102,4 +150,5 @@ public class RootLayoutController {
 	public void setLabel(ConfigProperties label) {
 		this.label = label;
 	}
+
 }

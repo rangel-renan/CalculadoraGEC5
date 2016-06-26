@@ -163,6 +163,76 @@
                      </children></AnchorPane>
             </content>
           </Tab>
+            <Tab text="Financeiro">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button alignment="TOP_CENTER" contentDisplay="TOP" layoutX="14.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleFinanciamento" prefHeight="84.0" prefWidth="96.0" styleClass="tabButtons" text="Financiamento" textAlignment="CENTER">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <ImageView fitHeight="62.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" smooth="false" styleClass="btnImagens">
+                                 <image>
+                                    <Image url="@../images/financiamento.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Separator layoutX="481.0" layoutY="14.0" orientation="VERTICAL" prefHeight="115.0" prefWidth="6.0" />
+                        <Label layoutX="171.0" layoutY="117.0" text="Calculadoras Financieiras" />
+                        <Button alignment="TOP_CENTER" contentDisplay="TOP" layoutX="110.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleInvestimento" prefHeight="84.0" prefWidth="96.0" styleClass="tabButtons" text="Investimento" textAlignment="CENTER">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <ImageView fitHeight="62.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" smooth="false" styleClass="btnImagens">
+                                 <image>
+                                    <Image url="@../images/investimento.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button alignment="TOP_CENTER" contentDisplay="TOP" layoutX="206.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleJuros" prefHeight="84.0" prefWidth="75.0" styleClass="tabButtons" text="Juros" textAlignment="CENTER">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <ImageView fitHeight="62.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" smooth="false" styleClass="btnImagens">
+                                 <image>
+                                    <Image url="@../images/juros.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button alignment="TOP_CENTER" contentDisplay="TOP" layoutX="281.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleHipoteca" prefHeight="84.0" prefWidth="75.0" styleClass="tabButtons" text="Hipoteca" textAlignment="CENTER">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <ImageView fitHeight="62.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" smooth="false" styleClass="btnImagens">
+                                 <image>
+                                    <Image url="@../images/hipoteca.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button alignment="TOP_CENTER" contentDisplay="TOP" layoutX="356.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleCartaoCredito" prefHeight="84.0" prefWidth="117.0" styleClass="tabButtons" text="Cartão de Credito" textAlignment="CENTER">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <ImageView fitHeight="62.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" smooth="false" styleClass="btnImagens">
+                                 <image>
+                                    <Image url="@../images/cartaoCredito.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
         </tabs>
       </TabPane>
    </top>

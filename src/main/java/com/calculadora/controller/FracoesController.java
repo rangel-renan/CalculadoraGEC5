@@ -8,6 +8,7 @@ import com.calculadora.service.FracoesService;
 import com.calculadora.service.FracoesServiceImpl;
 import com.calculadora.util.TipoOperacao;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,7 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class FracoesController {
+public class FracoesController implements Runnable {
 	private MainApp mainApp;
 	private Stage fracoesStage;
 	private FracoesService fracoesService;
@@ -46,16 +47,8 @@ public class FracoesController {
 	@FXML
 	private TextField textFieldResultFracaoDenominador;
 	
-	public void show(MainApp mainApp, Stage fracoesStage) {
-		this.mainApp = mainApp;
-		this.fracoesStage = fracoesStage;
-		
-		fracoesService = new FracoesServiceImpl();
-		
-		comboTipoOperacoes.setItems(FXCollections.observableArrayList(TipoOperacao.values()));
-		comboTipoOperacoes.getSelectionModel().select(0);
-		comboTipoOperacoes.getItems().remove(4);
-		
+	@Override
+	public void run() {
 		textFieldFirstFracaoNumerador.requestFocus();
 		btnCalcular.setDisable(true);
 		
@@ -64,23 +57,44 @@ public class FracoesController {
 		setListerners(textFieldSecondFracaoNumerador);
 		setListerners(textFieldSecondFracaoDenominador);
 		
-		this.fracoesStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-			public void handle(WindowEvent we) {
-				handleVoltar();
+		Platform.runLater(new Runnable() {
+			public void run() {
+				fracoesStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+					public void handle(WindowEvent we) {
+						handleVoltar();
+					}
+				});
 			}
 		});
 	}
 	
+	public void show(MainApp _mainApp, Stage fracoesStage) {
+		this.mainApp = _mainApp;
+		this.fracoesStage = fracoesStage;
+		this.fracoesService = new FracoesServiceImpl();
+		
+		comboTipoOperacoes.setItems(FXCollections.observableArrayList(TipoOperacao.values()));
+		comboTipoOperacoes.getSelectionModel().select(0);
+		comboTipoOperacoes.getItems().remove(4);
+		
+		run();
+		mainApp.addThread(new Thread(this));
+	}
+	
 	private void setListerners(TextField textField) {
-		textField.textProperty().addListener((observable, oldValue, newValue) -> {
-		    if (textFieldFirstFracaoNumerador.getText().length() == 0 
-		    || textFieldFirstFracaoDenominador.getText().length() == 0
-		    || textFieldSecondFracaoNumerador.getText().length() == 0
-		    || textFieldSecondFracaoDenominador.getText().length() == 0) {
-		    	btnCalcular.setDisable(true);
-		    } else {
-		    	btnCalcular.setDisable(false);
-		    }
+		Platform.runLater(new Runnable() {
+			public void run() {
+				textField.textProperty().addListener((observable, oldValue, newValue) -> {
+				    if (textFieldFirstFracaoNumerador.getText().length() == 0 
+				    || textFieldFirstFracaoDenominador.getText().length() == 0
+				    || textFieldSecondFracaoNumerador.getText().length() == 0
+				    || textFieldSecondFracaoDenominador.getText().length() == 0) {
+				    	btnCalcular.setDisable(true);
+				    } else {
+				    	btnCalcular.setDisable(false);
+				    }
+				});
+			}
 		});
 	}
 	
@@ -97,7 +111,7 @@ public class FracoesController {
 	
 	@FXML
 	private void handleVoltar() {
-		mainApp.initRoot();
+		mainApp.exibirRoot();
 		fracoesStage.close();
 	}
 	

@@ -8,6 +8,7 @@ import com.calculadora.util.MatrizesTamanhosDiferentesException;
 import com.calculadora.util.ParseMatriz;
 import com.calculadora.util.TipoOperacao;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,7 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class MatrizController {
+public class MatrizController implements Runnable {
 	private MainApp mainApp;
 	private Stage matrizStage;
 
@@ -97,12 +98,8 @@ public class MatrizController {
 	@FXML
 	private Button btnAdjuntaB;
 	
-	public void show(MainApp mainApp, Stage matrizStage, ConfigProperties label) {
-		this.label = label;
-		this.mainApp = mainApp;
-		this.matrizStage = matrizStage;
-		this.matrizService = new MatrizServiceImpl();
-		
+	@Override
+	public void run() {
 		labelResultado.setWrapText(true);
 		
 		btnAsomaB.setDisable(true);
@@ -132,73 +129,105 @@ public class MatrizController {
 		setListernersMatrixA(textAreaMatrizA);
 		setListernersMatrixB(textAreaMatrizB);
 		
-		this.matrizStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-			public void handle(WindowEvent we) {
-				handleVoltar();
+		Platform.runLater(new Runnable() {
+			public void run() {
+				matrizStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+					public void handle(WindowEvent we) {
+						handleVoltar();
+					}
+				});
 			}
 		});
 	}
 	
+	public void show(MainApp _mainApp, Stage matrizStage, ConfigProperties label) {
+		this.label = label;
+		this.mainApp = _mainApp;
+		this.matrizStage = matrizStage;
+		this.matrizService = new MatrizServiceImpl();
+		
+		run();
+		mainApp.addThread(new Thread(this));
+	}
+	
 	private void setListernersMatrixA(TextArea label) {
-		label.textProperty().addListener((observable, oldValue, newValue) -> {
-		    if (label.getText().length() == 0) {
-		    	btnDeterminanteA.setDisable(true);
-		    	btnTranspostaA.setDisable(true);
-		    	btnInversaA.setDisable(true);
-		    	btnTriangularA.setDisable(true);
-		    	btnAdjuntaA.setDisable(true);
-		    } else {
-		    	btnDeterminanteA.setDisable(false);
-		    	btnTranspostaA.setDisable(false);
-		    	btnInversaA.setDisable(false);
-		    	btnTriangularA.setDisable(false);
-		    	btnAdjuntaA.setDisable(false);
-		    }
+		Platform.runLater(new Runnable() {
+			public void run() {
+				label.textProperty().addListener((observable, oldValue, newValue) -> {
+				    if (label.getText().length() == 0) {
+				    	btnDeterminanteA.setDisable(true);
+				    	btnTranspostaA.setDisable(true);
+				    	btnInversaA.setDisable(true);
+				    	btnTriangularA.setDisable(true);
+				    	btnAdjuntaA.setDisable(true);
+				    } else {
+				    	btnDeterminanteA.setDisable(false);
+				    	btnTranspostaA.setDisable(false);
+				    	btnInversaA.setDisable(false);
+				    	btnTriangularA.setDisable(false);
+				    	btnAdjuntaA.setDisable(false);
+				    }
+				});
+			}
 		});
 	}
 	
 	private void setListernersMatrixB(TextArea label) {
-		label.textProperty().addListener((observable, oldValue, newValue) -> {
-		    if (label.getText().length() == 0) {
-		    	btnDeterminanteB.setDisable(true);
-		    	btnTranspostaB.setDisable(true);
-		    	btnInversaB.setDisable(true);
-		    	btnTriangularB.setDisable(true);
-		    	btnAdjuntaB.setDisable(true);
-		    } else {
-		    	btnDeterminanteB.setDisable(false);
-		    	btnTranspostaB.setDisable(false);
-		    	btnInversaB.setDisable(false);
-		    	btnTriangularB.setDisable(false);
-		    	btnAdjuntaB.setDisable(false);
-		    }
+		Platform.runLater(new Runnable() {
+			public void run() {
+				label.textProperty().addListener((observable, oldValue, newValue) -> {
+				    if (label.getText().length() == 0) {
+				    	btnDeterminanteB.setDisable(true);
+				    	btnTranspostaB.setDisable(true);
+				    	btnInversaB.setDisable(true);
+				    	btnTriangularB.setDisable(true);
+				    	btnAdjuntaB.setDisable(true);
+				    } else {
+				    	btnDeterminanteB.setDisable(false);
+				    	btnTranspostaB.setDisable(false);
+				    	btnInversaB.setDisable(false);
+				    	btnTriangularB.setDisable(false);
+				    	btnAdjuntaB.setDisable(false);
+				    }
+				});
+			}
 		});
 	}
 	
 	private void setListerners(TextArea textArea) {
-		textArea.textProperty().addListener((observable, oldValue, newValue) -> {
-		    if (textAreaMatrizA.getText().length() == 0
-		    	|| textAreaMatrizB.getText().length() == 0) {
-		    	btnAsomaB.setDisable(true);
-		    	btnAsubtraiB.setDisable(true);
-		    	btnAmultiplicaB.setDisable(true);
-		    } else {
-		    	btnAsomaB.setDisable(false);
-		    	btnAsubtraiB.setDisable(false);
-		    	btnAmultiplicaB.setDisable(false);
-		    }
+		Platform.runLater(new Runnable() {
+			public void run() {
+				textArea.textProperty().addListener((observable, oldValue, newValue) -> {
+				    if (textAreaMatrizA.getText().length() == 0
+				    	|| textAreaMatrizB.getText().length() == 0) {
+				    	btnAsomaB.setDisable(true);
+				    	btnAsubtraiB.setDisable(true);
+				    	btnAmultiplicaB.setDisable(true);
+				    } else {
+				    	btnAsomaB.setDisable(false);
+				    	btnAsubtraiB.setDisable(false);
+				    	btnAmultiplicaB.setDisable(false);
+				    }
+				});
+			}
 		});
+		
 	}
 	
 	private void setListerners(TextArea textArea, TextField textField, Button btnOperacao) {
-		textField.textProperty().addListener((observable, oldValue, newValue) -> {
-		    if (textField.getText().length() == 0
-		    	|| textArea.getText().length() == 0) {
-		    	btnOperacao.setDisable(true);
-		    } else {
-		    	btnOperacao.setDisable(false);
-		    }
+		Platform.runLater(new Runnable() {
+			public void run() {
+				textField.textProperty().addListener((observable, oldValue, newValue) -> {
+				    if (textField.getText().length() == 0
+				    	|| textArea.getText().length() == 0) {
+				    	btnOperacao.setDisable(true);
+				    } else {
+				    	btnOperacao.setDisable(false);
+				    }
+				});
+			}
 		});
+		
 	}
 	
 	@FXML
@@ -396,7 +425,7 @@ public class MatrizController {
 	
 	@FXML
 	private void handleVoltar() {
-		mainApp.initRoot();
+		mainApp.exibirRoot();
 		matrizStage.close();
 	}
 

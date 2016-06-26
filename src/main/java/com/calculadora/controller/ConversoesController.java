@@ -9,6 +9,7 @@ import com.calculadora.util.TipoConversoes;
 import com.calculadora.util.TipoConversoesArmaDados;
 import com.calculadora.util.TipoConversoesComprimento;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,7 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class ConversoesController {
+public class ConversoesController implements Runnable {
 	private MainApp mainApp;
 	private Stage conversoesStage;
 	private ConversaoService conversaoService;
@@ -41,11 +42,25 @@ public class ConversoesController {
 	@FXML
 	private Button btnCalcular;
 	
-	public void show(MainApp mainApp, Stage conversoesStage) {
-		this.mainApp = mainApp;
-		this.conversoesStage = conversoesStage;
+	@Override
+	public void run() {
+		setListeners(textFieldInput);
 		
-		conversaoService = new ConversaoServiceImpl();
+		Platform.runLater(new Runnable() {
+			public void run() {
+				conversoesStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+					public void handle(WindowEvent we) {
+						handleVoltar();
+					}
+				});
+			}
+		});
+	}
+	
+	public void show(MainApp _mainApp, Stage conversoesStage) {
+		this.mainApp = _mainApp;
+		this.conversoesStage = conversoesStage;
+		this.conversaoService = new ConversaoServiceImpl();
 		
 		comboTipoConversoes.setItems(FXCollections.observableArrayList(TipoConversoes.values()));
 		comboTipoConversoes.getSelectionModel().select(0);
@@ -55,22 +70,21 @@ public class ConversoesController {
 		comboSecondTipo.getSelectionModel().select(0);
 		btnCalcular.setDisable(true);
 		
-		setListeners(textFieldInput);
-		
-		this.conversoesStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-			public void handle(WindowEvent we) {
-				handleVoltar();
-			}
-		});
+		run();
+		mainApp.addThread(new Thread(this));
 	}
 	
 	private void setListeners(TextField textField) {
-		textField.textProperty().addListener((observable, oldValue, newValue) -> {
-		    if (textFieldInput.getText().length() == 0) {
-		    	btnCalcular.setDisable(true);
-		    } else {
-		    	btnCalcular.setDisable(false);
-		    }
+		Platform.runLater(new Runnable() {
+			public void run() {
+				textField.textProperty().addListener((observable, oldValue, newValue) -> {
+				    if (textFieldInput.getText().length() == 0) {
+				    	btnCalcular.setDisable(true);
+				    } else {
+				    	btnCalcular.setDisable(false);
+				    }
+				});
+			}
 		});
 	}
 	
@@ -121,7 +135,7 @@ public class ConversoesController {
 	
 	@FXML
 	private void handleVoltar() {
-		mainApp.initRoot();
+		mainApp.exibirRoot();
 		conversoesStage.close();
 	}
 	

@@ -6,6 +6,7 @@ import com.calculadora.MainApp;
 import com.calculadora.service.OperacoesBasicasService;
 import com.calculadora.service.OperacoesBasicasServiceImpl;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,7 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class RegraTresController {
+public class RegraTresController implements Runnable {
 	private MainApp mainApp;
 	private Stage regraTresStage;
 	private OperacoesBasicasService operacoesBasicasService;
@@ -33,12 +34,8 @@ public class RegraTresController {
 	@FXML
 	private Button btnCalcular;
 	
-	public void show(MainApp mainApp, Stage regraTresStage) {
-		this.mainApp = mainApp;
-		this.regraTresStage = regraTresStage;
-		
-		operacoesBasicasService = new OperacoesBasicasServiceImpl();
-		
+	@Override
+	public void run() {
 		textFieldValorA.requestFocus();
 		btnCalcular.setDisable(true);
 		
@@ -46,22 +43,39 @@ public class RegraTresController {
 		setListener(textFieldValorB);
 		setListener(textFieldNovoValor);
 		
-		this.regraTresStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-			public void handle(WindowEvent we) {
-				handleVoltar();
+		Platform.runLater(new Runnable() {
+			public void run() {
+				regraTresStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+					public void handle(WindowEvent we) {
+						handleVoltar();
+					}
+				});
 			}
 		});
 	}
 	
+	public void show(MainApp _mainApp, Stage regraTresStage) {
+		this.mainApp = _mainApp;
+		this.regraTresStage = regraTresStage;
+		this.operacoesBasicasService = new OperacoesBasicasServiceImpl();
+		
+		run();
+		mainApp.addThread(new Thread(this));
+	}
+	
 	private void setListener(TextField textField) {
-		textField.textProperty().addListener((observable, oldValue, newValue) -> {
-		    if (textFieldValorA.getText().length() == 0 
-		    || textFieldValorB.getText().length() == 0
-		    || textFieldNovoValor.getText().length() == 0) {
-		    	btnCalcular.setDisable(true);
-		    } else {
-		    	btnCalcular.setDisable(false);
-		    }
+		Platform.runLater(new Runnable() {
+			public void run() {
+				textField.textProperty().addListener((observable, oldValue, newValue) -> {
+				    if (textFieldValorA.getText().length() == 0 
+				    || textFieldValorB.getText().length() == 0
+				    || textFieldNovoValor.getText().length() == 0) {
+				    	btnCalcular.setDisable(true);
+				    } else {
+				    	btnCalcular.setDisable(false);
+				    }
+				});
+			}
 		});
 	}
 	
@@ -86,7 +100,7 @@ public class RegraTresController {
 	
 	@FXML
 	private void handleVoltar() {
-		mainApp.initRoot();
+		mainApp.exibirRoot();
 		regraTresStage.close();
 	}
 	

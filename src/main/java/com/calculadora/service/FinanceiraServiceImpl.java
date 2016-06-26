@@ -21,17 +21,19 @@ public class FinanceiraServiceImpl implements FinanceiraService {
 		return valorTotal.multiply((juro.pow(peridoTotalEmMeses)));
 	}
 
-	public BigDecimal calcularValorPrestacao(BigDecimal valorTotal, BigDecimal taxaJuros, BigDecimal periodoFinanciamentoEmMeses) {
+	public BigDecimal calcularValorPrestacao(BigDecimal valorTotal, BigDecimal taxaJuros,
+			BigDecimal periodoFinanciamentoEmMeses) {
 		taxaJuros = porcentagemEmDecimal(taxaJuros);
-		BigDecimal divisor = BigDecimal.ONE.subtract(new BigDecimal(Math.pow((taxaJuros.add(UM).doubleValue()), -periodoFinanciamentoEmMeses.intValue())));
+		BigDecimal divisor = BigDecimal.ONE.subtract(
+				new BigDecimal(Math.pow((taxaJuros.add(UM).doubleValue()), -periodoFinanciamentoEmMeses.intValue())));
 		return valorTotal.multiply((taxaJuros.divide(divisor, MathContext.DECIMAL128)));
 	}
-	
+
 	public Hipoteca calcularHipoteca(BigDecimal precoDoImovel, BigDecimal taxaJuros, BigDecimal prazo) {
 		BigDecimal juros = calcularJuros(precoDoImovel, taxaJuros, prazo);
 		return new Hipoteca(precoDoImovel.add(juros), calcularValorPrestacao(precoDoImovel, taxaJuros, prazo), juros);
 	}
-	
+
 	public CartaoCredito calcularCartaoCredito(BigDecimal saldoCartaoCredito, BigDecimal taxaJuros,
 			BigDecimal valorParcela) throws PagamentoMinimoMaiorParcelaException {
 		taxaJuros = (porcentagemEmDecimal(taxaJuros)).divide(DOZE_MESES, MathContext.DECIMAL128);
@@ -57,5 +59,5 @@ public class FinanceiraServiceImpl implements FinanceiraService {
 	private BigDecimal porcentagemEmDecimal(BigDecimal valor) {
 		return valor.divide(CEM);
 	}
-	
+
 }

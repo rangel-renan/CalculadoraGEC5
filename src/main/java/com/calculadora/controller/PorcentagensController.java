@@ -7,6 +7,7 @@ import com.calculadora.service.PorcentagemService;
 import com.calculadora.service.PorcentagemServiceImpl;
 import com.calculadora.util.TipoCalPorcentagem;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,7 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class PorcentagensController {
+public class PorcentagensController implements Runnable {
 	private MainApp mainApp;
 	private Stage porcentagensStage;
 	private PorcentagemService porcentagemService;
@@ -55,13 +56,8 @@ public class PorcentagensController {
 	@FXML
 	private Button btnCalcularPorcentagem;
 	
-	
-	public void show(MainApp mainApp, Stage porcentagensStage) {
-		this.mainApp = mainApp;
-		this.porcentagensStage = porcentagensStage;
-		
-		porcentagemService = new PorcentagemServiceImpl();
-		
+	@Override
+	public void run() {
 		btnCalcularQuantidade.setDisable(true);
 		btnCalcularTotal.setDisable(true);
 		btnCalcularPorcentagem.setDisable(true);
@@ -74,21 +70,38 @@ public class PorcentagensController {
 		setListeners(textFieldPorcValorTotal, textFieldPorcValorTotal, textFieldPorcValor, btnCalcularPorcentagem);
 		setListeners(textFieldPorcValor, textFieldPorcValorTotal, textFieldPorcValor, btnCalcularPorcentagem);
 		
-		this.porcentagensStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-			public void handle(WindowEvent we) {
-				handleVoltar();
+		Platform.runLater(new Runnable() {
+			public void run() {
+				porcentagensStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+					public void handle(WindowEvent we) {
+						handleVoltar();
+					}
+				});
 			}
 		});
 	}
 	
+	public void show(MainApp _mainApp, Stage porcentagensStage) {
+		this.mainApp = _mainApp;
+		this.porcentagensStage = porcentagensStage;
+		this.porcentagemService = new PorcentagemServiceImpl();
+		
+		run();
+		mainApp.addThread(new Thread(this));
+	}
+	
 	private void setListeners(TextField textField, TextField labelPorcentagem, TextField labelValor, Button btnCalcular) {
-		textField.textProperty().addListener((observable, oldValue, newValue) -> {
-		    if (labelPorcentagem.getText().length() == 0 || 
-		    	labelValor.getText().length() == 0) {
-		    	btnCalcular.setDisable(true);
-		    } else {
-		    	btnCalcular.setDisable(false);
-		    }
+		Platform.runLater(new Runnable() {
+			public void run() {
+				textField.textProperty().addListener((observable, oldValue, newValue) -> {
+				    if (labelPorcentagem.getText().length() == 0 || 
+				    	labelValor.getText().length() == 0) {
+				    	btnCalcular.setDisable(true);
+				    } else {
+				    	btnCalcular.setDisable(false);
+				    }
+				});
+			}
 		});
 	}
 	
@@ -126,7 +139,7 @@ public class PorcentagensController {
 	
 	@FXML
 	private void handleVoltar() {
-		mainApp.initRoot();
+		mainApp.exibirRoot();
 		porcentagensStage.close();
 	}
 	

@@ -9,6 +9,7 @@ import com.calculadora.service.OperacoesBasicasServiceImpl;
 import com.calculadora.service.RazaoTrigonometricaService;
 import com.calculadora.service.RazaoTrigonometricaServiceImpl;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,7 +19,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 
 @SuppressWarnings("unused")
-public class CalculadoraController {
+public class CalculadoraController implements Runnable {
 	private AnchorPane rootLayout;
 	private ConfigProperties label;
 	
@@ -44,25 +45,32 @@ public class CalculadoraController {
 	@FXML
 	private void initialize() {
 	}
-
-	public void show(ConfigProperties label, AnchorPane rootLayout) {
-		this.rootLayout = rootLayout;
-		this.label = label;
-		isResultado = false;
-		
+	
+	@Override
+	public void run() {
 		operacoesBasicasService = new OperacoesBasicasServiceImpl();
 		razaoTrigonometricaService = new RazaoTrigonometricaServiceImpl();
 		
 		displayField.requestFocus();
 		mLabel.setVisible(false);
-
-		rootLayout.getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
-
-			@Override
-			public void handle(KeyEvent keyEvent) {
-				handleKeys(keyEvent);
+		
+		Platform.runLater(new Runnable() {
+			public void run() {
+				rootLayout.getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
+					public void handle(KeyEvent keyEvent) {
+						handleKeys(keyEvent);
+					}
+				});
 			}
 		});
+	}
+	
+	public void show(ConfigProperties label, AnchorPane rootLayout) {
+		this.rootLayout = rootLayout;
+		this.label = label;
+		isResultado = false;
+		
+		run();
 	}
 
 	private void handleKeys(KeyEvent keyEvent) {
@@ -435,4 +443,5 @@ public class CalculadoraController {
 	public void setRootLayout(AnchorPane rootLayout) {
 		this.rootLayout = rootLayout;
 	}
+
 }
