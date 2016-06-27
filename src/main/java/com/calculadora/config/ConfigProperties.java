@@ -6,7 +6,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ResourceBundle;
 
-import com.calculadora.util.Idioma;
+import com.calculadora.util.enums.Idioma;
 
 public class ConfigProperties {
 	private volatile static ConfigProperties instance;

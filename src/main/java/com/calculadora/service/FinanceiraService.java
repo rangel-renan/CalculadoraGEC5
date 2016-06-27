@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import com.calculadora.model.CartaoCredito;
 import com.calculadora.model.Hipoteca;
-import com.calculadora.util.PagamentoMinimoMaiorParcelaException;
+import com.calculadora.util.excessoes.PagamentoMinimoMaiorParcelaException;
 
 public interface FinanceiraService {
 	

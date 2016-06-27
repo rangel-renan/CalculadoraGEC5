@@ -1,4 +1,4 @@
-package com.calculadora.util;
+package com.calculadora.util.enums;
 
 import javax.measure.unit.SI;
 import javax.measure.unit.Unit;

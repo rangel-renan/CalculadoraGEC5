@@ -1,4 +1,4 @@
-package com.calculadora.util;
+package com.calculadora.util.enums;
 
 public enum TipoMoedas {
 	REAL("Real (Brasil)", "BRL", "R$"),

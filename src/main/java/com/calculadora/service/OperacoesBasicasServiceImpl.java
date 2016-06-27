@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.MathContext;
 
-import com.calculadora.util.TipoOperacao;
+import com.calculadora.util.enums.TipoOperacao;
 
 public class OperacoesBasicasServiceImpl implements OperacoesBasicasService {
 	

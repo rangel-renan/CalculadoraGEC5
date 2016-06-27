@@ -26,7 +26,7 @@ import com.calculadora.controller.RegraTresController;
 import com.calculadora.controller.RootLayoutController;
 import com.calculadora.controller.SobreController;
 import com.calculadora.controller.VetoresController;
-import com.calculadora.util.Idioma;
+import com.calculadora.util.enums.Idioma;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -233,49 +233,49 @@ public class MainApp extends Application {
 	
 	public void initFinanciamento() {
 		FXMLLoader loader = getLoader();
-		financiamentoStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Financiamento.fxml"), "Financiamento", CAMINHO_ICONE_APLICACAO);
+		financiamentoStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Financiamento.fxml"), label.getString("root.tab.financeiro.financiamento.titulo"), CAMINHO_ICONE_APLICACAO);
 		financiamentoController = loader.getController();
 		financiamentoController.show(this, financiamentoStage, label);
 	}
 	
 	public void initInvestimento() {
 		FXMLLoader loader = getLoader();
-		investimentoStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Investimento.fxml"), "Investimento", CAMINHO_ICONE_APLICACAO);
+		investimentoStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Investimento.fxml"), label.getString("root.tab.financeiro.investimento.titulo"), CAMINHO_ICONE_APLICACAO);
 		investimentoController = loader.getController();
 		investimentoController.show(this, investimentoStage, label);
 	}
 	
 	public void initJuros() {
 		FXMLLoader loader = getLoader();
-		jurosStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Juros.fxml"), "Juros", CAMINHO_ICONE_APLICACAO);
+		jurosStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Juros.fxml"), label.getString("root.tab.financeiro.juros.titulo"), CAMINHO_ICONE_APLICACAO);
 		jurosController = loader.getController();
 		jurosController.show(this, jurosStage, label);
 	}
 	
 	public void initHipoteca() {
 		FXMLLoader loader = getLoader();
-		hipotecaStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Hipoteca.fxml"), "Hipoteca", CAMINHO_ICONE_APLICACAO);
+		hipotecaStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Hipoteca.fxml"), label.getString("root.tab.financeiro.hipoteca.titulo"), CAMINHO_ICONE_APLICACAO);
 		hipotecaController = loader.getController();
 		hipotecaController.show(this, hipotecaStage, label);
 	}
 	
 	public void initCartaoCredito() {
 		FXMLLoader loader = getLoader();
-		cartaoCreditoStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/CartaoCredito.fxml"), "Cartão de Crédito", CAMINHO_ICONE_APLICACAO);
+		cartaoCreditoStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/CartaoCredito.fxml"), label.getString("root.tab.financeiro.cartaoCredito.titulo"), CAMINHO_ICONE_APLICACAO);
 		cartaoCreditoController = loader.getController();
 		cartaoCreditoController.show(this, cartaoCreditoStage, label);
 	}
 	
 	public void initPoupanca() {
 		FXMLLoader loader = getLoader();
-		poupancaStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Poupanca.fxml"), "Poupança", CAMINHO_ICONE_APLICACAO);
+		poupancaStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Poupanca.fxml"), label.getString("root.tab.financeiro.poupanca.titulo"), CAMINHO_ICONE_APLICACAO);
 		poupancaController = loader.getController();
 		poupancaController.show(this, poupancaStage, label);
 	}
 	
 	public void initConversorMoedas() {
 		FXMLLoader loader = getLoader();
-		conversaoMoedasStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/ConversorMoedas.fxml"), "Conversor Moedas", CAMINHO_ICONE_APLICACAO);
+		conversaoMoedasStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/ConversorMoedas.fxml"), label.getString("root.tab.financeiro.conversorMoeda.titulo"), CAMINHO_ICONE_APLICACAO);
 		conversorMoedasController = loader.getController();
 		conversorMoedasController.show(this, conversaoMoedasStage, label);
 	}

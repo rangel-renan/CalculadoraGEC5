@@ -1,4 +1,4 @@
-package com.calculadora.util;
+package com.calculadora.util.enums;
 
 public enum TipoConversoes {
 	COMPRIMENTO("Comprimento"), ARMANEZAMENTO_DADOS("Armanezamento de Dados");

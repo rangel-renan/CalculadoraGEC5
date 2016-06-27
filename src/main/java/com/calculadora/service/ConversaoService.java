@@ -6,7 +6,7 @@ import java.net.MalformedURLException;
 
 import javax.measure.unit.Unit;
 
-import com.calculadora.util.ImpossivelConverterException;
+import com.calculadora.util.excessoes.ImpossivelConverterException;
 
 public interface ConversaoService {
 	

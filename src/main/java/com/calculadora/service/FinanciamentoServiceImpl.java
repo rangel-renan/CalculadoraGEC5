@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import com.calculadora.model.Financiamento;
-import com.calculadora.util.TipoPrestacao;
+import com.calculadora.util.enums.TipoPrestacao;
 
 public class FinanciamentoServiceImpl implements FinanciamentoService {
 	private final BigDecimal CEM = new BigDecimal("100");

@@ -4,8 +4,8 @@ import com.calculadora.MainApp;
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.service.VetoresService;
 import com.calculadora.service.VetoresServiceImpl;
-import com.calculadora.util.VetorTamanhoExcedidoException;
-import com.calculadora.util.VetoresTamanhosDiferentesException;
+import com.calculadora.util.excessoes.VetorTamanhoExcedidoException;
+import com.calculadora.util.excessoes.VetoresTamanhosDiferentesException;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

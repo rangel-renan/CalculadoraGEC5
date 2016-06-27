@@ -1,4 +1,4 @@
-package com.calculadora.util;
+package com.calculadora.util.excessoes;
 
 public class ImpossivelConverterException extends Exception {
 	private static final long serialVersionUID = 1L;

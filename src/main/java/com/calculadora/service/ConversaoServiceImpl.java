@@ -13,7 +13,7 @@ import javax.measure.unit.Unit;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.calculadora.util.ImpossivelConverterException;
+import com.calculadora.util.excessoes.ImpossivelConverterException;
 
 import javafx.concurrent.Worker.State;
 import javafx.scene.web.WebEngine;

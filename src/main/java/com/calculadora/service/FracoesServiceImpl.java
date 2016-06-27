@@ -3,7 +3,7 @@ package com.calculadora.service;
 import java.math.BigDecimal;
 
 import com.calculadora.model.Fracao;
-import com.calculadora.util.TipoOperacao;
+import com.calculadora.util.enums.TipoOperacao;
 
 public class FracoesServiceImpl implements FracoesService {
 	private Fracao resposta;

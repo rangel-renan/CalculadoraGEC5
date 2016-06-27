@@ -5,9 +5,9 @@ import java.math.BigDecimal;
 import com.calculadora.MainApp;
 import com.calculadora.service.ConversaoService;
 import com.calculadora.service.ConversaoServiceImpl;
-import com.calculadora.util.TipoConversoes;
-import com.calculadora.util.TipoConversoesArmaDados;
-import com.calculadora.util.TipoConversoesComprimento;
+import com.calculadora.util.enums.TipoConversoes;
+import com.calculadora.util.enums.TipoConversoesArmaDados;
+import com.calculadora.util.enums.TipoConversoesComprimento;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -62,16 +62,32 @@ public class ConversoesController implements Runnable {
 		this.conversoesStage = conversoesStage;
 		this.conversaoService = new ConversaoServiceImpl();
 		
-		comboTipoConversoes.setItems(FXCollections.observableArrayList(TipoConversoes.values()));
-		comboTipoConversoes.getSelectionModel().select(0);
-		comboFistTipo.setItems(FXCollections.observableArrayList(TipoConversoesComprimento.values()));
-		comboFistTipo.getSelectionModel().select(0);
-		comboSecondTipo.setItems(FXCollections.observableArrayList(TipoConversoesComprimento.values()));
-		comboSecondTipo.getSelectionModel().select(0);
+		preenxerCombo();
 		btnCalcular.setDisable(true);
 		
 		run();
 		mainApp.addThread(new Thread(this));
+	}
+	
+	private void preenxerCombo() {
+		Platform.runLater(new Runnable() {
+			public void run() { 
+				comboTipoConversoes.setItems(FXCollections.observableArrayList(TipoConversoes.values())); 
+				comboTipoConversoes.getSelectionModel().select(0);
+			}
+		});
+		Platform.runLater(new Runnable() {
+			public void run() { 
+				comboFistTipo.setItems(FXCollections.observableArrayList(TipoConversoesComprimento.values())); 
+				comboFistTipo.getSelectionModel().select(0);
+			}
+		});
+		Platform.runLater(new Runnable() {
+			public void run() { 
+				comboSecondTipo.setItems(FXCollections.observableArrayList(TipoConversoesComprimento.values())); 
+				comboSecondTipo.getSelectionModel().select(0);
+			}
+		});
 	}
 	
 	private void setListeners(TextField textField) {
@@ -93,12 +109,22 @@ public class ConversoesController implements Runnable {
 		
 		switch (comboTipoConversoes.getValue()) {
 			case COMPRIMENTO:
-				comboFistTipo.setItems(FXCollections.observableArrayList(TipoConversoesComprimento.values()));
-				comboSecondTipo.setItems(FXCollections.observableArrayList(TipoConversoesComprimento.values()));
+				Platform.runLater(new Runnable() {
+					public void run() { comboFistTipo.setItems(FXCollections.observableArrayList(TipoConversoesComprimento.values())); }
+				});
+				
+				Platform.runLater(new Runnable() {
+					public void run() { comboSecondTipo.setItems(FXCollections.observableArrayList(TipoConversoesComprimento.values())); }
+				});
 				break;
 			case ARMANEZAMENTO_DADOS:
-				comboFistTipo.setItems(FXCollections.observableArrayList(TipoConversoesArmaDados.values()));
-				comboSecondTipo.setItems(FXCollections.observableArrayList(TipoConversoesArmaDados.values()));
+				Platform.runLater(new Runnable() {
+					public void run() { comboFistTipo.setItems(FXCollections.observableArrayList(TipoConversoesArmaDados.values())); }
+				});
+				
+				Platform.runLater(new Runnable() {
+					public void run() { comboSecondTipo.setItems(FXCollections.observableArrayList(TipoConversoesArmaDados.values())); }
+				});
 				break;
 		}
 		textFieldInput.setText("");

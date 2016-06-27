@@ -2,7 +2,7 @@ package com.calculadora.service;
 
 import java.math.BigDecimal;
 
-import com.calculadora.util.TipoOperacaoTrigono;
+import com.calculadora.util.enums.TipoOperacaoTrigono;
 
 /**
  * Classe de Implementação da Interface RazoesTrigonometricasService.

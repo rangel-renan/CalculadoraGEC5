@@ -1,4 +1,4 @@
-package com.calculadora.util;
+package com.calculadora.util.enums;
 
 public enum TipoPrestacao {
 	FIXAS("Fixas (Tabela Price)"), DECRESCENTE("Decrescente(Tabela SAC");
@@ -11,5 +11,10 @@ public enum TipoPrestacao {
 	
 	public String getNome() {
 		return nome;
+	}
+	
+	@Override
+	public String toString() {
+		return getNome();
 	}
 }

@@ -6,8 +6,8 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
 
 import com.calculadora.model.Polinomio;
-import com.calculadora.util.PolinomioFormatoInvalidoException;
-import com.calculadora.util.TipoOperacao;
+import com.calculadora.util.enums.TipoOperacao;
+import com.calculadora.util.excessoes.PolinomioFormatoInvalidoException;
 
 public class PolinomioServiceImpl implements PolinomioService {
 

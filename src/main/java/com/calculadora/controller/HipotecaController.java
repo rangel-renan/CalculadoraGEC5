@@ -4,10 +4,15 @@ import com.calculadora.MainApp;
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.service.FinanceiraService;
 import com.calculadora.service.FinanceiraServiceImpl;
+import com.calculadora.util.enums.TipoMoedas;
+import com.calculadora.util.enums.TipoPeriodos;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -17,6 +22,24 @@ public class HipotecaController implements Runnable {
 
 	private ConfigProperties label;
 	private FinanceiraService financeiraService;
+
+	@FXML
+	private ComboBox<TipoMoedas> comboMoedas;
+
+	@FXML
+	private ComboBox<TipoPeriodos> comboTipoPeridos;
+	
+	@FXML
+	private TextField textFieldSimboloMoeda1;
+	
+	@FXML
+	private TextField textFieldSimboloMoeda2;
+
+	@FXML
+	private TextField textFieldSimboloMoeda3;
+
+	@FXML
+	private TextField textFieldSimboloMoeda4;
 	
 	@Override
 	public void run() {
@@ -29,6 +52,20 @@ public class HipotecaController implements Runnable {
 				});
 			}
 		});
+
+		Platform.runLater(new Runnable() {
+			public void run() { 
+				comboMoedas.setItems(FXCollections.observableArrayList(TipoMoedas.values())); 
+				comboMoedas.getSelectionModel().select(0);
+			}
+		});
+
+		Platform.runLater(new Runnable() {
+			public void run() { 
+				comboTipoPeridos.setItems(FXCollections.observableArrayList(TipoPeriodos.values())); 
+				comboTipoPeridos.getSelectionModel().select(0);
+			}
+		});
 	}
 	
 	public void show(MainApp _mainApp, Stage _hipotecaStage, ConfigProperties label) {
@@ -39,6 +76,14 @@ public class HipotecaController implements Runnable {
 		
 		run();
 		mainApp.addThread(new Thread(this));
+	}
+	
+	@FXML
+	private void hiddenMoeda() {
+		textFieldSimboloMoeda1.setText(comboMoedas.getValue().getSimbolo());
+		textFieldSimboloMoeda2.setText(comboMoedas.getValue().getSimbolo());
+		textFieldSimboloMoeda3.setText(comboMoedas.getValue().getSimbolo());
+		textFieldSimboloMoeda4.setText(comboMoedas.getValue().getSimbolo());
 	}
 	
 	@FXML

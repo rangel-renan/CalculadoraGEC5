@@ -1,7 +1,7 @@
 package com.calculadora.controller;
 
 import com.calculadora.MainApp;
-import com.calculadora.util.Idioma;
+import com.calculadora.util.enums.Idioma;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -26,7 +26,13 @@ public class OpcoesController implements Runnable {
 	@Override
 	public void run() {
 		btnOk.setDisable(true);
-		comboIdiomas.setItems(FXCollections.observableArrayList(Idioma.values()));
+		
+		Platform.runLater(new Runnable() {
+			public void run() { 
+				comboIdiomas.setItems(FXCollections.observableArrayList(Idioma.values()));
+				comboIdiomas.getSelectionModel().select(0);
+			}
+		});
 		
 		Platform.runLater(new Runnable() {
 			public void run() {

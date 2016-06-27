@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.calculadora.util.PolinomioFormatoInvalidoException;
+import com.calculadora.util.excessoes.PolinomioFormatoInvalidoException;
 
 public class Polinomio {
 	private int grau;

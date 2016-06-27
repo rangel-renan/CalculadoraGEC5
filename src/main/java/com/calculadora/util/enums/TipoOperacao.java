@@ -1,4 +1,4 @@
-package com.calculadora.util;
+package com.calculadora.util.enums;
 
 public enum TipoOperacao {
 	SOMA("+", "Soma"),

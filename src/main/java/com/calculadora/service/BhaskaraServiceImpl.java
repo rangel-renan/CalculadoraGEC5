@@ -1,6 +1,6 @@
 package com.calculadora.service;
 
-import com.calculadora.util.DeltaNegativoException;
+import com.calculadora.util.excessoes.DeltaNegativoException;
 
 public class BhaskaraServiceImpl implements BhaskaraService {
 	

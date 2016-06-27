@@ -4,10 +4,16 @@ import com.calculadora.MainApp;
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.service.FinanciamentoService;
 import com.calculadora.service.FinanciamentoServiceImpl;
+import com.calculadora.util.enums.TipoMoedas;
+import com.calculadora.util.enums.TipoPeriodos;
+import com.calculadora.util.enums.TipoPrestacao;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -17,6 +23,18 @@ public class FinanciamentoController implements Runnable {
 
 	private ConfigProperties label;
 	private FinanciamentoService financiamentoService;
+
+	@FXML
+	private ComboBox<TipoMoedas> comboMoedas;
+	
+	@FXML
+	private ComboBox<TipoPrestacao> comboTipoPrestacao;
+	
+	@FXML
+	private ComboBox<TipoPeriodos> comboTipoPeridos;
+	
+	@FXML
+	private TextField textFieldSimboloMoeda;
 	
 	@Override
 	public void run() {
@@ -29,6 +47,27 @@ public class FinanciamentoController implements Runnable {
 				});
 			}
 		});
+		
+		Platform.runLater(new Runnable() {
+			public void run() { 
+				comboMoedas.setItems(FXCollections.observableArrayList(TipoMoedas.values())); 
+				comboMoedas.getSelectionModel().select(0);
+			}
+		});
+		
+		Platform.runLater(new Runnable() {
+			public void run() { 
+				comboTipoPrestacao.setItems(FXCollections.observableArrayList(TipoPrestacao.values())); 
+				comboTipoPrestacao.getSelectionModel().select(0);
+			}
+		});
+		
+		Platform.runLater(new Runnable() {
+			public void run() { 
+				comboTipoPeridos.setItems(FXCollections.observableArrayList(TipoPeriodos.values())); 
+				comboTipoPeridos.getSelectionModel().select(0);
+			}
+		});
 	}
 	
 	public void show(MainApp _mainApp, Stage _financiamentoStage, ConfigProperties label) {
@@ -39,6 +78,11 @@ public class FinanciamentoController implements Runnable {
 		
 		run();
 		mainApp.addThread(new Thread(this));
+	}
+	
+	@FXML
+	private void hiddenMoeda() {
+		textFieldSimboloMoeda.setText(comboMoedas.getValue().getSimbolo());
 	}
 	
 	@FXML

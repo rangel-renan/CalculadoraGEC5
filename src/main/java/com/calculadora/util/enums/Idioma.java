@@ -4,7 +4,7 @@
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  * 
  */
-package com.calculadora.util;
+package com.calculadora.util.enums;
 
 import java.util.Locale;
 

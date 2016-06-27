@@ -1,7 +1,7 @@
 package com.calculadora.service;
 
-import com.calculadora.util.VetorTamanhoExcedidoException;
-import com.calculadora.util.VetoresTamanhosDiferentesException;
+import com.calculadora.util.excessoes.VetorTamanhoExcedidoException;
+import com.calculadora.util.excessoes.VetoresTamanhosDiferentesException;
 
 public interface VetoresService {
 	

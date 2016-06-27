@@ -2,7 +2,7 @@ package com.calculadora.service;
 
 import java.math.BigDecimal;
 
-import com.calculadora.util.TipoCalPorcentagem;
+import com.calculadora.util.enums.TipoCalPorcentagem;
 
 public interface PorcentagemService {
 	

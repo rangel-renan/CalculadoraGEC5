@@ -4,20 +4,52 @@ import com.calculadora.MainApp;
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.service.PoupancaService;
 import com.calculadora.service.PoupancaServiceImpl;
+import com.calculadora.util.enums.TipoMoedas;
+import com.calculadora.util.enums.TipoPeriodos;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class PoupancaController implements Runnable {
 	private MainApp mainApp;
 	private Stage poupancaStage;
 
 	private ConfigProperties label;
 	private PoupancaService poupancaService;
+
+	@FXML
+	private ComboBox<TipoMoedas> comboDepRegulMoedas;
 	
+	@FXML
+	private ComboBox<TipoMoedas> comboValTotalMoedas;
+	
+
+	@FXML
+	private ComboBox<TipoPeriodos> comboDepRegulTipoPeriodos;
+	
+
+	@FXML
+	private ComboBox<TipoPeriodos> comboValTipoPeriodos;
+
+	@FXML
+	private TextField textFieldDepRegulSimboloMoeda1;
+	
+	@FXML
+	private TextField textFieldDepRegulSimboloMoeda2;
+
+	@FXML
+	private TextField textFieldValTotalSimboloMoeda1;
+	
+	@FXML
+	private TextField textFieldValTotalSimboloMoeda2;
+
 	@Override
 	public void run() {
 		Platform.runLater(new Runnable() {
@@ -27,6 +59,29 @@ public class PoupancaController implements Runnable {
 						handleVoltar();
 					}
 				});
+			}
+		});
+
+		preenxerCombo(comboDepRegulMoedas, 0);
+		preenxerCombo(comboValTotalMoedas, 0);
+		preenxerComboPeriodos(comboDepRegulTipoPeriodos);
+		preenxerComboPeriodos(comboValTipoPeriodos);
+	}
+	
+	private void preenxerCombo(ComboBox combo, int index) {
+		Platform.runLater(new Runnable() {
+			public void run() { 
+				combo.setItems(FXCollections.observableArrayList(TipoMoedas.values())); 
+				combo.getSelectionModel().select(index);
+			}
+		});
+	}
+	
+	private void preenxerComboPeriodos(ComboBox combo) {
+		Platform.runLater(new Runnable() {
+			public void run() { 
+				combo.setItems(FXCollections.observableArrayList(TipoPeriodos.values())); 
+				combo.getSelectionModel().select(0);
 			}
 		});
 	}
@@ -39,6 +94,18 @@ public class PoupancaController implements Runnable {
 		
 		run();
 		mainApp.addThread(new Thread(this));
+	}
+	
+	@FXML
+	private void hiddenDepRegulMoeda() {
+		textFieldDepRegulSimboloMoeda1.setText(comboDepRegulMoedas.getValue().getSimbolo());
+		textFieldDepRegulSimboloMoeda2.setText(comboDepRegulMoedas.getValue().getSimbolo());
+	}
+	
+	@FXML
+	private void hiddenValTotalMoeda() {
+		textFieldValTotalSimboloMoeda1.setText(comboValTotalMoedas.getValue().getSimbolo());
+		textFieldValTotalSimboloMoeda2.setText(comboValTotalMoedas.getValue().getSimbolo());
 	}
 	
 	@FXML

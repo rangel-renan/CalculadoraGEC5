@@ -4,9 +4,9 @@ import com.calculadora.MainApp;
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.service.MatrizService;
 import com.calculadora.service.MatrizServiceImpl;
-import com.calculadora.util.MatrizesTamanhosDiferentesException;
 import com.calculadora.util.ParseMatriz;
-import com.calculadora.util.TipoOperacao;
+import com.calculadora.util.enums.TipoOperacao;
+import com.calculadora.util.excessoes.MatrizesTamanhosDiferentesException;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

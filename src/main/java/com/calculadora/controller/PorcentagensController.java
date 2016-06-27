@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import com.calculadora.MainApp;
 import com.calculadora.service.PorcentagemService;
 import com.calculadora.service.PorcentagemServiceImpl;
-import com.calculadora.util.TipoCalPorcentagem;
+import com.calculadora.util.enums.TipoCalPorcentagem;
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;

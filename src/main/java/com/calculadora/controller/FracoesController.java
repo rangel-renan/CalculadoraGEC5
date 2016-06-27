@@ -6,7 +6,7 @@ import com.calculadora.MainApp;
 import com.calculadora.model.Fracao;
 import com.calculadora.service.FracoesService;
 import com.calculadora.service.FracoesServiceImpl;
-import com.calculadora.util.TipoOperacao;
+import com.calculadora.util.enums.TipoOperacao;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -73,9 +73,13 @@ public class FracoesController implements Runnable {
 		this.fracoesStage = fracoesStage;
 		this.fracoesService = new FracoesServiceImpl();
 		
-		comboTipoOperacoes.setItems(FXCollections.observableArrayList(TipoOperacao.values()));
-		comboTipoOperacoes.getSelectionModel().select(0);
-		comboTipoOperacoes.getItems().remove(4);
+		Platform.runLater(new Runnable() {
+			public void run() { 
+				comboTipoOperacoes.setItems(FXCollections.observableArrayList(TipoOperacao.values()));
+				comboTipoOperacoes.getSelectionModel().select(0);
+				comboTipoOperacoes.getItems().remove(4);
+			}
+		});
 		
 		run();
 		mainApp.addThread(new Thread(this));

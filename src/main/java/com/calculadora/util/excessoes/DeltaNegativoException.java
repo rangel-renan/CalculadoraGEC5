@@ -1,4 +1,4 @@
-package com.calculadora.util;
+package com.calculadora.util.excessoes;
 
 public class DeltaNegativoException extends Exception {
 	

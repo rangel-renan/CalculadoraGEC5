@@ -1,7 +1,7 @@
 package com.calculadora.service;
 
-import com.calculadora.util.MatrizesTamanhosDiferentesException;
-import com.calculadora.util.TipoOperacao;
+import com.calculadora.util.enums.TipoOperacao;
+import com.calculadora.util.excessoes.MatrizesTamanhosDiferentesException;
 
 public interface MatrizService {
 	
