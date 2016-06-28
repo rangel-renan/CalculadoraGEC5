@@ -163,6 +163,7 @@ public class ConversoesController implements Runnable {
 	private void handleVoltar() {
 		mainApp.exibirRoot();
 		conversoesStage.close();
+		mainApp.clean(conversoesStage, this);
 	}
 	
 	@FXML

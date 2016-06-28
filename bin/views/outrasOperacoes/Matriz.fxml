@@ -17,7 +17,7 @@
 <?import com.calculadora.validacao.InputMatrizTextField?>
 <?import com.calculadora.validacao.InputOnlyNumberTextField?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="894.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.MatrizController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="894.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.45" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.MatrizController">
    <children>
       <Label layoutX="-10.0" layoutY="-59.0" prefHeight="331.0" prefWidth="76.0" text="(">
          <font>

@@ -314,6 +314,7 @@ public class VetoresController implements Runnable {
 	private void handleVoltar() {
 		mainApp.exibirRoot();
 		vetorStage.close();
+		mainApp.clean(vetorStage, this);
 	}
 
 	@FXML

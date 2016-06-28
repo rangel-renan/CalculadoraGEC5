@@ -118,6 +118,7 @@ public class JurosController implements Runnable {
 	private void handleVoltar() {
 		mainApp.exibirRoot();
 		jurosStage.close();
+		mainApp.clean(jurosStage, this);
 	}
 
 	@FXML

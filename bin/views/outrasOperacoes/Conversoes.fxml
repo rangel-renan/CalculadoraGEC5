@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import com.calculadora.validacao.InputOnlyNumAndDecTextField?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="222.0" prefWidth="491.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.ConversoesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="222.0" prefWidth="491.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.45" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.ConversoesController">
    <children>
       <ComboBox fx:id="comboTipoConversoes" layoutX="53.0" layoutY="21.0" onHidden="#hiddenTipoConversao" prefHeight="33.0" prefWidth="385.0" />
       <Button layoutX="87.0" layoutY="173.0" mnemonicParsing="false" onAction="#handleVoltar" prefHeight="33.0" prefWidth="94.0" text="%botoes.voltar">

@@ -117,6 +117,7 @@ public class FracoesController implements Runnable {
 	private void handleVoltar() {
 		mainApp.exibirRoot();
 		fracoesStage.close();
+		mainApp.clean(fracoesStage, this);
 	}
 	
 	@FXML

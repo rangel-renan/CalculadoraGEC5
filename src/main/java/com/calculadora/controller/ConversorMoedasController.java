@@ -84,6 +84,7 @@ public class ConversorMoedasController implements Runnable {
 	private void handleVoltar() {
 		mainApp.exibirRoot();
 		conversaoMoedasStage.close();
+		mainApp.clean(conversaoMoedasStage, this);
 	}
 
 	@FXML

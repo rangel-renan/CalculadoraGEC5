@@ -79,6 +79,7 @@ public class CartaoCreditoController implements Runnable {
 	private void handleVoltar() {
 		mainApp.exibirRoot();
 		cartaoCreditoStage.close();
+		mainApp.clean(cartaoCreditoStage, this);
 	}
 
 	@FXML

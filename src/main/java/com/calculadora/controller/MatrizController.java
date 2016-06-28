@@ -427,6 +427,7 @@ public class MatrizController implements Runnable {
 	private void handleVoltar() {
 		mainApp.exibirRoot();
 		matrizStage.close();
+		mainApp.clean(matrizStage, this);
 	}
 
 	@FXML

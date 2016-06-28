@@ -66,6 +66,7 @@ public class OpcoesController implements Runnable {
 	private void handleCancelar() {
 		mainApp.initRoot();
 		opcoesStage.close();
+		mainApp.clean(opcoesStage, this);
 	}
 	
 	@FXML

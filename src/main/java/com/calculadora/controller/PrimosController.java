@@ -112,6 +112,7 @@ public class PrimosController implements Runnable {
 	private void handleVoltar() {
 		mainApp.exibirRoot();
 		primosStage.close();
+		mainApp.clean(primosStage, this);
 	}
 	
 	@FXML

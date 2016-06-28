@@ -52,7 +52,7 @@ public class HipotecaController implements Runnable {
 				});
 			}
 		});
-
+		
 		Platform.runLater(new Runnable() {
 			public void run() { 
 				comboMoedas.setItems(FXCollections.observableArrayList(TipoMoedas.values())); 
@@ -90,6 +90,7 @@ public class HipotecaController implements Runnable {
 	private void handleVoltar() {
 		mainApp.exibirRoot();
 		hipotecaStage.close();
+		mainApp.clean(hipotecaStage, this);
 	}
 
 	@FXML

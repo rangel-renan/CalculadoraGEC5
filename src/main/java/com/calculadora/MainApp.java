@@ -116,6 +116,7 @@ public class MainApp extends Application {
 				});
 			}
 		}, 0, 1000);
+		
 	}
 	
 	public FXMLLoader getLoader() {
@@ -166,6 +167,7 @@ public class MainApp extends Application {
 		calculadoraController = loaderCalculadora.getController();
 		calculadoraController.show(label, calculadoraLayout);
 		addThread(new Thread(calculadoraController));
+		
 	}
 	
 	public void initOpcoes() {
@@ -174,6 +176,7 @@ public class MainApp extends Application {
 		opcoesStage = getStage((AnchorPane) getLayout(loader, "/views/Opcoes.fxml"), label.getString("opcoes.titulo"), CAMINHO_ICONE_APLICACAO);
 		opcoesController = loader.getController();
 		opcoesController.show(this, opcoesStage);
+		
 	}
 	
 	public void initSobre() {
@@ -182,6 +185,7 @@ public class MainApp extends Application {
 		sobreStage = getStage((AnchorPane) getLayout(loader, "/views/Sobre.fxml"), label.getString("sobre.tituloJanela"), CAMINHO_ICONE_APLICACAO);
 		sobreController = loader.getController();
 		sobreController.show(this, sobreStage);
+		
 	}
 	
 	public void initConversoes() {
@@ -190,6 +194,7 @@ public class MainApp extends Application {
 		conversoesStage = getStage((AnchorPane) getLayout(loader, "/views/outrasOperacoes/Conversoes.fxml"), label.getString("root.tab.arquivo.conversoes.titulo"), CAMINHO_ICONE_APLICACAO);
 		conversoesController = loader.getController();
 		conversoesController.show(this, conversoesStage);
+		
 	}
 	
 	public void initFracoes() {
@@ -198,6 +203,7 @@ public class MainApp extends Application {
 		fracoesStage = getStage((AnchorPane) getLayout(loader, "/views/outrasOperacoes/Fracoes.fxml"), label.getString("root.tab.arquivo.fracoes.titulo"), CAMINHO_ICONE_APLICACAO);
 		fracoesController = loader.getController();
 		fracoesController.show(this, fracoesStage);
+		
 	}
 	
 	public void initPorcentagens() {
@@ -206,6 +212,7 @@ public class MainApp extends Application {
 		porcentagensStage = getStage((AnchorPane) getLayout(loader, "/views/outrasOperacoes/Porcentagens.fxml"), label.getString("root.tab.arquivo.porcentagem.titulo"), CAMINHO_ICONE_APLICACAO);
 		porcentagensController = loader.getController();
 		porcentagensController.show(this, porcentagensStage);
+		
 	}
 	
 	public void initPrimos() {
@@ -214,6 +221,7 @@ public class MainApp extends Application {
 		primosStage = getStage((AnchorPane) getLayout(loader, "/views/outrasOperacoes/Primos.fxml"), label.getString("root.tab.arquivo.primo.titulo"), CAMINHO_ICONE_APLICACAO);
 		primosController = loader.getController();
 		primosController.show(this, primosStage, label);
+		
 	}
 	
 	public void initRegraTres() {
@@ -222,6 +230,7 @@ public class MainApp extends Application {
 		regraTresStage = getStage((AnchorPane) getLayout(loader, "/views/outrasOperacoes/RegraTres.fxml"), label.getString("root.tab.arquivo.regratres.titulo"), CAMINHO_ICONE_APLICACAO);
 		regraTresController = loader.getController();
 		regraTresController.show(this, regraTresStage);
+		
 	}
 	
 	public void initMatriz() {
@@ -229,6 +238,7 @@ public class MainApp extends Application {
 		matrizStage = getStage((AnchorPane) getLayout(loader, "/views/outrasOperacoes/Matriz.fxml"), label.getString("root.tab.matrizEquacao.matrizTitulo"), CAMINHO_ICONE_APLICACAO);
 		matrizController = loader.getController();
 		matrizController.show(this, matrizStage, label);
+		
 	}
 	
 	public void initFinanciamento() {
@@ -236,6 +246,7 @@ public class MainApp extends Application {
 		financiamentoStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Financiamento.fxml"), label.getString("root.tab.financeiro.financiamento.titulo"), CAMINHO_ICONE_APLICACAO);
 		financiamentoController = loader.getController();
 		financiamentoController.show(this, financiamentoStage, label);
+		
 	}
 	
 	public void initInvestimento() {
@@ -243,6 +254,7 @@ public class MainApp extends Application {
 		investimentoStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Investimento.fxml"), label.getString("root.tab.financeiro.investimento.titulo"), CAMINHO_ICONE_APLICACAO);
 		investimentoController = loader.getController();
 		investimentoController.show(this, investimentoStage, label);
+		
 	}
 	
 	public void initJuros() {
@@ -250,6 +262,7 @@ public class MainApp extends Application {
 		jurosStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Juros.fxml"), label.getString("root.tab.financeiro.juros.titulo"), CAMINHO_ICONE_APLICACAO);
 		jurosController = loader.getController();
 		jurosController.show(this, jurosStage, label);
+		
 	}
 	
 	public void initHipoteca() {
@@ -257,6 +270,7 @@ public class MainApp extends Application {
 		hipotecaStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Hipoteca.fxml"), label.getString("root.tab.financeiro.hipoteca.titulo"), CAMINHO_ICONE_APLICACAO);
 		hipotecaController = loader.getController();
 		hipotecaController.show(this, hipotecaStage, label);
+		
 	}
 	
 	public void initCartaoCredito() {
@@ -264,6 +278,7 @@ public class MainApp extends Application {
 		cartaoCreditoStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/CartaoCredito.fxml"), label.getString("root.tab.financeiro.cartaoCredito.titulo"), CAMINHO_ICONE_APLICACAO);
 		cartaoCreditoController = loader.getController();
 		cartaoCreditoController.show(this, cartaoCreditoStage, label);
+		
 	}
 	
 	public void initPoupanca() {
@@ -271,6 +286,7 @@ public class MainApp extends Application {
 		poupancaStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Poupanca.fxml"), label.getString("root.tab.financeiro.poupanca.titulo"), CAMINHO_ICONE_APLICACAO);
 		poupancaController = loader.getController();
 		poupancaController.show(this, poupancaStage, label);
+		
 	}
 	
 	public void initConversorMoedas() {
@@ -278,6 +294,7 @@ public class MainApp extends Application {
 		conversaoMoedasStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/ConversorMoedas.fxml"), label.getString("root.tab.financeiro.conversorMoeda.titulo"), CAMINHO_ICONE_APLICACAO);
 		conversorMoedasController = loader.getController();
 		conversorMoedasController.show(this, conversaoMoedasStage, label);
+		
 	}
 	
 	public void initVetores() {
@@ -285,6 +302,7 @@ public class MainApp extends Application {
 		vetoresStage = getStage((AnchorPane) getLayout(loader, "/views/outrasOperacoes/Vetores.fxml"), label.getString("root.tab.vetor.tituloJanela"), CAMINHO_ICONE_APLICACAO);
 		vetoresController = loader.getController();
 		vetoresController.show(this, vetoresStage, label);
+		
 	}
 	
 	public void setIdioma(Idioma idioma) {
@@ -315,6 +333,13 @@ public class MainApp extends Application {
 	public void exitAplicacao() {
 		System.exit(0);
 		threadExecutor.shutdown();
+	}
+	
+	public void clean(Stage stage, Object obj) {
+		stage = null;
+		obj = null;
+		Runtime.getRuntime().gc();
+		System.gc();
 	}
 	
 	public static void main(String[] args) {

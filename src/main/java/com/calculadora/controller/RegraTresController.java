@@ -102,6 +102,7 @@ public class RegraTresController implements Runnable {
 	private void handleVoltar() {
 		mainApp.exibirRoot();
 		regraTresStage.close();
+		mainApp.clean(regraTresStage, this);
 	}
 	
 	@FXML

@@ -142,6 +142,7 @@ public class InvestimentoController implements Runnable {
 	private void handleVoltar() {
 		mainApp.exibirRoot();
 		investimentoStage.close();
+		mainApp.clean(investimentoStage, this);
 	}
 
 	@FXML

@@ -112,6 +112,7 @@ public class PoupancaController implements Runnable {
 	private void handleVoltar() {
 		mainApp.exibirRoot();
 		poupancaStage.close();
+		mainApp.clean(poupancaStage, this);
 	}
 
 	@FXML

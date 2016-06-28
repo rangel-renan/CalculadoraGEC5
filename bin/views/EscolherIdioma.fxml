@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="191.0" prefWidth="385.0" styleClass="background" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.EscolherIdiomaController">
+<AnchorPane prefHeight="191.0" prefWidth="385.0" styleClass="background" xmlns="http://javafx.com/javafx/8.0.45" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.EscolherIdiomaController">
    <children>
       <Button fx:id="btnCancelar" layoutX="266.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleBtnCancelar" prefHeight="31.0" prefWidth="108.0" styleClass="btnEscolherIdioma" text="Canclear" />
       <Button fx:id="btnOk" layoutX="151.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleBtnOk" prefHeight="31.0" prefWidth="108.0" styleClass="btnEscolherIdioma" text="Ok" />

@@ -89,6 +89,7 @@ public class FinanciamentoController implements Runnable {
 	private void handleVoltar() {
 		mainApp.exibirRoot();
 		financiamentoStage.close();
+		mainApp.clean(financiamentoStage, this);
 	}
 
 	@FXML

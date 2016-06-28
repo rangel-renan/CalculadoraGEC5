@@ -38,6 +38,7 @@ public class SobreController implements Runnable {
 	private void handleOk() {
 		mainApp.exibirRoot();
 		sobreStage.close();
+		mainApp.clean(sobreStage, this);
 	}
 	
 	public void setMainApp(MainApp mainApp) {

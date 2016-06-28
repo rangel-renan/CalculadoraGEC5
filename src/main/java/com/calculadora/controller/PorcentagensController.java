@@ -141,6 +141,7 @@ public class PorcentagensController implements Runnable {
 	private void handleVoltar() {
 		mainApp.exibirRoot();
 		porcentagensStage.close();
+		mainApp.clean(porcentagensStage, this);
 	}
 	
 	@FXML

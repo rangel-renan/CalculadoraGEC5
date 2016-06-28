@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="221.0" prefWidth="437.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.ConversorMoedasController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="221.0" prefWidth="437.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.45" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.ConversorMoedasController">
    <children>
       <TextField alignment="CENTER" editable="false" layoutX="307.0" layoutY="57.0" prefHeight="36.0" prefWidth="86.0" styleClass="btnResults" />
       <ComboBox fx:id="comboSecondMoedas" layoutX="239.0" layoutY="102.0" onHidden="#hiddenSecondMoeda" prefHeight="33.0" prefWidth="192.0" />

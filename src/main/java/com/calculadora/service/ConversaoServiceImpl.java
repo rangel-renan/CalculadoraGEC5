@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
+import java.net.ConnectException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -29,22 +30,22 @@ public class ConversaoServiceImpl implements ConversaoService {
 	}
 
 	public BigDecimal converterMoeda(BigDecimal valor, String firstMoeda, String moedaResultante)
-			throws NumberFormatException, MalformedURLException, IOException, ImpossivelConverterException {
+			throws NumberFormatException, MalformedURLException, IOException, ImpossivelConverterException, ConnectException {
 		String query = "https://www.google.com/finance/converter?a=" + valor.doubleValue() + "&from=" + firstMoeda
 				+ "&to=" + moedaResultante;
 		URL url = new URL(query);
 		InputStreamReader stream = new InputStreamReader(url.openStream());
 		BufferedReader in = new BufferedReader(stream);
-		String str = "";
+		StringBuilder str = new StringBuilder();
 		String temp = "";
 
-		while ((temp = in.readLine()) != null) {
-			str = str + temp;
+		while ((temp = in.readLine()) != null && (in.readLine().contains("select") || in.readLine().contains("option"))) {
+			str.append(temp);
 		}
 
 		WebView view = new WebView();
 		WebEngine engine = view.getEngine();
-		engine.loadContent(str);
+		engine.loadContent(str.toString());
 		engine.getLoadWorker().stateProperty().addListener((observable, oldState, newState) -> {
 			if (newState == State.SUCCEEDED) {
 				Document doc = engine.getDocument();
@@ -66,5 +67,6 @@ public class ConversaoServiceImpl implements ConversaoService {
 		 */
 		return new BigDecimal(resultado.split("= ")[1].split(" " + moedaResultante)[0]);
 	}
+	
 
 }

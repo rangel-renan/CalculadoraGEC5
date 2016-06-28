@@ -14,7 +14,7 @@
 <?import com.calculadora.validacao.InputVetorTextField?>
 <?import com.calculadora.validacao.InputOnlyNumberTextField?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="701.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.VetoresController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="701.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.45" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.VetoresController">
    <children>
       <InputVetorTextField id="vA" fx:id="textFieldvetorA" alignment="CENTER" layoutX="39.0" layoutY="55.0" prefHeight="40.0" prefWidth="212.0" />
       <Label layoutX="17.0" layoutY="32.0" text="{">
