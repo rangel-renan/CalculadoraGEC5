@@ -13,4 +13,5 @@ public interface FinanceiraService {
 	public BigDecimal calcularValorPrestacao(BigDecimal valorTotal, BigDecimal taxaJuros, BigDecimal periodoFinanciamentoEmMeses);
 	public Hipoteca calcularHipoteca(BigDecimal precoDoImovel, BigDecimal taxaJuros, BigDecimal prazo);
 	public CartaoCredito calcularCartaoCredito(BigDecimal saldoCartaoCredito, BigDecimal taxaJuros, BigDecimal valorParcela) throws PagamentoMinimoMaiorParcelaException;
+	public BigDecimal calcularAnuidade(BigDecimal pagamentoMensal, BigDecimal taxaAnual, BigDecimal periodo);
 }

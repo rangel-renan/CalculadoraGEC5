@@ -41,7 +41,7 @@ public class FinanceiraServiceImpl implements FinanceiraService {
 		BigDecimal pagamentoMinimo = taxaJuros.multiply(saldoCartaoCredito);
 
 		if (pagamentoMinimo.compareTo(valorParcela) > 0) {
-			throw new PagamentoMinimoMaiorParcelaException("O Pagamento mensal é menor que o Valor da parcela.");
+			throw new PagamentoMinimoMaiorParcelaException("O Pagamento mensal Ã© menor que o Valor da parcela.");
 		}
 
 		Integer meses = 0;
@@ -55,9 +55,14 @@ public class FinanceiraServiceImpl implements FinanceiraService {
 
 		return new CartaoCredito(balancoInicial, meses, balancoInicial.add(totalJurosFinal), totalJurosFinal);
 	}
-
+	
+	public BigDecimal calcularAnuidade(BigDecimal pagamentoMensal, BigDecimal taxaAnual, BigDecimal periodo) {
+		taxaAnual = porcentagemEmDecimal(taxaAnual);
+		return (pagamentoMensal.divide((taxaAnual.divide(DOZE_MESES, MathContext.DECIMAL128)), MathContext.DECIMAL128)).multiply((UM.subtract(new BigDecimal((Math.pow((UM.add((taxaAnual.divide(DOZE_MESES, MathContext.DECIMAL128)))).doubleValue(), -periodo.doubleValue()))))));
+	}
+	
 	private BigDecimal porcentagemEmDecimal(BigDecimal valor) {
 		return valor.divide(CEM);
 	}
-
+	
 }

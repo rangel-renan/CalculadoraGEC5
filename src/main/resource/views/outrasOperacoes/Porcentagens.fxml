@@ -20,7 +20,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnCalcularPorcentagem" layoutX="394.0" layoutY="192.0" mnemonicParsing="false" onAction="#handleCalcularPorcentagem" prefHeight="33.0" prefWidth="160.0" text="%botoes.calcularPorcent">
+      <Button fx:id="btnCalcularPorcentagem" layoutX="394.0" layoutY="192.0" mnemonicParsing="false" styleClass="operadores" onAction="#handleCalcularPorcentagem" prefHeight="33.0" prefWidth="160.0" text="%botoes.calcularPorcent">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

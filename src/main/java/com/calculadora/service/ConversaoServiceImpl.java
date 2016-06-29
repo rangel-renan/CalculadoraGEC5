@@ -56,15 +56,7 @@ public class ConversaoServiceImpl implements ConversaoService {
 		
 		if (resultado.equals("Could not convert.")) 
 			throw new ImpossivelConverterException("Impossível de se Converter.");
-		/*
-		 * } catch (NumberFormatException e) {
-        	System.out.println("Formato de Número Incorreto.");
-        } catch (MalformedURLException e) {
-        	System.out.println("Valores ou Moedas Inexistentes.");
-		} catch (IOException e) {
-			System.out.println("É Necessário acesso a Internet.");
-		} 
-		 */
+		
 		return new BigDecimal(resultado.split("= ")[1].split(" " + moedaResultante)[0]);
 	}
 	

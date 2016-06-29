@@ -15,7 +15,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnCalcular" layoutX="161.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleCalcular" prefHeight="33.0" prefWidth="117.0" text="%botoes.calcular">
+      <Button fx:id="btnCalcular" layoutX="161.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleCalcular" styleClass="operadores" prefHeight="33.0" prefWidth="117.0" text="%botoes.calcular">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

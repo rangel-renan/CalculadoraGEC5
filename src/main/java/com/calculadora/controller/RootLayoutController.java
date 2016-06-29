@@ -149,6 +149,12 @@ public class RootLayoutController implements Runnable {
 		mainApp.initConversorMoedas();
 	}
 	
+	@FXML
+	private void handleAnuidade() {
+		mainApp.ocultarRoot();
+		mainApp.initAnuidade();
+	}
+	
 	public void setRootStage(Stage rootStage) {
 		this.rootStage = rootStage;
 	}

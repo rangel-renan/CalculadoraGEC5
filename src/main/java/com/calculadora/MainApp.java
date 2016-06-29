@@ -8,6 +8,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import com.calculadora.config.ConfigProperties;
+import com.calculadora.controller.AnuidadeController;
 import com.calculadora.controller.CalculadoraController;
 import com.calculadora.controller.CartaoCreditoController;
 import com.calculadora.controller.ConversoesController;
@@ -64,6 +65,7 @@ public class MainApp extends Application {
 	private Stage cartaoCreditoStage;
 	private Stage poupancaStage;
 	private Stage conversaoMoedasStage;
+	private Stage anuidadeStage;
 	private BorderPane rootLayout;
 	
 	private RootLayoutController rootLayoutController;
@@ -84,6 +86,7 @@ public class MainApp extends Application {
 	private CartaoCreditoController cartaoCreditoController;
 	private PoupancaController poupancaController;
 	private ConversorMoedasController conversorMoedasController;
+	private AnuidadeController anuidadeController;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -294,7 +297,13 @@ public class MainApp extends Application {
 		conversaoMoedasStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/ConversorMoedas.fxml"), label.getString("root.tab.financeiro.conversorMoeda.titulo"), CAMINHO_ICONE_APLICACAO);
 		conversorMoedasController = loader.getController();
 		conversorMoedasController.show(this, conversaoMoedasStage, label);
-		
+	}
+	
+	public void initAnuidade() {
+		FXMLLoader loader = getLoader();
+		anuidadeStage = getStage((AnchorPane) getLayout(loader, "/views/financeiro/Anuidade.fxml"), label.getString("root.tab.financeiro.anuidade"), CAMINHO_ICONE_APLICACAO);
+		anuidadeController = loader.getController();
+		anuidadeController.show(this, anuidadeStage, label);
 	}
 	
 	public void initVetores() {
