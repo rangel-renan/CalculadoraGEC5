@@ -155,6 +155,12 @@ public class RootLayoutController implements Runnable {
 		mainApp.initAnuidade();
 	}
 	
+	@FXML
+	private void handlePolinomios() {
+		mainApp.ocultarRoot();
+		mainApp.initPolinomios();
+	}
+	
 	public void setRootStage(Stage rootStage) {
 		this.rootStage = rootStage;
 	}

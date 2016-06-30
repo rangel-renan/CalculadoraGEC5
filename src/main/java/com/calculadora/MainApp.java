@@ -20,6 +20,7 @@ import com.calculadora.controller.InvestimentoController;
 import com.calculadora.controller.JurosController;
 import com.calculadora.controller.MatrizController;
 import com.calculadora.controller.OpcoesController;
+import com.calculadora.controller.PolinomiosController;
 import com.calculadora.controller.PorcentagensController;
 import com.calculadora.controller.PoupancaController;
 import com.calculadora.controller.PrimosController;
@@ -66,6 +67,7 @@ public class MainApp extends Application {
 	private Stage poupancaStage;
 	private Stage conversaoMoedasStage;
 	private Stage anuidadeStage;
+	private Stage polinomioStage;
 	private BorderPane rootLayout;
 	
 	private RootLayoutController rootLayoutController;
@@ -87,6 +89,7 @@ public class MainApp extends Application {
 	private PoupancaController poupancaController;
 	private ConversorMoedasController conversorMoedasController;
 	private AnuidadeController anuidadeController;
+	private PolinomiosController polinomiosController;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -311,6 +314,14 @@ public class MainApp extends Application {
 		vetoresStage = getStage((AnchorPane) getLayout(loader, "/views/outrasOperacoes/Vetores.fxml"), label.getString("root.tab.vetor.tituloJanela"), CAMINHO_ICONE_APLICACAO);
 		vetoresController = loader.getController();
 		vetoresController.show(this, vetoresStage, label);
+		
+	}
+	
+	public void initPolinomios() {
+		FXMLLoader loader = getLoader();
+		polinomioStage = getStage((AnchorPane) getLayout(loader, "/views/polinomios/Polinomio.fxml"), "Polinômios", CAMINHO_ICONE_APLICACAO);
+		polinomiosController = loader.getController();
+		polinomiosController.show(this, polinomioStage, label);
 		
 	}
 	

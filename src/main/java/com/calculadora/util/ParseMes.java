@@ -28,7 +28,4 @@ public class ParseMes {
 		return (anos.multiply(new BigDecimal("12")));
 	}
 	
-	public static void main(String[] args) {
-		System.out.println(ParseMes.diaToMes(new BigDecimal(20)));
-	}
 }

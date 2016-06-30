@@ -2,15 +2,19 @@ package com.calculadora.service;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.text.NumberFormat;
 
 import com.calculadora.model.Financiamento;
 import com.calculadora.util.enums.TipoPrestacao;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class FinanciamentoServiceImpl implements FinanciamentoService {
 	private final BigDecimal CEM = new BigDecimal("100");
 	private final BigDecimal UM = BigDecimal.ONE;
 	
-	public Financiamento calcularFinanciamento(BigDecimal valorFinanciado, BigDecimal taxaJuros, BigDecimal numeroMeses,
+	public ObservableList<Financiamento> calcularFinanciamento(BigDecimal valorFinanciado, BigDecimal taxaJuros, BigDecimal numeroMeses,
 			TipoPrestacao tipoPrestacao) {
 
 		switch (tipoPrestacao) {
@@ -24,8 +28,13 @@ public class FinanciamentoServiceImpl implements FinanciamentoService {
 
 	}
 
-	private Financiamento financiamentoPrice(BigDecimal valorFinanciado, BigDecimal taxaJuros, BigDecimal numeroMeses) {
-		Financiamento financiamento = new Financiamento();
+	private ObservableList<Financiamento> financiamentoPrice(BigDecimal valorFinanciado, BigDecimal taxaJuros, BigDecimal numeroMeses) {
+		ObservableList<Financiamento> listaFinanciamento = FXCollections.observableArrayList();
+		NumberFormat formatter= NumberFormat.getInstance();
+		
+		formatter.setMaximumFractionDigits(2);
+		formatter.setMinimumFractionDigits(2);
+		
 		BigDecimal totalJuros = new BigDecimal("0");
 		BigDecimal totalAmort = new BigDecimal("0");
 		BigDecimal totalParc = new BigDecimal("0");
@@ -33,30 +42,32 @@ public class FinanciamentoServiceImpl implements FinanciamentoService {
 		taxaJuros = porcentagemEmDecimal(taxaJuros);
 		BigDecimal saldoDevedor;
 		BigDecimal amortizacao;
-
+		int numeroParcela = 1;
+		
 		for (int i = 0; i < numeroMeses.intValue(); i++) {
 			amortizacao = parcela.subtract((valorFinanciado.multiply(taxaJuros)));
 			saldoDevedor = valorFinanciado.subtract(amortizacao);
-
-			financiamento.addParcela(parcela);
-			financiamento.addAmortizacao(amortizacao);
-			financiamento.addJuro(valorFinanciado.multiply(taxaJuros));
-			financiamento.addSaldoDevedor(saldoDevedor);
-
+			
+			listaFinanciamento.add(new Financiamento(Integer.toString(numeroParcela), formatter.format(parcela.doubleValue()), formatter.format(amortizacao.doubleValue()), 
+					formatter.format((valorFinanciado.multiply(taxaJuros)).doubleValue()), formatter.format(saldoDevedor.doubleValue())));
+			
 			totalJuros = totalJuros.add((valorFinanciado.multiply(taxaJuros)));
 			totalAmort = totalAmort.add(amortizacao);
 			totalParc = totalParc.add(parcela);
 			valorFinanciado = valorFinanciado.subtract(amortizacao);
+			numeroParcela++;
 		}
 
-		financiamento.setParcela(parcela.doubleValue());
-
-		return financiamento;
+		return listaFinanciamento;
 	}
 	
-	private Financiamento financiamentoSac(BigDecimal valorFinanciado, BigDecimal taxaJuros, BigDecimal numeroMeses) {
-		Financiamento financiamento = new Financiamento();
+	private ObservableList<Financiamento> financiamentoSac(BigDecimal valorFinanciado, BigDecimal taxaJuros, BigDecimal numeroMeses) {
+		ObservableList<Financiamento> listaFinanciamento = FXCollections.observableArrayList();
 		BigDecimal amortizacao = valorFinanciado.divide(numeroMeses, MathContext.DECIMAL128);
+		NumberFormat formatter= NumberFormat.getInstance();
+		
+		formatter.setMaximumFractionDigits(2);
+		formatter.setMinimumFractionDigits(2);
 		
 		BigDecimal totalJuros = new BigDecimal("0");
 		BigDecimal totalAmort = new BigDecimal("0");
@@ -64,31 +75,31 @@ public class FinanciamentoServiceImpl implements FinanciamentoService {
 		BigDecimal parcela;
 		taxaJuros = porcentagemEmDecimal(taxaJuros);
 		BigDecimal saldoDevedor;
+		int numeroParcela = 1;
 		
 		for (int i = 0; i < numeroMeses.intValue(); i++) {
 			parcela = amortizacao.add((valorFinanciado.multiply(taxaJuros)));
 			saldoDevedor = valorFinanciado.subtract(amortizacao);
-
-			financiamento.addParcela(parcela);
-			financiamento.addAmortizacao(amortizacao);
-			financiamento.addJuro(valorFinanciado.multiply(taxaJuros));
-			financiamento.addSaldoDevedor(saldoDevedor);
-
+			
+			listaFinanciamento.add(new Financiamento(Integer.toString(numeroParcela), formatter.format(parcela.doubleValue()), formatter.format(amortizacao.doubleValue()), 
+					formatter.format(taxaJuros.doubleValue()), formatter.format(saldoDevedor.doubleValue())));
+			
 			totalJuros = totalJuros.add((valorFinanciado.multiply(taxaJuros)));
 			totalAmort = totalAmort.add(amortizacao);
 			totalParc = totalParc.add(parcela);
 			valorFinanciado = valorFinanciado.subtract(amortizacao);
+			numeroParcela++;
 		}
 		
-		return financiamento;
+		return listaFinanciamento;
 	}
 
 	// Calculo de parcelas Método Tabela Price (Preço FIxo)
 	public BigDecimal tablePrice(BigDecimal valorTotal, BigDecimal taxaJuros, BigDecimal totalParcelas) {
+		System.out.println(totalParcelas);
 		taxaJuros = porcentagemEmDecimal(taxaJuros);
 		return valorTotal.multiply((((taxaJuros.add(UM)).pow(totalParcelas.intValue())).multiply(taxaJuros))
 				.divide((((taxaJuros.add(UM)).pow(totalParcelas.intValue())).subtract(UM)), MathContext.DECIMAL128));
-
 	}
 
 	// Calculo de parcelas Método Tabela Sac (Decrescente)

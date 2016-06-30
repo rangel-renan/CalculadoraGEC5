@@ -1,9 +1,13 @@
 package com.calculadora.controller;
 
+import java.math.BigDecimal;
+import java.text.NumberFormat;
+
 import com.calculadora.MainApp;
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.service.PoupancaService;
 import com.calculadora.service.PoupancaServiceImpl;
+import com.calculadora.util.ParseMes;
 import com.calculadora.util.enums.TipoMoedas;
 import com.calculadora.util.enums.TipoPeriodos;
 
@@ -11,6 +15,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -21,9 +26,16 @@ public class PoupancaController implements Runnable {
 	private MainApp mainApp;
 	private Stage poupancaStage;
 
+	private NumberFormat formatter;
 	private ConfigProperties label;
 	private PoupancaService poupancaService;
+	
+	@FXML
+	private Button btnDepRegulCalcular;
 
+	@FXML
+	private Button btnValTotalCalcular;
+	
 	@FXML
 	private ComboBox<TipoMoedas> comboDepRegulMoedas;
 	
@@ -49,9 +61,52 @@ public class PoupancaController implements Runnable {
 	
 	@FXML
 	private TextField textFieldValTotalSimboloMoeda2;
+	
+	@FXML
+	private TextField textFieldDepRegulValorTotal;
+	
+	@FXML
+	private TextField textFieldDepRegulTaxaJuros;
+	
+	@FXML
+	private TextField textFieldDepRegulNumDepositos;
+	
+	@FXML
+	private TextField textFieldDepRegulDuracao;
+	
+	@FXML
+	private TextField textFieldDepRegulValorDeposito;
+	
+	@FXML
+	private TextField textFieldValTotalValorTotal;
+	
+	@FXML
+	private TextField textFieldValTotalTaxaJuros;
+	
+	@FXML
+	private TextField textFieldValTotalNumDepositos;
+	
+	@FXML
+	private TextField textFieldValTotalDuracao;
+	
+	@FXML
+	private TextField textFieldValTotalValorDeposito;
 
 	@Override
 	public void run() {
+		btnDepRegulCalcular.setDisable(true);
+		btnValTotalCalcular.setDisable(true);
+		
+		setListernersDepRegul(textFieldDepRegulValorTotal, textFieldDepRegulValorTotal, textFieldDepRegulTaxaJuros, textFieldDepRegulNumDepositos, textFieldDepRegulDuracao, btnDepRegulCalcular);
+		setListernersDepRegul(textFieldDepRegulTaxaJuros, textFieldDepRegulValorTotal, textFieldDepRegulTaxaJuros, textFieldDepRegulNumDepositos, textFieldDepRegulDuracao, btnDepRegulCalcular);
+		setListernersDepRegul(textFieldDepRegulNumDepositos, textFieldDepRegulValorTotal, textFieldDepRegulTaxaJuros, textFieldDepRegulNumDepositos, textFieldDepRegulDuracao, btnDepRegulCalcular);
+		setListernersDepRegul(textFieldDepRegulDuracao, textFieldDepRegulValorTotal, textFieldDepRegulTaxaJuros, textFieldDepRegulNumDepositos, textFieldDepRegulDuracao, btnDepRegulCalcular);
+		
+		setListernersValTotal(textFieldValTotalTaxaJuros, textFieldValTotalTaxaJuros, textFieldValTotalNumDepositos, textFieldValTotalDuracao, textFieldValTotalValorDeposito, btnValTotalCalcular);
+		setListernersValTotal(textFieldValTotalNumDepositos, textFieldValTotalTaxaJuros, textFieldValTotalNumDepositos, textFieldValTotalDuracao, textFieldValTotalValorDeposito, btnValTotalCalcular);
+		setListernersValTotal(textFieldValTotalDuracao, textFieldValTotalTaxaJuros, textFieldValTotalNumDepositos, textFieldValTotalDuracao, textFieldValTotalValorDeposito, btnValTotalCalcular);
+		setListernersValTotal(textFieldValTotalValorDeposito, textFieldValTotalTaxaJuros, textFieldValTotalNumDepositos, textFieldValTotalDuracao, textFieldValTotalValorDeposito, btnValTotalCalcular);
+		
 		Platform.runLater(new Runnable() {
 			public void run() {
 				poupancaStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -81,7 +136,44 @@ public class PoupancaController implements Runnable {
 		Platform.runLater(new Runnable() {
 			public void run() { 
 				combo.setItems(FXCollections.observableArrayList(TipoPeriodos.values())); 
+				combo.getItems().remove(0);
 				combo.getSelectionModel().select(0);
+			}
+		});
+	}
+
+	private void setListernersDepRegul(TextField textField, TextField textFieldDepRegulValorTotal, TextField textFieldDepRegulTaxaJuros, 
+			TextField textFieldDepRegulNumDepositos, TextField textFieldDepRegulDuracao, Button btnCalcular) {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				textField.textProperty().addListener((observable, oldValue, newValue) -> {
+				    if (textFieldDepRegulValorTotal.getText().length() == 0 
+				    || textFieldDepRegulTaxaJuros.getText().length() == 0
+				    || textFieldDepRegulNumDepositos.getText().length() == 0
+				    || textFieldDepRegulDuracao.getText().length() == 0) {
+				    	btnCalcular.setDisable(true);
+				    } else {
+				    	btnCalcular.setDisable(false);
+				    }
+				});
+			}
+		});
+	}
+
+	private void setListernersValTotal(TextField textField, TextField textFieldValTotalTaxaJuros, TextField textFieldValTotalNumDepositos, 
+			TextField textFieldValTotalDuracao, TextField textFieldValTotalValorDeposito, Button btnCalcular) {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				textField.textProperty().addListener((observable, oldValue, newValue) -> {
+				    if (textFieldValTotalTaxaJuros.getText().length() == 0 
+				    || textFieldValTotalNumDepositos.getText().length() == 0
+				    || textFieldValTotalDuracao.getText().length() == 0
+				    || textFieldValTotalValorDeposito.getText().length() == 0) {
+				    	btnCalcular.setDisable(true);
+				    } else {
+				    	btnCalcular.setDisable(false);
+				    }
+				});
 			}
 		});
 	}
@@ -91,6 +183,10 @@ public class PoupancaController implements Runnable {
 		this.poupancaStage = _poupancaStage;
 		this.label = label;
 		this.poupancaService = new PoupancaServiceImpl();
+		this.formatter = NumberFormat.getInstance();
+		
+		formatter.setMaximumFractionDigits(2);
+		formatter.setMinimumFractionDigits(2);
 		
 		run();
 		mainApp.addThread(new Thread(this));
@@ -114,7 +210,27 @@ public class PoupancaController implements Runnable {
 		poupancaStage.close();
 		mainApp.clean(poupancaStage, this);
 	}
+	
+	@FXML
+	private void calcularValTotal() {
+		textFieldValTotalValorTotal
+								.setText(formatter
+								.format(poupancaService.calcularValorTotal(new BigDecimal(textFieldValTotalValorDeposito.getText()), 
+																new BigDecimal(textFieldValTotalTaxaJuros.getText()), 
+																new BigDecimal(textFieldValTotalNumDepositos.getText()), 
+																ParseMes.parseToMes(new BigDecimal(textFieldValTotalDuracao.getText()), comboValTipoPeriodos.getValue())).doubleValue()));
+	}
 
+	@FXML
+	private void calcularDepRegul() {
+		textFieldDepRegulValorDeposito
+								.setText(formatter
+								.format(poupancaService.calcularValorDepositos(new BigDecimal(textFieldDepRegulValorTotal.getText()), 
+																new BigDecimal(textFieldDepRegulTaxaJuros.getText()), 
+																new BigDecimal(textFieldDepRegulNumDepositos.getText()), 
+																ParseMes.parseToMes(new BigDecimal(textFieldDepRegulDuracao.getText()), comboDepRegulTipoPeriodos.getValue())).doubleValue()));
+	}
+	
 	@FXML
 	private void handleAjuda() {
 		

@@ -25,7 +25,7 @@ public class FinanceiraServiceImpl implements FinanceiraService {
 			BigDecimal periodoFinanciamentoEmMeses) {
 		taxaJuros = porcentagemEmDecimal(taxaJuros);
 		BigDecimal divisor = BigDecimal.ONE.subtract(
-				new BigDecimal(Math.pow((taxaJuros.add(UM).doubleValue()), -periodoFinanciamentoEmMeses.intValue())));
+				new BigDecimal(Math.pow((taxaJuros.add(UM).doubleValue()), -periodoFinanciamentoEmMeses.doubleValue())));
 		return valorTotal.multiply((taxaJuros.divide(divisor, MathContext.DECIMAL128)));
 	}
 

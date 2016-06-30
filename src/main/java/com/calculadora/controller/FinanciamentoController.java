@@ -1,19 +1,28 @@
 package com.calculadora.controller;
 
+import java.math.BigDecimal;
+
 import com.calculadora.MainApp;
 import com.calculadora.config.ConfigProperties;
+import com.calculadora.model.Financiamento;
 import com.calculadora.service.FinanciamentoService;
 import com.calculadora.service.FinanciamentoServiceImpl;
+import com.calculadora.util.ParseMes;
 import com.calculadora.util.enums.TipoMoedas;
 import com.calculadora.util.enums.TipoPeriodos;
 import com.calculadora.util.enums.TipoPrestacao;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -24,6 +33,27 @@ public class FinanciamentoController implements Runnable {
 	private ConfigProperties label;
 	private FinanciamentoService financiamentoService;
 
+	@FXML
+	private Button btnCalcular;
+	
+	@FXML
+	private TableView<Financiamento> tabelaDetlFinanciamento;
+	
+	@FXML
+	private TableColumn<Financiamento, String> colunaNumParcela;
+	
+	@FXML
+	private TableColumn<Financiamento, String> colunaValorParcela;
+	
+	@FXML
+	private TableColumn<Financiamento, String> colunaAmortizacoes;
+	
+	@FXML
+	private TableColumn<Financiamento, String> colunaJuros;
+	
+	@FXML
+	private TableColumn<Financiamento, String> colunaSaldoDevedor;
+	
 	@FXML
 	private ComboBox<TipoMoedas> comboMoedas;
 	
@@ -36,8 +66,23 @@ public class FinanciamentoController implements Runnable {
 	@FXML
 	private TextField textFieldSimboloMoeda;
 	
+	@FXML
+	private TextField textFieldValorFinanciado;
+	
+	@FXML
+	private TextField textFieldTaxaJuros;
+	
+	@FXML
+	private TextField textFieldPeriodo;
+	
 	@Override
 	public void run() {
+		btnCalcular.setDisable(true);
+		
+		setListerners(textFieldValorFinanciado);
+		setListerners(textFieldTaxaJuros);
+		setListerners(textFieldPeriodo);
+		
 		Platform.runLater(new Runnable() {
 			public void run() {
 				financiamentoStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -65,6 +110,7 @@ public class FinanciamentoController implements Runnable {
 		Platform.runLater(new Runnable() {
 			public void run() { 
 				comboTipoPeridos.setItems(FXCollections.observableArrayList(TipoPeriodos.values())); 
+				comboTipoPeridos.getItems().remove(0);
 				comboTipoPeridos.getSelectionModel().select(0);
 			}
 		});
@@ -78,6 +124,42 @@ public class FinanciamentoController implements Runnable {
 		
 		run();
 		mainApp.addThread(new Thread(this));
+	}
+	
+	private void setListerners(TextField textField) {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				textField.textProperty().addListener((observable, oldValue, newValue) -> {
+				    if (textFieldValorFinanciado.getText().length() == 0 
+				    || textFieldTaxaJuros.getText().length() == 0
+				    || textFieldPeriodo.getText().length() == 0) {
+				    	btnCalcular.setDisable(true);
+				    } else {
+				    	btnCalcular.setDisable(false);
+				    }
+				});
+			}
+		});
+	}
+	
+	@FXML
+	private void calcular() {
+		ObservableList<Financiamento> listaFinanciamentos = financiamentoService.calcularFinanciamento(new BigDecimal(textFieldValorFinanciado.getText()), 
+																new BigDecimal(textFieldTaxaJuros.getText()), 
+																ParseMes.parseToMes(new BigDecimal(textFieldPeriodo.getText()), comboTipoPeridos.getValue()), 
+																comboTipoPrestacao.getValue());
+
+		preenxerTabela(listaFinanciamentos);
+	}
+
+	private void preenxerTabela(ObservableList<Financiamento> listaFinanciamentos) {
+		colunaNumParcela.setCellValueFactory(new PropertyValueFactory<>("numeroParcela"));
+		colunaValorParcela.setCellValueFactory(new PropertyValueFactory<>("parcela"));
+		colunaAmortizacoes.setCellValueFactory(new PropertyValueFactory<>("amortizacaoAoMes"));
+		colunaJuros.setCellValueFactory(new PropertyValueFactory<>("jurosAoMes"));
+		colunaSaldoDevedor.setCellValueFactory(new PropertyValueFactory<>("saldoDevedorAoMes"));
+		
+		tabelaDetlFinanciamento.setItems(listaFinanciamentos);
 	}
 	
 	@FXML

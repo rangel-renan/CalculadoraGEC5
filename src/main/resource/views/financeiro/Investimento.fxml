@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="454.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.45" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.InvestimentoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="454.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.InvestimentoController">
    <children>
       <TabPane prefHeight="448.0" prefWidth="454.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -20,7 +20,7 @@
                      <children>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="401.0" prefWidth="454.0">
                            <children>
-                              <TextField layoutX="219.0" layoutY="73.0" prefHeight="36.0" prefWidth="154.0">
+                              <TextField fx:id="textFieldInvValorFuturo" layoutX="219.0" layoutY="73.0" prefHeight="36.0" prefWidth="154.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -41,7 +41,7 @@
                                  </font>
                               </Label>
                               <ComboBox fx:id="comboInvIniciMoedas" layoutX="182.0" layoutY="26.0" onHidden="#hiddenInvMoeda" prefHeight="31.0" prefWidth="192.0" />
-                              <TextField layoutX="219.0" layoutY="121.0" prefHeight="36.0" prefWidth="154.0">
+                              <TextField fx:id="textFieldInvTaxaJuros" layoutX="219.0" layoutY="121.0" prefHeight="36.0" prefWidth="154.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -56,7 +56,7 @@
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <TextField layoutX="182.0" layoutY="173.0" prefHeight="36.0" prefWidth="154.0">
+                              <TextField fx:id="textFieldInvDuracao" layoutX="182.0" layoutY="173.0" prefHeight="36.0" prefWidth="154.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -66,13 +66,13 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="comboInvIniciDuracao" layoutX="339.0" layoutY="173.0" prefHeight="36.0" prefWidth="73.0" />
-                              <Button ellipsisString="" layoutX="207.0" layoutY="279.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" styleClass="operadores" text="%botoes.calcular">
+                              <ComboBox fx:id="comboInvIniciDuracao" layoutX="339.0" layoutY="173.0" prefHeight="36.0" prefWidth="94.0" />
+                              <Button fx:id="btnInvCalcular" ellipsisString="" layoutX="207.0" layoutY="279.0" mnemonicParsing="false" onAction="#calcularInv" prefHeight="33.0" prefWidth="94.0" styleClass="operadores" text="%botoes.calcular">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <TextField alignment="CENTER" editable="false" layoutX="219.0" layoutY="346.0" prefHeight="36.0" prefWidth="154.0" styleClass="btnResults" />
+                              <TextField fx:id="textFieldInvInvestimentoInicial" alignment="CENTER" editable="false" layoutX="219.0" layoutY="346.0" prefHeight="36.0" prefWidth="154.0" styleClass="btnResults" />
                               <TextField fx:id="textFieldInvSimboloMoeda2" disable="true" layoutX="182.0" layoutY="346.0" prefHeight="36.0" prefWidth="37.0" promptText="R$">
                                  <font>
                                     <Font size="15.0" />
@@ -83,13 +83,13 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="comboInvIniciPeriodos" layoutX="339.0" layoutY="222.0" prefHeight="36.0" prefWidth="73.0" />
+                              <ComboBox fx:id="comboInvIniciPeriodos" layoutX="339.0" layoutY="222.0" prefHeight="36.0" prefWidth="94.0" />
                               <Label alignment="CENTER_RIGHT" layoutX="18.0" layoutY="228.0" prefWidth="154.0" text="%root.tab.financeiro.investimento.numPeriodos">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="182.0" layoutY="222.0" prefHeight="36.0" prefWidth="154.0">
+                              <TextField fx:id="textFieldInvNumeroPeriodos" layoutX="182.0" layoutY="222.0" prefHeight="36.0" prefWidth="154.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -106,7 +106,7 @@
                      <children>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="401.0" prefWidth="454.0">
                            <children>
-                              <TextField layoutX="219.0" layoutY="73.0" prefHeight="36.0" prefWidth="154.0">
+                              <TextField fx:id="textFieldValInvestimentoInicial" layoutX="219.0" layoutY="73.0" prefHeight="36.0" prefWidth="154.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -127,7 +127,7 @@
                                  </font>
                               </Label>
                               <ComboBox fx:id="comboValFutMoedas" layoutX="182.0" layoutY="26.0" onHidden="#hiddenValMoeda" prefHeight="31.0" prefWidth="192.0" />
-                              <TextField layoutX="219.0" layoutY="121.0" prefHeight="36.0" prefWidth="154.0">
+                              <TextField fx:id="textFieldValTaxaJuros" layoutX="219.0" layoutY="121.0" prefHeight="36.0" prefWidth="154.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -142,7 +142,7 @@
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <TextField layoutX="182.0" layoutY="173.0" prefHeight="36.0" prefWidth="154.0">
+                              <TextField fx:id="textFieldValDuracao" layoutX="182.0" layoutY="173.0" prefHeight="36.0" prefWidth="154.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -152,13 +152,13 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="comboValFutDuracao" layoutX="339.0" layoutY="173.0" prefHeight="36.0" prefWidth="73.0" />
-                              <Button ellipsisString="" layoutX="207.0" layoutY="279.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" styleClass="operadores" text="%botoes.calcular">
+                              <ComboBox fx:id="comboValFutDuracao" layoutX="339.0" layoutY="173.0" prefHeight="36.0" prefWidth="94.0" />
+                              <Button fx:id="btnValFutCalcular" ellipsisString="" layoutX="207.0" layoutY="279.0" mnemonicParsing="false" onAction="#calcularValorFuturo" prefHeight="33.0" prefWidth="94.0" styleClass="operadores" text="%botoes.calcular">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <TextField alignment="CENTER" editable="false" layoutX="219.0" layoutY="346.0" prefHeight="36.0" prefWidth="154.0" styleClass="btnResults" />
+                              <TextField fx:id="textFieldValValorFuturo" alignment="CENTER" editable="false" layoutX="219.0" layoutY="346.0" prefHeight="36.0" prefWidth="154.0" styleClass="btnResults" />
                               <TextField fx:id="textFieldValSimboloMoeda2" disable="true" layoutX="182.0" layoutY="346.0" prefHeight="36.0" prefWidth="37.0" promptText="R$">
                                  <font>
                                     <Font size="15.0" />
@@ -169,13 +169,13 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="comboValFutPeriodos" layoutX="339.0" layoutY="222.0" prefHeight="36.0" prefWidth="73.0" />
+                              <ComboBox fx:id="comboValFutPeriodos" layoutX="339.0" layoutY="222.0" prefHeight="36.0" prefWidth="94.0" />
                               <Label alignment="CENTER_RIGHT" layoutX="18.0" layoutY="228.0" prefWidth="154.0" text="%root.tab.financeiro.investimento.numPeriodos">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="182.0" layoutY="222.0" prefHeight="36.0" prefWidth="154.0">
+                              <TextField fx:id="textFieldValNumeroPeriodos" layoutX="182.0" layoutY="222.0" prefHeight="36.0" prefWidth="154.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -192,7 +192,7 @@
                      <children>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="401.0" prefWidth="454.0">
                            <children>
-                              <TextField layoutX="219.0" layoutY="73.0" prefHeight="36.0" prefWidth="154.0">
+                              <TextField fx:id="textFieldJurosValorFuturo" layoutX="219.0" layoutY="73.0" prefHeight="36.0" prefWidth="154.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -213,7 +213,7 @@
                                  </font>
                               </Label>
                               <ComboBox fx:id="comboJurosMoedas" layoutX="182.0" layoutY="26.0" onHidden="#hiddenJurosMoeda" prefHeight="31.0" prefWidth="192.0" />
-                              <TextField layoutX="219.0" layoutY="121.0" prefHeight="36.0" prefWidth="154.0">
+                              <TextField fx:id="textFieldJurosInvestimentoInicial" layoutX="219.0" layoutY="121.0" prefHeight="36.0" prefWidth="154.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -228,7 +228,7 @@
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <TextField layoutX="182.0" layoutY="173.0" prefHeight="36.0" prefWidth="154.0">
+                              <TextField fx:id="textFieldJurosDuracao" layoutX="182.0" layoutY="173.0" prefHeight="36.0" prefWidth="154.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -238,13 +238,13 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="comboJurosDuracao" layoutX="339.0" layoutY="173.0" prefHeight="36.0" prefWidth="73.0" />
-                              <Button ellipsisString="" layoutX="207.0" layoutY="279.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" styleClass="operadores" text="%botoes.calcular">
+                              <ComboBox fx:id="comboJurosDuracao" layoutX="339.0" layoutY="173.0" prefHeight="36.0" prefWidth="94.0" />
+                              <Button fx:id="btnJurosCalcular" ellipsisString="" layoutX="207.0" layoutY="279.0" mnemonicParsing="false" onAction="#calcularJuros" prefHeight="33.0" prefWidth="94.0" styleClass="operadores" text="%botoes.calcular">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <TextField alignment="CENTER" editable="false" layoutX="219.0" layoutY="346.0" prefHeight="36.0" prefWidth="154.0" styleClass="btnResults" />
+                              <TextField fx:id="textFieldJurosTaxaJuros" alignment="CENTER" editable="false" layoutX="219.0" layoutY="346.0" prefHeight="36.0" prefWidth="154.0" styleClass="btnResults" />
                               <TextField fx:id="textFieldJurosSimboloMoeda2" disable="true" layoutX="182.0" layoutY="121.0" prefHeight="36.0" prefWidth="37.0" promptText="R$">
                                  <font>
                                     <Font size="15.0" />
@@ -255,13 +255,13 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="comboJurosPeriodos" layoutX="339.0" layoutY="222.0" prefHeight="36.0" prefWidth="73.0" />
+                              <ComboBox fx:id="comboJurosPeriodos" layoutX="339.0" layoutY="222.0" prefHeight="36.0" prefWidth="94.0" />
                               <Label alignment="CENTER_RIGHT" layoutX="18.0" layoutY="228.0" prefWidth="154.0" text="%root.tab.financeiro.investimento.numPeriodos">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="182.0" layoutY="222.0" prefHeight="36.0" prefWidth="154.0">
+                              <TextField fx:id="textFieldJurosNumeroPeriodos" layoutX="182.0" layoutY="222.0" prefHeight="36.0" prefWidth="154.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>

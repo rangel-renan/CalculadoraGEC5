@@ -1,9 +1,14 @@
 package com.calculadora.controller;
 
+import java.math.BigDecimal;
+import java.text.NumberFormat;
+
 import com.calculadora.MainApp;
 import com.calculadora.config.ConfigProperties;
+import com.calculadora.model.Hipoteca;
 import com.calculadora.service.FinanceiraService;
 import com.calculadora.service.FinanceiraServiceImpl;
+import com.calculadora.util.ParseMes;
 import com.calculadora.util.enums.TipoMoedas;
 import com.calculadora.util.enums.TipoPeriodos;
 
@@ -11,6 +16,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -20,9 +26,13 @@ public class HipotecaController implements Runnable {
 	private MainApp mainApp;
 	private Stage hipotecaStage;
 
+	private NumberFormat formatter;
 	private ConfigProperties label;
 	private FinanceiraService financeiraService;
 
+	@FXML
+	private Button btnCalcular;
+	
 	@FXML
 	private ComboBox<TipoMoedas> comboMoedas;
 
@@ -41,8 +51,32 @@ public class HipotecaController implements Runnable {
 	@FXML
 	private TextField textFieldSimboloMoeda4;
 	
+	@FXML
+	private TextField textFieldPrecoImovel;
+	
+	@FXML
+	private TextField textFieldTaxaJuros;
+	
+	@FXML
+	private TextField textFieldPrazoPagamentos;
+	
+	@FXML
+	private TextField textFieldJuroResult;
+	
+	@FXML
+	private TextField textFieldValorTotal;
+	
+	@FXML
+	private TextField textFieldValorPrestacao;
+	
 	@Override
 	public void run() {
+		btnCalcular.setDisable(true);
+		
+		setListerners(textFieldPrecoImovel);
+		setListerners(textFieldTaxaJuros);
+		setListerners(textFieldPrazoPagamentos);
+		
 		Platform.runLater(new Runnable() {
 			public void run() {
 				hipotecaStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -73,9 +107,40 @@ public class HipotecaController implements Runnable {
 		this.hipotecaStage = _hipotecaStage;
 		this.label = label;
 		this.financeiraService = new FinanceiraServiceImpl();
+		this.formatter = NumberFormat.getInstance();
+		
+		formatter.setMaximumFractionDigits(2);
+		formatter.setMinimumFractionDigits(2);
 		
 		run();
 		mainApp.addThread(new Thread(this));
+	}
+	
+	private void setListerners(TextField textField) {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				textField.textProperty().addListener((observable, oldValue, newValue) -> {
+				    if (textFieldPrecoImovel.getText().length() == 0 
+				    || textFieldTaxaJuros.getText().length() == 0
+				    || textFieldPrazoPagamentos.getText().length() == 0) {
+				    	btnCalcular.setDisable(true);
+				    } else {
+				    	btnCalcular.setDisable(false);
+				    }
+				});
+			}
+		});
+	}
+	
+	@FXML
+	private void calcular() {
+		Hipoteca hipoteca = financeiraService.calcularHipoteca(new BigDecimal(textFieldPrecoImovel.getText()), 
+											new BigDecimal(textFieldTaxaJuros.getText()), 
+											ParseMes.parseToMes(new BigDecimal(textFieldPrazoPagamentos.getText()), comboTipoPeridos.getValue()));
+		
+		textFieldJuroResult.setText(formatter.format(hipoteca.getJuros().doubleValue()));
+		textFieldValorTotal.setText(formatter.format(hipoteca.getValorTotal().doubleValue()));
+		textFieldValorPrestacao.setText(formatter.format(hipoteca.getValorPrestacao().doubleValue()));
 	}
 	
 	@FXML
