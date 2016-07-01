@@ -2,12 +2,14 @@ package com.calculadora.controller;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
+import java.text.ParseException;
 
 import com.calculadora.MainApp;
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.model.CartaoCredito;
 import com.calculadora.service.FinanceiraService;
 import com.calculadora.service.FinanceiraServiceImpl;
+import com.calculadora.util.ParseCurrency;
 import com.calculadora.util.enums.TipoMoedas;
 import com.calculadora.util.excessoes.PagamentoMinimoMaiorParcelaException;
 
@@ -136,9 +138,9 @@ public class CartaoCreditoController implements Runnable {
 	@FXML
 	private void calcular() {
 		try {
-			CartaoCredito cartaoCredito = financeiraService.calcularCartaoCredito(new BigDecimal(textFieldSaldoCartao.getText()), 
+			CartaoCredito cartaoCredito = financeiraService.calcularCartaoCredito(ParseCurrency.parseCurrency(textFieldSaldoCartao.getText()), 
 																		new BigDecimal(textFieldTaxaJuros.getText()), 
-																		new BigDecimal(textFieldValorParcela.getText()));
+																		ParseCurrency.parseCurrency(textFieldValorParcela.getText()));
 			
 			textFieldTotalJuros.setText(formatter.format(cartaoCredito.getTotalDeJuros().doubleValue()));
 			textFieldBalancoFinal.setText(formatter.format((cartaoCredito.getBalancoFinal().doubleValue())));
@@ -146,6 +148,8 @@ public class CartaoCreditoController implements Runnable {
 			
 		} catch (PagamentoMinimoMaiorParcelaException e) {
 			labelError.setText(label.getString("root.tab.financeiro.cartaoCredito.erroParcela"));
+		} catch (ParseException e) {
+			labelError.setText(label.getString("error.currencyIncor"));
 		}
 	}
 	

@@ -9,8 +9,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import com.calculadora.validacao.InputCurrencyTextField?>
+<?import com.calculadora.validacao.InputOnlyNumAndDecTextField?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="446.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.PoupancaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="446.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.45" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.PoupancaController">
    <children>
       <TabPane prefHeight="438.0" prefWidth="446.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -20,11 +22,11 @@
                      <children>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="401.0" prefWidth="454.0">
                            <children>
-                              <TextField fx:id="textFieldDepRegulValorTotal" layoutX="219.0" layoutY="73.0" prefHeight="36.0" prefWidth="154.0">
+                              <InputCurrencyTextField fx:id="textFieldDepRegulValorTotal" layoutX="219.0" layoutY="73.0" prefHeight="36.0" prefWidth="154.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
-                              </TextField>
+                              </InputCurrencyTextField>
                               <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="79.0" prefWidth="154.0" text="%root.tab.financeiro.valTotal">
                                  <font>
                                     <Font size="16.0" />
@@ -41,11 +43,11 @@
                                  </font>
                               </Label>
                               <ComboBox fx:id="comboDepRegulMoedas" layoutX="182.0" layoutY="26.0" onHidden="#hiddenDepRegulMoeda" prefHeight="31.0" prefWidth="192.0" />
-                              <TextField fx:id="textFieldDepRegulTaxaJuros" layoutX="219.0" layoutY="121.0" prefHeight="36.0" prefWidth="154.0">
+                              <InputOnlyNumAndDecTextField fx:id="textFieldDepRegulTaxaJuros" layoutX="219.0" layoutY="121.0" prefHeight="36.0" prefWidth="154.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
-                              </TextField>
+                              </InputOnlyNumAndDecTextField>
                               <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="127.0" prefWidth="154.0" text="%root.tab.financeiro.taxaJuros">
                                  <font>
                                     <Font size="16.0" />
@@ -56,17 +58,17 @@
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="textFieldDepRegulNumDepositos" layoutX="182.0" layoutY="173.0" prefHeight="36.0" prefWidth="154.0">
+                              <InputOnlyNumAndDecTextField fx:id="textFieldDepRegulNumDepositos" layoutX="182.0" layoutY="173.0" prefHeight="36.0" prefWidth="154.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
-                              </TextField>
+                              </InputOnlyNumAndDecTextField>
                               <Label alignment="CENTER_RIGHT" layoutX="3.0" layoutY="179.0" prefHeight="25.0" prefWidth="171.0" text="%root.tab.financeiro.poupanca.numDepositos">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnDepRegulCalcular" ellipsisString="" layoutX="207.0" layoutY="279.0" mnemonicParsing="false" onAction="#calcularDepRegul" prefHeight="33.0" prefWidth="94.0" styleClass="operadores" text="%botoes.calcular">
+                              <Button fx:id="btnDepRegulCalcular" ellipsisString="" layoutX="207.0" layoutY="296.0" mnemonicParsing="false" onAction="#calcularDepRegul" prefHeight="33.0" prefWidth="94.0" styleClass="operadores" text="%botoes.calcular">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -88,11 +90,12 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="textFieldDepRegulDuracao" layoutX="182.0" layoutY="222.0" prefHeight="36.0" prefWidth="154.0">
+                              <InputOnlyNumAndDecTextField fx:id="textFieldDepRegulDuracao" layoutX="182.0" layoutY="222.0" prefHeight="36.0" prefWidth="154.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
-                              </TextField>
+                              </InputOnlyNumAndDecTextField>
+                              <Label fx:id="labelDepRegulError" alignment="CENTER" layoutX="36.0" layoutY="269.0" prefHeight="17.0" prefWidth="372.0" textFill="RED" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -151,7 +154,7 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnValTotalCalcular" ellipsisString="" layoutX="207.0" layoutY="279.0" mnemonicParsing="false" onAction="#calcularValTotal" prefHeight="33.0" prefWidth="94.0" styleClass="operadores" text="%botoes.calcular">
+                              <Button fx:id="btnValTotalCalcular" ellipsisString="" layoutX="207.0" layoutY="296.0" mnemonicParsing="false" onAction="#calcularValTotal" prefHeight="33.0" prefWidth="94.0" styleClass="operadores" text="%botoes.calcular">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -180,6 +183,7 @@
                               </TextField>
                            </children>
                         </AnchorPane>
+                        <Label fx:id="labelValTotalError" alignment="CENTER" layoutX="46.0" layoutY="269.0" prefHeight="17.0" prefWidth="372.0" textFill="RED" />
                      </children>
                   </AnchorPane>
             </content>

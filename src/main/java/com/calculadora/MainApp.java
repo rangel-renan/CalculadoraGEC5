@@ -15,6 +15,7 @@ import com.calculadora.controller.ConversoesController;
 import com.calculadora.controller.ConversorMoedasController;
 import com.calculadora.controller.FinanciamentoController;
 import com.calculadora.controller.FracoesController;
+import com.calculadora.controller.GraficosController;
 import com.calculadora.controller.HipotecaController;
 import com.calculadora.controller.InvestimentoController;
 import com.calculadora.controller.JurosController;
@@ -68,6 +69,7 @@ public class MainApp extends Application {
 	private Stage conversaoMoedasStage;
 	private Stage anuidadeStage;
 	private Stage polinomioStage;
+	private Stage graficosStage;
 	private BorderPane rootLayout;
 	
 	private RootLayoutController rootLayoutController;
@@ -90,6 +92,7 @@ public class MainApp extends Application {
 	private ConversorMoedasController conversorMoedasController;
 	private AnuidadeController anuidadeController;
 	private PolinomiosController polinomiosController;
+	private GraficosController graficosController;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -314,15 +317,20 @@ public class MainApp extends Application {
 		vetoresStage = getStage((AnchorPane) getLayout(loader, "/views/outrasOperacoes/Vetores.fxml"), label.getString("root.tab.vetor.tituloJanela"), CAMINHO_ICONE_APLICACAO);
 		vetoresController = loader.getController();
 		vetoresController.show(this, vetoresStage, label);
-		
 	}
 	
 	public void initPolinomios() {
 		FXMLLoader loader = getLoader();
-		polinomioStage = getStage((AnchorPane) getLayout(loader, "/views/polinomios/Polinomio.fxml"), "Polinômios", CAMINHO_ICONE_APLICACAO);
+		polinomioStage = getStage((AnchorPane) getLayout(loader, "/views/outrasOperacoes/Polinomio.fxml"), label.getString("root.tab.arquivo.polinomios.tituloJanela"), CAMINHO_ICONE_APLICACAO);
 		polinomiosController = loader.getController();
 		polinomiosController.show(this, polinomioStage, label);
-		
+	}
+	
+	public void initGraficos() {
+		FXMLLoader loader = getLoader();
+		graficosStage = getStage((BorderPane) getLayout(loader, "/views/outrasOperacoes/Graficos.fxml"), "Graficos", CAMINHO_ICONE_APLICACAO);
+		graficosController = loader.getController();
+		graficosController.show(this, graficosStage, label);
 	}
 	
 	public void setIdioma(Idioma idioma) {

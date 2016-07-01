@@ -1,12 +1,14 @@
 package com.calculadora.controller;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
 
 import com.calculadora.MainApp;
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.model.Financiamento;
 import com.calculadora.service.FinanciamentoService;
 import com.calculadora.service.FinanciamentoServiceImpl;
+import com.calculadora.util.ParseCurrency;
 import com.calculadora.util.ParseMes;
 import com.calculadora.util.enums.TipoMoedas;
 import com.calculadora.util.enums.TipoPeriodos;
@@ -19,6 +21,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -74,6 +77,9 @@ public class FinanciamentoController implements Runnable {
 	
 	@FXML
 	private TextField textFieldPeriodo;
+
+	@FXML
+	private Label labelError;
 	
 	@Override
 	public void run() {
@@ -144,12 +150,15 @@ public class FinanciamentoController implements Runnable {
 	
 	@FXML
 	private void calcular() {
-		ObservableList<Financiamento> listaFinanciamentos = financiamentoService.calcularFinanciamento(new BigDecimal(textFieldValorFinanciado.getText()), 
-																new BigDecimal(textFieldTaxaJuros.getText()), 
-																ParseMes.parseToMes(new BigDecimal(textFieldPeriodo.getText()), comboTipoPeridos.getValue()), 
-																comboTipoPrestacao.getValue());
-
-		preenxerTabela(listaFinanciamentos);
+		try {
+			ObservableList<Financiamento> listaFinanciamentos = financiamentoService.calcularFinanciamento(ParseCurrency.parseCurrency(textFieldValorFinanciado.getText()), 
+																	new BigDecimal(textFieldTaxaJuros.getText()), 
+																	ParseMes.parseToMes(new BigDecimal(textFieldPeriodo.getText()), comboTipoPeridos.getValue()), 
+																	comboTipoPrestacao.getValue());
+			preenxerTabela(listaFinanciamentos);
+		} catch (ParseException e) {
+			labelError.setText(label.getString("error.currencyIncor"));
+		}
 	}
 
 	private void preenxerTabela(ObservableList<Financiamento> listaFinanciamentos) {

@@ -2,12 +2,14 @@ package com.calculadora.controller;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
+import java.text.ParseException;
 
 import com.calculadora.MainApp;
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.service.InvestimentoService;
 import com.calculadora.service.InvestimentoServiceImpl;
 import com.calculadora.util.ParseAno;
+import com.calculadora.util.ParseCurrency;
 import com.calculadora.util.enums.TipoMoedas;
 import com.calculadora.util.enums.TipoPeriodos;
 
@@ -17,6 +19,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -128,7 +131,16 @@ public class InvestimentoController implements Runnable {
 	
 	@FXML
 	private TextField textFieldValTaxaJuros;
-
+	
+	@FXML
+	private Label labelInvError;
+	
+	@FXML
+	private Label labelJurosError;
+	
+	@FXML
+	private Label labelValError;
+	
 	@Override
 	public void run() {
 		btnInvCalcular.setDisable(true);
@@ -277,32 +289,44 @@ public class InvestimentoController implements Runnable {
 
 	@FXML
 	private void calcularInv() {
-		textFieldInvInvestimentoInicial
-							.setText(formatter
-							.format(investimentoService.calcularInvestimentoInicial(new BigDecimal(textFieldInvValorFuturo.getText()), 
-															ParseAno.parseToAno(new BigDecimal(textFieldInvDuracao.getText()), comboInvIniciDuracao.getValue()), 
-															new BigDecimal(textFieldInvTaxaJuros.getText()), 
-															ParseAno.parseToAno(new BigDecimal(textFieldInvNumeroPeriodos.getText()), comboInvIniciPeriodos.getValue())).doubleValue()));
+		try {
+			textFieldInvInvestimentoInicial
+								.setText(formatter
+								.format(investimentoService.calcularInvestimentoInicial(ParseCurrency.parseCurrency(textFieldInvValorFuturo.getText()), 
+																ParseAno.parseToAno(new BigDecimal(textFieldInvDuracao.getText()), comboInvIniciDuracao.getValue()), 
+																new BigDecimal(textFieldInvTaxaJuros.getText()), 
+																ParseAno.parseToAno(new BigDecimal(textFieldInvNumeroPeriodos.getText()), comboInvIniciPeriodos.getValue())).doubleValue()));
+		} catch (ParseException e) {
+			labelInvError.setText(label.getString("error.currencyIncor"));
+		}
 	}
 
 	@FXML
 	private void calcularValorFuturo() {
-		textFieldValValorFuturo
-						.setText(formatter
-						.format(investimentoService.calcularValorFuturoInvestimento(new BigDecimal(textFieldValInvestimentoInicial.getText()), 
-																ParseAno.parseToAno(new BigDecimal(textFieldValDuracao.getText()), comboValFutDuracao.getValue()), 
-																new BigDecimal(textFieldValTaxaJuros.getText()), 
-																ParseAno.parseToAno(new BigDecimal(textFieldValNumeroPeriodos.getText()), comboValFutPeriodos.getValue())).doubleValue()));
+		try {
+			textFieldValValorFuturo
+							.setText(formatter
+							.format(investimentoService.calcularValorFuturoInvestimento(ParseCurrency.parseCurrency(textFieldValValorFuturo.getText()), 
+																	ParseAno.parseToAno(new BigDecimal(textFieldValDuracao.getText()), comboValFutDuracao.getValue()), 
+																	new BigDecimal(textFieldValTaxaJuros.getText()), 
+																	ParseAno.parseToAno(new BigDecimal(textFieldValNumeroPeriodos.getText()), comboValFutPeriodos.getValue())).doubleValue()));
+		} catch (ParseException e) {
+			labelValError.setText(label.getString("error.currencyIncor"));
+		}
 	}
 
 	@FXML
 	private void calcularJuros() {
-		textFieldJurosTaxaJuros
-		.setText(formatter
-		.format(investimentoService.calcularTaxaJurosNominal(Double.parseDouble(textFieldJurosInvestimentoInicial.getText()), 
-												Double.parseDouble(textFieldJurosValorFuturo.getText()),
-												ParseAno.parseToAno(new BigDecimal(textFieldJurosDuracao.getText()), comboJurosDuracao.getValue()).doubleValue(), 
-												ParseAno.parseToAno(new BigDecimal(textFieldJurosNumeroPeriodos.getText()), comboJurosPeriodos.getValue()).doubleValue())));
+		try {
+			textFieldJurosTaxaJuros
+							.setText(formatter
+							.format(investimentoService.calcularTaxaJurosNominal(ParseCurrency.parseCurrency(textFieldJurosInvestimentoInicial.getText()).doubleValue(), 
+																	ParseCurrency.parseCurrency(textFieldJurosValorFuturo.getText()).doubleValue(),
+																	ParseAno.parseToAno(new BigDecimal(textFieldJurosDuracao.getText()), comboJurosDuracao.getValue()).doubleValue(), 
+																	ParseAno.parseToAno(new BigDecimal(textFieldJurosNumeroPeriodos.getText()), comboJurosPeriodos.getValue()).doubleValue())));
+		} catch (ParseException e) {
+			labelJurosError.setText(label.getString("error.currencyIncor"));
+		}
 	}
 	
 	@FXML

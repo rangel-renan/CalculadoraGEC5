@@ -30,7 +30,7 @@ public class PolinomioServiceImpl implements PolinomioService {
 		return new Polinomio(firstPol.add(new PolynomialFunction(secondPolinomio.parseToDouble())).getCoefficients());
 	}
 
-	private Polinomio subtracao(Polinomio firstPolinomio, Polinomio secondPolinomio) {
+	public Polinomio subtracao(Polinomio firstPolinomio, Polinomio secondPolinomio) {
 		PolynomialFunction firstPol = new PolynomialFunction(firstPolinomio.parseToDouble());
 		return new Polinomio(
 				firstPol.subtract(new PolynomialFunction(secondPolinomio.parseToDouble())).getCoefficients());
@@ -50,15 +50,5 @@ public class PolinomioServiceImpl implements PolinomioService {
 	public Complex getRaizes(Polinomio polinomio) {
 		return new LaguerreSolver().solveComplex(polinomio.parseToDouble(), 0);
 	}
-
-	public static void main(String[] args) {
-		
-		try {
-			System.out.println(new PolinomioServiceImpl().getRaizes(new Polinomio("3x^2 + 3x + 2")));
-		} catch (PolinomioFormatoInvalidoException e1) {
-			e1.printStackTrace();
-		}
-
-	}
-
+	
 }

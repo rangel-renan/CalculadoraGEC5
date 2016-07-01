@@ -2,11 +2,13 @@ package com.calculadora.controller;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
+import java.text.ParseException;
 
 import com.calculadora.MainApp;
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.service.FinanceiraService;
 import com.calculadora.service.FinanceiraServiceImpl;
+import com.calculadora.util.ParseCurrency;
 import com.calculadora.util.ParseMes;
 import com.calculadora.util.enums.TipoMoedas;
 import com.calculadora.util.enums.TipoPeriodos;
@@ -17,6 +19,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -89,6 +92,12 @@ public class JurosController implements Runnable {
 	
 	@FXML
 	private TextField textFieldJurCompValorFuturo;
+	
+	@FXML
+	private Label labelJurSimError;
+	
+	@FXML
+	private Label labelJurCompError;
 	
 	@Override
 	public void run() {
@@ -191,20 +200,28 @@ public class JurosController implements Runnable {
 	
 	@FXML
 	private void calcularJurosSimples() {
-		textFieldJurSimValorFuturo
-								.setText(formatter
-								.format(financeiraService.calcularJuros(new BigDecimal(textFieldJurSimInvestInicial.getText()), 
-												new BigDecimal(textFieldJurSimTaxJuros.getText()), 
-												ParseMes.parseToMes(new BigDecimal(textFieldJurSimNumPeriodo.getText()), comboJurSimTipoPeriodos.getValue())).doubleValue()));
+		try {
+			textFieldJurSimValorFuturo
+									.setText(formatter
+									.format(financeiraService.calcularJuros(ParseCurrency.parseCurrency(textFieldJurSimInvestInicial.getText()), 
+													new BigDecimal(textFieldJurSimTaxJuros.getText()), 
+													ParseMes.parseToMes(new BigDecimal(textFieldJurSimNumPeriodo.getText()), comboJurSimTipoPeriodos.getValue())).doubleValue()));
+		} catch (ParseException e) {
+			labelJurSimError.setText(label.getString("error.currencyIncor"));
+		}
 	}
 
 	@FXML
 	private void calcularJurosCompostos() {
-		textFieldJurCompValorFuturo
-								.setText(formatter
-								.format(financeiraService.calcularJurosComposto(new BigDecimal(textFieldJurCompInvestInicial.getText()), 
-												new BigDecimal(textFieldJurCompTaxJuros.getText()), 
-												ParseMes.parseToMes(new BigDecimal(textFieldJurCompNumPeriodo.getText()), comboJurCompTipoPeriodos.getValue()).intValue()).doubleValue()));
+		try {
+			textFieldJurCompValorFuturo
+									.setText(formatter
+									.format(financeiraService.calcularJurosComposto(ParseCurrency.parseCurrency(textFieldJurCompInvestInicial.getText()), 
+													new BigDecimal(textFieldJurCompTaxJuros.getText()), 
+													ParseMes.parseToMes(new BigDecimal(textFieldJurCompNumPeriodo.getText()), comboJurCompTipoPeriodos.getValue()).intValue()).doubleValue()));
+		} catch (ParseException e) {
+			labelJurCompError.setText(label.getString("error.currencyIncor"));
+		}
 	}
 	
 	@FXML

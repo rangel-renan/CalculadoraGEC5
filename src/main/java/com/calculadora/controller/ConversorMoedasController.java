@@ -1,15 +1,16 @@
 package com.calculadora.controller;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.net.ConnectException;
 import java.net.MalformedURLException;
 import java.text.NumberFormat;
+import java.text.ParseException;
 
 import com.calculadora.MainApp;
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.service.ConversaoService;
 import com.calculadora.service.ConversaoServiceImpl;
+import com.calculadora.util.ParseCurrency;
 import com.calculadora.util.enums.TipoMoedas;
 import com.calculadora.util.excessoes.ImpossivelConverterException;
 
@@ -112,7 +113,7 @@ public class ConversorMoedasController implements Runnable {
 	@FXML
 	private void calcular() {
 		try {
-			textFieldResultado.setText(formatter.format(conversaoService.converterMoeda(new BigDecimal(textFieldValor.getText()), 
+			textFieldResultado.setText(formatter.format(conversaoService.converterMoeda(ParseCurrency.parseCurrency(textFieldValor.getText()), 
 														comboFirstMoedas.getValue().getCodigoISO(), 
 														comboSecondMoedas.getValue().getCodigoISO()).doubleValue()));
 		} catch (NumberFormatException e) {
@@ -125,6 +126,8 @@ public class ConversorMoedasController implements Runnable {
 			labelError.setText(label.getString("root.tab.financeiro.conversorMoeda.errorConexao"));
 		} catch (ImpossivelConverterException e) {
 			labelError.setText(label.getString("root.tab.financeiro.conversorMoeda.errorValInexis"));
+		} catch (ParseException e) {
+			labelError.setText(label.getString("error.currencyIncor"));
 		}
 	}
 	

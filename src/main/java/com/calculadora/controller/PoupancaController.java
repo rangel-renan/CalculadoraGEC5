@@ -2,11 +2,13 @@ package com.calculadora.controller;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
+import java.text.ParseException;
 
 import com.calculadora.MainApp;
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.service.PoupancaService;
 import com.calculadora.service.PoupancaServiceImpl;
+import com.calculadora.util.ParseCurrency;
 import com.calculadora.util.ParseMes;
 import com.calculadora.util.enums.TipoMoedas;
 import com.calculadora.util.enums.TipoPeriodos;
@@ -17,6 +19,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -91,7 +94,13 @@ public class PoupancaController implements Runnable {
 	
 	@FXML
 	private TextField textFieldValTotalValorDeposito;
-
+	
+	@FXML
+	private Label labelDepRegulError;
+	
+	@FXML
+	private Label labelValTotalError;
+	
 	@Override
 	public void run() {
 		btnDepRegulCalcular.setDisable(true);
@@ -213,22 +222,30 @@ public class PoupancaController implements Runnable {
 	
 	@FXML
 	private void calcularValTotal() {
-		textFieldValTotalValorTotal
-								.setText(formatter
-								.format(poupancaService.calcularValorTotal(new BigDecimal(textFieldValTotalValorDeposito.getText()), 
-																new BigDecimal(textFieldValTotalTaxaJuros.getText()), 
-																new BigDecimal(textFieldValTotalNumDepositos.getText()), 
-																ParseMes.parseToMes(new BigDecimal(textFieldValTotalDuracao.getText()), comboValTipoPeriodos.getValue())).doubleValue()));
+		try {
+			textFieldValTotalValorTotal
+									.setText(formatter
+									.format(poupancaService.calcularValorTotal(ParseCurrency.parseCurrency(textFieldValTotalValorDeposito.getText()), 
+																	ParseCurrency.parseCurrency(textFieldValTotalTaxaJuros.getText()), 
+																	new BigDecimal(textFieldValTotalNumDepositos.getText()), 
+																	ParseMes.parseToMes(new BigDecimal(textFieldValTotalDuracao.getText()), comboValTipoPeriodos.getValue())).doubleValue()));
+		} catch (ParseException e) {
+			labelValTotalError.setText(label.getString("error.currencyIncor"));
+		}
 	}
 
 	@FXML
 	private void calcularDepRegul() {
-		textFieldDepRegulValorDeposito
-								.setText(formatter
-								.format(poupancaService.calcularValorDepositos(new BigDecimal(textFieldDepRegulValorTotal.getText()), 
-																new BigDecimal(textFieldDepRegulTaxaJuros.getText()), 
-																new BigDecimal(textFieldDepRegulNumDepositos.getText()), 
-																ParseMes.parseToMes(new BigDecimal(textFieldDepRegulDuracao.getText()), comboDepRegulTipoPeriodos.getValue())).doubleValue()));
+		try {
+			textFieldDepRegulValorDeposito
+									.setText(formatter
+									.format(poupancaService.calcularValorDepositos(ParseCurrency.parseCurrency(textFieldDepRegulValorTotal.getText()), 
+																	new BigDecimal(textFieldDepRegulTaxaJuros.getText()), 
+																	ParseCurrency.parseCurrency(textFieldDepRegulNumDepositos.getText()), 
+																	ParseMes.parseToMes(new BigDecimal(textFieldDepRegulDuracao.getText()), comboDepRegulTipoPeriodos.getValue())).doubleValue()));
+		} catch (ParseException e) {
+			labelDepRegulError.setText(label.getString("error.currencyIncor"));
+		}
 	}
 	
 	@FXML

@@ -2,12 +2,14 @@ package com.calculadora.controller;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
+import java.text.ParseException;
 
 import com.calculadora.MainApp;
 import com.calculadora.config.ConfigProperties;
 import com.calculadora.model.Hipoteca;
 import com.calculadora.service.FinanceiraService;
 import com.calculadora.service.FinanceiraServiceImpl;
+import com.calculadora.util.ParseCurrency;
 import com.calculadora.util.ParseMes;
 import com.calculadora.util.enums.TipoMoedas;
 import com.calculadora.util.enums.TipoPeriodos;
@@ -18,6 +20,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -68,6 +71,9 @@ public class HipotecaController implements Runnable {
 	
 	@FXML
 	private TextField textFieldValorPrestacao;
+
+	@FXML
+	private Label labelError;
 	
 	@Override
 	public void run() {
@@ -134,13 +140,18 @@ public class HipotecaController implements Runnable {
 	
 	@FXML
 	private void calcular() {
-		Hipoteca hipoteca = financeiraService.calcularHipoteca(new BigDecimal(textFieldPrecoImovel.getText()), 
-											new BigDecimal(textFieldTaxaJuros.getText()), 
-											ParseMes.parseToMes(new BigDecimal(textFieldPrazoPagamentos.getText()), comboTipoPeridos.getValue()));
+		try {
+			Hipoteca hipoteca = financeiraService.calcularHipoteca(ParseCurrency.parseCurrency(textFieldPrecoImovel.getText()), 
+												new BigDecimal(textFieldTaxaJuros.getText()), 
+												ParseMes.parseToMes(new BigDecimal(textFieldPrazoPagamentos.getText()), comboTipoPeridos.getValue()));
 		
-		textFieldJuroResult.setText(formatter.format(hipoteca.getJuros().doubleValue()));
-		textFieldValorTotal.setText(formatter.format(hipoteca.getValorTotal().doubleValue()));
-		textFieldValorPrestacao.setText(formatter.format(hipoteca.getValorPrestacao().doubleValue()));
+			textFieldJuroResult.setText(formatter.format(hipoteca.getJuros().doubleValue()));
+			textFieldValorTotal.setText(formatter.format(hipoteca.getValorTotal().doubleValue()));
+			textFieldValorPrestacao.setText(formatter.format(hipoteca.getValorPrestacao().doubleValue()));
+		} catch (ParseException e) {
+			labelError.setText(label.getString("error.currencyIncor"));
+		}
+		
 	}
 	
 	@FXML

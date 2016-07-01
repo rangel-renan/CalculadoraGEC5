@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="802.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.GraficosController">
+   <top>
+      <AnchorPane prefHeight="101.0" prefWidth="802.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField alignment="CENTER" layoutX="118.0" layoutY="45.0" prefHeight="36.0" prefWidth="645.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label layoutX="118.0" layoutY="24.0" text="Entre com a função abaixo:" />
+            <Button ellipsisString="" layoutX="14.0" layoutY="52.0" mnemonicParsing="false" onAction="#handleVoltar" prefHeight="33.0" prefWidth="94.0" text="%botoes.voltar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleAjuda" prefHeight="33.0" prefWidth="94.0" text="%botoes.ajuda">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+   </top>
+   <right>
+      <AnchorPane prefHeight="425.0" prefWidth="176.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView prefHeight="440.0" prefWidth="176.0">
+               <columns>
+                  <TableColumn prefWidth="87.0" text="x" />
+                  <TableColumn prefWidth="87.0" text="x" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>
