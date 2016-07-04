@@ -14,7 +14,7 @@
    <top>
       <AnchorPane prefHeight="101.0" prefWidth="802.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField alignment="CENTER" layoutX="118.0" layoutY="45.0" prefHeight="36.0" prefWidth="645.0">
+            <TextField fx:id="textFieldEquacao" layoutX="118.0" layoutY="45.0" prefHeight="36.0" prefWidth="597.0">
                <font>
                   <Font size="15.0" />
                </font>
@@ -26,6 +26,11 @@
                </cursor>
             </Button>
             <Button layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleAjuda" prefHeight="33.0" prefWidth="94.0" text="%botoes.ajuda">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button ellipsisString="" layoutX="718.0" layoutY="45.0" mnemonicParsing="false" onAction="#handleGerar" prefHeight="36.0" prefWidth="75.0" styleClass="operadores" text="Gerar">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

@@ -4,8 +4,8 @@ import java.awt.Container;
 
 import javax.swing.JFrame;
 
-import com.calculadora.equacao.Equacao;
-import com.calculadora.equacao.SintaxeEquacaoIncorretaException;
+import com.calculadora.util.equacao.Equacao;
+import com.calculadora.util.excessoes.SintaxeEquacaoIncorretaException;
 
 /**
  * Plots a single equation graphically for a given x range and sample rate.

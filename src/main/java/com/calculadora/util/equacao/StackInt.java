@@ -1,4 +1,4 @@
-package com.calculadora.equacao;
+package com.calculadora.util.equacao;
 /**
  * Generic Stack data structure interface
  * @author Elliot B. Koffman, Data structures and ...... book

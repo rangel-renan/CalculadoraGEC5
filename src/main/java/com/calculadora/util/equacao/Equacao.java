@@ -1,7 +1,10 @@
-package com.calculadora.equacao;
+package com.calculadora.util.equacao;
 import java.lang.reflect.Method;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.calculadora.util.excessoes.EquationVariableException;
+import com.calculadora.util.excessoes.SintaxeEquacaoIncorretaException;
 
 /**
  * @author Adam Black

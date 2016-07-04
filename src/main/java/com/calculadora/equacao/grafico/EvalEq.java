@@ -1,8 +1,8 @@
 package com.calculadora.equacao.grafico;
 
-import com.calculadora.equacao.Equacao;
-import com.calculadora.equacao.SintaxeEquacaoIncorretaException;
-import com.calculadora.equacao.EquationVariableException;
+import com.calculadora.util.equacao.Equacao;
+import com.calculadora.util.excessoes.EquationVariableException;
+import com.calculadora.util.excessoes.SintaxeEquacaoIncorretaException;
 
 /**
  * Command line program which can evaluate a mathematical expression without variables

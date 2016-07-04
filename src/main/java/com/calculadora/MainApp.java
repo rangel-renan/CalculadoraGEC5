@@ -328,9 +328,10 @@ public class MainApp extends Application {
 	
 	public void initGraficos() {
 		FXMLLoader loader = getLoader();
-		graficosStage = getStage((BorderPane) getLayout(loader, "/views/outrasOperacoes/Graficos.fxml"), "Graficos", CAMINHO_ICONE_APLICACAO);
+		BorderPane graficosLayout = (BorderPane) getLayout(loader, "/views/outrasOperacoes/Graficos.fxml");
+		graficosStage = getStage(graficosLayout, "Graficos", CAMINHO_ICONE_APLICACAO);
 		graficosController = loader.getController();
-		graficosController.show(this, graficosStage, label);
+		graficosController.show(this, graficosStage, graficosLayout, label);
 	}
 	
 	public void setIdioma(Idioma idioma) {

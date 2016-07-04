@@ -1,4 +1,4 @@
-package com.calculadora.equacao;
+package com.calculadora.util.equacao;
 import java.util.EmptyStackException;
 
 /**

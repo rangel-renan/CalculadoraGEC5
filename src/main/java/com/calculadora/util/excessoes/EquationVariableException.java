@@ -1,4 +1,4 @@
-package com.calculadora.equacao;
+package com.calculadora.util.excessoes;
 /**
  * Used by the Equation class to throw errors when the user tries to create an equation which contains more than
  * one variable

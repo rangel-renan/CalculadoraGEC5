@@ -1,4 +1,6 @@
-package com.calculadora.equacao;
+package com.calculadora.util.equacao;
+
+import com.calculadora.util.excessoes.SintaxeEquacaoIncorretaException;
 
 public class Text {
 

@@ -1,4 +1,4 @@
-package com.calculadora.equacao;
+package com.calculadora.util.excessoes;
 /**
  * Used by the equation class for throwing errors when the user tries to create an equation which 
  * doesn't contain the correct syntax

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import com.calculadora.equacao.Equacao;
-import com.calculadora.equacao.MathsFunction;
+import com.calculadora.util.equacao.Equacao;
+import com.calculadora.util.equacao.MathsFunction;
 
 /**
  * Graph class represented as a JPanel. Can take multiple input equations and plot them graphically

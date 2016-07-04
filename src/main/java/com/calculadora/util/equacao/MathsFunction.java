@@ -1,4 +1,4 @@
-package com.calculadora.equacao;
+package com.calculadora.util.equacao;
 /**
  * Provides all the mathematics functions necessary for the Equation class and a rounding function
  * @author Adam Black
