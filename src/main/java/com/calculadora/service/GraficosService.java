@@ -1,8 +1,8 @@
 package com.calculadora.service;
 
+import com.calculadora.model.Equacao;
 import com.calculadora.util.Eixos;
 import com.calculadora.util.Reta;
-import com.calculadora.util.equacao.Equacao;
 
 public interface GraficosService {
 	

@@ -1,9 +1,11 @@
-package com.calculadora.util.equacao;
+package com.calculadora.model;
 import java.lang.reflect.Method;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.calculadora.util.excessoes.EquationVariableException;
+import com.calculadora.util.LinkedStack;
+import com.calculadora.util.MathsFunction;
+import com.calculadora.util.excessoes.EquacaoVariavelInexistenteException;
 import com.calculadora.util.excessoes.SintaxeEquacaoIncorretaException;
 
 /**
@@ -67,9 +69,9 @@ public class Equacao
 	 * in the equation
 	 * precondition: There are no variables in the equation.
 	 * @return numerical answer to the equation stored, rounded to 4 digits
-	 * @throws EquationVariableException
+	 * @throws EquacaoVariavelInexistenteException
 	 */
-	public double evaluate() throws EquationVariableException
+	public double evaluate() throws EquacaoVariavelInexistenteException
 	{
 		LinkedStack<Double> resultStack = new LinkedStack<Double>();
 		//There is no variable present in the equation
@@ -91,7 +93,7 @@ public class Equacao
 			}
 		}
 		else
-			throw new EquationVariableException();
+			throw new EquacaoVariavelInexistenteException();
 		
 		return (MathsFunction.roundDouble(resultStack.pop(), 4));
 	}

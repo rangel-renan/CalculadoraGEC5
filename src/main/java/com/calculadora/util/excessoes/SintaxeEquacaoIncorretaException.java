@@ -1,19 +1,21 @@
 package com.calculadora.util.excessoes;
-/**
- * Used by the equation class for throwing errors when the user tries to create an equation which 
- * doesn't contain the correct syntax
- * @author Adam Black
- * modified: 14/4/06
- */
-public class SintaxeEquacaoIncorretaException extends Exception 
-{
-	public SintaxeEquacaoIncorretaException(String message)
-	{
-		super(message);
-	}
-	
-	public SintaxeEquacaoIncorretaException()
-	{
-		super();
-	}	
+
+public class SintaxeEquacaoIncorretaException extends Exception {
+	private static final long serialVersionUID = 1L;
+
+	public SintaxeEquacaoIncorretaException() {
+        super();
+    }
+
+    public SintaxeEquacaoIncorretaException(final String mensagem, final Throwable causa) {
+        super(mensagem, causa);
+    }
+
+    public SintaxeEquacaoIncorretaException(final String mensagem) {
+        super(mensagem);
+    }
+
+    public SintaxeEquacaoIncorretaException(final Throwable causa) {
+        super(causa);
+    }
 }

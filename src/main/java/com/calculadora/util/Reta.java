@@ -1,7 +1,10 @@
 package com.calculadora.util;
 
-import com.calculadora.util.equacao.Equacao;
+import com.calculadora.model.Coordenadas;
+import com.calculadora.model.Equacao;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.LineTo;
@@ -10,7 +13,11 @@ import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 
 public class Reta extends Pane {
+	private ObservableList<Coordenadas> listCoordenadas;
+	
 	public Reta(Equacao equacao, double xMin, double xMax, double xInc, Eixos eixos) {
+		listCoordenadas = FXCollections.observableArrayList();
+		
 		Path path = new Path();
 		path.setStroke(Color.ORANGE.deriveColor(0, 1, 1, 0.6));
 		path.setStrokeWidth(2);
@@ -19,18 +26,17 @@ public class Reta extends Pane {
 
 		double x = xMin;
 
-		// double y = f.apply(x);
 		double y = equacao.evaluate(x);
 
 		path.getElements().add(new MoveTo(mapX(x, eixos), mapY(y, eixos)));
 
 		x += xInc;
 		while (x < xMax) {
-			// y = f.apply(x);
 			y = equacao.evaluate(x);
-
 			path.getElements().add(new LineTo(mapX(x, eixos), mapY(y, eixos)));
 
+			listCoordenadas.add(new Coordenadas(x, y));
+			
 			x += xInc;
 		}
 
@@ -40,7 +46,7 @@ public class Reta extends Pane {
 
 		getChildren().setAll(eixos, path);
 	}
-
+	
 	private double mapX(double x, Eixos axes) {
 		double tx = axes.getPrefWidth() / 2;
 		double sx = axes.getPrefWidth() / (axes.getEixoX().getUpperBound() - axes.getEixoX().getLowerBound());
@@ -54,4 +60,13 @@ public class Reta extends Pane {
 
 		return -y * sy + ty;
 	}
+
+	public ObservableList<Coordenadas> getListCoordenadas() {
+		return listCoordenadas;
+	}
+
+	public void setListCoordenadas(ObservableList<Coordenadas> listCoordenadas) {
+		this.listCoordenadas = listCoordenadas;
+	}
+	
 }

@@ -6,7 +6,6 @@ import org.apache.commons.math3.complex.Complex;
 
 import com.calculadora.model.Polinomio;
 import com.calculadora.util.enums.TipoOperacao;
-import com.calculadora.util.excessoes.PolinomioFormatoInvalidoException;
 
 public class PolinomioServiceImpl implements PolinomioService {
 
