@@ -9,22 +9,22 @@
 <?import javafx.scene.text.Font?>
 <?import com.calculadora.validacao.InputOnlyNumAndDecTextField?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="222.0" prefWidth="491.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.45" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.ConversoesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="491.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.ConversoesController">
    <children>
       <ComboBox fx:id="comboTipoConversoes" layoutX="53.0" layoutY="21.0" onHidden="#hiddenTipoConversao" prefHeight="33.0" prefWidth="385.0" />
-      <Button layoutX="87.0" layoutY="173.0" mnemonicParsing="false" onAction="#handleVoltar" prefHeight="33.0" prefWidth="94.0" text="%botoes.voltar">
+      <Button layoutX="87.0" layoutY="182.0" mnemonicParsing="false" onAction="#handleVoltar" prefHeight="33.0" prefWidth="94.0" text="%botoes.voltar">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="btnCalcular" layoutX="187.0" layoutY="173.0" mnemonicParsing="false" styleClass="operadores" onAction="#handleCalcular" prefHeight="33.0" prefWidth="117.0" text="%botoes.converter">
+      <Button fx:id="btnCalcular" layoutX="187.0" layoutY="182.0" mnemonicParsing="false" onAction="#handleCalcular" prefHeight="33.0" prefWidth="117.0" styleClass="operadores" text="%botoes.converter">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button layoutX="311.0" layoutY="173.0" mnemonicParsing="false" onAction="#handleAjuda" prefHeight="33.0" prefWidth="94.0" text="%botoes.ajuda">
+      <Button layoutX="311.0" layoutY="182.0" mnemonicParsing="false" onAction="#handleAjuda" prefHeight="33.0" prefWidth="94.0" text="%botoes.ajuda">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <InputOnlyNumAndDecTextField alignment="CENTER" fx:id="textFieldInput" layoutX="91.0" layoutY="74.0" prefHeight="40.0" prefWidth="86.0" />
+      <InputOnlyNumAndDecTextField fx:id="textFieldInput" alignment="CENTER" layoutX="91.0" layoutY="74.0" prefHeight="40.0" prefWidth="86.0" promptText="0.00" />
       <Label layoutX="225.0" layoutY="44.0" prefHeight="70.0" prefWidth="55.0" text="=">
          <font>
             <Font size="64.0" />
@@ -32,6 +32,7 @@
       </Label>
       <ComboBox fx:id="comboFistTipo" layoutX="59.0" layoutY="119.0" prefHeight="33.0" prefWidth="149.0" />
       <ComboBox fx:id="comboSecondTipo" layoutX="284.0" layoutY="119.0" prefHeight="33.0" prefWidth="149.0" />
-      <TextField fx:id="textFieldResult" alignment="CENTER" editable="false" layoutX="315.0" layoutY="74.0" prefHeight="40.0" prefWidth="86.0" styleClass="btnResults" />
+      <TextField fx:id="textFieldResult" editable="false" layoutX="315.0" layoutY="74.0" prefHeight="40.0" prefWidth="86.0" styleClass="btnResults" />
+      <Label fx:id="labelError" alignment="CENTER" layoutX="38.0" layoutY="158.0" prefHeight="17.0" prefWidth="416.0" textFill="RED" />
    </children>
 </AnchorPane>

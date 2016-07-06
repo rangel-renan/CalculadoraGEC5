@@ -1,17 +1,27 @@
 package com.calculadora.util.enums;
 
+import javax.measure.unit.NonSI;
 import javax.measure.unit.SI;
 import javax.measure.unit.Unit;
 
 public enum TipoConversoesArmaDados {
-	YOTTA("Yottabyte", SI.YOTTA(SI.METER)), 
-	ZETTA("Zettabyte", SI.ZETTA(SI.METER)), 
-	EXA("Exabyte", SI.EXA(SI.METER)), 
-	PETA("Petabyte", SI.PETA(SI.METER)), 
-	TERA("Terabytes", SI.TERA(SI.METER)), 
-	GIGA("Gigabytes", SI.GIGA(SI.METER)), 
-	MEGA("Megabytes", SI.MEGA(SI.METER)), 
-	KILO("Kilobytes", SI.KILO(SI.METER));
+	BYTE("Byte", NonSI.BYTE), 
+	BIT("Bit", SI.BIT),
+	YOTTA("Yottabyte", SI.YOTTA(NonSI.BYTE)), 
+	YOTTA_BIT("Yottabit", SI.YOTTA(SI.BIT)), 
+	ZETTA("Zettabyte", SI.ZETTA(NonSI.BYTE)), 
+	ZETTA_BIT("Zettabit", SI.ZETTA(SI.BIT)), 
+	EXA("Exabyte", SI.EXA(NonSI.BYTE)), 
+	EXA_BIT("Exabit", SI.EXA(SI.BIT)), 
+	PETA("Petabyte", SI.PETA(NonSI.BYTE)), 
+	PETA_BIT("Petabit", SI.PETA(SI.BIT)), 
+	TERA("Terabytes", SI.TERA(NonSI.BYTE)), 
+	TERA_BIT("Terabit", SI.TERA(SI.BIT)), 
+	GIGA("Gigabytes", SI.GIGA(NonSI.BYTE)), 
+	GIGA_BIT("Gigabit", SI.GIGA(SI.BIT)), 
+	MEGA("Megabytes", SI.MEGA(NonSI.BYTE)), 
+	MEGA_BIT("Megabit", SI.MEGA(SI.BIT)), 
+	KILO("Kilobit", SI.KILO(NonSI.BYTE));
 	
 	private String nome;
 	private Unit<?> tipo;

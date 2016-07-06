@@ -2,12 +2,23 @@ package com.calculadora.controller;
 
 import java.math.BigDecimal;
 
+import javax.measure.converter.ConversionException;
+
 import com.calculadora.MainApp;
+import com.calculadora.config.ConfigProperties;
 import com.calculadora.service.ConversaoService;
 import com.calculadora.service.ConversaoServiceImpl;
 import com.calculadora.util.enums.TipoConversoes;
+import com.calculadora.util.enums.TipoConversoesAngulo;
+import com.calculadora.util.enums.TipoConversoesArea;
 import com.calculadora.util.enums.TipoConversoesArmaDados;
 import com.calculadora.util.enums.TipoConversoesComprimento;
+import com.calculadora.util.enums.TipoConversoesEletricidade;
+import com.calculadora.util.enums.TipoConversoesFrequencia;
+import com.calculadora.util.enums.TipoConversoesMassa;
+import com.calculadora.util.enums.TipoConversoesPressao;
+import com.calculadora.util.enums.TipoConversoesTempo;
+import com.calculadora.util.enums.TipoConversoesVelocidade;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -15,6 +26,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -22,6 +34,8 @@ import javafx.stage.WindowEvent;
 public class ConversoesController implements Runnable {
 	private MainApp mainApp;
 	private Stage conversoesStage;
+	
+	private ConfigProperties label;
 	private ConversaoService conversaoService;
 	
 	@FXML
@@ -42,6 +56,9 @@ public class ConversoesController implements Runnable {
 	@FXML
 	private Button btnCalcular;
 	
+	@FXML
+	private Label labelError;
+	
 	@Override
 	public void run() {
 		setListeners(textFieldInput);
@@ -57,9 +74,10 @@ public class ConversoesController implements Runnable {
 		});
 	}
 	
-	public void show(MainApp _mainApp, Stage conversoesStage) {
+	public void show(MainApp _mainApp, Stage conversoesStage, ConfigProperties label) {
 		this.mainApp = _mainApp;
 		this.conversoesStage = conversoesStage;
+		this.label = label;
 		this.conversaoService = new ConversaoServiceImpl();
 		
 		preenxerCombo();
@@ -110,27 +128,158 @@ public class ConversoesController implements Runnable {
 		switch (comboTipoConversoes.getValue()) {
 			case COMPRIMENTO:
 				Platform.runLater(new Runnable() {
-					public void run() { comboFistTipo.setItems(FXCollections.observableArrayList(TipoConversoesComprimento.values())); }
+					public void run() { 
+						comboFistTipo.setItems(FXCollections.observableArrayList(TipoConversoesComprimento.values())); 
+						comboFistTipo.getSelectionModel().select(0);
+					}
 				});
 				
 				Platform.runLater(new Runnable() {
-					public void run() { comboSecondTipo.setItems(FXCollections.observableArrayList(TipoConversoesComprimento.values())); }
+					public void run() { 
+						comboSecondTipo.setItems(FXCollections.observableArrayList(TipoConversoesComprimento.values())); 
+						comboSecondTipo.getSelectionModel().select(0);
+					}
 				});
 				break;
 			case ARMANEZAMENTO_DADOS:
 				Platform.runLater(new Runnable() {
-					public void run() { comboFistTipo.setItems(FXCollections.observableArrayList(TipoConversoesArmaDados.values())); }
+					public void run() { 
+						comboFistTipo.setItems(FXCollections.observableArrayList(TipoConversoesArmaDados.values()));
+						comboFistTipo.getSelectionModel().select(0);
+					}
 				});
 				
 				Platform.runLater(new Runnable() {
-					public void run() { comboSecondTipo.setItems(FXCollections.observableArrayList(TipoConversoesArmaDados.values())); }
+					public void run() { 
+						comboSecondTipo.setItems(FXCollections.observableArrayList(TipoConversoesArmaDados.values())); 
+						comboSecondTipo.getSelectionModel().select(0);
+					}
+				});
+				break;
+			case VELOCIDADE:
+				Platform.runLater(new Runnable() {
+					public void run() { 
+						comboFistTipo.setItems(FXCollections.observableArrayList(TipoConversoesVelocidade.values()));
+						comboFistTipo.getSelectionModel().select(0);
+					}
+				});
+				
+				Platform.runLater(new Runnable() {
+					public void run() { 
+						comboSecondTipo.setItems(FXCollections.observableArrayList(TipoConversoesVelocidade.values())); 
+						comboSecondTipo.getSelectionModel().select(0);
+					}
+				});
+				break;
+			case AREA:
+				Platform.runLater(new Runnable() {
+					public void run() { 
+						comboFistTipo.setItems(FXCollections.observableArrayList(TipoConversoesArea.values())); 
+						comboFistTipo.getSelectionModel().select(0);
+					}
+				});
+				
+				Platform.runLater(new Runnable() {
+					public void run() { 
+						comboSecondTipo.setItems(FXCollections.observableArrayList(TipoConversoesArea.values())); 
+						comboSecondTipo.getSelectionModel().select(0);
+				}
+				});
+				break;
+			case PRESSAO:
+				Platform.runLater(new Runnable() {
+					public void run() { 
+						comboFistTipo.setItems(FXCollections.observableArrayList(TipoConversoesPressao.values())); 
+						comboFistTipo.getSelectionModel().select(0);
+					}
+				});
+				
+				Platform.runLater(new Runnable() {
+					public void run() { 
+						comboSecondTipo.setItems(FXCollections.observableArrayList(TipoConversoesPressao.values()));
+						comboSecondTipo.getSelectionModel().select(0);
+					}
+				});
+				break;
+			case TEMPO:
+				Platform.runLater(new Runnable() {
+					public void run() { 
+						comboFistTipo.setItems(FXCollections.observableArrayList(TipoConversoesTempo.values())); 
+						comboFistTipo.getSelectionModel().select(0);
+					}
+				});
+				
+				Platform.runLater(new Runnable() {
+					public void run() { 
+						comboSecondTipo.setItems(FXCollections.observableArrayList(TipoConversoesTempo.values()));
+						comboSecondTipo.getSelectionModel().select(0);
+					}
+				});
+				break;
+			case MASSA:
+				Platform.runLater(new Runnable() {
+					public void run() { 
+						comboFistTipo.setItems(FXCollections.observableArrayList(TipoConversoesMassa.values())); 
+						comboFistTipo.getSelectionModel().select(0);
+					}
+				});
+				
+				Platform.runLater(new Runnable() {
+					public void run() { 
+						comboSecondTipo.setItems(FXCollections.observableArrayList(TipoConversoesMassa.values()));
+						comboSecondTipo.getSelectionModel().select(0);
+					}
+				});
+				break;
+			case FREQUENCIA:
+				Platform.runLater(new Runnable() {
+					public void run() { 
+						comboFistTipo.setItems(FXCollections.observableArrayList(TipoConversoesFrequencia.values()));
+						comboFistTipo.getSelectionModel().select(0);
+					}
+				});
+				
+				Platform.runLater(new Runnable() {
+					public void run() { 
+						comboSecondTipo.setItems(FXCollections.observableArrayList(TipoConversoesFrequencia.values()));
+						comboSecondTipo.getSelectionModel().select(0);
+					}
+				});
+				break;
+			case ANGULO:
+				Platform.runLater(new Runnable() {
+					public void run() { 
+						comboFistTipo.setItems(FXCollections.observableArrayList(TipoConversoesAngulo.values())); 
+						comboFistTipo.getSelectionModel().select(0);
+					}
+				});
+				
+				Platform.runLater(new Runnable() {
+					public void run() { 
+						comboSecondTipo.setItems(FXCollections.observableArrayList(TipoConversoesAngulo.values())); 
+						comboSecondTipo.getSelectionModel().select(0);
+					}
+				});
+				break;
+			case ELETRICIDADE:
+				Platform.runLater(new Runnable() {
+					public void run() { 
+						comboFistTipo.setItems(FXCollections.observableArrayList(TipoConversoesEletricidade.values())); 
+						comboFistTipo.getSelectionModel().select(0);
+					}
+				});
+				
+				Platform.runLater(new Runnable() {
+					public void run() { 
+						comboSecondTipo.setItems(FXCollections.observableArrayList(TipoConversoesEletricidade.values())); 
+						comboSecondTipo.getSelectionModel().select(0);
+					}
 				});
 				break;
 		}
 		textFieldInput.setText("");
 		textFieldResult.setText("");
-		comboFistTipo.getSelectionModel().select(0);
-		comboSecondTipo.getSelectionModel().select(0);
+		
 	}
 	
 	@FXML
@@ -149,14 +298,56 @@ public class ConversoesController implements Runnable {
 							((TipoConversoesArmaDados) comboFistTipo.getValue()).getTipo(), 
 							((TipoConversoesArmaDados) comboSecondTipo.getValue()).getTipo());
 					break;
+				case ANGULO:
+					result = conversaoService.converter(new BigDecimal(textFieldInput.getText()), 
+							((TipoConversoesAngulo) comboFistTipo.getValue()).getTipo(), 
+							((TipoConversoesAngulo) comboSecondTipo.getValue()).getTipo());
+					break;
+				case AREA:
+					result = conversaoService.converter(new BigDecimal(textFieldInput.getText()), 
+							((TipoConversoesArea) comboFistTipo.getValue()).getTipo(), 
+							((TipoConversoesArea) comboSecondTipo.getValue()).getTipo());
+					break;
+				case ELETRICIDADE:
+					result = conversaoService.converter(new BigDecimal(textFieldInput.getText()), 
+							((TipoConversoesEletricidade) comboFistTipo.getValue()).getTipo(), 
+							((TipoConversoesEletricidade) comboSecondTipo.getValue()).getTipo());
+					break;
+				case FREQUENCIA:
+					result = conversaoService.converter(new BigDecimal(textFieldInput.getText()), 
+							((TipoConversoesFrequencia) comboFistTipo.getValue()).getTipo(), 
+							((TipoConversoesFrequencia) comboSecondTipo.getValue()).getTipo());
+					break;
+				case MASSA:
+					result = conversaoService.converter(new BigDecimal(textFieldInput.getText()), 
+							((TipoConversoesMassa) comboFistTipo.getValue()).getTipo(), 
+							((TipoConversoesMassa) comboSecondTipo.getValue()).getTipo());
+					break;
+				case PRESSAO:
+					result = conversaoService.converter(new BigDecimal(textFieldInput.getText()), 
+							((TipoConversoesPressao) comboFistTipo.getValue()).getTipo(), 
+							((TipoConversoesPressao) comboSecondTipo.getValue()).getTipo());
+					break;
+				case TEMPO:
+					result = conversaoService.converter(new BigDecimal(textFieldInput.getText()), 
+							((TipoConversoesTempo) comboFistTipo.getValue()).getTipo(), 
+							((TipoConversoesTempo) comboSecondTipo.getValue()).getTipo());
+					break;
+				case VELOCIDADE:
+					result = conversaoService.converter(new BigDecimal(textFieldInput.getText()), 
+							((TipoConversoesVelocidade) comboFistTipo.getValue()).getTipo(), 
+							((TipoConversoesVelocidade) comboSecondTipo.getValue()).getTipo());
+					break;
 			}
+			
+			textFieldResult.setText(result.toString());
 			} catch (NumberFormatException e) {
 				textFieldInput.setText("");
 				textFieldResult.setText("");
-				return;
+			} catch (ConversionException e) {
+				labelError.setText(label.getString("root.tab.arquivo.conversoes.error"));
 			}
 		
-		textFieldResult.setText(result.toString());
 	}
 	
 	@FXML

@@ -202,7 +202,7 @@ public class MainApp extends Application {
 		FXMLLoader loader = getLoader();
 		conversoesStage = getStage((AnchorPane) getLayout(loader, "/views/outrasOperacoes/Conversoes.fxml"), label.getString("root.tab.arquivo.conversoes.titulo"), CAMINHO_ICONE_APLICACAO);
 		conversoesController = loader.getController();
-		conversoesController.show(this, conversoesStage);
+		conversoesController.show(this, conversoesStage, label);
 		
 	}
 	
