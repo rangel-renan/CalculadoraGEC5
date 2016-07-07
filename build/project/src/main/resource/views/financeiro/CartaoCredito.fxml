@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import com.calculadora.validacao.InputCurrencyTextField?>
+<?import com.calculadora.validacao.InputOnlyNumAndDecTextField?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="455.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.45" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.CartaoCreditoController">
+   <children>
+      <InputCurrencyTextField fx:id="textFieldSaldoCartao" layoutX="238.0" layoutY="68.0" prefHeight="36.0" prefWidth="154.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </InputCurrencyTextField>
+      <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="74.0" prefWidth="154.0" text="%root.tab.financeiro.cartaoCredito.saldoCartao">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textFieldSimboloMoeda1" disable="true" layoutX="201.0" layoutY="68.0" prefHeight="36.0" prefWidth="37.0" promptText="R$">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="25.0" prefWidth="154.0" text="%root.tab.financeiro.moeda">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="comboMoedas" layoutX="201.0" layoutY="21.0" onHidden="#hiddenMoeda" prefHeight="31.0" prefWidth="192.0" />
+      <InputOnlyNumAndDecTextField fx:id="textFieldTaxaJuros" layoutX="238.0" layoutY="116.0" prefHeight="36.0" prefWidth="154.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </InputOnlyNumAndDecTextField>
+      <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="122.0" prefWidth="154.0" text="%root.tab.financeiro.taxaJuros">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField disable="true" layoutX="201.0" layoutY="116.0" prefHeight="36.0" prefWidth="37.0" promptText="\%">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="169.0" prefWidth="154.0" text="%root.tab.financeiro.cartaoCredito.valorParcela">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnCalcular" ellipsisString="" layoutX="191.0" layoutY="235.0" mnemonicParsing="false" onAction="#calcular" prefHeight="33.0" prefWidth="94.0" styleClass="operadores" text="%botoes.calcular">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="329.0" prefWidth="154.0" text="%root.tab.financeiro.cartaoCredito.balancoFinal" textAlignment="RIGHT">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textFieldSimboloMoeda4" disable="true" layoutX="201.0" layoutY="323.0" prefHeight="36.0" prefWidth="37.0" promptText="R$">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="textFieldBalancoFinal" alignment="CENTER" editable="false" layoutX="238.0" layoutY="323.0" prefHeight="36.0" prefWidth="154.0" styleClass="btnResults">
+         <font>
+            <Font size="15.0" />
+         </font></TextField>
+      <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="287.0" prefWidth="154.0" text="%root.tab.financeiro.totalJuros">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textFieldSimboloMoeda3" disable="true" layoutX="201.0" layoutY="281.0" prefHeight="36.0" prefWidth="37.0" promptText="R$">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="textFieldTotalJuros" alignment="CENTER" editable="false" layoutX="238.0" layoutY="281.0" prefHeight="36.0" prefWidth="154.0" styleClass="btnResults">
+         <font>
+            <Font size="15.0" />
+         </font></TextField>
+      <Button layoutX="242.0" layoutY="423.0" mnemonicParsing="false" onAction="#handleAjuda" prefHeight="33.0" prefWidth="94.0" text="%botoes.ajuda">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button ellipsisString="" layoutX="140.0" layoutY="423.0" mnemonicParsing="false" onAction="#handleVoltar" prefHeight="33.0" prefWidth="94.0" text="%botoes.voltar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="374.0" prefWidth="154.0" text="Total de Meses">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textFieldTotalMeses" alignment="CENTER" editable="false" layoutX="201.0" layoutY="369.0" prefHeight="36.0" prefWidth="94.0" styleClass="btnResults">
+         <font>
+            <Font size="15.0" />
+         </font></TextField>
+      <TextField fx:id="textFieldSimboloMoeda2" disable="true" layoutX="202.0" layoutY="163.0" prefHeight="36.0" prefWidth="37.0" promptText="R$">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <InputCurrencyTextField fx:id="textFieldValorParcela" layoutX="239.0" layoutY="163.0" prefHeight="36.0" prefWidth="154.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </InputCurrencyTextField>
+      <Label fx:id="labelError" alignment="CENTER" layoutX="12.0" layoutY="209.0" prefHeight="17.0" prefWidth="428.0" textAlignment="CENTER" textFill="#eb1919" />
+   </children>
+</AnchorPane>

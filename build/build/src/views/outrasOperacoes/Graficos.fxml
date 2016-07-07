@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="886.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.GraficosController">
+   <top>
+      <AnchorPane prefHeight="101.0" prefWidth="802.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="textFieldEquacao" layoutX="118.0" layoutY="51.0" prefHeight="36.0" prefWidth="510.0" promptText="Por exemplo: 4*x^2 + 3*x + 2">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label layoutX="118.0" layoutY="30.0" text="%root.tab.arquivo.graficos.entreFuncAbaixo" />
+            <Button ellipsisString="" layoutX="14.0" layoutY="61.0" mnemonicParsing="false" onAction="#handleVoltar" prefHeight="33.0" prefWidth="94.0" text="%botoes.voltar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="14.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleAjuda" prefHeight="33.0" prefWidth="94.0" text="%botoes.ajuda">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnGerar" ellipsisString="" layoutX="793.0" layoutY="51.0" mnemonicParsing="false" onAction="#handleGerar" prefHeight="36.0" prefWidth="86.0" styleClass="operadores" text="%botoes.gerar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label fx:id="labelError" layoutX="118.0" layoutY="88.0" prefHeight="17.0" prefWidth="511.0" textFill="RED" />
+            <TextField fx:id="textFieldXIntMin" layoutX="642.0" layoutY="27.0" prefHeight="25.0" prefWidth="52.0" text="-12" />
+            <TextField fx:id="textFieldXIntMax" layoutX="732.0" layoutY="27.0" prefHeight="25.0" prefWidth="52.0" text="12" />
+            <TextField fx:id="textFieldYIntMin" layoutX="643.0" layoutY="80.0" prefHeight="25.0" prefWidth="52.0" text="-7" />
+            <TextField fx:id="textFieldYIntMax" layoutX="733.0" layoutY="80.0" prefHeight="25.0" prefWidth="52.0" text="7" />
+            <Label layoutX="642.0" layoutY="11.0" text="%root.tab.arquivo.graficos.InterEixX" />
+            <Label layoutX="642.0" layoutY="63.0" text="%root.tab.arquivo.graficos.InterEixY" />
+            <Label alignment="CENTER" layoutX="698.0" layoutY="32.0" prefHeight="17.0" prefWidth="31.0" text="%root.tab.arquivo.graficos.ate" />
+            <Label alignment="CENTER" layoutX="700.0" layoutY="85.0" prefHeight="17.0" prefWidth="31.0" text="%root.tab.arquivo.graficos.ate" />
+         </children>
+      </AnchorPane>
+   </top>
+   <right>
+      <AnchorPane prefHeight="425.0" prefWidth="176.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="tableCoordenadas" layoutY="21.0" prefHeight="543.0" prefWidth="176.0">
+               <columns>
+                  <TableColumn fx:id="colunaX" prefWidth="87.0" text="x" />
+                  <TableColumn fx:id="colunaY" prefWidth="87.0" text="y" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </right>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import com.calculadora.validacao.InputOnlyNumAndDecTextField?>
+<?import com.calculadora.validacao.InputCurrencyTextField?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="536.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.45" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.FinanciamentoController">
+   <children>
+      <Button layoutX="331.0" layoutY="276.0" mnemonicParsing="false" onAction="#handleAjuda" prefHeight="33.0" prefWidth="94.0" text="%botoes.ajuda">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button ellipsisString="" layoutX="133.0" layoutY="276.0" mnemonicParsing="false" onAction="#handleVoltar" prefHeight="33.0" prefWidth="94.0" text="%botoes.voltar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="btnCalcular" ellipsisString="" layoutX="231.0" layoutY="276.0" mnemonicParsing="false" onAction="#calcular" prefHeight="33.0" prefWidth="94.0" styleClass="operadores" text="%botoes.calcular">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ComboBox fx:id="comboTipoPeridos" layoutX="375.0" layoutY="174.0" prefHeight="36.0" prefWidth="94.0" promptText="Dias" />
+      <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="179.0" prefHeight="25.0" prefWidth="192.0" text="%root.tab.financeiro.financiamento.periodPagam">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <InputOnlyNumAndDecTextField fx:id="textFieldPeriodo" layoutX="218.0" layoutY="174.0" prefHeight="36.0" prefWidth="154.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </InputOnlyNumAndDecTextField>
+      <TextField disable="true" layoutX="218.0" layoutY="122.0" prefHeight="36.0" prefWidth="37.0" promptText="\%">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label alignment="CENTER_RIGHT" layoutX="53.0" layoutY="128.0" prefWidth="154.0" text="%root.tab.financeiro.taxaJuros">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <InputOnlyNumAndDecTextField fx:id="textFieldTaxaJuros" layoutX="255.0" layoutY="122.0" prefHeight="36.0" prefWidth="154.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </InputOnlyNumAndDecTextField>
+      <ComboBox fx:id="comboMoedas" layoutX="218.0" layoutY="27.0" onHidden="#hiddenMoeda" prefHeight="31.0" prefWidth="192.0" />
+      <Label alignment="CENTER_RIGHT" layoutX="53.0" layoutY="30.0" prefWidth="154.0" text="%root.tab.financeiro.moeda">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textFieldSimboloMoeda" disable="true" layoutX="218.0" layoutY="74.0" prefHeight="36.0" prefWidth="37.0" promptText="R$">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label alignment="CENTER_RIGHT" layoutX="53.0" layoutY="80.0" prefWidth="154.0" text="%root.tab.financeiro.financiamento.valFinanc">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <InputCurrencyTextField fx:id="textFieldValorFinanciado" layoutX="255.0" layoutY="74.0" prefHeight="36.0" prefWidth="154.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </InputCurrencyTextField>
+      <ComboBox fx:id="comboTipoPrestacao" layoutX="219.0" layoutY="222.0" prefHeight="36.0" prefWidth="192.0" promptText="Fixas (Tabela Price)" />
+      <Label alignment="CENTER_RIGHT" layoutX="53.0" layoutY="228.0" prefWidth="154.0" text="%root.tab.financeiro.financiamento.tipoPrest">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tabelaDetlFinanciamento" layoutX="8.0" layoutY="346.0" prefHeight="251.0" prefWidth="516.0">
+        <columns>
+          <TableColumn fx:id="colunaNumParcela" prefWidth="75.0" text="%root.tab.financeiro.financiamento.tabNParcl" />
+          <TableColumn fx:id="colunaValorParcela" prefWidth="129.0" text="%root.tab.financeiro.financiamento.tabValParc" />
+            <TableColumn fx:id="colunaAmortizacoes" prefWidth="108.0" text="%root.tab.financeiro.financiamento.tabAmort" />
+            <TableColumn fx:id="colunaJuros" prefWidth="92.0" text="%root.tab.financeiro.financiamento.tabJuros" />
+            <TableColumn fx:id="colunaSaldoDevedor" prefWidth="111.0" text="%root.tab.financeiro.financiamento.tabSaldoDeved" />
+        </columns>
+      </TableView>
+      <Label fx:id="labelError" alignment="CENTER" layoutX="28.0" layoutY="320.0" prefHeight="17.0" prefWidth="481.0" textFill="RED" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="407.0" prefWidth="920.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.45" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.CalculadoraController">
+   <children>
+      <Label fx:id="displayField" alignment="BOTTOM_RIGHT" layoutX="-2.0" prefHeight="56.0" prefWidth="920.0" styleClass="outputPrincipal" textAlignment="RIGHT">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <HBox layoutY="82.0" prefHeight="20.0" prefWidth="292.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#apagarTudo" prefHeight="20.0" prefWidth="162.0" styleClass="numpadApagar" text="C">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#apagarUltimaLetra" prefHeight="20.0" prefWidth="162.0" styleClass="numpadApagar" text="CE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handeRaizQuadrada" prefHeight="20.0" prefWidth="162.0" styleClass="operadores" text="√">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutY="126.0" prefHeight="70.0" prefWidth="487.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleNumPad" prefHeight="89.0" prefWidth="162.0" text="7">
+               <styleClass>
+                  <String fx:value="numpad" />
+                  <String fx:value="button" />
+               </styleClass>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleNumPad" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text="8">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleNumPad" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text="9">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleOperador" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="÷">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleOperador" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="\%">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutY="196.0" prefHeight="70.0" prefWidth="487.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleNumPad" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text="4">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleNumPad" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text="5">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleNumPad" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text="6">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleOperador" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="×">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleEuler" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="e">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutY="266.0" prefHeight="70.0" prefWidth="487.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleNumPad" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text="1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleNumPad" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text="2">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleNumPad" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text="3">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleOperador" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="-">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleMudarSinal" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="±">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutY="336.0" prefHeight="70.0" prefWidth="487.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleNumPad" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text="0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handlePonto" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text=".">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleIgual" prefHeight="89.0" prefWidth="162.0" styleClass="numpad" text="=">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleOperador" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="+">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handlePI" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="π">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutX="487.0" layoutY="336.0" prefHeight="70.0" prefWidth="433.0">
+         <children>
+            <Button id="x^y" mnemonicParsing="false" onAction="#handleOperador" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/xsuby.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleExp" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Exp">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button id="y √x" mnemonicParsing="false" onAction="#handleOperador" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/raizxsuby.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleLn" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="ln">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutX="487.0" layoutY="266.0" prefHeight="70.0" prefWidth="433.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleOperador" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Mod">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleDms" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="dms">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleInv" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Int">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleLog" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Log">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutX="487.0" layoutY="196.0" prefHeight="70.0" prefWidth="433.0">
+         <children>
+            <Button id="Sec^-1" mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/sec.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button id="Coss^-1" mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/cossec.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button id="Cot^-1" mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/cot.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleUnder" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="1/x">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutX="487.0" layoutY="126.0" prefHeight="70.0" prefWidth="433.0">
+         <children>
+            <Button id="Sin^-1" ellipsisString="" mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/arcosen.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button id="Cos^-1" mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/arcocos.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button id="Tan^-1" mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/arcotan.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleDezElevadoX" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/10subx.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutX="487.0" layoutY="56.0" prefHeight="70.0" prefWidth="433.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Tan">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Cos">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleOperadorTrigonometrico" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="Sin">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleFatorial" prefHeight="89.0" prefWidth="162.0" styleClass="operadoresAdicionais" text="n!">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <Label fx:id="displaySubField" alignment="CENTER_RIGHT" layoutX="16.0" layoutY="4.0" prefHeight="22.0" prefWidth="899.0" styleClass="outputSecundario" textAlignment="RIGHT" />
+      <HBox layoutX="291.0" layoutY="56.0" prefHeight="70.0" prefWidth="195.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleElevadoAoQuadrado" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="x²">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleElevadoAoCubo" prefHeight="89.0" prefWidth="162.0" styleClass="operadores" text="x³">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutY="56.0" prefHeight="26.0" prefWidth="290.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleMc" prefHeight="35.0" prefWidth="58.0" styleClass="operadoresMC" text="MC" />
+            <Button mnemonicParsing="false" onAction="#handleMr" prefHeight="35.0" prefWidth="58.0" styleClass="operadoresMC" text="MR" />
+            <Button mnemonicParsing="false" onAction="#handleMs" prefHeight="35.0" prefWidth="58.0" styleClass="operadoresMC" text="MS" />
+            <Button mnemonicParsing="false" onAction="#handleMplus" prefHeight="35.0" prefWidth="58.0" styleClass="operadoresMC" text="M+" />
+            <Button mnemonicParsing="false" onAction="#handleMmin" prefHeight="27.0" prefWidth="64.0" styleClass="operadoresMC" text="M-" />
+         </children>
+      </HBox>
+      <Label fx:id="mLabel" alignment="BOTTOM_LEFT" layoutX="1.0" prefHeight="56.0" prefWidth="46.0" styleClass="outputPrincipal" text="M">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import com.calculadora.validacao.InputCurrencyTextField?>
+<?import com.calculadora.validacao.InputOnlyNumAndDecTextField?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="497.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculadora.controller.JurosController">
+   <children>
+      <TabPane prefHeight="370.0" prefWidth="497.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="%root.tab.financeiro.juros.jurosSimples">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="386.0" prefWidth="495.0">
+                     <children>
+                        <InputCurrencyTextField fx:id="textFieldJurSimInvestInicial" layoutX="219.0" layoutY="73.0" prefHeight="36.0" prefWidth="154.0">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </InputCurrencyTextField>
+                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="80.0" prefWidth="154.0" text="%root.tab.financeiro.investimento.investInicial">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="textFieldJurSimSimboloMoeda1" disable="true" layoutX="182.0" layoutY="73.0" prefHeight="36.0" prefWidth="37.0" promptText="R$">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="30.0" prefWidth="154.0" text="%root.tab.financeiro.moeda">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="comboJurSimMoedas" layoutX="182.0" layoutY="26.0" onHidden="#hiddenJurSimMoeda" prefHeight="31.0" prefWidth="192.0" />
+                        <InputOnlyNumAndDecTextField fx:id="textFieldJurSimTaxJuros" layoutX="219.0" layoutY="121.0" prefHeight="36.0" prefWidth="154.0">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </InputOnlyNumAndDecTextField>
+                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="127.0" prefWidth="154.0" text="%root.tab.financeiro.taxaJuros">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField disable="true" layoutX="182.0" layoutY="121.0" prefHeight="36.0" prefWidth="37.0" promptText="\%">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <InputOnlyNumAndDecTextField fx:id="textFieldJurSimNumPeriodo" layoutX="182.0" layoutY="173.0" prefHeight="36.0" prefWidth="154.0">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </InputOnlyNumAndDecTextField>
+                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="178.0" prefWidth="154.0" text="%root.tab.financeiro.investimento.numPeriodos">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="comboJurSimTipoPeriodos" layoutX="339.0" layoutY="173.0" prefHeight="36.0" prefWidth="94.0" promptText="Dias" />
+                        <Button fx:id="btnJurSimCalcular" ellipsisString="" layoutX="212.0" layoutY="239.0" mnemonicParsing="false" onAction="#calcularJurosSimples" prefHeight="33.0" prefWidth="94.0" styleClass="operadores" text="%botoes.calcular">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <TextField fx:id="textFieldJurSimValorFuturo" alignment="CENTER" editable="false" layoutX="221.0" layoutY="287.0" prefHeight="36.0" prefWidth="154.0" styleClass="btnResults" />
+                        <TextField fx:id="textFieldJurSimSimboloMoeda3" disable="true" layoutX="184.0" layoutY="287.0" prefHeight="36.0" prefWidth="37.0" promptText="R$">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label alignment="CENTER_RIGHT" layoutX="21.0" layoutY="293.0" prefWidth="154.0" text="%root.tab.financeiro.investimento.valorFuturo">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelJurSimError" alignment="CENTER" layoutX="28.0" layoutY="216.0" prefHeight="17.0" prefWidth="438.0" textFill="RED" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="%root.tab.financeiro.juros.jurosCompostos">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="346.0" prefWidth="495.0">
+                     <children>
+                        <InputCurrencyTextField fx:id="textFieldJurCompInvestInicial" layoutX="219.0" layoutY="73.0" prefHeight="36.0" prefWidth="154.0">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </InputCurrencyTextField>
+                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="80.0" prefWidth="154.0" text="%root.tab.financeiro.investimento.investInicial">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="textFieldJurCompSimboloMoeda1" disable="true" layoutX="182.0" layoutY="73.0" prefHeight="36.0" prefWidth="37.0" promptText="R$">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="30.0" prefWidth="154.0" text="%root.tab.financeiro.moeda">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="comboJurCompMoedas" layoutX="182.0" layoutY="26.0" onHidden="#hiddenJurCompMoeda" prefHeight="31.0" prefWidth="192.0" />
+                        <InputOnlyNumAndDecTextField fx:id="textFieldJurCompTaxJuros" layoutX="219.0" layoutY="121.0" prefHeight="36.0" prefWidth="154.0">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </InputOnlyNumAndDecTextField>
+                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="127.0" prefWidth="154.0" text="%root.tab.financeiro.taxaJuros">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField disable="true" layoutX="182.0" layoutY="121.0" prefHeight="36.0" prefWidth="37.0" promptText="\%">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <InputOnlyNumAndDecTextField fx:id="textFieldJurCompNumPeriodo" layoutX="182.0" layoutY="173.0" prefHeight="36.0" prefWidth="154.0">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </InputOnlyNumAndDecTextField>
+                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="178.0" prefWidth="154.0" text="%root.tab.financeiro.investimento.numPeriodos">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="comboJurCompTipoPeriodos" layoutX="339.0" layoutY="173.0" prefHeight="36.0" prefWidth="94.0" promptText="Dias" />
+                        <Button fx:id="btnJurCompCalcular" ellipsisString="" layoutX="212.0" layoutY="239.0" mnemonicParsing="false" onAction="#calcularJurosCompostos" prefHeight="33.0" prefWidth="94.0" styleClass="operadores" text="%botoes.calcular">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <TextField fx:id="textFieldJurCompValorFuturo" alignment="CENTER" editable="false" layoutX="220.0" layoutY="287.0" prefHeight="36.0" prefWidth="154.0" styleClass="btnResults" />
+                        <TextField fx:id="textFieldJurCompSimboloMoeda3" disable="true" layoutX="183.0" layoutY="287.0" prefHeight="36.0" prefWidth="37.0" promptText="R$">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="293.0" prefWidth="154.0" text="%root.tab.financeiro.investimento.valorFuturo">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelJurCompError" alignment="CENTER" layoutX="28.0" layoutY="216.0" prefHeight="17.0" prefWidth="438.0" textFill="RED" />
+                     </children>
+                  </AnchorPane>
+               </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <Button ellipsisString="" layoutX="151.0" layoutY="379.0" mnemonicParsing="false" onAction="#handleVoltar" prefHeight="33.0" prefWidth="94.0" text="%botoes.voltar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="253.0" layoutY="379.0" mnemonicParsing="false" onAction="#handleAjuda" prefHeight="33.0" prefWidth="94.0" text="%botoes.ajuda">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>
