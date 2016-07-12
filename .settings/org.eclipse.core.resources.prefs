@@ -1,5 +1,7 @@
 eclipse.preferences.version=1
+encoding//build/build/src/com/calculadora/util/enums/TipoMoedas.java=UTF-8
 encoding//src/main/java/com/calculadora/controller/CalculadoraController.java=UTF-8
 encoding//src/main/java/com/calculadora/service/FinanceiraServiceImpl.java=UTF-8
 encoding//src/main/java/com/calculadora/util/enums/TipoMoedas.java=UTF-8
 encoding//src/main/java/com/calculadora/util/enums/TipoOperacao.java=UTF-8
+encoding/<project>=ISO-8859-1

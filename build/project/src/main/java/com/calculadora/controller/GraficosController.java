@@ -110,7 +110,7 @@ public class GraficosController implements Runnable {
 		
 		run();
 		mainApp.addThread(new Thread(this));
-		janelaGraficosLayout.setCenter(graficosService.gerarEixos(705, 560, Double.parseDouble(textFieldXIntMin.getText()), Double.parseDouble(textFieldXIntMax.getText()), 
+		janelaGraficosLayout.setCenter(graficosService.gerarEixos(700, 550, Double.parseDouble(textFieldXIntMin.getText()), Double.parseDouble(textFieldXIntMax.getText()), 
 																Double.parseDouble(textFieldYIntMin.getText()), Double.parseDouble(textFieldYIntMax.getText())));
 	}
 	
